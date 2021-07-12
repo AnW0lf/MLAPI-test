@@ -1,0 +1,312 @@
+Using pre-set license
+Built from '2020.3/staging' branch; Version is '2020.3.13f1 (71691879b7f5) revision 7432472'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Home; OS build 19041.1052; Version 2004; 64bit' Language: 'ru' Physical Memory: 8140 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+ COMMAND LINE ARGUMENTS:
+E:\UnityVersions\2020.2.1f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+E:/Unity/MLAPI test
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+56011
+Successfully changed project path to: E:/Unity/MLAPI test
+E:/Unity/MLAPI test
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 288.54 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.13f1 (71691879b7f5)
+[Subsystems] Discovering subsystems at path E:/UnityVersions/2020.2.1f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path E:/Unity/MLAPI test/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 760 (ID=0x1187)
+    Vendor:   
+    VRAM:     2007 MB
+    Driver:   27.21.14.5671
+Initialize mono
+Mono path[0] = 'E:/UnityVersions/2020.2.1f1/Editor/Data/Managed'
+Mono path[1] = 'E:/UnityVersions/2020.2.1f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'E:/UnityVersions/2020.2.1f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56680
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: E:/UnityVersions/2020.2.1f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.003226 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 256.20 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.763 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.016385 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 281.79 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  5.154 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.19 seconds
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 2.01 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4033 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 193.3 MB.
+System memory in use after: 193.5 MB.
+
+Unloading 26 unused Assets to reduce memory usage. Loaded Objects now: 4486.
+Total: 13.466200 ms (FindLiveObjects: 1.967700 ms CreateObjectMapping: 1.266100 ms MarkObjects: 9.789600 ms  DeleteObjects: 0.439400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  path: Assets/InputManager.inputactions
+  artifactKey: Guid(9a2a3d50925ac904fb35dd869623dbbd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/InputManager.inputactions using Guid(9a2a3d50925ac904fb35dd869623dbbd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6adacee5392d7415e1c2ca149825254b') in 0.153832 seconds 
+  Import took 0.173845 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000594 seconds.
+  path: Assets/Prefabs/Player.prefab
+  artifactKey: Guid(941c6885eb2a4e2408ef16ca1e72f45a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Player.prefab using Guid(941c6885eb2a4e2408ef16ca1e72f45a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Launched and connected shader compiler UnityShaderCompiler.exe after 0.17 seconds
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.17 seconds
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.17 seconds
+ -> (artifact id: 'b1dcdc5406c550c7d5fe7dcf5831aebc') in 11.562467 seconds 
+  Import took 11.577729 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000284 seconds.
+  path: Assets/InputSystem.inputsettings.asset
+  artifactKey: Guid(dc4b3de8d75cf8b408cb0d9179238cf7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/InputSystem.inputsettings.asset using Guid(dc4b3de8d75cf8b408cb0d9179238cf7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '18b1a0267310a68a67e90ceeb3ef7fd7') in 0.014262 seconds 
+  Import took 0.027497 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 79.664797 seconds.
+  path: Assets/Materials/Ground.mat
+  artifactKey: Guid(47afce6e8d1ba54449dd4693a5224669) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Ground.mat using Guid(47afce6e8d1ba54449dd4693a5224669) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '12bca511bbc917142a45fdd84cd7fa4e') in 0.194666 seconds 
+  Import took 0.210619 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000393 seconds.
+  path: Assets/Materials/Pavement 1.mat
+  artifactKey: Guid(d4a5cdaa47bee394fab4b67139ad3e23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Pavement 1.mat using Guid(d4a5cdaa47bee394fab4b67139ad3e23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '720864baf018d485ab42830058a857ca') in 0.085669 seconds 
+  Import took 0.101213 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000310 seconds.
+  path: Assets/Materials/Player.mat
+  artifactKey: Guid(48af276cbc0231245bdd384ea893e73a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Player.mat using Guid(48af276cbc0231245bdd384ea893e73a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5d908f49bdae3284a55790b147a75794') in 0.084757 seconds 
+  Import took 0.101054 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000333 seconds.
+  path: Assets/Materials/Pavement.mat
+  artifactKey: Guid(b50f18fa6ab9b88438b9144d6d01db1b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Pavement.mat using Guid(b50f18fa6ab9b88438b9144d6d01db1b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3c66460e30937a6a4878cdc2f072782f') in 0.089638 seconds 
+  Import took 0.106933 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.263421 seconds.
+  path: Assets/Materials/House.mat
+  artifactKey: Guid(d4a5cdaa47bee394fab4b67139ad3e23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/House.mat using Guid(d4a5cdaa47bee394fab4b67139ad3e23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '98fe1956ec14135bb801a3db9dc3782a') in 0.061441 seconds 
+  Import took 0.072362 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 44.024977 seconds.
+  path: Assets/Materials/House.mat
+  artifactKey: Guid(d4a5cdaa47bee394fab4b67139ad3e23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/House.mat using Guid(d4a5cdaa47bee394fab4b67139ad3e23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cfb5a4daa3f065c7793c7b87df3948d7') in 0.062272 seconds 
+  Import took 0.075115 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.008496 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.92 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.247 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 1.59 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3785 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 190.8 MB.
+System memory in use after: 191.0 MB.
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 4673.
+Total: 7.912800 ms (FindLiveObjects: 0.784500 ms CreateObjectMapping: 0.555100 ms MarkObjects: 6.451500 ms  DeleteObjects: 0.117900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 776.064661 seconds.
+  path: Assets/Prefabs/Player.prefab
+  artifactKey: Guid(941c6885eb2a4e2408ef16ca1e72f45a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Player.prefab using Guid(941c6885eb2a4e2408ef16ca1e72f45a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c4ceb5614341fe86a4c9d348fc0520b0') in 0.818614 seconds 
+  Import took 0.831629 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.024302 seconds.
+  path: Assets/Prefabs/Player.prefab
+  artifactKey: Guid(941c6885eb2a4e2408ef16ca1e72f45a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Player.prefab using Guid(941c6885eb2a4e2408ef16ca1e72f45a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c4ceb5614341fe86a4c9d348fc0520b0') in 0.047773 seconds 
+  Import took 0.061098 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 19.848516 seconds.
+  path: Assets/Prefabs/Player.prefab
+  artifactKey: Guid(941c6885eb2a4e2408ef16ca1e72f45a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Player.prefab using Guid(941c6885eb2a4e2408ef16ca1e72f45a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9a965f0b83a7a0ea776412cac560ecfe') in 0.052285 seconds 
+  Import took 0.065370 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 52.518688 seconds.
+  path: Assets/Scripts/LocalPlayer.cs
+  artifactKey: Guid(dedead38bdb24a24c9ab50f449a89768) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/LocalPlayer.cs using Guid(dedead38bdb24a24c9ab50f449a89768) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f107e0af7fb168154ae878748cd8ddc') in 0.020423 seconds 
+  Import took 0.036087 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004212 seconds.
+  path: Assets/Scripts/LocalPlayer.cs
+  artifactKey: Guid(dedead38bdb24a24c9ab50f449a89768) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/LocalPlayer.cs using Guid(dedead38bdb24a24c9ab50f449a89768) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f107e0af7fb168154ae878748cd8ddc') in 0.003164 seconds 
+  Import took 0.016206 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.007059 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.20 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.451 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 0.97 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3772 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 190.7 MB.
+System memory in use after: 190.9 MB.
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 4777.
+Total: 5.266500 ms (FindLiveObjects: 0.534500 ms CreateObjectMapping: 0.343800 ms MarkObjects: 4.289700 ms  DeleteObjects: 0.096400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.423520 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.92 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.066 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 1.05 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3772 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 190.8 MB.
+System memory in use after: 191.0 MB.
+
+Unloading 19 unused Assets to reduce memory usage. Loaded Objects now: 4780.
+Total: 5.395500 ms (FindLiveObjects: 0.448900 ms CreateObjectMapping: 0.243600 ms MarkObjects: 4.596800 ms  DeleteObjects: 0.104000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
