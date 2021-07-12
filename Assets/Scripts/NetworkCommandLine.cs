@@ -62,15 +62,5 @@ namespace Multiplayer
                 return argDictionary;
             }
         }
-
-        public void StartHost()
-        {
-            _networkManager.StartHost(Vector3.up);
-        }
-
-        public void StartClient()
-        {
-            _networkManager.StartClient();
-        }
     }
 }

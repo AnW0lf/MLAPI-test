@@ -49,6 +49,8 @@ namespace Player
                 euler.x = Mathf.Clamp(euler.x, -85f, 85f);
                 _camera.transform.localRotation = Quaternion.Euler(euler);
             }
+
+            MouseDelta = Vector2.zero;
         }
     }
 }
