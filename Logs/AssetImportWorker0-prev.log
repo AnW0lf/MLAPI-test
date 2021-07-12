@@ -15,11 +15,11 @@ E:/Unity/MLAPI test
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-56011
+54890
 Successfully changed project path to: E:/Unity/MLAPI test
 E:/Unity/MLAPI test
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 288.54 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 159.91 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.13f1 (71691879b7f5)
 [Subsystems] Discovering subsystems at path E:/UnityVersions/2020.2.1f1/Editor/Data/Resources/UnitySubsystems
@@ -35,29 +35,29 @@ Initialize mono
 Mono path[0] = 'E:/UnityVersions/2020.2.1f1/Editor/Data/Managed'
 Mono path[1] = 'E:/UnityVersions/2020.2.1f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'E:/UnityVersions/2020.2.1f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56680
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56692
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: E:/UnityVersions/2020.2.1f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.003226 seconds.
+Registered in 0.001578 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 256.20 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 137.27 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  2.763 seconds
+- Completed reload, in  1.595 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.016385 seconds.
+Registered in 0.012343 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 281.79 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 166.51 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  5.154 seconds
+- Completed reload, in  2.604 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.19 seconds
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.09 seconds
 D3D shader create error for vertex shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
@@ -65,202 +65,245 @@ D3D shader create error for domain shader [0x80070057]
 D3D shader create error for domain shader [0x80070057]
 D3D shader create error for pixel shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 2.01 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 1.22 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 4033 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4163 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 199.7 MB.
+System memory in use after: 199.9 MB.
+
+Unloading 44 unused Assets to reduce memory usage. Loaded Objects now: 4634.
+Total: 5.021500 ms (FindLiveObjects: 0.599900 ms CreateObjectMapping: 0.505200 ms MarkObjects: 3.717000 ms  DeleteObjects: 0.197400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  path: Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeMaterial.mat
+  artifactKey: Guid(38fbbd3db9e06c54e8a11016e2381469) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeMaterial.mat using Guid(38fbbd3db9e06c54e8a11016e2381469) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
+ -> (artifact id: 'ba900e0545d8bc78ef0aff3fc0793032') in 1.434861 seconds 
+  Import took 1.447202 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000275 seconds.
+  path: Assets/Photon/Fusion/Scripts/Editor/Wizard/resources/photon-wizard-light.png
+  artifactKey: Guid(ffb85606ebd46014d88967231c1e94d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/Fusion/Scripts/Editor/Wizard/resources/photon-wizard-light.png using Guid(ffb85606ebd46014d88967231c1e94d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'da3b5e37feff8d784e29fcafc3b20360') in 0.083606 seconds 
+  Import took 0.094180 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000255 seconds.
+  path: Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeMaterialRed.mat
+  artifactKey: Guid(42b24d338df372049a18bd257e6bc550) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeMaterialRed.mat using Guid(42b24d338df372049a18bd257e6bc550) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '36cb8f4d30c08aaf2b7b700d1db46f00') in 0.057691 seconds 
+  Import took 0.077220 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000264 seconds.
+  path: Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeGridTexture.png
+  artifactKey: Guid(bcf7904fc6371a5409e0fbc3232dfc98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeGridTexture.png using Guid(bcf7904fc6371a5409e0fbc3232dfc98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b908cfa5dbcfdff33cdb9f5b88d7f94d') in 0.033719 seconds 
+  Import took 0.052526 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000287 seconds.
+  path: Assets/Materials/AdditiveParticle.mat
+  artifactKey: Guid(77d929a46d0f34b5ab278ea2d7f2ba75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/AdditiveParticle.mat using Guid(77d929a46d0f34b5ab278ea2d7f2ba75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b631871677973b738a0dac11fe2cf46d') in 0.124437 seconds 
+  Import took 0.139800 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000309 seconds.
+  path: Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeMaterialCyan.mat
+  artifactKey: Guid(1ed66b76f883f11419ff9b35e5f31616) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeMaterialCyan.mat using Guid(1ed66b76f883f11419ff9b35e5f31616) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6ef0c02c543240cf64265b50350c1dbd') in 0.074865 seconds 
+  Import took 0.090905 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000261 seconds.
+  path: Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeMaterialHex.mat
+  artifactKey: Guid(2baf260ec284cd248b4192b400c291ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeMaterialHex.mat using Guid(2baf260ec284cd248b4192b400c291ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '187e61604df9eda61961b74218f3becd') in 0.057480 seconds 
+  Import took 0.072658 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000263 seconds.
+  path: Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeGridBox.png
+  artifactKey: Guid(933188806222c8f47969cdea92996cc9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeGridBox.png using Guid(933188806222c8f47969cdea92996cc9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9544e11ef6fbfc0c88191d720ea2e670') in 0.024309 seconds 
+  Import took 0.039421 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000371 seconds.
+  path: Assets/Materials/DirtParticle.mat
+  artifactKey: Guid(4a48ecfe15536472b96003faa894f3ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/DirtParticle.mat using Guid(4a48ecfe15536472b96003faa894f3ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b63249e5bbb88234264c3253a39deb01') in 0.052603 seconds 
+  Import took 0.065343 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000296 seconds.
+  path: Assets/Photon/Fusion/Scripts/Editor/Wizard/resources/photon-cloud-32-light.png
+  artifactKey: Guid(67b44cadbc0770946b0686fff5652cea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/Fusion/Scripts/Editor/Wizard/resources/photon-cloud-32-light.png using Guid(67b44cadbc0770946b0686fff5652cea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73b3a21172e4f46b29d18889ecca1c90') in 0.017753 seconds 
+  Import took 0.043321 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000261 seconds.
+  path: Assets/Prefabs/Explosion.prefab
+  artifactKey: Guid(8b92bd751e4b5465686e25b6f1a007ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Explosion.prefab using Guid(8b92bd751e4b5465686e25b6f1a007ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4b9ea2ccb7bbd9cd7e741a6e0c2f2d60') in 0.053206 seconds 
+  Import took 0.065497 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000254 seconds.
+  path: Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeGridSphere.png
+  artifactKey: Guid(2422cfae11c31e848bc464c60f8f7af7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeGridSphere.png using Guid(2422cfae11c31e848bc464c60f8f7af7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2785dc04e3a8394698801247e9101d69') in 0.022088 seconds 
+  Import took 0.031855 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000268 seconds.
+  path: Assets/Photon/Fusion/Scripts/Editor/Wizard/resources/photon-wizard-dark.png
+  artifactKey: Guid(1d9a549daf4c0a04db306ea56272b201) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/Fusion/Scripts/Editor/Wizard/resources/photon-wizard-dark.png using Guid(1d9a549daf4c0a04db306ea56272b201) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '267b75cf4633d09a117d4a2b9b23578a') in 0.023614 seconds 
+  Import took 0.034502 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000292 seconds.
+  path: Assets/Photon/Fusion/Scripts/Editor/Wizard/resources/photon-cloud-32-dark.png
+  artifactKey: Guid(4f50ce1b4c6c7d042812889443f7b9db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/Fusion/Scripts/Editor/Wizard/resources/photon-cloud-32-dark.png using Guid(4f50ce1b4c6c7d042812889443f7b9db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5f820452caabb656931b135d0731f4cb') in 0.017695 seconds 
+  Import took 0.030905 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000305 seconds.
+  path: Assets/Photon/Fusion/Resources/PhotonAppSettings.asset
+  artifactKey: Guid(0ab2743414e5d5e40bfa878d5b1ccc21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/Fusion/Resources/PhotonAppSettings.asset using Guid(0ab2743414e5d5e40bfa878d5b1ccc21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8f474e23879f59c6fa712b1548f60294') in 0.021267 seconds 
+  Import took 0.032217 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000287 seconds.
+  path: Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeMaterialBlack.mat
+  artifactKey: Guid(5d1b896bc311a1d438c929c45b0c5fbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeMaterialBlack.mat using Guid(5d1b896bc311a1d438c929c45b0c5fbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '658df76b0c1dcf7600885303559ae2a1') in 0.060020 seconds 
+  Import took 0.072276 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000246 seconds.
+  path: Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeMaterialBlue.mat
+  artifactKey: Guid(1e79a222d16731a4e96e7360bf14bdfd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeMaterialBlue.mat using Guid(1e79a222d16731a4e96e7360bf14bdfd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '66b2d99c1461df92e476303435a57337') in 0.052023 seconds 
+  Import took 0.063680 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000293 seconds.
+  path: Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeMaterialGreen.mat
+  artifactKey: Guid(8f9372f58500a3f46ba541ea24e6d105) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeMaterialGreen.mat using Guid(8f9372f58500a3f46ba541ea24e6d105) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e0e9bab68cc0d62a467728fe1478d7a4') in 0.049724 seconds 
+  Import took 0.062593 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000326 seconds.
+  path: Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeMaterialYellow.mat
+  artifactKey: Guid(37cb86b5e2e83fb47a760ff23a51aff6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeMaterialYellow.mat using Guid(37cb86b5e2e83fb47a760ff23a51aff6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '082e97453036d774a9a11d20aad0ba5c') in 0.057754 seconds 
+  Import took 0.069812 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000251 seconds.
+  path: Assets/Photon/Fusion/Scripts/Editor/InlineHelp/Resources/Light/inline-help-box-color.png
+  artifactKey: Guid(b8bfffa8d19f0fe4dbbcef6b372c51a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/Fusion/Scripts/Editor/InlineHelp/Resources/Light/inline-help-box-color.png using Guid(b8bfffa8d19f0fe4dbbcef6b372c51a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bfc6bd2ff96edea3131d7f3ac18b4ac6') in 0.020740 seconds 
+  Import took 0.034603 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000374 seconds.
+  path: Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeMaterialBox.mat
+  artifactKey: Guid(2544ff8e0cb0b4649ad11a93d3259ffa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeMaterialBox.mat using Guid(2544ff8e0cb0b4649ad11a93d3259ffa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3f217528a3adcb876d7bc5749e6104e') in 0.051152 seconds 
+  Import took 0.066345 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000328 seconds.
+  path: Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeMaterialFloor.mat
+  artifactKey: Guid(002db72054162e04b917e86a395e0a0f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeMaterialFloor.mat using Guid(002db72054162e04b917e86a395e0a0f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bd0b771f868f4c059365d1e221ebd4c7') in 0.055424 seconds 
+  Import took 0.069405 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000267 seconds.
+  path: Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeMaterialBall.mat
+  artifactKey: Guid(3dcabcbc2cd009d4bac7889f284c6345) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/Fusion/Scripts/Prototyping/Materials/FusionPrototypeMaterialBall.mat using Guid(3dcabcbc2cd009d4bac7889f284c6345) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6ff19992abb8166ba5a03314919a3b46') in 0.057037 seconds 
+  Import took 0.071363 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.414851 seconds.
+  path: Assets/Photon/Fusion/Assemblies/Fusion.Realtime.dll
+  artifactKey: Guid(7de3b8b9e1263ad479e2d0c4261b7646) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/Fusion/Assemblies/Fusion.Realtime.dll using Guid(7de3b8b9e1263ad479e2d0c4261b7646) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '28784b7ce3a8d9984ec29f928c9be0e4') in 0.019783 seconds 
+  Import took 0.044574 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.007967 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.01 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  7.391 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 1.01 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3785 Unused Serialized files (Serialized files now loaded: 0)
 System memory in use before: 193.3 MB.
 System memory in use after: 193.5 MB.
 
-Unloading 26 unused Assets to reduce memory usage. Loaded Objects now: 4486.
-Total: 13.466200 ms (FindLiveObjects: 1.967700 ms CreateObjectMapping: 1.266100 ms MarkObjects: 9.789600 ms  DeleteObjects: 0.439400 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Import Request.
-  path: Assets/InputManager.inputactions
-  artifactKey: Guid(9a2a3d50925ac904fb35dd869623dbbd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/InputManager.inputactions using Guid(9a2a3d50925ac904fb35dd869623dbbd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6adacee5392d7415e1c2ca149825254b') in 0.153832 seconds 
-  Import took 0.173845 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000594 seconds.
-  path: Assets/Prefabs/Player.prefab
-  artifactKey: Guid(941c6885eb2a4e2408ef16ca1e72f45a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/Player.prefab using Guid(941c6885eb2a4e2408ef16ca1e72f45a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Launched and connected shader compiler UnityShaderCompiler.exe after 0.17 seconds
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.17 seconds
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.17 seconds
- -> (artifact id: 'b1dcdc5406c550c7d5fe7dcf5831aebc') in 11.562467 seconds 
-  Import took 11.577729 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000284 seconds.
-  path: Assets/InputSystem.inputsettings.asset
-  artifactKey: Guid(dc4b3de8d75cf8b408cb0d9179238cf7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/InputSystem.inputsettings.asset using Guid(dc4b3de8d75cf8b408cb0d9179238cf7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '18b1a0267310a68a67e90ceeb3ef7fd7') in 0.014262 seconds 
-  Import took 0.027497 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 79.664797 seconds.
-  path: Assets/Materials/Ground.mat
-  artifactKey: Guid(47afce6e8d1ba54449dd4693a5224669) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Ground.mat using Guid(47afce6e8d1ba54449dd4693a5224669) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '12bca511bbc917142a45fdd84cd7fa4e') in 0.194666 seconds 
-  Import took 0.210619 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000393 seconds.
-  path: Assets/Materials/Pavement 1.mat
-  artifactKey: Guid(d4a5cdaa47bee394fab4b67139ad3e23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Pavement 1.mat using Guid(d4a5cdaa47bee394fab4b67139ad3e23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '720864baf018d485ab42830058a857ca') in 0.085669 seconds 
-  Import took 0.101213 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000310 seconds.
-  path: Assets/Materials/Player.mat
-  artifactKey: Guid(48af276cbc0231245bdd384ea893e73a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Player.mat using Guid(48af276cbc0231245bdd384ea893e73a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5d908f49bdae3284a55790b147a75794') in 0.084757 seconds 
-  Import took 0.101054 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000333 seconds.
-  path: Assets/Materials/Pavement.mat
-  artifactKey: Guid(b50f18fa6ab9b88438b9144d6d01db1b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Pavement.mat using Guid(b50f18fa6ab9b88438b9144d6d01db1b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3c66460e30937a6a4878cdc2f072782f') in 0.089638 seconds 
-  Import took 0.106933 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 7.263421 seconds.
-  path: Assets/Materials/House.mat
-  artifactKey: Guid(d4a5cdaa47bee394fab4b67139ad3e23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/House.mat using Guid(d4a5cdaa47bee394fab4b67139ad3e23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '98fe1956ec14135bb801a3db9dc3782a') in 0.061441 seconds 
-  Import took 0.072362 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 44.024977 seconds.
-  path: Assets/Materials/House.mat
-  artifactKey: Guid(d4a5cdaa47bee394fab4b67139ad3e23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/House.mat using Guid(d4a5cdaa47bee394fab4b67139ad3e23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cfb5a4daa3f065c7793c7b87df3948d7') in 0.062272 seconds 
-  Import took 0.075115 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.008496 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.92 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.247 seconds
-Platform modules already initialized, skipping
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for domain shader [0x80070057]
-D3D shader create error for domain shader [0x80070057]
-D3D shader create error for pixel shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 1.59 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3785 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 190.8 MB.
-System memory in use after: 191.0 MB.
-
-Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 4673.
-Total: 7.912800 ms (FindLiveObjects: 0.784500 ms CreateObjectMapping: 0.555100 ms MarkObjects: 6.451500 ms  DeleteObjects: 0.117900 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Import Request.
-  Time since last request: 776.064661 seconds.
-  path: Assets/Prefabs/Player.prefab
-  artifactKey: Guid(941c6885eb2a4e2408ef16ca1e72f45a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/Player.prefab using Guid(941c6885eb2a4e2408ef16ca1e72f45a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c4ceb5614341fe86a4c9d348fc0520b0') in 0.818614 seconds 
-  Import took 0.831629 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.024302 seconds.
-  path: Assets/Prefabs/Player.prefab
-  artifactKey: Guid(941c6885eb2a4e2408ef16ca1e72f45a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/Player.prefab using Guid(941c6885eb2a4e2408ef16ca1e72f45a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c4ceb5614341fe86a4c9d348fc0520b0') in 0.047773 seconds 
-  Import took 0.061098 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 19.848516 seconds.
-  path: Assets/Prefabs/Player.prefab
-  artifactKey: Guid(941c6885eb2a4e2408ef16ca1e72f45a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/Player.prefab using Guid(941c6885eb2a4e2408ef16ca1e72f45a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9a965f0b83a7a0ea776412cac560ecfe') in 0.052285 seconds 
-  Import took 0.065370 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 52.518688 seconds.
-  path: Assets/Scripts/LocalPlayer.cs
-  artifactKey: Guid(dedead38bdb24a24c9ab50f449a89768) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/LocalPlayer.cs using Guid(dedead38bdb24a24c9ab50f449a89768) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f107e0af7fb168154ae878748cd8ddc') in 0.020423 seconds 
-  Import took 0.036087 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.004212 seconds.
-  path: Assets/Scripts/LocalPlayer.cs
-  artifactKey: Guid(dedead38bdb24a24c9ab50f449a89768) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/LocalPlayer.cs using Guid(dedead38bdb24a24c9ab50f449a89768) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f107e0af7fb168154ae878748cd8ddc') in 0.003164 seconds 
-  Import took 0.016206 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.007059 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.20 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.451 seconds
-Platform modules already initialized, skipping
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for domain shader [0x80070057]
-D3D shader create error for domain shader [0x80070057]
-D3D shader create error for pixel shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 0.97 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3772 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 190.7 MB.
-System memory in use after: 190.9 MB.
-
-Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 4777.
-Total: 5.266500 ms (FindLiveObjects: 0.534500 ms CreateObjectMapping: 0.343800 ms MarkObjects: 4.289700 ms  DeleteObjects: 0.096400 ms)
+Unloading 136 unused Assets to reduce memory usage. Loaded Objects now: 4697.
+Total: 4.412200 ms (FindLiveObjects: 0.413300 ms CreateObjectMapping: 0.214700 ms MarkObjects: 3.560300 ms  DeleteObjects: 0.221600 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -275,13 +318,13 @@ AssetImportParameters requested are different than current active one (requested
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.423520 seconds.
+Registered in 0.021727 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.92 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 1.11 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  2.066 seconds
+- Completed reload, in  2.308 seconds
 Platform modules already initialized, skipping
 D3D shader create error for vertex shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
@@ -290,14 +333,83 @@ D3D shader create error for domain shader [0x80070057]
 D3D shader create error for domain shader [0x80070057]
 D3D shader create error for pixel shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 1.05 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 1.17 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3772 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 190.8 MB.
-System memory in use after: 191.0 MB.
+Unloading 3805 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 193.3 MB.
+System memory in use after: 193.5 MB.
 
-Unloading 19 unused Assets to reduce memory usage. Loaded Objects now: 4780.
-Total: 5.395500 ms (FindLiveObjects: 0.448900 ms CreateObjectMapping: 0.243600 ms MarkObjects: 4.596800 ms  DeleteObjects: 0.104000 ms)
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4728.
+Total: 8.371200 ms (FindLiveObjects: 1.327000 ms CreateObjectMapping: 0.851200 ms MarkObjects: 5.900800 ms  DeleteObjects: 0.289400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 364.413190 seconds.
+  path: Assets/Photon/Resources/PhotonAppSettings.asset
+  artifactKey: Guid(c64372c67ef56ad4fb8529fcf6cae0bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/Resources/PhotonAppSettings.asset using Guid(c64372c67ef56ad4fb8529fcf6cae0bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ef3f06a8ab7ff1f18a499841992358cd') in 0.032785 seconds 
+  Import took 0.069951 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 46.985952 seconds.
+  path: Assets/Photon/Resources/PhotonAppSettings.asset
+  artifactKey: Guid(c64372c67ef56ad4fb8529fcf6cae0bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/Resources/PhotonAppSettings.asset using Guid(c64372c67ef56ad4fb8529fcf6cae0bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2d4d1676cf2eb4b1958bb6c8f403be4a') in 0.005948 seconds 
+  Import took 0.031162 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002667 seconds.
+  path: Assets/Photon/Resources/PhotonAppSettings.asset
+  artifactKey: Guid(c64372c67ef56ad4fb8529fcf6cae0bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/Resources/PhotonAppSettings.asset using Guid(c64372c67ef56ad4fb8529fcf6cae0bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2d4d1676cf2eb4b1958bb6c8f403be4a') in 0.004141 seconds 
+  Import took 0.017204 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.668894 seconds.
+  path: Assets/Photon/Resources/PhotonAppSettings.asset
+  artifactKey: Guid(c64372c67ef56ad4fb8529fcf6cae0bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/Resources/PhotonAppSettings.asset using Guid(c64372c67ef56ad4fb8529fcf6cae0bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eba6bba2914cde4c11d921893e404ba7') in 0.005168 seconds 
+  Import took 0.053080 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.041193 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 8.94 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in 11.277 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 2.41 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3805 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 193.3 MB.
+System memory in use after: 193.5 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4731.
+Total: 814.582900 ms (FindLiveObjects: 688.962300 ms CreateObjectMapping: 12.597800 ms MarkObjects: 111.869100 ms  DeleteObjects: 1.149400 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
