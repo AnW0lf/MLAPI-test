@@ -43,7 +43,6 @@ namespace Player
         private void Move(UnityEngine.InputSystem.InputAction.CallbackContext context)
         {
             Vector2 direction = context.ReadValue<Vector2>();
-            print(direction);
             _localPlayer.Direction = direction;
         }
 

@@ -1,11 +1,16 @@
+using MLAPI;
+using System.Collections;
 using UnityEngine;
 
 namespace Player
 {
     public class LocalPlayer : MonoBehaviour
     {
+        [Header("Network")]
+        [SerializeField] private NetworkObject _networkObject = null;
+
         [Header("Camera")]
-        [SerializeField] private Camera _camera = null;
+        [SerializeField] private GameObject _cameraPrefab = null;
         [Range(0f, 100f)]
         [SerializeField] private float _verticalSensitivity = 1f;
         [Range(0f, 100f)]
@@ -17,6 +22,8 @@ namespace Player
         [Range(0f, 20f)]
         [SerializeField] private float _runSpeed = 4f;
 
+        private Camera _camera = null;
+
         private Vector2 _direction = Vector2.zero;
         public Vector2 Direction
         {
@@ -25,6 +32,43 @@ namespace Player
         }
         public Vector2 MouseDelta { get; set; }
         public bool RunMode { get; set; }
+
+        private void OnEnable()
+        {
+            StartCoroutine(DelayedCall());
+        }
+
+        private IEnumerator DelayedCall()
+        {
+            yield return null;
+            yield return null;
+
+            if (_networkObject.OwnerClientId == NetworkManager.Singleton.LocalClientId)
+            {
+                if (_camera == null)
+                {
+                    _camera = Instantiate(_cameraPrefab, transform).GetComponent<Camera>();
+                }
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (_camera != null)
+            {
+                Destroy(_camera.gameObject);
+                _camera = null;
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (_camera != null)
+            {
+                Destroy(_camera.gameObject);
+                _camera = null;
+            }
+        }
 
         private void Update()
         {
@@ -41,13 +85,16 @@ namespace Player
                 transform.rotation = rotation;
             }
 
-            if (MouseDelta.y != 0f)
+            if (_camera != null)
             {
-                Vector3 euler = _camera.transform.localEulerAngles;
-                if (euler.x > 180f) euler.x -= 360f;
-                euler += Vector3.left * MouseDelta.y * _verticalSensitivity * Time.deltaTime;
-                euler.x = Mathf.Clamp(euler.x, -85f, 85f);
-                _camera.transform.localRotation = Quaternion.Euler(euler);
+                if (MouseDelta.y != 0f)
+                {
+                    Vector3 euler = _camera.transform.localEulerAngles;
+                    if (euler.x > 180f) euler.x -= 360f;
+                    euler += Vector3.left * MouseDelta.y * _verticalSensitivity * Time.deltaTime;
+                    euler.x = Mathf.Clamp(euler.x, -85f, 85f);
+                    _camera.transform.localRotation = Quaternion.Euler(euler);
+                }
             }
 
             MouseDelta = Vector2.zero;

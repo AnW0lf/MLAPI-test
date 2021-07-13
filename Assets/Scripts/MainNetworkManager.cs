@@ -1,8 +1,6 @@
 using UnityEngine;
 using MLAPI;
 using TMPro;
-using MLAPI.Transports.PhotonRealtime;
-using UnityEngine.UI;
 
 public class MainNetworkManager : MonoBehaviour
 {
@@ -24,7 +22,7 @@ public class MainNetworkManager : MonoBehaviour
     private void ApprovalCheck(byte[] connectionData, ulong clientID, NetworkManager.ConnectionApprovedDelegate callback)
     {
         bool approve = System.Text.Encoding.ASCII.GetString(connectionData) == "";
-        callback(true, null, approve, Vector3.up, Quaternion.identity);
+        callback(false, null, approve, Vector3.up, Quaternion.identity);
     }
 
     public void JoinRoom()
