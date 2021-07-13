@@ -2,6 +2,7 @@ using UnityEngine;
 using MLAPI;
 using Random = UnityEngine.Random;
 using System.Collections.Generic;
+using System.Linq;
 
 public class LevelManager : MonoBehaviour
 {
@@ -25,10 +26,21 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        NetworkManager.Singleton.OnServerStarted += HandlerServerStarted;
+        NetworkManager.Singleton.OnServerStarted += HandleServerStarted;
+        NetworkManager.Singleton.OnClientConnectedCallback += HandleClientConnected;
+        NetworkManager.Singleton.OnClientDisconnectCallback += HandleClientDisconnected;
     }
 
-    private void HandlerServerStarted()
+    private void OnDestroy()
+    {
+        if (NetworkManager.Singleton == null) { return; }
+
+        NetworkManager.Singleton.OnServerStarted -= HandleServerStarted;
+        NetworkManager.Singleton.OnClientConnectedCallback -= HandleClientConnected;
+        NetworkManager.Singleton.OnClientDisconnectCallback -= HandleClientDisconnected;
+    }
+
+    private void HandleServerStarted()
     {
         if (NetworkManager.Singleton.IsServer)
         {
@@ -36,12 +48,28 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    private void HandleClientConnected(ulong clientId)
+    {
+        if (clientId == NetworkManager.Singleton.LocalClientId)
+        {
+
+        }
+    }
+
+    private void HandleClientDisconnected(ulong clientId)
+    {
+        if (clientId == NetworkManager.Singleton.LocalClientId)
+        {
+
+        }
+    }
+
     private void Populate()
     {
-        while(_civilians.Count < _maxCount)
+        while (_civilians.Count < _maxCount)
         {
             Vector3? randomPlace = GetRandomPointOnGround();
-            if(randomPlace != null)
+            if (randomPlace != null)
             {
                 GameObject prefab = _civilianPrefabs[Random.Range(0, _civilianPrefabs.Length)];
                 GameObject civilian = Instantiate(prefab, (Vector3)randomPlace, Quaternion.identity);
@@ -61,6 +89,16 @@ public class LevelManager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    // TODO
+    public GameObject RandomBody
+    {
+        get
+        {
+            if (_civilians == null || _civilians.Count == 0) return null;
+            return _civilians[Random.Range(0, _civilians.Count)];
+        }
     }
 
     private Vector3 RandomPoint
