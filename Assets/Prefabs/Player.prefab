@@ -62,6 +62,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameraPrefab: {fileID: 1295791219535401279, guid: fc0f28f43365b4e40b2faeb62372ec9e, type: 3}
-  _cameraSensitivity: {x: 90, y: 90}
-  _walkSpeed: 3
-  _runSpeed: 8
+  _cameraSensitivity: {x: 20, y: 20}
+  _walkSpeed: 2
+  _runSpeed: 4

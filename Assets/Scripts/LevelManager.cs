@@ -13,6 +13,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private int _maxCount = 100;
     [SerializeField] private Rect _populationArea = Rect.zero;
     [SerializeField] private float _raycastHeight = 20f;
+    [Header("Interest points")]
+    [SerializeField] private Transform[] _interestPoints = null;
 
     private List<GameObject> _civilians = new List<GameObject>();
 
@@ -109,6 +111,14 @@ public class LevelManager : MonoBehaviour
             float y = transform.position.y + _raycastHeight;
             float z = transform.position.z + Random.Range(-_populationArea.height / 2f, _populationArea.height / 2f);
             return new Vector3(x, y, z);
+        }
+    }
+
+    public Transform RandomInterestPoint
+    {
+        get
+        {
+            return _interestPoints[Random.Range(0, _interestPoints.Length)];
         }
     }
 

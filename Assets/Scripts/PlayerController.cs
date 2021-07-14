@@ -16,6 +16,7 @@ namespace Player
 
         private Transform _camera = null;
         private Transform _body = null;
+        private Animator _animator = null;
 
         public bool Active
         {
@@ -66,6 +67,16 @@ namespace Player
         private void Start()
         {
             _body = LevelManager.Singleton.RandomBody.transform;
+            if (_body.TryGetComponent(out Civilian civilian))
+            {
+                civilian.Active = false;
+                civilian.enabled = false;
+            }
+            if (_body.TryGetComponent(out Animator animator))
+            {
+                _animator = animator;
+            }
+
             _camera = Instantiate(_cameraPrefab, _body).transform;
             _camera.localPosition = new Vector3(0f, 1.8f, 0f);
             _camera.localEulerAngles = new Vector3(0f, 0f, 0f);
@@ -79,6 +90,12 @@ namespace Player
         private void OnDestroy()
         {
             Active = false;
+
+            if (_body != null && _body.TryGetComponent(out Civilian civilian))
+            {
+                civilian.enabled = true;
+                civilian.Active = true;
+            }
 
             if (NetworkManager.Singleton == null) { return; }
 
@@ -96,6 +113,11 @@ namespace Player
                 }
                 if (_body != null)
                 {
+                    if (_body.TryGetComponent(out Civilian civilian))
+                    {
+                        civilian.enabled = true;
+                        civilian.Active = true;
+                    }
                     _body = null;
                 }
 
@@ -108,9 +130,18 @@ namespace Player
 
         private void Update()
         {
-            if (_body != null && Direction != Vector2.zero)
+            if (_body != null)
             {
-                _body.position += (_body.forward * Direction.y + _body.right * Direction.x) * _walkSpeed * Time.deltaTime;
+                Vector3 speed = (_body.forward * Direction.y + _body.right * Direction.x) * _walkSpeed;
+                if (Direction != Vector2.zero)
+                {
+                    _body.position += speed * Time.deltaTime;
+                }
+                if (_animator != null)
+                {
+                    _animator.SetFloat("xSpeed", speed.x);
+                    _animator.SetFloat("zSpeed", speed.z);
+                }
             }
         }
 
@@ -131,8 +162,11 @@ namespace Player
             if (_camera != null && Delta.y != 0f)
             {
                 Vector3 euler = _camera.localEulerAngles + Vector3.left * Delta.y * _cameraSensitivity.y * Time.deltaTime;
-                if (euler.y > 180f) euler.y -= 360f;
-                euler.y = Mathf.Clamp(euler.y, -80f, 80f);
+                euler.y = 0f;
+                euler.z = 0f;
+                if (euler.x > 180f) euler.x -= 360f;
+                if (euler.x < -180f) euler.x += 360f;
+                euler.x = Mathf.Clamp(euler.x, -80f, 80f);
                 _camera.localRotation = Quaternion.Euler(euler);
             }
         }
