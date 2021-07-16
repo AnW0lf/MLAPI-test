@@ -15,11 +15,11 @@ D:/Unity_Projects/MLAPI-test
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-56713
+53796
 Successfully changed project path to: D:/Unity_Projects/MLAPI-test
 D:/Unity_Projects/MLAPI-test
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 84.40 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 163.61 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.13f1 (71691879b7f5)
 [Subsystems] Discovering subsystems at path D:/Program Files/Unity2020.3.13f1/Editor/Data/Resources/UnitySubsystems
@@ -35,37 +35,37 @@ Initialize mono
 Mono path[0] = 'D:/Program Files/Unity2020.3.13f1/Editor/Data/Managed'
 Mono path[1] = 'D:/Program Files/Unity2020.3.13f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'D:/Program Files/Unity2020.3.13f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56892
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56052
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: D:/Program Files/Unity2020.3.13f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.001426 seconds.
+Registered in 0.001267 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 86.69 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 87.60 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.222 seconds
+- Completed reload, in  1.265 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.008559 seconds.
+Registered in 0.006637 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 90.12 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 93.10 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.697 seconds
+- Completed reload, in  1.642 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
-Refreshing native plugins compatible for Editor in 0.85 ms, found 2 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.10 seconds
+Refreshing native plugins compatible for Editor in 0.75 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 4113 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 214.1 MB.
-System memory in use after: 214.3 MB.
+System memory in use before: 215.7 MB.
+System memory in use after: 215.9 MB.
 
-Unloading 30 unused Assets to reduce memory usage. Loaded Objects now: 4575.
-Total: 3.927800 ms (FindLiveObjects: 0.691600 ms CreateObjectMapping: 0.343600 ms MarkObjects: 2.794900 ms  DeleteObjects: 0.096600 ms)
+Unloading 30 unused Assets to reduce memory usage. Loaded Objects now: 4577.
+Total: 3.222500 ms (FindLiveObjects: 0.353100 ms CreateObjectMapping: 0.198800 ms MarkObjects: 2.583000 ms  DeleteObjects: 0.086700 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -79,32 +79,88 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  path: Assets/InputManager.cs
-  artifactKey: Guid(9be26e860462f9047845f6e98065893a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/InputManager.cs using Guid(9be26e860462f9047845f6e98065893a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2b4beecc2c1e0c08156b50cd0bf1d31b') in 0.020312 seconds 
-  Import took 0.050716 seconds .
+  path: Assets/StreetLightsPack/Models/StreetLights2/Textures/mat23.jpg
+  artifactKey: Guid(f1ada70ca621f4a4c8d018fb763fa597) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StreetLightsPack/Models/StreetLights2/Textures/mat23.jpg using Guid(f1ada70ca621f4a4c8d018fb763fa597) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cb1a6f23ee125591f0e0167a18d46d4e') in 0.059505 seconds 
+  Import took 0.065489 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 206.101498 seconds.
-  path: Assets/Scripts/Civilian.cs
-  artifactKey: Guid(aff1ef6849d1bb446b5562153dfa43b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Civilian.cs using Guid(aff1ef6849d1bb446b5562153dfa43b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a6dff8afea5423373560f481a689f9ab') in 0.001638 seconds 
-  Import took 0.079060 seconds .
+  Time since last request: 335.236467 seconds.
+  path: Assets/StreetLightsPack/Models/StreetLights2/Materials
+  artifactKey: Guid(1dbed6a351e1fdf4bb99384e9e014c8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StreetLightsPack/Models/StreetLights2/Materials using Guid(1dbed6a351e1fdf4bb99384e9e014c8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c606e3e438540ecfb40d43ec48b76000') in 0.111640 seconds 
+  Import took 0.118725 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.012636 seconds.
-  path: Assets/Scripts/Civilian.cs
-  artifactKey: Guid(aff1ef6849d1bb446b5562153dfa43b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Civilian.cs using Guid(aff1ef6849d1bb446b5562153dfa43b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a6dff8afea5423373560f481a689f9ab') in 0.001422 seconds 
-  Import took 0.008466 seconds .
+  Time since last request: 11.803447 seconds.
+  path: Assets/StreetLightsPack/Models/StreetLights2/Textures/mat24.jpg
+  artifactKey: Guid(dd4b5d424ec2b1043abe0949da3227a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StreetLightsPack/Models/StreetLights2/Textures/mat24.jpg using Guid(dd4b5d424ec2b1043abe0949da3227a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd7634ada8fab89c97ad78606d75920b4') in 0.008030 seconds 
+  Import took 0.035030 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 257.809504 seconds.
-  path: Assets/Scenes/SampleScene/NavMesh-NavMeshSurface.asset
-  artifactKey: Guid(61b4b09542207684ba060404f6376bac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/SampleScene/NavMesh-NavMeshSurface.asset using Guid(61b4b09542207684ba060404f6376bac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6c94c3ebda32083643adebf14df8c7e4') in 0.015509 seconds 
-  Import took 0.180186 seconds .
+  Time since last request: 0.001468 seconds.
+  path: Assets/StreetLightsPack/Models/StreetLights2/Textures/mat24.jpg
+  artifactKey: Guid(dd4b5d424ec2b1043abe0949da3227a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StreetLightsPack/Models/StreetLights2/Textures/mat24.jpg using Guid(dd4b5d424ec2b1043abe0949da3227a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd7634ada8fab89c97ad78606d75920b4') in 0.005180 seconds 
+  Import took 0.012266 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.925821 seconds.
+  path: Assets/StreetLightsPack/Models/StreetLights2/Textures/mat25.jpg
+  artifactKey: Guid(8e848000c7fb82d4990b5782dfe62f8b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StreetLightsPack/Models/StreetLights2/Textures/mat25.jpg using Guid(8e848000c7fb82d4990b5782dfe62f8b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '87c33f1e49e034321e8645f506c8b89c') in 0.007700 seconds 
+  Import took 0.015318 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000373 seconds.
+  path: Assets/StreetLightsPack/Models/StreetLights2/Textures/mat25.jpg
+  artifactKey: Guid(8e848000c7fb82d4990b5782dfe62f8b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StreetLightsPack/Models/StreetLights2/Textures/mat25.jpg using Guid(8e848000c7fb82d4990b5782dfe62f8b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '87c33f1e49e034321e8645f506c8b89c') in 0.005724 seconds 
+  Import took 0.013029 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.054083 seconds.
+  path: Assets/StreetLightsPack/Models/StreetLights2/Textures/mat26.jpg
+  artifactKey: Guid(d47d3e75be6e2b04b93ec77baf12630a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StreetLightsPack/Models/StreetLights2/Textures/mat26.jpg using Guid(d47d3e75be6e2b04b93ec77baf12630a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a7deae69df1f55339ee94a778bc1e94a') in 0.007136 seconds 
+  Import took 0.014171 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.003183 seconds.
+  path: Assets/StreetLightsPack/Models/StreetLights2/Textures/mat26.jpg
+  artifactKey: Guid(d47d3e75be6e2b04b93ec77baf12630a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StreetLightsPack/Models/StreetLights2/Textures/mat26.jpg using Guid(d47d3e75be6e2b04b93ec77baf12630a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a7deae69df1f55339ee94a778bc1e94a') in 0.006865 seconds 
+  Import took 0.014018 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.484876 seconds.
+  path: Assets/StreetLightsPack/Models/StreetLights2/Textures/mat31.jpg
+  artifactKey: Guid(f619cb48c21dd844394cc12100b73578) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StreetLightsPack/Models/StreetLights2/Textures/mat31.jpg using Guid(f619cb48c21dd844394cc12100b73578) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1a10ddef9b1321df0948af378b46ec89') in 0.006062 seconds 
+  Import took 0.067184 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 63.161015 seconds.
+  path: Assets/StreetLightsPack/Models/StreetLights2/Textures/mat30.jpg
+  artifactKey: Guid(8d741bb5806352348b2888fff924e948) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StreetLightsPack/Models/StreetLights2/Textures/mat30.jpg using Guid(8d741bb5806352348b2888fff924e948) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f0d1c8bdcc652126b0458fc3b40e3f5c') in 0.005637 seconds 
+  Import took 0.045021 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.494164 seconds.
+  path: Assets/StreetLightsPack/Models/StreetLights2/Textures/mat27.jpg
+  artifactKey: Guid(650071e98d0a226409229c9403de680a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StreetLightsPack/Models/StreetLights2/Textures/mat27.jpg using Guid(650071e98d0a226409229c9403de680a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a130595b9dbd2e1da568cebae1abeb5d') in 0.013973 seconds 
+  Import took 0.033775 seconds .
 
