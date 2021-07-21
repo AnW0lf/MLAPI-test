@@ -1,11 +1,12 @@
-using UnityEngine;
-using MLAPI;
-using TMPro;
-using MLAPI.Transports.PhotonRealtime;
-using System.Collections.Generic;
-using UnityEngine.UI;
 using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
+using MLAPI;
+using MLAPI.Transports.PhotonRealtime;
 using MLAPI.SceneManagement;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 namespace Lobby
 {
@@ -152,6 +153,16 @@ namespace Lobby
 
                 _btnStartGame.interactable = true;
             }
+        }
+
+        public IEnumerator DelayedCheckAllReady()
+        {
+            yield return null;
+            yield return null;
+            yield return null;
+            yield return null;
+            yield return null;
+            CheckAllReady();
         }
     }
 }

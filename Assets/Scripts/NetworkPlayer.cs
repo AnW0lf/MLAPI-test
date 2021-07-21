@@ -87,8 +87,6 @@ namespace Player
 
         public override void NetworkStart()
         {
-            print($"Player start on scene { SceneManager.GetActiveScene().name }");
-
             Subscribe();
 
             if (IsServer && _iconOffset.Value < 0)
@@ -124,6 +122,10 @@ namespace Player
         private void OnDestroy()
         {
             Unsubscribe();
+            if (LobbyController.Singleton != null)
+            {
+                LobbyController.Singleton.StartCoroutine(LobbyController.Singleton.DelayedCheckAllReady());
+            }
         }
 
         private void Subscribe()
