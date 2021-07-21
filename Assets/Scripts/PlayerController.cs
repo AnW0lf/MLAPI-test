@@ -1,3 +1,4 @@
+using Game;
 using MLAPI;
 using System;
 using UnityEngine;
@@ -64,66 +65,66 @@ namespace Player
             }
         }
 
-        private void Start()
-        {
-            _body = LevelManager.Singleton.RandomBody.transform;
-            if (_body.TryGetComponent(out Civilian civilian))
-            {
-                civilian.Active = false;
-                civilian.enabled = false;
-            }
-            if (_body.TryGetComponent(out Animator animator))
-            {
-                _animator = animator;
-            }
+        //private void Start()
+        //{
+        //    _body = LevelManager.Singleton.RandomBody.transform;
+        //    if (_body.TryGetComponent(out Civilian civilian))
+        //    {
+        //        civilian.Active = false;
+        //        civilian.enabled = false;
+        //    }
+        //    if (_body.TryGetComponent(out Animator animator))
+        //    {
+        //        _animator = animator;
+        //    }
 
-            _camera = Instantiate(_cameraPrefab, _body).transform;
-            _camera.localPosition = new Vector3(0f, 1.8f, 0f);
-            _camera.localEulerAngles = new Vector3(0f, 0f, 0f);
-            Cursor.lockState = CursorLockMode.Locked;
+        //    _camera = Instantiate(_cameraPrefab, _body).transform;
+        //    _camera.localPosition = new Vector3(0f, 1.8f, 0f);
+        //    _camera.localEulerAngles = new Vector3(0f, 0f, 0f);
+        //    Cursor.lockState = CursorLockMode.Locked;
 
-            Active = true;
+        //    Active = true;
 
-            NetworkManager.Singleton.OnClientDisconnectCallback += HandleClientDisconnected;
-        }
+        //    NetworkManager.Singleton.OnClientDisconnectCallback += HandleClientDisconnected;
+        //}
 
-        private void OnDestroy()
-        {
-            Active = false;
+        //private void OnDestroy()
+        //{
+        //    Active = false;
 
-            if (_body != null && _body.TryGetComponent(out Civilian civilian))
-            {
-                civilian.enabled = true;
-                civilian.Active = true;
-            }
+        //    if (_body != null && _body.TryGetComponent(out Civilian civilian))
+        //    {
+        //        civilian.enabled = true;
+        //        civilian.Active = true;
+        //    }
 
-            if (NetworkManager.Singleton == null) { return; }
+        //    if (NetworkManager.Singleton == null) { return; }
 
-            NetworkManager.Singleton.OnClientDisconnectCallback -= HandleClientDisconnected;
-        }
+        //    NetworkManager.Singleton.OnClientDisconnectCallback -= HandleClientDisconnected;
+        //}
 
-        private void HandleClientDisconnected(ulong clientId)
-        {
-            if (clientId == NetworkManager.Singleton.LocalClientId)
-            {
-                if (_camera != null)
-                {
-                    Destroy(_camera.gameObject);
-                    _camera = null;
-                }
-                if (_body != null)
-                {
-                    if (_body.TryGetComponent(out Civilian civilian))
-                    {
-                        civilian.enabled = true;
-                        civilian.Active = true;
-                    }
-                    _body = null;
-                }
+        //private void HandleClientDisconnected(ulong clientId)
+        //{
+        //    if (clientId == NetworkManager.Singleton.LocalClientId)
+        //    {
+        //        if (_camera != null)
+        //        {
+        //            Destroy(_camera.gameObject);
+        //            _camera = null;
+        //        }
+        //        if (_body != null)
+        //        {
+        //            if (_body.TryGetComponent(out Civilian civilian))
+        //            {
+        //                civilian.enabled = true;
+        //                civilian.Active = true;
+        //            }
+        //            _body = null;
+        //        }
 
-                Active = false;
-            }
-        }
+        //        Active = false;
+        //    }
+        //}
 
         public Vector2 Direction { get; private set; } = Vector3.zero;
         public Vector2 Delta { get; private set; } = Vector3.zero;
