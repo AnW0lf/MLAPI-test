@@ -15,11 +15,11 @@ E:/Unity/MLAPI test
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-64676
+52185
 Successfully changed project path to: E:/Unity/MLAPI test
 E:/Unity/MLAPI test
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 126.49 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 159.84 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.13f1 (71691879b7f5)
 [Subsystems] Discovering subsystems at path E:/UnityVersions/2020.2.1f1/Editor/Data/Resources/UnitySubsystems
@@ -35,29 +35,29 @@ Initialize mono
 Mono path[0] = 'E:/UnityVersions/2020.2.1f1/Editor/Data/Managed'
 Mono path[1] = 'E:/UnityVersions/2020.2.1f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'E:/UnityVersions/2020.2.1f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56704
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56400
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: E:/UnityVersions/2020.2.1f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.001583 seconds.
+Registered in 0.001926 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 121.36 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 156.50 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.351 seconds
+- Completed reload, in  1.635 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.007963 seconds.
+Registered in 0.010785 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 141.73 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 214.20 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  2.400 seconds
+- Completed reload, in  2.858 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.09 seconds
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
 D3D shader create error for vertex shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
@@ -65,15 +65,14 @@ D3D shader create error for domain shader [0x80070057]
 D3D shader create error for domain shader [0x80070057]
 D3D shader create error for pixel shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 0.96 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 2.00 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 4103 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 198.2 MB.
-System memory in use after: 198.4 MB.
+Unloading 4110 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 200.8 MB.
+System memory in use after: 201.0 MB.
 
-Unloading 31 unused Assets to reduce memory usage. Loaded Objects now: 4555.
-Total: 4.874200 ms (FindLiveObjects: 0.592400 ms CreateObjectMapping: 0.460800 ms MarkObjects: 3.682400 ms  DeleteObjects: 0.136900 ms)
+Unloading 31 unused Assets to reduce memory usage. Loaded Objects now: 4566.
+Total: 6.535000 ms (FindLiveObjects: 0.464900 ms CreateObjectMapping: 0.454200 ms MarkObjects: 5.472600 ms  DeleteObjects: 0.141500 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -87,272 +86,29 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  path: Assets/Kevin Iglesias/Basic Motions/Animations/Idles
-  artifactKey: Guid(99b531c8964d97245a8f67495e2a1a95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kevin Iglesias/Basic Motions/Animations/Idles using Guid(99b531c8964d97245a8f67495e2a1a95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0cb614fcbdc851d950ae5b7bde250f6b') in 0.024296 seconds 
-  Import took 0.034598 seconds .
+  path: Assets/Scripts/LevelManager.cs
+  artifactKey: Guid(9318242f92339e04ba75069f423cef12) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/LevelManager.cs using Guid(9318242f92339e04ba75069f423cef12) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '11cc7f6696e84081e6d314c6a00c7fd0') in 0.092664 seconds 
+  Import took 0.128792 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000280 seconds.
-  path: Assets/Kevin Iglesias/Basic Motions
-  artifactKey: Guid(2cb279c410b7a3e4dbf4aab42283effa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kevin Iglesias/Basic Motions using Guid(2cb279c410b7a3e4dbf4aab42283effa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b8e576ef97b26abf89e199dd7b892e27') in 0.007383 seconds 
-  Import took 0.015893 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000276 seconds.
-  path: Assets/Kevin Iglesias
-  artifactKey: Guid(a9041635e92bf6346923bae29d3d8850) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kevin Iglesias using Guid(a9041635e92bf6346923bae29d3d8850) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '46f1455bb604e578a47db559df5bd0bd') in 0.007521 seconds 
-  Import took 0.015788 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000263 seconds.
-  path: Assets/Kevin Iglesias/Basic Motions/Animations
-  artifactKey: Guid(7eb11f9df068c2b45bc52cfc0d6e3f25) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kevin Iglesias/Basic Motions/Animations using Guid(7eb11f9df068c2b45bc52cfc0d6e3f25) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b64db3196c89a4c0679f4d08a0d41deb') in 0.007333 seconds 
-  Import took 0.025754 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 11.739712 seconds.
-  path: Assets/Animations/Movement
-  artifactKey: Guid(162d3c986ae81044b8e9de5caae05de1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Movement using Guid(162d3c986ae81044b8e9de5caae05de1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7fe79483b141b36c9b5f071b58c47bf6') in 0.011349 seconds 
-  Import took 0.041608 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.044117 seconds.
-  path: Assets/Animations/Movement/BasicMotions@Jump01.fbx
-  artifactKey: Guid(067cc188e25b78b4a940a9fa67cd6ee7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Movement/BasicMotions@Jump01.fbx using Guid(067cc188e25b78b4a940a9fa67cd6ee7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cd8842c667a26087f0b19f6ce44a0de9') in 0.134643 seconds 
-  Import took 0.145816 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000374 seconds.
-  path: Assets/Animations/Movement/BasicMotions@Walk01 [RM].fbx
-  artifactKey: Guid(bd1c2e9064da28e4fb0fe4a3f6ff4e33) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Movement/BasicMotions@Walk01 [RM].fbx using Guid(bd1c2e9064da28e4fb0fe4a3f6ff4e33) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '110674bd01fa7144d2983e87d9e80926') in 0.019169 seconds 
-  Import took 0.035501 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000368 seconds.
-  path: Assets/Animations/Movement/BasicMotions@Walk01.fbx
-  artifactKey: Guid(0536f044bd409ff419dd726bc69d2676) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Movement/BasicMotions@Walk01.fbx using Guid(0536f044bd409ff419dd726bc69d2676) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f46c586019e22cf64abf7e30afa1f935') in 0.018499 seconds 
-  Import took 0.028409 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000364 seconds.
-  path: Assets/Animations/Movement/BasicMotions@Run01 [RM].fbx
-  artifactKey: Guid(154a724602422044c91070a5f3c67c11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Movement/BasicMotions@Run01 [RM].fbx using Guid(154a724602422044c91070a5f3c67c11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '29b140d9649e83de54ec48996851eb79') in 0.019479 seconds 
-  Import took 0.031662 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000307 seconds.
-  path: Assets/Animations/Movement/BasicMotions@Sprint01 [RM].fbx
-  artifactKey: Guid(7eebd174ff53112419b27f9d903573d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Movement/BasicMotions@Sprint01 [RM].fbx using Guid(7eebd174ff53112419b27f9d903573d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '614c27b128a2e48157e276dd669628f4') in 0.017490 seconds 
-  Import took 0.036710 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000353 seconds.
-  path: Assets/Animations/Movement/BasicMotions@Sprint01.fbx
-  artifactKey: Guid(98d8219075968bd43b75fdba6b4463d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Movement/BasicMotions@Sprint01.fbx using Guid(98d8219075968bd43b75fdba6b4463d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ed8f3f9a3d5fa10df810532c103be015') in 0.021846 seconds 
-  Import took 0.037373 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000444 seconds.
-  path: Assets/Animations/Movement/BasicMotions@Run01.fbx
-  artifactKey: Guid(46d5b47e60163f148ada32ff97c7aa32) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Movement/BasicMotions@Run01.fbx using Guid(46d5b47e60163f148ada32ff97c7aa32) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '248dcb64badc9c8bddf52e41321a985f') in 0.025786 seconds 
-  Import took 0.037825 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 340.776546 seconds.
-  path: Assets/Cowboy
-  artifactKey: Guid(9f74d9421535fec43997ae55b932150f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Cowboy using Guid(9f74d9421535fec43997ae55b932150f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cfa96d7ba6065b60a896d45f592bf2b4') in 0.011723 seconds 
-  Import took 0.028919 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.379075 seconds.
-  path: Assets/Cowboy/Model
-  artifactKey: Guid(1c5539ea8a111f74ba0df26fda9c8a6b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Cowboy/Model using Guid(1c5539ea8a111f74ba0df26fda9c8a6b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '644cc9a60bd206dadfd632c081236841') in 0.013547 seconds 
-  Import took 0.026082 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.689714 seconds.
-  path: Assets/Cowboy/Model/Cowboy 1.0.FBX
-  artifactKey: Guid(823cf87589cbc37418eef507333f00bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Cowboy/Model/Cowboy 1.0.FBX using Guid(823cf87589cbc37418eef507333f00bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
- -> (artifact id: 'f5a13c677f1c402e99993caadf304612') in 1.401679 seconds 
-  Import took 1.414020 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000284 seconds.
-  path: Assets/Cowboy/Model/Cowboy 1.1.FBX
-  artifactKey: Guid(ad52d12ad7e12c644a18f176d31a93bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Cowboy/Model/Cowboy 1.1.FBX using Guid(ad52d12ad7e12c644a18f176d31a93bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8a5c8b6a31aec84f544ebf5c141f0399') in 0.092039 seconds 
-  Import took 0.104612 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 6.784191 seconds.
-  path: Assets/Cowboy/Prefabs
-  artifactKey: Guid(f9b02e064a3c0e348b82153fed3a0728) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Cowboy/Prefabs using Guid(f9b02e064a3c0e348b82153fed3a0728) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ecfcf1854067e8fbaea47e9bd2577eb') in 0.013467 seconds 
-  Import took 0.026454 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.069170 seconds.
-  path: Assets/Cowboy/Prefabs/Cowboy.prefab
-  artifactKey: Guid(93f8a13fb89985e4f8d0d8ecff94969a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Cowboy/Prefabs/Cowboy.prefab using Guid(93f8a13fb89985e4f8d0d8ecff94969a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eefd4230b582452b9a15a78d32a62129') in 0.161908 seconds 
-  Import took 0.173330 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 14.855657 seconds.
-  path: Assets/Cowboy/Materials
-  artifactKey: Guid(28bdb45c11a53e8448e29e187b4aa08f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Cowboy/Materials using Guid(28bdb45c11a53e8448e29e187b4aa08f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '34775ed4c676b3d44bc88b8752dab7a9') in 0.015006 seconds 
-  Import took 0.043228 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.038390 seconds.
-  path: Assets/Cowboy/Materials/Cowboy Unlit.mat
-  artifactKey: Guid(e32221f685040ac49beff66a54b08851) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Cowboy/Materials/Cowboy Unlit.mat using Guid(e32221f685040ac49beff66a54b08851) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '75eb3f85ff7679a75fd90336e7fbd1b6') in 0.171162 seconds 
-  Import took 0.184131 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000326 seconds.
-  path: Assets/Cowboy/Materials/Cowboy.mat
-  artifactKey: Guid(c875d2d85605699469e14fc0b88a518e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Cowboy/Materials/Cowboy.mat using Guid(c875d2d85605699469e14fc0b88a518e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f348f4d40698f08ecac47e7949a3d021') in 0.059660 seconds 
-  Import took 0.077460 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.462516 seconds.
-  path: Assets/Cowboy/Textures/CowBoyDiffuse.png
-  artifactKey: Guid(006b42f4eefbdb343b90d28428bfef0b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Cowboy/Textures/CowBoyDiffuse.png using Guid(006b42f4eefbdb343b90d28428bfef0b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f5b32d82da29a1557024ecc65a6753d9') in 0.060847 seconds 
-  Import took 0.072814 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.013348 seconds.
-  path: Assets/Cowboy/Textures/CowBoyDiffuse.png
-  artifactKey: Guid(006b42f4eefbdb343b90d28428bfef0b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Cowboy/Textures/CowBoyDiffuse.png using Guid(006b42f4eefbdb343b90d28428bfef0b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f5b32d82da29a1557024ecc65a6753d9') in 0.018108 seconds 
-  Import took 0.031086 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1825.183597 seconds.
-  path: Assets/Prefabs/CowboyCivilian.prefab
-  artifactKey: Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/CowboyCivilian.prefab using Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '67860f4d5265fa0f28370552d75da2b8') in 0.127789 seconds 
-  Import took 0.165324 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 540.227849 seconds.
-  path: Assets/Prefabs/CowboyCivilian.prefab
-  artifactKey: Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/CowboyCivilian.prefab using Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd338186f288aa1e79240f3769291ae30') in 0.054157 seconds 
-  Import took 0.066795 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.014174 seconds.
-  path: Assets/Prefabs/CowboyCivilian.prefab
-  artifactKey: Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/CowboyCivilian.prefab using Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd338186f288aa1e79240f3769291ae30') in 0.044848 seconds 
-  Import took 0.056331 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 8.128012 seconds.
-  path: Assets/Prefabs/CowboyCivilian.prefab
-  artifactKey: Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/CowboyCivilian.prefab using Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e50943ece4f09111199ca30a81845267') in 0.063889 seconds 
-  Import took 0.091441 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 13.376845 seconds.
-  path: Assets/Prefabs/CowboyCivilian.prefab
-  artifactKey: Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/CowboyCivilian.prefab using Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9f7f35f00979614c7f128d6e204fbe67') in 0.042752 seconds 
-  Import took 0.057862 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 19.946799 seconds.
-  path: Assets/Prefabs/CowboyCivilian.prefab
-  artifactKey: Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/CowboyCivilian.prefab using Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '323499014767902ef778d75bc4513fff') in 0.057530 seconds 
-  Import took 0.070189 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.798927 seconds.
-  path: Assets/Prefabs/CowboyCivilian.prefab
-  artifactKey: Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/CowboyCivilian.prefab using Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dab9e2ecbc33c394537de2e616c62861') in 0.062280 seconds 
-  Import took 0.086459 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.192615 seconds.
-  path: Assets/Prefabs/CowboyCivilian.prefab
-  artifactKey: Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/CowboyCivilian.prefab using Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ed44da0912c1c5412c451fd1f9f09d2') in 0.055548 seconds 
-  Import took 0.069269 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 23.619775 seconds.
-  path: Assets/Scripts/Civilian.cs
-  artifactKey: Guid(aff1ef6849d1bb446b5562153dfa43b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Civilian.cs using Guid(aff1ef6849d1bb446b5562153dfa43b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd860dea68a01f25f070d4e6e342067a0') in 0.020014 seconds 
-  Import took 0.061243 seconds .
+  Time since last request: 26.390044 seconds.
+  path: Assets/Scripts/PlayerListItem.cs
+  artifactKey: Guid(43086525aef8a4042bdd64f2b5112653) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/PlayerListItem.cs using Guid(43086525aef8a4042bdd64f2b5112653) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e1e5bdce5e5c656f234e0d6ec3e9e10b') in 0.106462 seconds 
+  Import took 0.206827 seconds .
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.343341 seconds.
+Registered in 0.007998 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.92 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 1.12 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  5.292 seconds
+- Completed reload, in  2.667 seconds
 Platform modules already initialized, skipping
 D3D shader create error for vertex shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
@@ -361,15 +117,51 @@ D3D shader create error for domain shader [0x80070057]
 D3D shader create error for domain shader [0x80070057]
 D3D shader create error for pixel shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 1.00 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 1.75 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3830 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 208.8 MB.
-System memory in use after: 209.0 MB.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 185.1 MB.
+System memory in use after: 185.3 MB.
 
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4736.
-Total: 6.032300 ms (FindLiveObjects: 0.579100 ms CreateObjectMapping: 0.444600 ms MarkObjects: 4.901900 ms  DeleteObjects: 0.104400 ms)
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4570.
+Total: 4.025000 ms (FindLiveObjects: 0.390100 ms CreateObjectMapping: 0.212500 ms MarkObjects: 3.325500 ms  DeleteObjects: 0.095000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.020096 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.16 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.297 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 1.51 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 185.2 MB.
+System memory in use after: 185.4 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4573.
+Total: 9.396200 ms (FindLiveObjects: 1.388500 ms CreateObjectMapping: 0.393700 ms MarkObjects: 7.505200 ms  DeleteObjects: 0.106200 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -383,22 +175,547 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 57.016213 seconds.
-  path: Assets/Scripts/Civilian.cs
-  artifactKey: Guid(aff1ef6849d1bb446b5562153dfa43b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Civilian.cs using Guid(aff1ef6849d1bb446b5562153dfa43b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '69d1a55922341946fbd469bf75103bf9') in 0.009822 seconds 
-  Import took 0.024775 seconds .
+  Time since last request: 2945.180222 seconds.
+  path: Assets/Scripts/PlayerListItem.cs
+  artifactKey: Guid(43086525aef8a4042bdd64f2b5112653) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/PlayerListItem.cs using Guid(43086525aef8a4042bdd64f2b5112653) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6a624c84c7fecc45034f2dfd12b6cff3') in 0.014175 seconds 
+  Import took 0.035911 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000254 seconds.
+  path: Assets/New Terrain Material 1.mat
+  artifactKey: Guid(07400c6ddb29e1a48a3f28f3cf7adfb5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/New Terrain Material 1.mat using Guid(07400c6ddb29e1a48a3f28f3cf7adfb5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Launched and connected shader compiler UnityShaderCompiler.exe after 0.09 seconds
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
+ -> (artifact id: 'b70ea79063ccdd3411251a4fa8fd1cdf') in 5.414636 seconds 
+  Import took 5.445435 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 47.080859 seconds.
+  path: Assets/Resources
+  artifactKey: Guid(a5eea0f746e29454ba220ef27d0aae87) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources using Guid(a5eea0f746e29454ba220ef27d0aae87) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '17e25045ce6641a17101d70b8f746992') in 0.031680 seconds 
+  Import took 0.060819 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.071550 seconds.
+  path: Assets/Resources/Player_0.png
+  artifactKey: Guid(6e12cbf3776b8c04281690b2ab2aceea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Player_0.png using Guid(6e12cbf3776b8c04281690b2ab2aceea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c7127cbbb62a44287f7b2e1602396af2') in 0.102590 seconds 
+  Import took 0.132658 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000339 seconds.
+  path: Assets/Resources/Player_3.png
+  artifactKey: Guid(77e2606f821e76b468d1e92169314d77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Player_3.png using Guid(77e2606f821e76b468d1e92169314d77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c41dfbc6ad90f2a2954a7efa94b96582') in 0.036911 seconds 
+  Import took 0.050288 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000321 seconds.
+  path: Assets/Resources/Player_5.png
+  artifactKey: Guid(7917ec11acb832441ad44a52924179a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Player_5.png using Guid(7917ec11acb832441ad44a52924179a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '253d8001901cc6901264c8a4a656876d') in 0.037075 seconds 
+  Import took 0.065344 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000283 seconds.
+  path: Assets/Resources/Player_1.png
+  artifactKey: Guid(b346e9dd8fe8b844b899e15f39ccc531) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Player_1.png using Guid(b346e9dd8fe8b844b899e15f39ccc531) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bacc603fb0bb7c40dd08285bd5276399') in 0.050414 seconds 
+  Import took 0.079212 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000266 seconds.
+  path: Assets/Resources/Player_2.png
+  artifactKey: Guid(e19646e8f4ca8d540b7464e16e869a66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Player_2.png using Guid(e19646e8f4ca8d540b7464e16e869a66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '138c6bb4ed72a60b8c9a75ec5cf510ae') in 0.026684 seconds 
+  Import took 0.050154 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000258 seconds.
+  path: Assets/Resources/Player_7.png
+  artifactKey: Guid(5874e6e2d63156e449fe5046762001c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Player_7.png using Guid(5874e6e2d63156e449fe5046762001c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4a4c9f517626b372656fcab4eef043be') in 0.038347 seconds 
+  Import took 0.065297 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000257 seconds.
+  path: Assets/Resources/Player_6.png
+  artifactKey: Guid(856c926501d26964a82835d79798f18d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Player_6.png using Guid(856c926501d26964a82835d79798f18d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a5854cbb05494d3e7043dab0f9436ead') in 0.020509 seconds 
+  Import took 0.039384 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000556 seconds.
+  path: Assets/Resources/Player_8.png
+  artifactKey: Guid(fea1e5a8966ac1646b89f8ec98a327c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Player_8.png using Guid(fea1e5a8966ac1646b89f8ec98a327c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1dd141010645e582f786053571b79e37') in 0.019066 seconds 
+  Import took 0.044667 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000431 seconds.
+  path: Assets/Resources/Player_9.png
+  artifactKey: Guid(dde1ef73e3627f7459322f854ea31c82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Player_9.png using Guid(dde1ef73e3627f7459322f854ea31c82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aa5ab2817f60946dbd1d27a77bade251') in 0.019518 seconds 
+  Import took 0.044036 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000456 seconds.
+  path: Assets/Resources/Player_4.png
+  artifactKey: Guid(83fe17e58c8827743a048caead075e40) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Player_4.png using Guid(83fe17e58c8827743a048caead075e40) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b8c5055e1a78cc89b899322928518e09') in 0.018883 seconds 
+  Import took 0.037513 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 15.268431 seconds.
+  path: Assets/Resources/Player_0.png
+  artifactKey: Guid(6e12cbf3776b8c04281690b2ab2aceea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Player_0.png using Guid(6e12cbf3776b8c04281690b2ab2aceea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b0bd04dae56a1ad811ab6bf7d2fc4066') in 0.040488 seconds 
+  Import took 0.053691 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000273 seconds.
+  path: Assets/Resources/Player_3.png
+  artifactKey: Guid(77e2606f821e76b468d1e92169314d77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Player_3.png using Guid(77e2606f821e76b468d1e92169314d77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd6eb5782507570702c90890599822bde') in 0.025574 seconds 
+  Import took 0.038564 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000342 seconds.
+  path: Assets/Resources/Player_5.png
+  artifactKey: Guid(7917ec11acb832441ad44a52924179a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Player_5.png using Guid(7917ec11acb832441ad44a52924179a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '88bc04ff4e932ebc741866ba2dda581d') in 0.023589 seconds 
+  Import took 0.048609 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000298 seconds.
+  path: Assets/Resources/Player_1.png
+  artifactKey: Guid(b346e9dd8fe8b844b899e15f39ccc531) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Player_1.png using Guid(b346e9dd8fe8b844b899e15f39ccc531) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f31c22bfc5f821aba78bbb2d0cfa2d2e') in 0.038468 seconds 
+  Import took 0.059279 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000399 seconds.
+  path: Assets/Resources/Player_2.png
+  artifactKey: Guid(e19646e8f4ca8d540b7464e16e869a66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Player_2.png using Guid(e19646e8f4ca8d540b7464e16e869a66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cccab6f3ccbd1b4fe48cd809a0b96e14') in 0.037326 seconds 
+  Import took 0.052311 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000309 seconds.
+  path: Assets/Resources/Player_7.png
+  artifactKey: Guid(5874e6e2d63156e449fe5046762001c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Player_7.png using Guid(5874e6e2d63156e449fe5046762001c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fc093690cc20bb5e2360788c1bb4d8d9') in 0.038882 seconds 
+  Import took 0.051656 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000275 seconds.
+  path: Assets/Resources/Player_6.png
+  artifactKey: Guid(856c926501d26964a82835d79798f18d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Player_6.png using Guid(856c926501d26964a82835d79798f18d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'af455310a5bbe5a25ee70519283be406') in 0.025226 seconds 
+  Import took 0.039020 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000286 seconds.
+  path: Assets/Resources/Player_8.png
+  artifactKey: Guid(fea1e5a8966ac1646b89f8ec98a327c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Player_8.png using Guid(fea1e5a8966ac1646b89f8ec98a327c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9a741f04bdd73a73537a8655ad34c2fb') in 0.022845 seconds 
+  Import took 0.039038 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000287 seconds.
+  path: Assets/Resources/Player_9.png
+  artifactKey: Guid(dde1ef73e3627f7459322f854ea31c82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Player_9.png using Guid(dde1ef73e3627f7459322f854ea31c82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f068a6b6776de33938b77608ad0f62d') in 0.036774 seconds 
+  Import took 0.055543 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.003726 seconds.
+  path: Assets/Resources/Player_4.png
+  artifactKey: Guid(83fe17e58c8827743a048caead075e40) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Player_4.png using Guid(83fe17e58c8827743a048caead075e40) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e3c9fd3dc215702f72c5c44cb1fc15a4') in 0.034010 seconds 
+  Import took 0.049750 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 39.214872 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77fbcaf22b33226423c0e9d4a04e3d24') in 0.225934 seconds 
+  Import took 0.273131 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.581125 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '381ee226a0f8e8b5fd8b522e1b0fab50') in 0.042702 seconds 
+  Import took 0.065135 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 17.603330 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'db38927a9a9f85efd6b0560598a64ca3') in 0.039020 seconds 
+  Import took 0.073410 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.616988 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3ca9b599868aedccbd54f5a2e574ee73') in 0.039821 seconds 
+  Import took 0.060853 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 140.759759 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ed56ec601462486901c280f0ad226411') in 0.039528 seconds 
+  Import took 0.063251 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.761499 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b05597e527f2ba2c5745db43c9c9bf8a') in 0.040479 seconds 
+  Import took 0.060846 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.242390 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c6cb1dc2a2f554dfb38315d056ba2d26') in 0.035331 seconds 
+  Import took 0.066118 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.253770 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f380e533e145ef9c4ae9a33bbb58543') in 0.037479 seconds 
+  Import took 0.051657 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.642593 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6dceffa0ba24844a535825f9f6af8ecf') in 0.043501 seconds 
+  Import took 0.072926 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 11.272236 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '04f4bbeccf516a8ae983219110771e11') in 0.042771 seconds 
+  Import took 0.076562 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.169213 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eaf76e42e8649b6861e52b8c6003e984') in 0.037229 seconds 
+  Import took 0.061553 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.988292 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '33a143ca06abae43edbe09f4ccb66467') in 0.040652 seconds 
+  Import took 0.053119 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.482880 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c464fb76a4f136377fc168be0c2839db') in 0.041626 seconds 
+  Import took 0.051806 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.234745 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5515c2bd26c99a4a7473d3f1e1d79574') in 0.038948 seconds 
+  Import took 0.050496 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.282050 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2fcb50c2efaeb2c060f924083ce80d7d') in 0.040254 seconds 
+  Import took 0.051518 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 14.014236 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cc0976ddfd3903e38e67da09f371b7d5') in 0.039745 seconds 
+  Import took 0.061248 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 8.375694 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '593567f1a0d514386c8c20885f59b201') in 0.031376 seconds 
+  Import took 0.058943 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.881618 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '99ad263046503ac7ec9a8de88bbfa63a') in 0.038735 seconds 
+  Import took 0.065543 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.203636 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b7394bdf566c434234af6d41face8765') in 0.038374 seconds 
+  Import took 0.052183 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.377481 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '58fda29caef2a4bf5b9ea865ad27a317') in 0.037835 seconds 
+  Import took 0.058856 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.233183 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3d89da97b90c6eef1730e876301a5ffb') in 0.038774 seconds 
+  Import took 0.051601 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 11.015930 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e3809ab7ed275d0612897be848ada456') in 0.037802 seconds 
+  Import took 0.049158 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.029763 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0352161da4dcf799c079053c574415d7') in 0.034583 seconds 
+  Import took 0.045483 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 11.029785 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd87a50e9187d239b12e7e1b07618ee84') in 0.039328 seconds 
+  Import took 0.064475 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.040198 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4117f39ca41aa869a54701f3c468280f') in 0.042139 seconds 
+  Import took 0.064140 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.874367 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f70ab60a0522b70b219cef8eb0165b2') in 0.038768 seconds 
+  Import took 0.051306 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.416262 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f65bde81ce69ea1a4c6fda28b8ce3ea') in 0.042393 seconds 
+  Import took 0.060646 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.780663 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '523e35fde322328579b0f6ea0be0b332') in 0.039551 seconds 
+  Import took 0.062841 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.792584 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '60595aa1f9c1efddc9dffd8ecab3f1e5') in 0.041597 seconds 
+  Import took 0.052366 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.399955 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0f9858568a55c0c7f19488d3e69031fe') in 0.036464 seconds 
+  Import took 0.061797 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.613767 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e2d4b6d871fd0a735eb1ece49984fd89') in 0.035183 seconds 
+  Import took 0.044882 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.604313 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fc123a84c225111c61eb14817890a613') in 0.037576 seconds 
+  Import took 0.049412 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.673467 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1ec6f2dae30d5d53357bef12b9e3d354') in 0.037151 seconds 
+  Import took 0.049745 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.660113 seconds.
+  path: Assets/Prefabs/Lobby/PlayerListItem.prefab
+  artifactKey: Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Lobby/PlayerListItem.prefab using Guid(3d82a573a8a9af141866ebf8b71882fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '54e306b1f05dc40e440e8de09311d3b8') in 0.047216 seconds 
+  Import took 0.073797 seconds .
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.008141 seconds.
+Registered in 0.009737 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.95 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  3.647 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 1.53 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3833 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.4 MB.
+System memory in use after: 196.7 MB.
+
+Unloading 25 unused Assets to reduce memory usage. Loaded Objects now: 4747.
+Total: 5.951300 ms (FindLiveObjects: 0.786000 ms CreateObjectMapping: 0.544700 ms MarkObjects: 4.472900 ms  DeleteObjects: 0.145000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.021898 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.82 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  6.434 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 5.37 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 195.9 MB.
+System memory in use after: 196.2 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4750.
+Total: 23.853300 ms (FindLiveObjects: 3.922000 ms CreateObjectMapping: 5.895300 ms MarkObjects: 13.902500 ms  DeleteObjects: 0.128000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.022766 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
 Refreshing native plugins compatible for Editor in 1.18 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  2.181 seconds
+- Completed reload, in  2.712 seconds
 Platform modules already initialized, skipping
 D3D shader create error for vertex shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
@@ -407,15 +724,14 @@ D3D shader create error for domain shader [0x80070057]
 D3D shader create error for domain shader [0x80070057]
 D3D shader create error for pixel shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 2.62 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 1.99 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3817 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 208.4 MB.
-System memory in use after: 208.6 MB.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 195.9 MB.
+System memory in use after: 196.2 MB.
 
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4739.
-Total: 5.207900 ms (FindLiveObjects: 0.572400 ms CreateObjectMapping: 0.448300 ms MarkObjects: 4.082100 ms  DeleteObjects: 0.103300 ms)
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4753.
+Total: 8.664400 ms (FindLiveObjects: 1.926200 ms CreateObjectMapping: 0.508900 ms MarkObjects: 6.094000 ms  DeleteObjects: 0.133200 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -430,13 +746,13 @@ AssetImportParameters requested are different than current active one (requested
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.010716 seconds.
+Registered in 0.013494 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.62 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 1.89 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  2.808 seconds
+- Completed reload, in  6.034 seconds
 Platform modules already initialized, skipping
 D3D shader create error for vertex shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
@@ -445,15 +761,14 @@ D3D shader create error for domain shader [0x80070057]
 D3D shader create error for domain shader [0x80070057]
 D3D shader create error for pixel shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 1.39 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 2.91 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3817 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 208.4 MB.
-System memory in use after: 208.6 MB.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.0 MB.
+System memory in use after: 196.2 MB.
 
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4742.
-Total: 6.672700 ms (FindLiveObjects: 1.243000 ms CreateObjectMapping: 0.582200 ms MarkObjects: 4.708400 ms  DeleteObjects: 0.136700 ms)
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4756.
+Total: 7.761300 ms (FindLiveObjects: 0.457000 ms CreateObjectMapping: 0.269200 ms MarkObjects: 6.909600 ms  DeleteObjects: 0.122800 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -468,553 +783,13 @@ AssetImportParameters requested are different than current active one (requested
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.012436 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.06 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.259 seconds
-Platform modules already initialized, skipping
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for domain shader [0x80070057]
-D3D shader create error for domain shader [0x80070057]
-D3D shader create error for pixel shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 1.40 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3817 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 208.4 MB.
-System memory in use after: 208.6 MB.
-
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4745.
-Total: 5.795800 ms (FindLiveObjects: 1.053200 ms CreateObjectMapping: 0.472500 ms MarkObjects: 4.166000 ms  DeleteObjects: 0.102100 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Import Request.
-  Time since last request: 1888.923005 seconds.
-  path: Assets/Prefabs/CowboyCivilian.prefab
-  artifactKey: Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/CowboyCivilian.prefab using Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ae91e55575c2370266f4e9f7e0bff7c8') in 1.412388 seconds 
-  Import took 1.437261 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.199846 seconds.
-  path: Assets/Prefabs/CowboyCivilian.prefab
-  artifactKey: Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/CowboyCivilian.prefab using Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '060a35883753cc48a4354a0d02e1dd8a') in 0.065015 seconds 
-  Import took 0.094875 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.012921 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.13 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  3.247 seconds
-Platform modules already initialized, skipping
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for domain shader [0x80070057]
-D3D shader create error for domain shader [0x80070057]
-D3D shader create error for pixel shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 2.20 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3817 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 208.8 MB.
-System memory in use after: 209.0 MB.
-
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4849.
-Total: 8.206800 ms (FindLiveObjects: 1.348000 ms CreateObjectMapping: 0.441300 ms MarkObjects: 6.311200 ms  DeleteObjects: 0.104000 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Import Request.
-  Time since last request: 65.230888 seconds.
-  path: Assets/Prefabs/Player.prefab
-  artifactKey: Guid(941c6885eb2a4e2408ef16ca1e72f45a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/Player.prefab using Guid(941c6885eb2a4e2408ef16ca1e72f45a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '56dc80ce23446b8616a8f7fd4ecacadc') in 0.089653 seconds 
-  Import took 0.109487 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.508743 seconds.
-  path: Assets/Prefabs/Player.prefab
-  artifactKey: Guid(941c6885eb2a4e2408ef16ca1e72f45a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/Player.prefab using Guid(941c6885eb2a4e2408ef16ca1e72f45a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '74ab862d8e8a1c6f7c8f8d625a0e8581') in 0.007651 seconds 
-  Import took 0.031428 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.097663 seconds.
-  path: Assets/Prefabs/Player.prefab
-  artifactKey: Guid(941c6885eb2a4e2408ef16ca1e72f45a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/Player.prefab using Guid(941c6885eb2a4e2408ef16ca1e72f45a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b02726ed4db38572d19ec020fc84878d') in 0.008316 seconds 
-  Import took 0.022338 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.801648 seconds.
-  path: Assets/Prefabs/Player.prefab
-  artifactKey: Guid(941c6885eb2a4e2408ef16ca1e72f45a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/Player.prefab using Guid(941c6885eb2a4e2408ef16ca1e72f45a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9211674425333bb7109a6b459b7e9f23') in 0.007904 seconds 
-  Import took 0.036181 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.011562 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.04 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.373 seconds
-Platform modules already initialized, skipping
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for domain shader [0x80070057]
-D3D shader create error for domain shader [0x80070057]
-D3D shader create error for pixel shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 1.27 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3817 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 208.8 MB.
-System memory in use after: 209.0 MB.
-
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4852.
-Total: 5.804300 ms (FindLiveObjects: 0.663400 ms CreateObjectMapping: 0.445600 ms MarkObjects: 4.584100 ms  DeleteObjects: 0.109600 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Import Request.
-  Time since last request: 94.989879 seconds.
-  path: Assets/Animations/Player.controller
-  artifactKey: Guid(5876447dc0d64004da12323a7d0ae86f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Player.controller using Guid(5876447dc0d64004da12323a7d0ae86f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ff47df50cb26e66145886b5deb81dcc5') in 0.042702 seconds 
-  Import took 0.062612 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.005547 seconds.
-  path: Assets/Animations/Player.controller
-  artifactKey: Guid(5876447dc0d64004da12323a7d0ae86f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Player.controller using Guid(5876447dc0d64004da12323a7d0ae86f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ff47df50cb26e66145886b5deb81dcc5') in 0.005199 seconds 
-  Import took 0.018606 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 6.710928 seconds.
-  path: Assets/Animations/Idles/BasicMotions@Idle01.fbx
-  artifactKey: Guid(a3422ad278cd9a94aa3da8e6bff9deea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Idles/BasicMotions@Idle01.fbx using Guid(a3422ad278cd9a94aa3da8e6bff9deea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '79ac902c69578be6ace55db463ca98e5') in 0.043016 seconds 
-  Import took 0.078094 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000367 seconds.
-  path: Assets/Animations/Idles/BasicMotions@Idle02.fbx
-  artifactKey: Guid(69d59c13a83a7c74a8cc0607ded391ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Idles/BasicMotions@Idle02.fbx using Guid(69d59c13a83a7c74a8cc0607ded391ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '595d7c4e205c69dadbd286f7902b4a69') in 0.025358 seconds 
-  Import took 0.046803 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 105.393974 seconds.
-  path: Assets/Animations/Movement/BasicMotions@Walk01.fbx
-  artifactKey: Guid(0536f044bd409ff419dd726bc69d2676) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Movement/BasicMotions@Walk01.fbx using Guid(0536f044bd409ff419dd726bc69d2676) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f5b36b3743009c1a8c71c6c5081199e9') in 0.017136 seconds 
-  Import took 0.036590 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 33.733571 seconds.
-  path: Assets/Animations/Movement/BasicMotions@Walk01.fbx
-  artifactKey: Guid(0536f044bd409ff419dd726bc69d2676) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Movement/BasicMotions@Walk01.fbx using Guid(0536f044bd409ff419dd726bc69d2676) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '26d113a3af75974f8471cc77e981d5b4') in 0.020966 seconds 
-  Import took 0.050671 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 48.160936 seconds.
-  path: Assets/Animations/Idles/BasicMotions@Idle01.fbx
-  artifactKey: Guid(a3422ad278cd9a94aa3da8e6bff9deea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Idles/BasicMotions@Idle01.fbx using Guid(a3422ad278cd9a94aa3da8e6bff9deea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '87d1f0ea3e928f4b50d7995b79071236') in 0.016170 seconds 
-  Import took 0.051488 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 25.598299 seconds.
-  path: Assets/Animations/Idles/BasicMotions@Idle01.fbx
-  artifactKey: Guid(a3422ad278cd9a94aa3da8e6bff9deea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Idles/BasicMotions@Idle01.fbx using Guid(a3422ad278cd9a94aa3da8e6bff9deea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ab0e3db2dace8c3a2c81e6be7c11cb3') in 0.017481 seconds 
-  Import took 0.044165 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 8.105363 seconds.
-  path: Assets/Animations/Idles/BasicMotions@Idle02.fbx
-  artifactKey: Guid(69d59c13a83a7c74a8cc0607ded391ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Idles/BasicMotions@Idle02.fbx using Guid(69d59c13a83a7c74a8cc0607ded391ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c4038248cb5d02cbe17cdaebd85bc8a') in 0.016151 seconds 
-  Import took 0.047352 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1352.581007 seconds.
-  path: Assets/Animations/Player.controller
-  artifactKey: Guid(5876447dc0d64004da12323a7d0ae86f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Player.controller using Guid(5876447dc0d64004da12323a7d0ae86f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b50e70dd3035ee6875aded5e7b4821be') in 0.024269 seconds 
-  Import took 0.059883 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 237.308843 seconds.
-  path: Assets/Animations/Player.controller
-  artifactKey: Guid(5876447dc0d64004da12323a7d0ae86f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Player.controller using Guid(5876447dc0d64004da12323a7d0ae86f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e29e4ddfaf6a4a789a02c73b0bfcbf7c') in 0.015014 seconds 
-  Import took 0.048879 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.632667 seconds.
-  path: Assets/Animations/Player.controller
-  artifactKey: Guid(5876447dc0d64004da12323a7d0ae86f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Player.controller using Guid(5876447dc0d64004da12323a7d0ae86f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '649f3e363c7899826453043ae8a6e945') in 0.016697 seconds 
-  Import took 0.036082 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.009022 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.00 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.515 seconds
-Platform modules already initialized, skipping
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for domain shader [0x80070057]
-D3D shader create error for domain shader [0x80070057]
-D3D shader create error for pixel shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 1.10 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3817 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 208.8 MB.
-System memory in use after: 209.0 MB.
-
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4855.
-Total: 5.104000 ms (FindLiveObjects: 0.587700 ms CreateObjectMapping: 0.443400 ms MarkObjects: 3.969400 ms  DeleteObjects: 0.101800 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.009484 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.98 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.282 seconds
-Platform modules already initialized, skipping
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for domain shader [0x80070057]
-D3D shader create error for domain shader [0x80070057]
-D3D shader create error for pixel shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 1.02 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3817 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 208.8 MB.
-System memory in use after: 209.1 MB.
-
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4858.
-Total: 8.515600 ms (FindLiveObjects: 0.751100 ms CreateObjectMapping: 0.643800 ms MarkObjects: 7.013400 ms  DeleteObjects: 0.105100 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Import Request.
-  Time since last request: 289.390441 seconds.
-  path: Assets/Prefabs/CowboyCivilian.prefab
-  artifactKey: Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/CowboyCivilian.prefab using Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2c29751cad7bdef4da02de13a6ad6085') in 0.875482 seconds 
-  Import took 0.891939 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 6.882585 seconds.
-  path: Assets/Prefabs/CowboyCivilian.prefab
-  artifactKey: Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/CowboyCivilian.prefab using Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc0d54a5feaaf70e429850265a04537e') in 0.087423 seconds 
-  Import took 0.109628 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.012067 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 2.96 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  4.950 seconds
-Platform modules already initialized, skipping
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for domain shader [0x80070057]
-D3D shader create error for domain shader [0x80070057]
-D3D shader create error for pixel shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 1.37 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3817 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 209.2 MB.
-System memory in use after: 209.4 MB.
-
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4962.
-Total: 8.746000 ms (FindLiveObjects: 0.531000 ms CreateObjectMapping: 0.296800 ms MarkObjects: 7.800700 ms  DeleteObjects: 0.115400 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.011630 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.06 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.187 seconds
-Platform modules already initialized, skipping
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for domain shader [0x80070057]
-D3D shader create error for domain shader [0x80070057]
-D3D shader create error for pixel shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 1.08 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3817 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 209.2 MB.
-System memory in use after: 209.4 MB.
-
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4965.
-Total: 5.688700 ms (FindLiveObjects: 0.662500 ms CreateObjectMapping: 0.474500 ms MarkObjects: 4.441700 ms  DeleteObjects: 0.108200 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.013674 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.93 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  4.601 seconds
-Platform modules already initialized, skipping
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for domain shader [0x80070057]
-D3D shader create error for domain shader [0x80070057]
-D3D shader create error for pixel shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 1.12 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3817 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 209.2 MB.
-System memory in use after: 209.4 MB.
-
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4968.
-Total: 8.759800 ms (FindLiveObjects: 0.872900 ms CreateObjectMapping: 0.556500 ms MarkObjects: 7.205000 ms  DeleteObjects: 0.123200 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.008588 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.03 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.047 seconds
-Platform modules already initialized, skipping
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for domain shader [0x80070057]
-D3D shader create error for domain shader [0x80070057]
-D3D shader create error for pixel shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 1.09 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3817 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 209.2 MB.
-System memory in use after: 209.4 MB.
-
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4971.
-Total: 6.239200 ms (FindLiveObjects: 0.728700 ms CreateObjectMapping: 0.507800 ms MarkObjects: 4.889600 ms  DeleteObjects: 0.111000 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.022436 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.75 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.404 seconds
-Platform modules already initialized, skipping
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for domain shader [0x80070057]
-D3D shader create error for domain shader [0x80070057]
-D3D shader create error for pixel shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 1.11 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3817 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 209.2 MB.
-System memory in use after: 209.4 MB.
-
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4974.
-Total: 5.724600 ms (FindLiveObjects: 0.623100 ms CreateObjectMapping: 0.444000 ms MarkObjects: 4.553200 ms  DeleteObjects: 0.102500 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.010452 seconds.
+Registered in 0.010468 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
 Refreshing native plugins compatible for Editor in 1.07 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  2.036 seconds
+- Completed reload, in  2.483 seconds
 Platform modules already initialized, skipping
 D3D shader create error for vertex shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
@@ -1023,15 +798,14 @@ D3D shader create error for domain shader [0x80070057]
 D3D shader create error for domain shader [0x80070057]
 D3D shader create error for pixel shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 1.05 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 1.48 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3817 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 209.2 MB.
-System memory in use after: 209.5 MB.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.0 MB.
+System memory in use after: 196.2 MB.
 
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4977.
-Total: 5.480500 ms (FindLiveObjects: 0.601900 ms CreateObjectMapping: 0.502800 ms MarkObjects: 4.272400 ms  DeleteObjects: 0.101700 ms)
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4759.
+Total: 5.928100 ms (FindLiveObjects: 0.458900 ms CreateObjectMapping: 0.244900 ms MarkObjects: 5.095900 ms  DeleteObjects: 0.126100 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -1046,13 +820,13 @@ AssetImportParameters requested are different than current active one (requested
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.015515 seconds.
+Registered in 0.012931 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.31 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 1.76 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  4.508 seconds
+- Completed reload, in  6.133 seconds
 Platform modules already initialized, skipping
 D3D shader create error for vertex shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
@@ -1061,15 +835,14 @@ D3D shader create error for domain shader [0x80070057]
 D3D shader create error for domain shader [0x80070057]
 D3D shader create error for pixel shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 1.67 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 6.92 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3817 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 209.2 MB.
-System memory in use after: 209.5 MB.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.0 MB.
+System memory in use after: 196.2 MB.
 
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4980.
-Total: 11.843500 ms (FindLiveObjects: 1.227400 ms CreateObjectMapping: 0.543700 ms MarkObjects: 9.907500 ms  DeleteObjects: 0.161700 ms)
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4762.
+Total: 33.088500 ms (FindLiveObjects: 6.345500 ms CreateObjectMapping: 0.792200 ms MarkObjects: 25.800500 ms  DeleteObjects: 0.147100 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -1084,13 +857,13 @@ AssetImportParameters requested are different than current active one (requested
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.009028 seconds.
+Registered in 0.010993 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.02 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 1.16 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  2.021 seconds
+- Completed reload, in  3.018 seconds
 Platform modules already initialized, skipping
 D3D shader create error for vertex shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
@@ -1099,15 +872,14 @@ D3D shader create error for domain shader [0x80070057]
 D3D shader create error for domain shader [0x80070057]
 D3D shader create error for pixel shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 1.03 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 1.91 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3817 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 209.2 MB.
-System memory in use after: 209.5 MB.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.0 MB.
+System memory in use after: 196.2 MB.
 
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4983.
-Total: 7.276100 ms (FindLiveObjects: 0.597100 ms CreateObjectMapping: 0.476800 ms MarkObjects: 6.084200 ms  DeleteObjects: 0.116100 ms)
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4765.
+Total: 7.745600 ms (FindLiveObjects: 0.858200 ms CreateObjectMapping: 0.454200 ms MarkObjects: 6.301500 ms  DeleteObjects: 0.129100 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -1122,13 +894,13 @@ AssetImportParameters requested are different than current active one (requested
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.014263 seconds.
+Registered in 0.019371 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.90 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 2.25 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  3.530 seconds
+- Completed reload, in  4.746 seconds
 Platform modules already initialized, skipping
 D3D shader create error for vertex shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
@@ -1137,15 +909,14 @@ D3D shader create error for domain shader [0x80070057]
 D3D shader create error for domain shader [0x80070057]
 D3D shader create error for pixel shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 1.71 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 6.38 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3817 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 209.3 MB.
-System memory in use after: 209.5 MB.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.0 MB.
+System memory in use after: 196.2 MB.
 
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4986.
-Total: 8.869700 ms (FindLiveObjects: 1.217200 ms CreateObjectMapping: 0.559100 ms MarkObjects: 6.938900 ms  DeleteObjects: 0.152000 ms)
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4768.
+Total: 10.647700 ms (FindLiveObjects: 0.954000 ms CreateObjectMapping: 0.454300 ms MarkObjects: 9.096100 ms  DeleteObjects: 0.140200 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -1160,13 +931,13 @@ AssetImportParameters requested are different than current active one (requested
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.009937 seconds.
+Registered in 0.013397 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.19 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 1.13 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  2.047 seconds
+- Completed reload, in  2.529 seconds
 Platform modules already initialized, skipping
 D3D shader create error for vertex shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
@@ -1175,15 +946,14 @@ D3D shader create error for domain shader [0x80070057]
 D3D shader create error for domain shader [0x80070057]
 D3D shader create error for pixel shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 0.99 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 1.80 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3817 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 209.3 MB.
-System memory in use after: 209.5 MB.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.1 MB.
+System memory in use after: 196.3 MB.
 
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4989.
-Total: 6.571600 ms (FindLiveObjects: 0.644700 ms CreateObjectMapping: 0.445900 ms MarkObjects: 5.371500 ms  DeleteObjects: 0.107400 ms)
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4771.
+Total: 8.426800 ms (FindLiveObjects: 0.838900 ms CreateObjectMapping: 0.750400 ms MarkObjects: 6.704600 ms  DeleteObjects: 0.130400 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -1198,13 +968,13 @@ AssetImportParameters requested are different than current active one (requested
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.011647 seconds.
+Registered in 0.013332 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.21 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 1.95 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  3.382 seconds
+- Completed reload, in  5.954 seconds
 Platform modules already initialized, skipping
 D3D shader create error for vertex shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
@@ -1213,15 +983,14 @@ D3D shader create error for domain shader [0x80070057]
 D3D shader create error for domain shader [0x80070057]
 D3D shader create error for pixel shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 2.05 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 4.69 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3817 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 209.3 MB.
-System memory in use after: 209.5 MB.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.1 MB.
+System memory in use after: 196.3 MB.
 
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4992.
-Total: 12.294000 ms (FindLiveObjects: 1.296400 ms CreateObjectMapping: 1.696600 ms MarkObjects: 9.177500 ms  DeleteObjects: 0.121200 ms)
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4774.
+Total: 12.848500 ms (FindLiveObjects: 2.404700 ms CreateObjectMapping: 0.665800 ms MarkObjects: 9.653500 ms  DeleteObjects: 0.121500 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -1236,13 +1005,13 @@ AssetImportParameters requested are different than current active one (requested
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.008926 seconds.
+Registered in 0.105802 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.04 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 1.11 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  2.389 seconds
+- Completed reload, in  3.688 seconds
 Platform modules already initialized, skipping
 D3D shader create error for vertex shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
@@ -1251,15 +1020,14 @@ D3D shader create error for domain shader [0x80070057]
 D3D shader create error for domain shader [0x80070057]
 D3D shader create error for pixel shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 1.09 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 1.70 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3817 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 209.3 MB.
-System memory in use after: 209.5 MB.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.1 MB.
+System memory in use after: 196.3 MB.
 
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4995.
-Total: 5.571900 ms (FindLiveObjects: 0.767400 ms CreateObjectMapping: 0.475100 ms MarkObjects: 4.231000 ms  DeleteObjects: 0.096600 ms)
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4777.
+Total: 7.762000 ms (FindLiveObjects: 0.863600 ms CreateObjectMapping: 0.440500 ms MarkObjects: 6.320400 ms  DeleteObjects: 0.135100 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -1274,13 +1042,13 @@ AssetImportParameters requested are different than current active one (requested
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.013629 seconds.
+Registered in 0.021516 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.02 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 5.56 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  2.019 seconds
+- Completed reload, in  6.524 seconds
 Platform modules already initialized, skipping
 D3D shader create error for vertex shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
@@ -1289,15 +1057,14 @@ D3D shader create error for domain shader [0x80070057]
 D3D shader create error for domain shader [0x80070057]
 D3D shader create error for pixel shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 1.06 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 2.21 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3817 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 209.3 MB.
-System memory in use after: 209.6 MB.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.1 MB.
+System memory in use after: 196.3 MB.
 
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4998.
-Total: 7.025900 ms (FindLiveObjects: 0.733100 ms CreateObjectMapping: 0.504000 ms MarkObjects: 5.683300 ms  DeleteObjects: 0.103400 ms)
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4780.
+Total: 9.090300 ms (FindLiveObjects: 0.945500 ms CreateObjectMapping: 0.444200 ms MarkObjects: 7.522300 ms  DeleteObjects: 0.175700 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -1310,31 +1077,422 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
-Received Import Request.
-  Time since last request: 823.925311 seconds.
-  path: Assets/Prefabs/CowboyCivilian.prefab
-  artifactKey: Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/CowboyCivilian.prefab using Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '229d82772fb2858995d7e7c7e209ca58') in 1.063932 seconds 
-  Import took 1.103074 seconds .
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.010108 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.69 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.428 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 1.73 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.1 MB.
+System memory in use after: 196.3 MB.
 
-========================================================================
-Received Import Request.
-  Time since last request: 3.696221 seconds.
-  path: Assets/Prefabs/CowboyCivilian.prefab
-  artifactKey: Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/CowboyCivilian.prefab using Guid(8431c994dfc3ec44687e92417b1d8cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eb242a4dcec9beee37bfd1900cbb90d0') in 0.066409 seconds 
-  Import took 0.094954 seconds .
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4783.
+Total: 4.861400 ms (FindLiveObjects: 0.454400 ms CreateObjectMapping: 0.257800 ms MarkObjects: 4.029900 ms  DeleteObjects: 0.116900 ms)
 
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.013528 seconds.
+Registered in 0.013233 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 2.74 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  3.116 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 1.58 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.1 MB.
+System memory in use after: 196.3 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4786.
+Total: 5.790100 ms (FindLiveObjects: 0.446200 ms CreateObjectMapping: 0.261300 ms MarkObjects: 4.820800 ms  DeleteObjects: 0.259300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.044358 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.08 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.432 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 7.29 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.1 MB.
+System memory in use after: 196.3 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4789.
+Total: 8.513800 ms (FindLiveObjects: 1.158400 ms CreateObjectMapping: 0.580100 ms MarkObjects: 6.574900 ms  DeleteObjects: 0.197200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.020210 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.30 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  6.055 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 4.47 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.1 MB.
+System memory in use after: 196.4 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4792.
+Total: 10.400000 ms (FindLiveObjects: 1.260200 ms CreateObjectMapping: 1.452400 ms MarkObjects: 7.543900 ms  DeleteObjects: 0.140700 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.011844 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.81 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  3.338 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 2.10 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.1 MB.
+System memory in use after: 196.4 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4795.
+Total: 9.586300 ms (FindLiveObjects: 1.153500 ms CreateObjectMapping: 0.575200 ms MarkObjects: 7.705200 ms  DeleteObjects: 0.149700 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.016970 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.82 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  6.698 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 6.63 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.1 MB.
+System memory in use after: 196.4 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4798.
+Total: 15.043100 ms (FindLiveObjects: 1.675100 ms CreateObjectMapping: 1.084500 ms MarkObjects: 12.134900 ms  DeleteObjects: 0.145300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.151911 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 2.37 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  6.667 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 5.38 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.2 MB.
+System memory in use after: 196.4 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4801.
+Total: 13.510700 ms (FindLiveObjects: 0.929000 ms CreateObjectMapping: 2.703700 ms MarkObjects: 9.753000 ms  DeleteObjects: 0.122900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.032880 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.98 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  5.960 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 2.12 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.2 MB.
+System memory in use after: 196.4 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4804.
+Total: 16.836700 ms (FindLiveObjects: 1.030100 ms CreateObjectMapping: 0.588300 ms MarkObjects: 15.089700 ms  DeleteObjects: 0.126100 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.007823 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.13 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.242 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 1.59 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.2 MB.
+System memory in use after: 196.4 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4807.
+Total: 6.597600 ms (FindLiveObjects: 0.851900 ms CreateObjectMapping: 0.563600 ms MarkObjects: 5.076900 ms  DeleteObjects: 0.102700 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.022585 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.18 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  5.221 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 2.02 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.2 MB.
+System memory in use after: 196.4 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4810.
+Total: 11.208000 ms (FindLiveObjects: 1.017200 ms CreateObjectMapping: 0.498400 ms MarkObjects: 9.557400 ms  DeleteObjects: 0.132500 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.013197 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.79 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.949 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 2.07 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.2 MB.
+System memory in use after: 196.4 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4813.
+Total: 7.931300 ms (FindLiveObjects: 0.942200 ms CreateObjectMapping: 0.525400 ms MarkObjects: 6.319700 ms  DeleteObjects: 0.139100 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.026725 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
 Refreshing native plugins compatible for Editor in 2.06 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  5.642 seconds
+- Completed reload, in  6.870 seconds
 Platform modules already initialized, skipping
 D3D shader create error for vertex shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
@@ -1343,15 +1501,14 @@ D3D shader create error for domain shader [0x80070057]
 D3D shader create error for domain shader [0x80070057]
 D3D shader create error for pixel shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 2.16 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 5.35 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3817 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 209.7 MB.
-System memory in use after: 209.9 MB.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.2 MB.
+System memory in use after: 196.4 MB.
 
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 5102.
-Total: 10.093900 ms (FindLiveObjects: 1.176900 ms CreateObjectMapping: 0.527900 ms MarkObjects: 8.251200 ms  DeleteObjects: 0.135500 ms)
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4816.
+Total: 12.699100 ms (FindLiveObjects: 1.383800 ms CreateObjectMapping: 0.499800 ms MarkObjects: 10.697900 ms  DeleteObjects: 0.114500 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -1365,6 +1522,15 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.013238 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.07 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.452 seconds
+Platform modules already initialized, skipping
 D3D shader create error for vertex shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
@@ -1372,15 +1538,717 @@ D3D shader create error for domain shader [0x80070057]
 D3D shader create error for domain shader [0x80070057]
 D3D shader create error for pixel shader [0x80070057]
 D3D shader create error for vertex shader [0x80070057]
-D3D shader create error for vertex shader [0x80070057]
-Refreshing native plugins compatible for Editor in 11.20 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 2.50 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 22 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 134.8 MB.
-System memory in use after: 135.1 MB.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.2 MB.
+System memory in use after: 196.4 MB.
 
-Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 5102.
-Total: 5.558900 ms (FindLiveObjects: 0.527700 ms CreateObjectMapping: 0.322000 ms MarkObjects: 4.608200 ms  DeleteObjects: 0.099300 ms)
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4819.
+Total: 12.682000 ms (FindLiveObjects: 0.489400 ms CreateObjectMapping: 0.295900 ms MarkObjects: 11.729600 ms  DeleteObjects: 0.164600 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.039389 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 2.63 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  5.685 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 1.86 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.2 MB.
+System memory in use after: 196.5 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4822.
+Total: 8.332900 ms (FindLiveObjects: 1.199500 ms CreateObjectMapping: 0.438900 ms MarkObjects: 6.549700 ms  DeleteObjects: 0.142000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.011560 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.25 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.383 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 1.71 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.2 MB.
+System memory in use after: 196.5 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4825.
+Total: 4.706800 ms (FindLiveObjects: 0.512700 ms CreateObjectMapping: 0.246700 ms MarkObjects: 3.827900 ms  DeleteObjects: 0.117400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.023946 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 5.51 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  6.485 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 2.14 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.2 MB.
+System memory in use after: 196.5 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4828.
+Total: 11.281800 ms (FindLiveObjects: 1.252900 ms CreateObjectMapping: 0.565600 ms MarkObjects: 9.332100 ms  DeleteObjects: 0.128100 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.010745 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.08 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.150 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 1.17 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.3 MB.
+System memory in use after: 196.5 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4831.
+Total: 7.232400 ms (FindLiveObjects: 0.911700 ms CreateObjectMapping: 0.394900 ms MarkObjects: 5.795700 ms  DeleteObjects: 0.128100 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.027363 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 3.04 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  5.752 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 2.81 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.3 MB.
+System memory in use after: 196.5 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4834.
+Total: 11.358900 ms (FindLiveObjects: 1.178800 ms CreateObjectMapping: 2.949200 ms MarkObjects: 7.032700 ms  DeleteObjects: 0.195100 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.015617 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.36 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  3.257 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 1.88 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.3 MB.
+System memory in use after: 196.5 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4837.
+Total: 7.307300 ms (FindLiveObjects: 0.477600 ms CreateObjectMapping: 0.305700 ms MarkObjects: 6.419600 ms  DeleteObjects: 0.101400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.238018 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.95 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  6.184 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 3.90 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.3 MB.
+System memory in use after: 196.5 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4840.
+Total: 16.523200 ms (FindLiveObjects: 2.851000 ms CreateObjectMapping: 2.230100 ms MarkObjects: 11.304400 ms  DeleteObjects: 0.134200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.011801 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.11 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  3.010 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 1.85 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.3 MB.
+System memory in use after: 196.5 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4843.
+Total: 7.446900 ms (FindLiveObjects: 0.828500 ms CreateObjectMapping: 0.446600 ms MarkObjects: 6.047100 ms  DeleteObjects: 0.122500 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.023694 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.27 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  7.763 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 1.84 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.3 MB.
+System memory in use after: 196.5 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4846.
+Total: 9.713400 ms (FindLiveObjects: 0.511300 ms CreateObjectMapping: 0.473300 ms MarkObjects: 8.562800 ms  DeleteObjects: 0.163200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.013027 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.10 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.545 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 2.62 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.3 MB.
+System memory in use after: 196.6 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4849.
+Total: 11.983300 ms (FindLiveObjects: 3.340500 ms CreateObjectMapping: 0.585900 ms MarkObjects: 7.912500 ms  DeleteObjects: 0.141200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.010341 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 3.14 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  6.766 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 7.30 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.3 MB.
+System memory in use after: 196.6 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4852.
+Total: 22.954800 ms (FindLiveObjects: 2.596900 ms CreateObjectMapping: 8.875200 ms MarkObjects: 11.374900 ms  DeleteObjects: 0.105400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.008767 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.78 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  3.894 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 2.66 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.4 MB.
+System memory in use after: 196.6 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4855.
+Total: 11.513500 ms (FindLiveObjects: 1.465600 ms CreateObjectMapping: 0.475900 ms MarkObjects: 9.431500 ms  DeleteObjects: 0.137600 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.019349 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.16 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  6.020 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 2.16 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.4 MB.
+System memory in use after: 196.6 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4858.
+Total: 22.265500 ms (FindLiveObjects: 4.886800 ms CreateObjectMapping: 1.078100 ms MarkObjects: 16.162400 ms  DeleteObjects: 0.135500 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.007586 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.76 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.836 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 1.16 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.4 MB.
+System memory in use after: 196.6 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4861.
+Total: 5.631800 ms (FindLiveObjects: 0.631100 ms CreateObjectMapping: 0.483800 ms MarkObjects: 4.405200 ms  DeleteObjects: 0.109400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.015447 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.19 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  5.194 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 1.86 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.4 MB.
+System memory in use after: 196.6 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4864.
+Total: 11.821800 ms (FindLiveObjects: 1.428700 ms CreateObjectMapping: 0.584800 ms MarkObjects: 9.665300 ms  DeleteObjects: 0.140200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.016185 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.32 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  5.231 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 1.87 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.4 MB.
+System memory in use after: 196.6 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4867.
+Total: 9.223300 ms (FindLiveObjects: 1.272000 ms CreateObjectMapping: 0.655900 ms MarkObjects: 7.160300 ms  DeleteObjects: 0.132400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.018128 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.76 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  5.641 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 9.16 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.4 MB.
+System memory in use after: 196.6 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4870.
+Total: 6.766700 ms (FindLiveObjects: 0.481600 ms CreateObjectMapping: 0.263600 ms MarkObjects: 5.917200 ms  DeleteObjects: 0.101800 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.007827 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.13 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.147 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 1.09 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.4 MB.
+System memory in use after: 196.6 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4873.
+Total: 5.591300 ms (FindLiveObjects: 0.420700 ms CreateObjectMapping: 0.401000 ms MarkObjects: 4.676100 ms  DeleteObjects: 0.091700 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.021884 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 3.48 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  5.854 seconds
+Platform modules already initialized, skipping
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for domain shader [0x80070057]
+D3D shader create error for pixel shader [0x80070057]
+D3D shader create error for vertex shader [0x80070057]
+Refreshing native plugins compatible for Editor in 2.00 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3820 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.4 MB.
+System memory in use after: 196.7 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 4876.
+Total: 14.325600 ms (FindLiveObjects: 0.987000 ms CreateObjectMapping: 1.002200 ms MarkObjects: 12.197000 ms  DeleteObjects: 0.136500 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
