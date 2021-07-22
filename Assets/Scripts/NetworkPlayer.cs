@@ -1,14 +1,15 @@
-﻿using Lobby;
+﻿using Game;
+using Lobby;
 using MLAPI;
 using MLAPI.NetworkVariable;
-using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Player
 {
     public class NetworkPlayer : NetworkBehaviour
     {
+        [SerializeField] private PlayerController _playerControllerPrefab = null;
+
         private PlayerListItem _lobbyItem = null;
 
         private static NetworkVariableInt _iconOffset = new NetworkVariableInt(new NetworkVariableSettings
@@ -133,6 +134,8 @@ namespace Player
             _iconPath.OnValueChanged += SetIcon;
             _nickname.OnValueChanged += SetNickname;
             _isReady.OnValueChanged += SetReady;
+
+            //_populated.OnValueChanged += SetBody;
         }
 
         private void Unsubscribe()
@@ -140,6 +143,8 @@ namespace Player
             _iconPath.OnValueChanged -= SetIcon;
             _nickname.OnValueChanged -= SetNickname;
             _isReady.OnValueChanged -= SetReady;
+
+            //_populated.OnValueChanged -= SetBody;
         }
 
         private void SetNickname(string previousValue, string newValue)
@@ -168,6 +173,20 @@ namespace Player
             {
                 LobbyController.Singleton.CheckAllReady();
             }
+        }
+
+        private PlayerController _controller = null;
+
+        public void SetControlledCivilian(Transform civilian)
+        {
+            if(GameController.Singleton == null) { return; }
+
+            if (_controller == null)
+            {
+                _controller = Instantiate(_playerControllerPrefab, null).GetComponent<PlayerController>();
+            }
+
+            _controller.SetControlledCivilian(civilian);
         }
     }
 }

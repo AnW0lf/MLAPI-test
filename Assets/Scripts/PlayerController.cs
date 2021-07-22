@@ -1,6 +1,3 @@
-using Game;
-using MLAPI;
-using System;
 using UnityEngine;
 
 namespace Player
@@ -9,8 +6,8 @@ namespace Player
     {
         [SerializeField] private GameObject _cameraPrefab = null;
         [SerializeField] private Vector2 _cameraSensitivity = Vector2.one;
-        [SerializeField] private float _walkSpeed = 1f;
-        [SerializeField] private float _runSpeed = 2f;
+        [SerializeField] private float _walkSpeed = 2f;
+        [SerializeField] private float _runSpeed = 4f;
 
         private InputManager _inputs = null;
         private bool _active = false;
@@ -65,66 +62,33 @@ namespace Player
             }
         }
 
-        //private void Start()
-        //{
-        //    _body = LevelManager.Singleton.RandomBody.transform;
-        //    if (_body.TryGetComponent(out Civilian civilian))
-        //    {
-        //        civilian.Active = false;
-        //        civilian.enabled = false;
-        //    }
-        //    if (_body.TryGetComponent(out Animator animator))
-        //    {
-        //        _animator = animator;
-        //    }
+        public void SetControlledCivilian(Transform civilian)
+        {
+            if (civilian == null)
+            {
+                Active = false;
+                return;
+            }
 
-        //    _camera = Instantiate(_cameraPrefab, _body).transform;
-        //    _camera.localPosition = new Vector3(0f, 1.8f, 0f);
-        //    _camera.localEulerAngles = new Vector3(0f, 0f, 0f);
-        //    Cursor.lockState = CursorLockMode.Locked;
+            _body = civilian;
 
-        //    Active = true;
+            if (_body.TryGetComponent(out Animator animator))
+            {
+                _animator = animator;
+            }
 
-        //    NetworkManager.Singleton.OnClientDisconnectCallback += HandleClientDisconnected;
-        //}
+            if(_camera != null)
+            {
+                Destroy(_camera.gameObject);
+            }
 
-        //private void OnDestroy()
-        //{
-        //    Active = false;
+            _camera = Instantiate(_cameraPrefab, _body).transform;
+            _camera.localPosition = new Vector3(0f, 1.8f, 0f);
+            _camera.localEulerAngles = new Vector3(0f, 0f, 0f);
+            Cursor.lockState = CursorLockMode.Locked;
 
-        //    if (_body != null && _body.TryGetComponent(out Civilian civilian))
-        //    {
-        //        civilian.enabled = true;
-        //        civilian.Active = true;
-        //    }
-
-        //    if (NetworkManager.Singleton == null) { return; }
-
-        //    NetworkManager.Singleton.OnClientDisconnectCallback -= HandleClientDisconnected;
-        //}
-
-        //private void HandleClientDisconnected(ulong clientId)
-        //{
-        //    if (clientId == NetworkManager.Singleton.LocalClientId)
-        //    {
-        //        if (_camera != null)
-        //        {
-        //            Destroy(_camera.gameObject);
-        //            _camera = null;
-        //        }
-        //        if (_body != null)
-        //        {
-        //            if (_body.TryGetComponent(out Civilian civilian))
-        //            {
-        //                civilian.enabled = true;
-        //                civilian.Active = true;
-        //            }
-        //            _body = null;
-        //        }
-
-        //        Active = false;
-        //    }
-        //}
+            Active = true;
+        }
 
         public Vector2 Direction { get; private set; } = Vector3.zero;
         public Vector2 Delta { get; private set; } = Vector3.zero;
@@ -148,11 +112,17 @@ namespace Player
 
         private void Move(UnityEngine.InputSystem.InputAction.CallbackContext context)
         {
+            if (Cursor.lockState != CursorLockMode.Locked) { return; }
+
             Direction = Vector2.ClampMagnitude(context.ReadValue<Vector2>(), 1f);
+
+            print($"PlayerController:: Move: {Direction}");
         }
 
         private void Rotate(UnityEngine.InputSystem.InputAction.CallbackContext context)
         {
+            if (Cursor.lockState != CursorLockMode.Locked) { return; }
+
             Delta = context.ReadValue<Vector2>();
 
             if (_body != null && Delta.x != 0f)
@@ -178,12 +148,16 @@ namespace Player
             {
                 case CursorLockMode.None:
                     Cursor.lockState = CursorLockMode.Locked;
+                    Direction = Vector3.zero;
+                    Delta = Vector2.zero;
                     break;
                 case CursorLockMode.Locked:
                     Cursor.lockState = CursorLockMode.None;
                     break;
                 default:
                     Cursor.lockState = CursorLockMode.None;
+                    Direction = Vector3.zero;
+                    Delta = Vector2.zero;
                     break;
             }
         }

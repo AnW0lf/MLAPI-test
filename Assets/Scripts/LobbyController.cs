@@ -83,7 +83,6 @@ namespace Lobby
 
         public void StartGame()
         {
-            print($"Load scene Game");
             NetworkSceneManager.SwitchScene("Game");
         }
 

@@ -1,26 +1,27 @@
 using UnityEngine;
-using UnityEngine.AI;
+using MLAPI;
+using MLAPI.NetworkVariable;
 
-namespace AI
+public class Civilian : NetworkBehaviour
 {
-    [RequireComponent(typeof(Animator), typeof(NavMeshAgent))]
-    public class Civilian : MonoBehaviour
+    private NetworkVariableULong _uniqueId = new NetworkVariableULong(new NetworkVariableSettings
     {
-        private Animator _animator = null;
-        private NavMeshAgent _agent = null;
+        ReadPermission = NetworkVariablePermission.Everyone,
+        WritePermission = NetworkVariablePermission.ServerOnly
+    }, 0);
 
-        private void Awake()
+    public ulong UniqueId
+    {
+        get => _uniqueId.Value;
+        set
         {
-            _animator = GetComponent<Animator>();
-            _agent = GetComponent<NavMeshAgent>();
-        }
-
-        private void Update()
-        {
-            if (_animator != null)
+            if (IsServer)
             {
-                _animator.SetFloat("xSpeed", _agent.velocity.x);
-                _animator.SetFloat("zSpeed", _agent.velocity.z);
+                _uniqueId.Value = value;
+            }
+            else
+            {
+                Debug.LogWarning($"{nameof(UniqueId)} can't be changed, because you are not server!..");
             }
         }
     }
