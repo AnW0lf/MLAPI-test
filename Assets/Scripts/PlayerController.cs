@@ -4,17 +4,14 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private GameObject _cameraPrefab = null;
+        [SerializeField] private Animator _animator = null;
+        [SerializeField] private Transform _camera = null;
         [SerializeField] private Vector2 _cameraSensitivity = Vector2.one;
         [SerializeField] private float _walkSpeed = 2f;
         [SerializeField] private float _runSpeed = 4f;
 
         private InputManager _inputs = null;
         private bool _active = false;
-
-        private Transform _camera = null;
-        private Transform _body = null;
-        private Animator _animator = null;
 
         public bool Active
         {
@@ -62,51 +59,20 @@ namespace Player
             }
         }
 
-        public void SetControlledCivilian(Transform civilian)
-        {
-            if (civilian == null)
-            {
-                Active = false;
-                return;
-            }
-
-            _body = civilian;
-
-            if (_body.TryGetComponent(out Animator animator))
-            {
-                _animator = animator;
-            }
-
-            if(_camera != null)
-            {
-                Destroy(_camera.gameObject);
-            }
-
-            _camera = Instantiate(_cameraPrefab, _body).transform;
-            _camera.localPosition = new Vector3(0f, 1.8f, 0f);
-            _camera.localEulerAngles = new Vector3(0f, 0f, 0f);
-            Cursor.lockState = CursorLockMode.Locked;
-
-            Active = true;
-        }
-
         public Vector2 Direction { get; private set; } = Vector3.zero;
         public Vector2 Delta { get; private set; } = Vector3.zero;
 
         private void Update()
         {
-            if (_body != null)
+            Vector3 speed = (transform.forward * Direction.y + transform.right * Direction.x) * _walkSpeed;
+            if (Direction != Vector2.zero)
             {
-                Vector3 speed = (_body.forward * Direction.y + _body.right * Direction.x) * _walkSpeed;
-                if (Direction != Vector2.zero)
-                {
-                    _body.position += speed * Time.deltaTime;
-                }
-                if (_animator != null)
-                {
-                    _animator.SetFloat("xSpeed", speed.x);
-                    _animator.SetFloat("zSpeed", speed.z);
-                }
+                transform.position += speed * Time.deltaTime;
+            }
+            if (_animator != null)
+            {
+                _animator.SetFloat("xSpeed", speed.x);
+                _animator.SetFloat("zSpeed", speed.z);
             }
         }
 
@@ -125,9 +91,9 @@ namespace Player
 
             Delta = context.ReadValue<Vector2>();
 
-            if (_body != null && Delta.x != 0f)
+            if (Delta.x != 0f)
             {
-                _body.Rotate(Vector3.up, Delta.x * _cameraSensitivity.x * Time.deltaTime);
+                transform.Rotate(Vector3.up, Delta.x * _cameraSensitivity.x * Time.deltaTime);
             }
 
             if (_camera != null && Delta.y != 0f)

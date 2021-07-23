@@ -1,6 +1,7 @@
 ﻿using Game;
 using Lobby;
 using MLAPI;
+using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
 using UnityEngine;
 
@@ -8,7 +9,8 @@ namespace Player
 {
     public class NetworkPlayer : NetworkBehaviour
     {
-        [SerializeField] private PlayerController _playerControllerPrefab = null;
+        [SerializeField] private PlayerController _playerController = null;
+        [SerializeField] private GameObject _body = null;
 
         private PlayerListItem _lobbyItem = null;
 
@@ -175,18 +177,35 @@ namespace Player
             }
         }
 
-        private PlayerController _controller = null;
-
-        public void SetControlledCivilian(Transform civilian)
+        public bool IsBodyActive
         {
-            if(GameController.Singleton == null) { return; }
-
-            if (_controller == null)
+            get => _body.activeSelf;
+            set
             {
-                _controller = Instantiate(_playerControllerPrefab, null).GetComponent<PlayerController>();
+                if (IsBodyActive != value)
+                {
+                    if (IsOwner)
+                    {
+                        _playerController.Active = value;
+                    }
+                    _body.SetActive(value);
+                    SetActiveBodyServerRpc(OwnerClientId, value);
+                }
             }
+        }
 
-            _controller.SetControlledCivilian(civilian);
+        [ServerRpc(RequireOwnership = false)]
+        private void SetActiveBodyServerRpc(ulong clientId, bool active)
+        {
+            SetActiveBodyClientRpc(clientId, active);
+        }
+
+        [ClientRpc]
+        private void SetActiveBodyClientRpc(ulong clientId, bool active)
+        {
+            if (clientId != OwnerClientId) { return; }
+
+            IsBodyActive = active;
         }
     }
 }

@@ -25,9 +25,7 @@ namespace Game
             WritePermission = NetworkVariablePermission.ServerOnly
         }, 1);
 
-        private Dictionary<ulong, ulong> _playerCivilian = new Dictionary<ulong, ulong>();
         private Dictionary<ulong, bool> _playerConnected = new Dictionary<ulong, bool>();
-        private Civilian[] _civilians = null;
         private Player.NetworkPlayer _ownerNetPlayer = null;
 
         private void Awake()
@@ -44,29 +42,18 @@ namespace Game
                 {
                     foreach (var client in NetworkManager.Singleton.ConnectedClients)
                     {
-                        if (!_playerCivilian.ContainsKey(client.Key))
-                        {
-                            _playerCivilian.Add(client.Key, 0);
-                            _playerConnected.Add(client.Key, false);
-                        }
-                        if (client.Value.PlayerObject.IsOwner)
-                        {
-                            _ownerNetPlayer = client.Value.PlayerObject.GetComponent<Player.NetworkPlayer>();
-                        }
+                        _playerConnected.Add(client.Key, false);
                     }
 
-                    for (int i = 0; i < _maxCount; i++)
-                        SpawnNPC();
-
-                    if (_civilians == null || _civilians.Length == 0)
+                    for (int i = 0; i < _maxCount - NetworkManager.Singleton.ConnectedClients.Count; i++)
                     {
-                        _civilians = FindObjectsOfType<Civilian>();
+                        SpawnNPC();
                     }
-                    _playerConnected[NetworkManager.Singleton.LocalClientId] = true;
                 }
 
+                _ownerNetPlayer = NetworkManager.Singleton.ConnectedClients[NetworkManager.Singleton.LocalClientId]
+                    .PlayerObject.GetComponent<Player.NetworkPlayer>();
                 PlayerConnectedServerRpc(NetworkManager.Singleton.LocalClientId);
-                print($"Client Rpc to Server:: clientId: {NetworkManager.Singleton.LocalClientId}");
             }
         }
 
@@ -87,30 +74,17 @@ namespace Game
             _civilianNextId.Value++;
         }
 
-        private void SetCivilians()
+        private void ActivatePlayers()
         {
-            if (_civilians == null || _civilians.Length == 0)
+            foreach (var clientId in _playerConnected.Keys)
             {
-                _civilians = FindObjectsOfType<Civilian>();
-            }
-
-            if (_civilians == null || _civilians.Length < _playerCivilian.Count) { return; }
-
-            var keys = _playerCivilian.Keys.ToArray();
-            for (int i = 0; i < keys.Length;)
-            {
-                var key = keys[i];
-                while (true)
+                Vector3? randomPlace;
+                do
                 {
-                    ulong id = _civilians[Random.Range(1, _civilians.Length + 1)].UniqueId;
-                    if (_playerCivilian.Values.Contains(id) == false)
-                    {
-                        _playerCivilian[key] = id;
-                        SetControlledCivilianClientRpc(key, id);
-                        break;
-                    }
-                }
-                i++;
+                    randomPlace = GetRandomPointOnGround();
+                } while (randomPlace == null);
+
+                ActiveBodyClientRpc(clientId, (Vector3)randomPlace);
             }
         }
 
@@ -139,36 +113,12 @@ namespace Game
         }
 
         [ClientRpc]
-        private void SetControlledCivilianClientRpc(ulong clientId, ulong civilianId)
+        private void ActiveBodyClientRpc(ulong clientId, Vector3 position)
         {
-            if (_civilians == null || _civilians.Length == 0)
-            {
-                _civilians = FindObjectsOfType<Civilian>();
-            }
+            if(clientId != _ownerNetPlayer.OwnerClientId) { return; }
 
-            if(NetworkManager.Singleton.LocalClientId != clientId) { return; }
-
-            if (_ownerNetPlayer == null)
-            {
-                _ownerNetPlayer = FindObjectsOfType<NetworkObject>()
-                    .Where((netObj) => netObj.OwnerClientId == NetworkManager.Singleton.LocalClientId)
-                    .First().GetComponent<Player.NetworkPlayer>();
-            }
-
-            if(_ownerNetPlayer == null)
-            {
-                Debug.Log("Owner Network Player is null!..");
-                return;
-            }
-
-            if (_ownerNetPlayer.OwnerClientId == clientId)
-            {
-                var civilian = _civilians.Where((c) => c.UniqueId == civilianId).First();
-
-                if (civilian == null) { return; }
-
-                _ownerNetPlayer.SetControlledCivilian(civilian.transform);
-            }
+            _ownerNetPlayer.transform.position = position;
+            _ownerNetPlayer.IsBodyActive = true;
         }
 
         [ServerRpc(RequireOwnership = false)]
@@ -178,12 +128,11 @@ namespace Game
             {
                 _playerConnected[clientId] = true;
                 PlayerConnectedClientRpc(clientId);
-                print($"Server:: Client {clientId} connected");
             }
 
             if (_playerConnected.ContainsValue(false) == false)
             {
-                SetCivilians();
+                ActivatePlayers();
             }
         }
 
@@ -195,7 +144,6 @@ namespace Game
                 _playerConnected.Add(clientId, false);
             }
             _playerConnected[clientId] = true;
-            print($"Client:: Client {clientId} connected");
         }
 
         private void OnDrawGizmosSelected()

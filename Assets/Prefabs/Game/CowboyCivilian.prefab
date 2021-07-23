@@ -488,13 +488,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FixedSendsPerSecond: 20
+  FixedSendsPerSecond: 80
   AssumeSyncedSends: 1
   InterpolatePosition: 1
   SnapDistance: 10
   InterpolateServer: 1
-  MinMeters: 0.15
-  MinDegrees: 1.5
+  MinMeters: 0.01
+  MinDegrees: 0.1
   ExtrapolatePosition: 0
   MaxSendsToExtrapolate: 5
   Channel: 
@@ -538,7 +538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SendRate: 0.1
   m_Animator: {fileID: 8751431591922610661}
-  m_TrackedParamFlags: 0
+  m_TrackedParamFlags: 3
 --- !u!136 &8751431591915280030
 CapsuleCollider:
   m_ObjectHideFlags: 0
