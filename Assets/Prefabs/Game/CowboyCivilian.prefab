@@ -417,6 +417,7 @@ GameObject:
   - component: {fileID: 8751431591915280030}
   - component: {fileID: 8751431591915280031}
   - component: {fileID: 7617757666286738844}
+  - component: {fileID: 8980844830417322274}
   m_Layer: 0
   m_Name: CowboyCivilian
   m_TagString: Civilian
@@ -579,6 +580,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aff1ef6849d1bb446b5562153dfa43b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8980844830417322274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8751431591915280027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da0b22ab01dfe754b8c6c6c226923274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8751431591915281419

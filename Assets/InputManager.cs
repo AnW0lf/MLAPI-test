@@ -41,6 +41,14 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Fire"",
+                    ""type"": ""Button"",
+                    ""id"": ""1d63bc05-ccea-4771-81c0-2c1e728c26d4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -120,6 +128,17 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""action"": ""OpenMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ea6fe0d9-ae26-47f8-a465-4e62e4863009"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -131,6 +150,7 @@ public class @InputManager : IInputActionCollection, IDisposable
         m_Game_Move = m_Game.FindAction("Move", throwIfNotFound: true);
         m_Game_Rotate = m_Game.FindAction("Rotate", throwIfNotFound: true);
         m_Game_OpenMenu = m_Game.FindAction("OpenMenu", throwIfNotFound: true);
+        m_Game_Fire = m_Game.FindAction("Fire", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -183,6 +203,7 @@ public class @InputManager : IInputActionCollection, IDisposable
     private readonly InputAction m_Game_Move;
     private readonly InputAction m_Game_Rotate;
     private readonly InputAction m_Game_OpenMenu;
+    private readonly InputAction m_Game_Fire;
     public struct GameActions
     {
         private @InputManager m_Wrapper;
@@ -190,6 +211,7 @@ public class @InputManager : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_Game_Move;
         public InputAction @Rotate => m_Wrapper.m_Game_Rotate;
         public InputAction @OpenMenu => m_Wrapper.m_Game_OpenMenu;
+        public InputAction @Fire => m_Wrapper.m_Game_Fire;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -208,6 +230,9 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @OpenMenu.started -= m_Wrapper.m_GameActionsCallbackInterface.OnOpenMenu;
                 @OpenMenu.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnOpenMenu;
                 @OpenMenu.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnOpenMenu;
+                @Fire.started -= m_Wrapper.m_GameActionsCallbackInterface.OnFire;
+                @Fire.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnFire;
+                @Fire.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnFire;
             }
             m_Wrapper.m_GameActionsCallbackInterface = instance;
             if (instance != null)
@@ -221,6 +246,9 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @OpenMenu.started += instance.OnOpenMenu;
                 @OpenMenu.performed += instance.OnOpenMenu;
                 @OpenMenu.canceled += instance.OnOpenMenu;
+                @Fire.started += instance.OnFire;
+                @Fire.performed += instance.OnFire;
+                @Fire.canceled += instance.OnFire;
             }
         }
     }
@@ -230,5 +258,6 @@ public class @InputManager : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
         void OnOpenMenu(InputAction.CallbackContext context);
+        void OnFire(InputAction.CallbackContext context);
     }
 }
