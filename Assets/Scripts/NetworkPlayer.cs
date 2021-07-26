@@ -11,6 +11,7 @@ namespace Player
     {
         [SerializeField] private PlayerController _playerController = null;
         [SerializeField] private GameObject _body = null;
+        [SerializeField] private GameObject _camera = null;
 
         private PlayerListItem _lobbyItem = null;
 
@@ -187,6 +188,7 @@ namespace Player
                     if (IsOwner)
                     {
                         _playerController.Active = value;
+                        _camera.SetActive(true);
                     }
                     _body.SetActive(value);
                     SetActiveBodyServerRpc(OwnerClientId, value);
