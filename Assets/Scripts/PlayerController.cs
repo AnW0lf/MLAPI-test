@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 namespace Player
 {
@@ -6,6 +7,8 @@ namespace Player
     {
         [SerializeField] private Animator _animator = null;
         [SerializeField] private Transform _camera = null;
+        [SerializeField] private Weapon _weapon = null;
+        [SerializeField] private Rig _weaponHand = null;
         [SerializeField] private Vector2 _cameraSensitivity = Vector2.one;
         [SerializeField] private float _walkSpeed = 2f;
         [SerializeField] private float _runSpeed = 4f;
@@ -33,7 +36,11 @@ namespace Player
 
                         _inputs.Game.OpenMenu.performed += OpenMenu;
 
+                        _inputs.Game.Weapon.performed += ShowHideWeapon;
+                        _inputs.Game.Fire.performed += Fire;
+
                         _inputs.Game.Enable();
+
                     }
                     else
                     {
@@ -48,6 +55,9 @@ namespace Player
                             _inputs.Game.Rotate.canceled -= Rotate;
 
                             _inputs.Game.OpenMenu.performed -= OpenMenu;
+
+                            _inputs.Game.Weapon.performed -= ShowHideWeapon;
+                            _inputs.Game.Fire.performed -= Fire;
 
                             _inputs = null;
                         }
@@ -74,6 +84,19 @@ namespace Player
                 _animator.SetFloat("xSpeed", speed.x);
                 _animator.SetFloat("zSpeed", speed.z);
             }
+        }
+
+        private void ShowHideWeapon(UnityEngine.InputSystem.InputAction.CallbackContext context)
+        {
+            _weaponHand.weight = Mathf.RoundToInt(1f - _weaponHand.weight);
+            _weapon.gameObject.SetActive(_weaponHand.weight > 0f);
+        }
+
+        private void Fire(UnityEngine.InputSystem.InputAction.CallbackContext context)
+        {
+            if(Cursor.lockState != CursorLockMode.Locked) { return; }
+            if(_weapon.gameObject.activeSelf == false) { return; }
+            _weapon.Shoot();
         }
 
         private void Move(UnityEngine.InputSystem.InputAction.CallbackContext context)

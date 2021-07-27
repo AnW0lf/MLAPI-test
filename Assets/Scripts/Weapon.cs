@@ -1,3 +1,4 @@
+using MLAPI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,26 +9,23 @@ public class Weapon : MonoBehaviour
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private float _bulletForce;
     [SerializeField] private float _shootDelay;
-    private float _shootTimer;
-    private void Update()
-    {
-        if (_shootTimer > 0)
-        {
-            _shootTimer -= Time.deltaTime;
-        }
 
-       // Shoot();
-    }
+    private bool _ready = true;
 
     public void Shoot()
     {
-        if (_shootTimer > 0)
-        {
-            return;
-        }
+        if(_ready == false) { return; }
 
         GameObject newBullet = Instantiate(_bulletPrefab, _bulletSpawnTransform.position, _bulletSpawnTransform.rotation);
         newBullet.GetComponent<Rigidbody>().AddForce(_bulletSpawnTransform.forward * _bulletForce, ForceMode.Impulse);
-        _shootTimer = _shootDelay;
+        newBullet.GetComponent<NetworkObject>().Spawn();
+        _ready = false;
+        StartCoroutine(ShootDelay(_shootDelay));
+    }
+
+    private IEnumerator ShootDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        _ready = true;
     }
 }

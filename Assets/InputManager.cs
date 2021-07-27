@@ -49,6 +49,14 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Weapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""60de9c4d-a1cb-4ee7-973d-0a340e51c6be"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -139,6 +147,17 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2892d102-c282-489e-af8f-978b06910364"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Weapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -151,6 +170,7 @@ public class @InputManager : IInputActionCollection, IDisposable
         m_Game_Rotate = m_Game.FindAction("Rotate", throwIfNotFound: true);
         m_Game_OpenMenu = m_Game.FindAction("OpenMenu", throwIfNotFound: true);
         m_Game_Fire = m_Game.FindAction("Fire", throwIfNotFound: true);
+        m_Game_Weapon = m_Game.FindAction("Weapon", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -204,6 +224,7 @@ public class @InputManager : IInputActionCollection, IDisposable
     private readonly InputAction m_Game_Rotate;
     private readonly InputAction m_Game_OpenMenu;
     private readonly InputAction m_Game_Fire;
+    private readonly InputAction m_Game_Weapon;
     public struct GameActions
     {
         private @InputManager m_Wrapper;
@@ -212,6 +233,7 @@ public class @InputManager : IInputActionCollection, IDisposable
         public InputAction @Rotate => m_Wrapper.m_Game_Rotate;
         public InputAction @OpenMenu => m_Wrapper.m_Game_OpenMenu;
         public InputAction @Fire => m_Wrapper.m_Game_Fire;
+        public InputAction @Weapon => m_Wrapper.m_Game_Weapon;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -233,6 +255,9 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @Fire.started -= m_Wrapper.m_GameActionsCallbackInterface.OnFire;
                 @Fire.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnFire;
                 @Fire.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnFire;
+                @Weapon.started -= m_Wrapper.m_GameActionsCallbackInterface.OnWeapon;
+                @Weapon.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnWeapon;
+                @Weapon.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnWeapon;
             }
             m_Wrapper.m_GameActionsCallbackInterface = instance;
             if (instance != null)
@@ -249,6 +274,9 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
+                @Weapon.started += instance.OnWeapon;
+                @Weapon.performed += instance.OnWeapon;
+                @Weapon.canceled += instance.OnWeapon;
             }
         }
     }
@@ -259,5 +287,6 @@ public class @InputManager : IInputActionCollection, IDisposable
         void OnRotate(InputAction.CallbackContext context);
         void OnOpenMenu(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnWeapon(InputAction.CallbackContext context);
     }
 }

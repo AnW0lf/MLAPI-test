@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace Player
 {
+    [RequireComponent(typeof(Collider), typeof(Rigidbody))]
     public class NetworkPlayer : NetworkBehaviour
     {
         [SerializeField] private PlayerController _playerController = null;
@@ -14,6 +15,8 @@ namespace Player
         [SerializeField] private GameObject _camera = null;
 
         private PlayerListItem _lobbyItem = null;
+        private Collider _collider = null;
+        private Rigidbody _rigidbody = null;
 
         private static NetworkVariableInt _iconOffset = new NetworkVariableInt(new NetworkVariableSettings
         {
@@ -89,6 +92,12 @@ namespace Player
             }
         }
 
+        private void Awake()
+        {
+            _collider = GetComponent<Collider>();
+            _rigidbody = GetComponent<Rigidbody>();
+        }
+
         public override void NetworkStart()
         {
             Subscribe();
@@ -137,8 +146,6 @@ namespace Player
             _iconPath.OnValueChanged += SetIcon;
             _nickname.OnValueChanged += SetNickname;
             _isReady.OnValueChanged += SetReady;
-
-            //_populated.OnValueChanged += SetBody;
         }
 
         private void Unsubscribe()
@@ -146,8 +153,6 @@ namespace Player
             _iconPath.OnValueChanged -= SetIcon;
             _nickname.OnValueChanged -= SetNickname;
             _isReady.OnValueChanged -= SetReady;
-
-            //_populated.OnValueChanged -= SetBody;
         }
 
         private void SetNickname(string previousValue, string newValue)
@@ -191,6 +196,8 @@ namespace Player
                         _camera.SetActive(true);
                     }
                     _body.SetActive(value);
+                    _collider.enabled = value;
+                    _rigidbody.isKinematic = !value;
                     SetActiveBodyServerRpc(OwnerClientId, value);
                 }
             }

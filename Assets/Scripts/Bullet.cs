@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -21,12 +19,17 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.tag == "Civilian")
+        if (collision.transform.CompareTag("Civilian") ||
+            collision.transform.CompareTag("Player"))
         {
             _lifetime = -1;
             _thisRigidbody.velocity = Vector3.zero;
             _thisRigidbody.isKinematic = true;
             transform.SetParent(collision.transform);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 }
