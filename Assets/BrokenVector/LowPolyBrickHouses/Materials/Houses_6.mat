@@ -21,10 +21,10 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Houses_6
-  m_Shader: {fileID: -6465566751694194690, guid: b009f85b679ec8f4da86d8dc6c3fee3c, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 397cdf3baaf8e114c880a7651a76c5f1, type: 3}
   m_ShaderKeywords: _DISABLE_SSR_TRANSPARENT
   m_LightmapFlags: 1
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2225
   stringTagMap:
@@ -40,6 +40,10 @@ Material:
     m_TexEnvs:
     - Texture2D_643d4421a9aa4308af0e195dda02c972:
         m_Texture: {fileID: 2800000, guid: 3bee9b5793174ab409015ce5951f89c5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_e923576cd5c04b34a88182aaf1c9cba8:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AnisotropyMap:
@@ -167,6 +171,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_17e3bc2710e44fa4ba2b6323fbe1470f: 0.5
+    - Vector1_6272f39d52564ec8a68ac0388bc4f82f: 1
+    - Vector1_85eb8a43d7a34e939d62958920d90fb6: 0.5
     - _AORemapMax: 1
     - _AORemapMin: 0
     - _ATDistance: 1
@@ -207,6 +214,7 @@ Material:
     - _EmissiveIntensity: 1
     - _EmissiveIntensityUnit: 0
     - _EnableBlendModePreserveSpecularLighting: 1
+    - _EnableDetail: 0
     - _EnableFogOnTransparent: 1
     - _EnableGeometricSpecularAA: 0
     - _EnergyConservingSpecularColor: 1
@@ -287,14 +295,20 @@ Material:
     - _UVSec: 0
     - _UseEmissiveIntensity: 0
     - _UseShadowThreshold: 0
+    - _WorldMapping: 0
     - _ZTestDepthEqualForOpaque: 3
     - _ZTestGBuffer: 4
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
+    - Color_b93013a19e8545afbc690d0652596d73: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_60aed55616e14144b9ea71f5138c3928: {r: 1, g: 1, b: 0, a: 0}
+    - Vector2_696b8a300ee84935a33968311c6868f2: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
+    - _BaseColorMap_TO: {r: 1, g: 1, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DetailMap_TO: {r: 1, g: 1, b: 0, a: 0}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}

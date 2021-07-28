@@ -1,9 +1,9 @@
-﻿using Game;
-using Lobby;
+﻿using Lobby;
 using MLAPI;
 using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 namespace Player
 {
@@ -13,6 +13,8 @@ namespace Player
         [SerializeField] private PlayerController _playerController = null;
         [SerializeField] private GameObject _body = null;
         [SerializeField] private GameObject _camera = null;
+        [SerializeField] private Rig _rightHandRig = null;
+        [SerializeField] private Weapon _weapon = null;
 
         private PlayerListItem _lobbyItem = null;
         private Collider _collider = null;
@@ -23,6 +25,28 @@ namespace Player
             WritePermission = NetworkVariablePermission.ServerOnly,
             ReadPermission = NetworkVariablePermission.Everyone
         }, -1);
+
+        private NetworkVariableBool _isWeaponVisible = new NetworkVariableBool(new NetworkVariableSettings
+        {
+            WritePermission = NetworkVariablePermission.OwnerOnly,
+            ReadPermission = NetworkVariablePermission.Everyone
+        }, false);
+
+        public bool IsWeaponVisible
+        {
+            get => _isWeaponVisible.Value;
+            set
+            {
+                if (IsOwner)
+                {
+                    _isWeaponVisible.Value = value;
+                }
+                else
+                {
+                    Debug.LogWarning($"{nameof(IsWeaponVisible)} can't be changed, because you are not owner!..");
+                }
+            }
+        }
 
         #region PersonalData
         private NetworkVariableString _nickname = new NetworkVariableString(new NetworkVariableSettings
@@ -146,6 +170,8 @@ namespace Player
             _iconPath.OnValueChanged += SetIcon;
             _nickname.OnValueChanged += SetNickname;
             _isReady.OnValueChanged += SetReady;
+
+            _isWeaponVisible.OnValueChanged += SetWeaponVisibility;
         }
 
         private void Unsubscribe()
@@ -153,6 +179,8 @@ namespace Player
             _iconPath.OnValueChanged -= SetIcon;
             _nickname.OnValueChanged -= SetNickname;
             _isReady.OnValueChanged -= SetReady;
+
+            _isWeaponVisible.OnValueChanged -= SetWeaponVisibility;
         }
 
         private void SetNickname(string previousValue, string newValue)
@@ -181,6 +209,21 @@ namespace Player
             {
                 LobbyController.Singleton.CheckAllReady();
             }
+        }
+
+        private void SetWeaponVisibility(bool previousValue, bool newValue)
+        {
+            if(IsBodyActive == false) { return; }
+
+            _rightHandRig.weight = newValue ? 1f : 0f;
+            _weapon.gameObject.SetActive(newValue);
+        }
+
+        public void Shoot()
+        {
+            if(IsWeaponVisible == false) { return; }
+
+            _weapon.Shoot();
         }
 
         public bool IsBodyActive

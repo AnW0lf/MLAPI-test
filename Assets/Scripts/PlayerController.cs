@@ -7,14 +7,13 @@ namespace Player
     {
         [SerializeField] private Animator _animator = null;
         [SerializeField] private Transform _camera = null;
-        [SerializeField] private Weapon _weapon = null;
-        [SerializeField] private Rig _weaponHand = null;
         [SerializeField] private Vector2 _cameraSensitivity = Vector2.one;
         [SerializeField] private float _walkSpeed = 2f;
         [SerializeField] private float _runSpeed = 4f;
 
         private InputManager _inputs = null;
         private bool _active = false;
+        private NetworkPlayer _owner = null;
 
         public bool Active
         {
@@ -26,6 +25,8 @@ namespace Player
                     _active = value;
                     if (_active)
                     {
+                        _owner = GetComponent<NetworkPlayer>();
+
                         _inputs = new InputManager();
 
                         _inputs.Game.Move.performed += Move;
@@ -72,6 +73,8 @@ namespace Player
         public Vector2 Direction { get; private set; } = Vector3.zero;
         public Vector2 Delta { get; private set; } = Vector3.zero;
 
+        private Vector3 oldSpeed = Vector3.zero;
+
         private void Update()
         {
             Vector3 speed = (transform.forward * Direction.y + transform.right * Direction.x) * _walkSpeed;
@@ -79,24 +82,24 @@ namespace Player
             {
                 transform.position += speed * Time.deltaTime;
             }
-            if (_animator != null)
+            if (oldSpeed != speed)
             {
                 _animator.SetFloat("xSpeed", speed.x);
                 _animator.SetFloat("zSpeed", speed.z);
+                oldSpeed = speed;
             }
         }
 
         private void ShowHideWeapon(UnityEngine.InputSystem.InputAction.CallbackContext context)
         {
-            _weaponHand.weight = Mathf.RoundToInt(1f - _weaponHand.weight);
-            _weapon.gameObject.SetActive(_weaponHand.weight > 0f);
+            _owner.IsWeaponVisible = !_owner.IsWeaponVisible;
         }
 
         private void Fire(UnityEngine.InputSystem.InputAction.CallbackContext context)
         {
-            if(Cursor.lockState != CursorLockMode.Locked) { return; }
-            if(_weapon.gameObject.activeSelf == false) { return; }
-            _weapon.Shoot();
+            if (Cursor.lockState != CursorLockMode.Locked) { return; }
+
+            _owner.Shoot();
         }
 
         private void Move(UnityEngine.InputSystem.InputAction.CallbackContext context)
