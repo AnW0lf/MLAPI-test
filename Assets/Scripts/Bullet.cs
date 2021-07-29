@@ -19,6 +19,8 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        return;
+
         if (collision.transform.CompareTag("Civilian") ||
             collision.transform.CompareTag("Player"))
         {

@@ -489,7 +489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 7524721768712975338}
   _camera: {fileID: 2876668857814654820}
-  _cameraSensitivity: {x: 0.2, y: 0.2}
+  _cameraSensitivity: {x: 2, y: 2}
   _walkSpeed: 2
   _runSpeed: 4
 --- !u!1 &4969300523562639589
@@ -2561,6 +2561,18 @@ PrefabInstance:
     - target: {fileID: 5909552317708686318, guid: 3579313a7d317254aa3d332873d5d35a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.912
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909552317775018299, guid: 3579313a7d317254aa3d332873d5d35a, type: 3}
+      propertyPath: _verticalForceMult
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909552317775018299, guid: 3579313a7d317254aa3d332873d5d35a, type: 3}
+      propertyPath: _trajectoryLinePrefab
+      value: 
+      objectReference: {fileID: 841362357471944745, guid: 390ce2270bfe88641bb9642119a20491, type: 3}
+    - target: {fileID: 5909552317775018299, guid: 3579313a7d317254aa3d332873d5d35a, type: 3}
+      propertyPath: _trajectoryLineRenderer
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3579313a7d317254aa3d332873d5d35a, type: 3}

@@ -159,8 +159,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletSpawnTransform: {fileID: 5909552317220243475}
   _bulletPrefab: {fileID: 2423847733045769184, guid: 34fddd05a1e3e07459a95cbe8b921e89, type: 3}
-  _bulletForce: 0.4
+  _bulletForce: 400
+  _verticalForceMult: 0
   _shootDelay: 1
+  _trajectoryLinePrefab: {fileID: 841362357471944745, guid: 390ce2270bfe88641bb9642119a20491, type: 3}
+  _positionsCount: 20
 --- !u!114 &4690961906700093884
 MonoBehaviour:
   m_ObjectHideFlags: 0
