@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.00073049753, g: 0.001656254, b: 0.04389727, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1828,8 +1828,8 @@ MonoBehaviour:
   _neighbourQuests: []
   _nextQuests: []
   _unknownDescription: ??? ???? ????? ???? ???
-  _activeDescription: Out of bridge
-  _completeDescription: I was go away from bridge
+  _activeDescription: "\u0423\u0439\u0442\u0438 \u0441 \u043C\u043E\u0441\u0442\u0430"
+  _completeDescription: "\u042F \u0443\u0448\u0451\u043B \u0441 \u043C\u043E\u0441\u0442\u0430"
   _trigger: {fileID: 680575410}
 --- !u!114 &680575410
 MonoBehaviour:
@@ -1851,7 +1851,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 680575407}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 12.1, y: 1, z: 5.2}
@@ -4276,8 +4276,9 @@ MonoBehaviour:
   _nextQuests:
   - {fileID: 680575409}
   _unknownDescription: ??? ???? ????? ???? ???
-  _activeDescription: Go to center of bridge
-  _completeDescription: I was visite the bridge
+  _activeDescription: "\u041F\u0440\u0438\u0434\u0442\u0438 \u043A \u0446\u0435\u043D\u0442\u0440\u0443
+    \u043C\u043E\u0441\u0442\u0430"
+  _completeDescription: "\u042F \u043F\u043E\u0441\u0435\u0442\u0438\u043B \u043C\u043E\u0441\u0442"
   _trigger: {fileID: 2052140326}
 --- !u!114 &2052140326
 MonoBehaviour:
@@ -4299,7 +4300,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2052140323}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2.74, y: 1, z: 5.2}

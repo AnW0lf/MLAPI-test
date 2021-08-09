@@ -146,11 +146,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 324953ed089e23e4ba9665ba5010fcb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _descriptionField: {fileID: 0}
-  _stateIcon: {fileID: 0}
-  _unknownSprite: {fileID: 0}
-  _activeSprite: {fileID: 0}
-  _completeSprite: {fileID: 0}
+  _descriptionField: {fileID: 8551322244267750111}
+  _stateIcon: {fileID: 7770177127694530450}
+  _unknownSprite: {fileID: 21300000, guid: 6e12cbf3776b8c04281690b2ab2aceea, type: 3}
+  _activeSprite: {fileID: 21300000, guid: b346e9dd8fe8b844b899e15f39ccc531, type: 3}
+  _completeSprite: {fileID: 21300000, guid: e19646e8f4ca8d540b7464e16e869a66, type: 3}
 --- !u!1 &7929918322711867691
 GameObject:
   m_ObjectHideFlags: 0

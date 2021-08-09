@@ -107,8 +107,6 @@ namespace Player
             if (Cursor.lockState != CursorLockMode.Locked) { return; }
 
             Direction = Vector2.ClampMagnitude(context.ReadValue<Vector2>(), 1f);
-
-            print($"PlayerController:: Move: {Direction}");
         }
 
         private void Rotate(UnityEngine.InputSystem.InputAction.CallbackContext context)

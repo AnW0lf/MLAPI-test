@@ -19,6 +19,11 @@ namespace Assets.Scripts.Quest
             SetQuests(quests);
         }
 
+        private void OnDestroy()
+        {
+            Unsubscribe();
+        }
+
         private void SetQuests(QuestController[] quests)
         {
             Unsubscribe();
@@ -86,12 +91,14 @@ namespace Assets.Scripts.Quest
         private void RemoveFromVisible(QuestController quest)
         {
             if (quest == null) { return; }
-            if (quest.IsComplete) { return; }
             if (_activeQuests == null || _activeQuests.Count == 0) { return; }
 
-            if (_activeQuests.Contains(quest))
+            if (quest.IsComplete == false)
             {
-                _activeQuests.Remove(quest);
+                if (_activeQuests.Contains(quest))
+                {
+                    _activeQuests.Remove(quest);
+                }
             }
 
             UpdateNotes();
@@ -101,11 +108,13 @@ namespace Assets.Scripts.Quest
         {
             if (_questNotes == null)
             {
+                Debug.LogWarning($"UpdateNotes:: {nameof(_questNotes)} is null");
                 _questNotes = new List<QuestNote>();
             }
 
             if (_activeQuests == null)
             {
+                Debug.LogWarning($"UpdateNotes:: {nameof(_activeQuests)} is null");
                 _activeQuests = new List<QuestController>();
 
                 for (int i = _questNotes.Count - 1; i >= 0; i--)
@@ -123,12 +132,16 @@ namespace Assets.Scripts.Quest
                 if (_activeQuests.Count > _questNotes.Count)
                 {
                     var note = Instantiate(_questNotePrefab, _questNotesContainer).GetComponent<QuestNote>();
+                    _questNotes.Add(note);
                 }
                 else
                 {
                     var note = _questNotes.Last();
                     _questNotes.Remove(note);
-                    Destroy(note.gameObject);
+                    if (note != null)
+                    {
+                        Destroy(note.gameObject);
+                    }
                 }
             }
 

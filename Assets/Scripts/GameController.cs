@@ -34,6 +34,14 @@ namespace Game
             else if (Singleton != this) Destroy(Singleton);
         }
 
+        private void Start()
+        {
+            if (NetworkManager.Singleton.IsServer)
+            {
+
+            }
+        }
+
         public override void NetworkStart()
         {
             if (NetworkManager.Singleton != null)

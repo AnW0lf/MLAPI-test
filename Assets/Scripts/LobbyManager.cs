@@ -3,16 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using MLAPI;
 using MLAPI.Transports.PhotonRealtime;
-using MLAPI.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Assets.Scripts.Loading;
 
 namespace Lobby
 {
-    public class LobbyController : MonoBehaviour
+    public class LobbyManager : MonoBehaviour
     {
-        public static LobbyController Singleton { get; private set; } = null;
+        public static LobbyManager Singleton { get; private set; } = null;
 
         [SerializeField] private Animator _animator = null;
         [SerializeField] private PhotonRealtimeTransport _transport = null;
@@ -83,7 +83,7 @@ namespace Lobby
 
         public void StartGame()
         {
-            NetworkSceneManager.SwitchScene("Game");
+            LoadingManager.Singleton.LoadGame();
         }
 
         private void ToMenu()

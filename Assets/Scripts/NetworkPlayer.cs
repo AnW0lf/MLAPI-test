@@ -1,7 +1,9 @@
-﻿using Lobby;
+﻿using Assets.Scripts;
+using Lobby;
 using MLAPI;
 using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
+using MLAPI.Prototyping;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
@@ -14,7 +16,8 @@ namespace Player
         [SerializeField] private GameObject _body = null;
         [SerializeField] private GameObject _camera = null;
         [SerializeField] private Rig _rightHandRig = null;
-        [SerializeField] private Weapon _weapon = null;
+        [SerializeField] private WeaponCaster _ownerGun = null;
+        [SerializeField] private GameObject _otherPlayerGun = null;
 
         private PlayerListItem _lobbyItem = null;
         private Collider _collider = null;
@@ -131,7 +134,7 @@ namespace Player
                 _iconOffset.Value = Random.Range(0, 10);
             }
 
-            _lobbyItem = LobbyController.Singleton.AddPlayerListItem(OwnerClientId);
+            _lobbyItem = LobbyManager.Singleton.AddPlayerListItem(OwnerClientId);
 
             if (IsOwner)
             {
@@ -148,10 +151,10 @@ namespace Player
                 _lobbyItem.Style = PlayerListItemStyle.NOTOWNER;
             }
 
-            if (LobbyController.Singleton != null)
+            if (LobbyManager.Singleton != null)
             {
-                LobbyController.Singleton.CheckAllReady();
-                LobbyController.Singleton.ToLobby();
+                LobbyManager.Singleton.CheckAllReady();
+                LobbyManager.Singleton.ToLobby();
             }
 
         }
@@ -159,9 +162,9 @@ namespace Player
         private void OnDestroy()
         {
             Unsubscribe();
-            if (LobbyController.Singleton != null)
+            if (LobbyManager.Singleton != null)
             {
-                LobbyController.Singleton.StartCoroutine(LobbyController.Singleton.DelayedCheckAllReady());
+                LobbyManager.Singleton.StartCoroutine(LobbyManager.Singleton.DelayedCheckAllReady());
             }
         }
 
@@ -205,30 +208,39 @@ namespace Player
             {
                 _lobbyItem.IsReady = IsReady;
             }
-            if (LobbyController.Singleton != null)
+            if (LobbyManager.Singleton != null)
             {
-                LobbyController.Singleton.CheckAllReady();
+                LobbyManager.Singleton.CheckAllReady();
             }
         }
 
         private void SetWeaponVisibility(bool previousValue, bool newValue)
         {
-            if(IsBodyActive == false) { return; }
+            if (IsBodyActive == false) { return; }
 
-            _rightHandRig.weight = newValue ? 1f : 0f;
-            _weapon.gameObject.SetActive(newValue);
+            if (IsOwner)
+            {
+                _ownerGun.gameObject.SetActive(newValue);
+            }
+            else
+            {
+                _rightHandRig.weight = newValue ? 1f : 0f;
+                _otherPlayerGun.SetActive(newValue);
+            }
+
         }
 
         public void Shoot()
         {
-            if(IsWeaponVisible == false) { return; }
+            if (IsWeaponVisible == false) { return; }
+            if (IsOwner == false) { return; }
 
-            _weapon.Shoot();
+            _ownerGun.Shoot();
         }
 
         public bool IsBodyActive
         {
-            get => _body.activeSelf;
+            get => _collider.enabled;
             set
             {
                 if (IsBodyActive != value)
@@ -238,7 +250,10 @@ namespace Player
                         _playerController.Active = value;
                         _camera.SetActive(true);
                     }
-                    _body.SetActive(value);
+                    else
+                    {
+                        _body.SetActive(value);
+                    }
                     _collider.enabled = value;
                     _rigidbody.isKinematic = !value;
                     SetActiveBodyServerRpc(OwnerClientId, value);
