@@ -326,6 +326,7 @@ GameObject:
   - component: {fileID: 6999061688224744851}
   - component: {fileID: 5656716458021819801}
   - component: {fileID: 5963483532234286600}
+  - component: {fileID: -6786051921741207435}
   m_Layer: 0
   m_Name: NetworkPlayer
   m_TagString: Player
@@ -492,6 +493,18 @@ MonoBehaviour:
   _cameraSensitivity: {x: 2, y: 2}
   _walkSpeed: 2
   _runSpeed: 4
+--- !u!114 &-6786051921741207435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3699393010595935711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4386e01111574214aa64fd74f3ec7635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4969300523562639589
 GameObject:
   m_ObjectHideFlags: 0
