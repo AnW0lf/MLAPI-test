@@ -1,11 +1,9 @@
-using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using MLAPI;
 using MLAPI.NetworkVariable;
 using MLAPI.Messaging;
-using System;
 
 namespace Game
 {
@@ -67,6 +65,8 @@ namespace Game
 
         private void SpawnNPC()
         {
+            if(IsServer == false) { return; }
+
             Vector3? randomPlace;
             do
             {

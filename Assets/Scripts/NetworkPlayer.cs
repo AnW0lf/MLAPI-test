@@ -1,9 +1,8 @@
-﻿using Assets.Scripts;
+﻿using Assets.Scripts.Weapon;
 using Lobby;
 using MLAPI;
 using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
-using MLAPI.Prototyping;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 

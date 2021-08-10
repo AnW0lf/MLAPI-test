@@ -9,7 +9,7 @@ namespace Player
         [SerializeField] private Transform _camera = null;
         [SerializeField] private Vector2 _cameraSensitivity = Vector2.one;
         [SerializeField] private float _walkSpeed = 2f;
-        [SerializeField] private float _runSpeed = 4f;
+        //[SerializeField] private float _runSpeed = 4f;
 
         private InputManager _inputs = null;
         private bool _active = false;

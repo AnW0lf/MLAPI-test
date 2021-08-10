@@ -1087,7 +1087,7 @@ GameObject:
   - component: {fileID: 640255685}
   - component: {fileID: 640255684}
   m_Layer: 0
-  m_Name: NetworkManager
+  m_Name: _NetworkManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3279,7 +3279,7 @@ GameObject:
   - component: {fileID: 1990997514}
   - component: {fileID: 1990997515}
   m_Layer: 0
-  m_Name: LoadingManager
+  m_Name: _LoadingManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
