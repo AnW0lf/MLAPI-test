@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Animations.Rigging;
 
 namespace Player
 {
@@ -9,7 +8,7 @@ namespace Player
         [SerializeField] private Transform _camera = null;
         [SerializeField] private Vector2 _cameraSensitivity = Vector2.one;
         [SerializeField] private float _walkSpeed = 2f;
-        //[SerializeField] private float _runSpeed = 4f;
+        [SerializeField] private float _runSpeed = 4f;
 
         private InputManager _inputs = null;
         private bool _active = false;
@@ -35,10 +34,10 @@ namespace Player
                         _inputs.Game.Rotate.performed += Rotate;
                         _inputs.Game.Rotate.canceled += Rotate;
 
-                        _inputs.Game.OpenMenu.performed += OpenMenu;
+                        _inputs.Game.ToMenu.performed += OpenMenu;
 
                         _inputs.Game.Weapon.performed += ShowHideWeapon;
-                        _inputs.Game.Fire.performed += Fire;
+                        _inputs.Game.Use.performed += Fire;
 
                         _inputs.Game.Enable();
 
@@ -55,10 +54,10 @@ namespace Player
                             _inputs.Game.Rotate.performed -= Rotate;
                             _inputs.Game.Rotate.canceled -= Rotate;
 
-                            _inputs.Game.OpenMenu.performed -= OpenMenu;
+                            _inputs.Game.ToMenu.performed -= OpenMenu;
 
                             _inputs.Game.Weapon.performed -= ShowHideWeapon;
-                            _inputs.Game.Fire.performed -= Fire;
+                            _inputs.Game.Use.performed -= Fire;
 
                             _inputs = null;
                         }

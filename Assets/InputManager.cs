@@ -27,6 +27,30 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""RunMode"",
+                    ""type"": ""Button"",
+                    ""id"": ""46830f14-9f7a-40de-93e3-8105454da145"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""FastRunMode"",
+                    ""type"": ""Button"",
+                    ""id"": ""afd33394-0425-48d9-9894-82e6ffc940fd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Squat"",
+                    ""type"": ""Button"",
+                    ""id"": ""318783f5-db54-45d0-a49d-7473d9e562a5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""Rotate"",
                     ""type"": ""Value"",
                     ""id"": ""01659258-d5f5-4034-8b2c-f8f7dd55b097"",
@@ -35,15 +59,15 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""OpenMenu"",
+                    ""name"": ""Weapon"",
                     ""type"": ""Button"",
-                    ""id"": ""31a3851b-eccd-4129-864d-f07360fedc52"",
+                    ""id"": ""60de9c4d-a1cb-4ee7-973d-0a340e51c6be"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Fire"",
+                    ""name"": ""Use"",
                     ""type"": ""Button"",
                     ""id"": ""1d63bc05-ccea-4771-81c0-2c1e728c26d4"",
                     ""expectedControlType"": ""Button"",
@@ -51,9 +75,9 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Weapon"",
+                    ""name"": ""ToMenu"",
                     ""type"": ""Button"",
-                    ""id"": ""60de9c4d-a1cb-4ee7-973d-0a340e51c6be"",
+                    ""id"": ""31a3851b-eccd-4129-864d-f07360fedc52"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -128,23 +152,45 @@ public class @InputManager : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ea4936d3-ed9c-4764-9420-29cf9ff34b5e"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""OpenMenu"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""ea6fe0d9-ae26-47f8-a465-4e62e4863009"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Fire"",
+                    ""action"": ""Use"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0944314e-9bd3-4b06-9f2a-57e2da88dd58"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FastRunMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""297a6b8d-3c6e-430f-906d-90eccb36ebfd"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Squat"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ea4936d3-ed9c-4764-9420-29cf9ff34b5e"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -158,6 +204,44 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""action"": ""Weapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e114568c-c94b-4dad-84c2-752e802fdc1c"",
+                    ""path"": ""<Keyboard>/capsLock"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RunMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Menu"",
+            ""id"": ""52d62e28-59f1-4153-85ea-52e2e5f8ecc9"",
+            ""actions"": [
+                {
+                    ""name"": ""ToGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""9d2543d1-d172-4b58-9106-a3b800814530"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""66a63ebf-b756-431f-80ea-4afba624a272"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -167,10 +251,16 @@ public class @InputManager : IInputActionCollection, IDisposable
         // Game
         m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
         m_Game_Move = m_Game.FindAction("Move", throwIfNotFound: true);
+        m_Game_RunMode = m_Game.FindAction("RunMode", throwIfNotFound: true);
+        m_Game_FastRunMode = m_Game.FindAction("FastRunMode", throwIfNotFound: true);
+        m_Game_Squat = m_Game.FindAction("Squat", throwIfNotFound: true);
         m_Game_Rotate = m_Game.FindAction("Rotate", throwIfNotFound: true);
-        m_Game_OpenMenu = m_Game.FindAction("OpenMenu", throwIfNotFound: true);
-        m_Game_Fire = m_Game.FindAction("Fire", throwIfNotFound: true);
         m_Game_Weapon = m_Game.FindAction("Weapon", throwIfNotFound: true);
+        m_Game_Use = m_Game.FindAction("Use", throwIfNotFound: true);
+        m_Game_ToMenu = m_Game.FindAction("ToMenu", throwIfNotFound: true);
+        // Menu
+        m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
+        m_Menu_ToGame = m_Menu.FindAction("ToGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -221,19 +311,25 @@ public class @InputManager : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Game;
     private IGameActions m_GameActionsCallbackInterface;
     private readonly InputAction m_Game_Move;
+    private readonly InputAction m_Game_RunMode;
+    private readonly InputAction m_Game_FastRunMode;
+    private readonly InputAction m_Game_Squat;
     private readonly InputAction m_Game_Rotate;
-    private readonly InputAction m_Game_OpenMenu;
-    private readonly InputAction m_Game_Fire;
     private readonly InputAction m_Game_Weapon;
+    private readonly InputAction m_Game_Use;
+    private readonly InputAction m_Game_ToMenu;
     public struct GameActions
     {
         private @InputManager m_Wrapper;
         public GameActions(@InputManager wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Game_Move;
+        public InputAction @RunMode => m_Wrapper.m_Game_RunMode;
+        public InputAction @FastRunMode => m_Wrapper.m_Game_FastRunMode;
+        public InputAction @Squat => m_Wrapper.m_Game_Squat;
         public InputAction @Rotate => m_Wrapper.m_Game_Rotate;
-        public InputAction @OpenMenu => m_Wrapper.m_Game_OpenMenu;
-        public InputAction @Fire => m_Wrapper.m_Game_Fire;
         public InputAction @Weapon => m_Wrapper.m_Game_Weapon;
+        public InputAction @Use => m_Wrapper.m_Game_Use;
+        public InputAction @ToMenu => m_Wrapper.m_Game_ToMenu;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -246,18 +342,27 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @Move.started -= m_Wrapper.m_GameActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnMove;
+                @RunMode.started -= m_Wrapper.m_GameActionsCallbackInterface.OnRunMode;
+                @RunMode.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnRunMode;
+                @RunMode.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnRunMode;
+                @FastRunMode.started -= m_Wrapper.m_GameActionsCallbackInterface.OnFastRunMode;
+                @FastRunMode.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnFastRunMode;
+                @FastRunMode.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnFastRunMode;
+                @Squat.started -= m_Wrapper.m_GameActionsCallbackInterface.OnSquat;
+                @Squat.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnSquat;
+                @Squat.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnSquat;
                 @Rotate.started -= m_Wrapper.m_GameActionsCallbackInterface.OnRotate;
                 @Rotate.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnRotate;
                 @Rotate.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnRotate;
-                @OpenMenu.started -= m_Wrapper.m_GameActionsCallbackInterface.OnOpenMenu;
-                @OpenMenu.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnOpenMenu;
-                @OpenMenu.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnOpenMenu;
-                @Fire.started -= m_Wrapper.m_GameActionsCallbackInterface.OnFire;
-                @Fire.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnFire;
-                @Fire.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnFire;
                 @Weapon.started -= m_Wrapper.m_GameActionsCallbackInterface.OnWeapon;
                 @Weapon.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnWeapon;
                 @Weapon.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnWeapon;
+                @Use.started -= m_Wrapper.m_GameActionsCallbackInterface.OnUse;
+                @Use.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnUse;
+                @Use.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnUse;
+                @ToMenu.started -= m_Wrapper.m_GameActionsCallbackInterface.OnToMenu;
+                @ToMenu.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnToMenu;
+                @ToMenu.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnToMenu;
             }
             m_Wrapper.m_GameActionsCallbackInterface = instance;
             if (instance != null)
@@ -265,28 +370,77 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @RunMode.started += instance.OnRunMode;
+                @RunMode.performed += instance.OnRunMode;
+                @RunMode.canceled += instance.OnRunMode;
+                @FastRunMode.started += instance.OnFastRunMode;
+                @FastRunMode.performed += instance.OnFastRunMode;
+                @FastRunMode.canceled += instance.OnFastRunMode;
+                @Squat.started += instance.OnSquat;
+                @Squat.performed += instance.OnSquat;
+                @Squat.canceled += instance.OnSquat;
                 @Rotate.started += instance.OnRotate;
                 @Rotate.performed += instance.OnRotate;
                 @Rotate.canceled += instance.OnRotate;
-                @OpenMenu.started += instance.OnOpenMenu;
-                @OpenMenu.performed += instance.OnOpenMenu;
-                @OpenMenu.canceled += instance.OnOpenMenu;
-                @Fire.started += instance.OnFire;
-                @Fire.performed += instance.OnFire;
-                @Fire.canceled += instance.OnFire;
                 @Weapon.started += instance.OnWeapon;
                 @Weapon.performed += instance.OnWeapon;
                 @Weapon.canceled += instance.OnWeapon;
+                @Use.started += instance.OnUse;
+                @Use.performed += instance.OnUse;
+                @Use.canceled += instance.OnUse;
+                @ToMenu.started += instance.OnToMenu;
+                @ToMenu.performed += instance.OnToMenu;
+                @ToMenu.canceled += instance.OnToMenu;
             }
         }
     }
     public GameActions @Game => new GameActions(this);
+
+    // Menu
+    private readonly InputActionMap m_Menu;
+    private IMenuActions m_MenuActionsCallbackInterface;
+    private readonly InputAction m_Menu_ToGame;
+    public struct MenuActions
+    {
+        private @InputManager m_Wrapper;
+        public MenuActions(@InputManager wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ToGame => m_Wrapper.m_Menu_ToGame;
+        public InputActionMap Get() { return m_Wrapper.m_Menu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
+        public void SetCallbacks(IMenuActions instance)
+        {
+            if (m_Wrapper.m_MenuActionsCallbackInterface != null)
+            {
+                @ToGame.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnToGame;
+                @ToGame.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnToGame;
+                @ToGame.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnToGame;
+            }
+            m_Wrapper.m_MenuActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @ToGame.started += instance.OnToGame;
+                @ToGame.performed += instance.OnToGame;
+                @ToGame.canceled += instance.OnToGame;
+            }
+        }
+    }
+    public MenuActions @Menu => new MenuActions(this);
     public interface IGameActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnRunMode(InputAction.CallbackContext context);
+        void OnFastRunMode(InputAction.CallbackContext context);
+        void OnSquat(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
-        void OnOpenMenu(InputAction.CallbackContext context);
-        void OnFire(InputAction.CallbackContext context);
         void OnWeapon(InputAction.CallbackContext context);
+        void OnUse(InputAction.CallbackContext context);
+        void OnToMenu(InputAction.CallbackContext context);
+    }
+    public interface IMenuActions
+    {
+        void OnToGame(InputAction.CallbackContext context);
     }
 }
