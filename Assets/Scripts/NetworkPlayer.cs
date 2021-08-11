@@ -1,22 +1,18 @@
-﻿using Assets.Scripts.Weapon;
-using Lobby;
+﻿using Lobby;
 using MLAPI;
 using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
+using Player;
 using UnityEngine;
-using UnityEngine.Animations.Rigging;
 
-namespace Player
+namespace Assets.Scripts.Player
 {
     [RequireComponent(typeof(Collider), typeof(Rigidbody))]
     public class NetworkPlayer : NetworkBehaviour
     {
-        [SerializeField] private PlayerController _playerController = null;
+        [SerializeField] private InputController _playerController = null;
         [SerializeField] private GameObject _body = null;
         [SerializeField] private GameObject _camera = null;
-        [SerializeField] private Rig _rightHandRig = null;
-        [SerializeField] private WeaponCaster _ownerGun = null;
-        [SerializeField] private GameObject _otherPlayerGun = null;
 
         private PlayerListItem _lobbyItem = null;
         private Collider _collider = null;
@@ -216,25 +212,12 @@ namespace Player
         private void SetWeaponVisibility(bool previousValue, bool newValue)
         {
             if (IsBodyActive == false) { return; }
-
-            if (IsOwner)
-            {
-                _ownerGun.gameObject.SetActive(newValue);
-            }
-            else
-            {
-                _rightHandRig.weight = newValue ? 1f : 0f;
-                _otherPlayerGun.SetActive(newValue);
-            }
-
         }
 
         public void Shoot()
         {
             if (IsWeaponVisible == false) { return; }
             if (IsOwner == false) { return; }
-
-            _ownerGun.Shoot();
         }
 
         public bool IsBodyActive
@@ -246,8 +229,8 @@ namespace Player
                 {
                     if (IsOwner)
                     {
-                        _playerController.Active = value;
-                        _camera.SetActive(true);
+                        _playerController.Map = InputControllerMap.GAME;
+                        _camera.SetActive(value);
                     }
                     else
                     {

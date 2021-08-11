@@ -30,6 +30,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "5006ff13-45c0-4d26-832c-7614a00484bc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Squat",
                     "type": "Button",
                     "id": "318783f5-db54-45d0-a49d-7473d9e562a5",
@@ -200,6 +208,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "RunMode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b20cb954-ac85-46ca-9746-eab7150390a6",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -327,6 +327,8 @@ GameObject:
   - component: {fileID: 5656716458021819801}
   - component: {fileID: 5963483532234286600}
   - component: {fileID: -6786051921741207435}
+  - component: {fileID: 3887782002398000071}
+  - component: {fileID: 7685289999163705273}
   m_Layer: 0
   m_Name: NetworkPlayer
   m_TagString: Player
@@ -382,9 +384,6 @@ MonoBehaviour:
   _playerController: {fileID: 5963483532234286600}
   _body: {fileID: 7524721768705643668}
   _camera: {fileID: 479594368001284656}
-  _rightHandRig: {fileID: 8061527792089843903}
-  _ownerGun: {fileID: 179441691889162180}
-  _otherPlayerGun: {fileID: 4637427212638245507}
 --- !u!114 &2184850265656973833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,11 +474,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258c46712e6f65949b71743b54357411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 7524721768712975338}
-  _camera: {fileID: 2876668857814654820}
-  _cameraSensitivity: {x: 2, y: 2}
-  _walkSpeed: 2
-  _runSpeed: 4
+  _movement: {fileID: 0}
+  _hand: {fileID: 3887782002398000071}
 --- !u!114 &-6786051921741207435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,6 +488,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4386e01111574214aa64fd74f3ec7635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3887782002398000071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3699393010595935711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7afb823b36cea5a47848cb9d7364362f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rightHandRig: {fileID: 8061527792089843903}
+  _ownerGun: {fileID: 179441691889162180}
+  _otherPlayerGun: {fileID: 4637427212638245507}
+--- !u!114 &7685289999163705273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3699393010595935711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 798c9ec50f6353846b64b4dbb336e2d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider: {fileID: 6999061688224744851}
+  _rigidbody: {fileID: 5656716458021819801}
+  _walkSpeed: 2
+  _runSpeed: 5
+  _squatWalkSpeed: 1
+  _squatRunSpeed: 3
+  _jumpHeight: 1.2
+  _camera: {fileID: 2876668857814654820}
+  _cameraSensitivity: {x: 1, y: 1}
+  _fullHeight: 1.7
+  _squatHeight: 0.9
 --- !u!1 &4969300523562639589
 GameObject:
   m_ObjectHideFlags: 0

@@ -129,7 +129,7 @@ namespace Lobby
 
         public void ChangeReady()
         {
-            foreach (var networkPlayer in FindObjectsOfType<Player.NetworkPlayer>())
+            foreach (var networkPlayer in FindObjectsOfType<Assets.Scripts.Player.NetworkPlayer>())
             {
                 if (networkPlayer.IsOwner)
                 {
@@ -142,7 +142,7 @@ namespace Lobby
         {
             if (NetworkManager.Singleton.IsHost)
             {
-                foreach (var networkPlayer in FindObjectsOfType<Player.NetworkPlayer>())
+                foreach (var networkPlayer in FindObjectsOfType<Assets.Scripts.Player.NetworkPlayer>())
                 {
                     if (networkPlayer.IsReady == false)
                     {

@@ -24,20 +24,12 @@ namespace Game
         }, 1);
 
         private Dictionary<ulong, bool> _playerConnected = new Dictionary<ulong, bool>();
-        private Player.NetworkPlayer _ownerNetPlayer = null;
+        private Assets.Scripts.Player.NetworkPlayer _ownerNetPlayer = null;
 
         private void Awake()
         {
             if (Singleton == null) Singleton = this;
             else if (Singleton != this) Destroy(Singleton);
-        }
-
-        private void Start()
-        {
-            if (NetworkManager.Singleton.IsServer)
-            {
-
-            }
         }
 
         public override void NetworkStart()
@@ -58,7 +50,7 @@ namespace Game
                 }
 
                 _ownerNetPlayer = NetworkManager.Singleton.ConnectedClients[NetworkManager.Singleton.LocalClientId]
-                    .PlayerObject.GetComponent<Player.NetworkPlayer>();
+                    .PlayerObject.GetComponent<Assets.Scripts.Player.NetworkPlayer>();
                 PlayerConnectedServerRpc(NetworkManager.Singleton.LocalClientId);
             }
         }

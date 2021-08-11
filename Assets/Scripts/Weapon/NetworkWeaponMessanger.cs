@@ -1,4 +1,5 @@
-﻿using MLAPI;
+﻿using Assets.Scripts.Player;
+using MLAPI;
 using MLAPI.Messaging;
 using System.Linq;
 using UnityEngine;
@@ -69,6 +70,25 @@ namespace Assets.Scripts.Weapon
             hitMarker.transform.localPosition = hitPosition;
             hitMarker.transform.localRotation = hitRotation;
             hitMarker.LifeTime = _hitMarkerLifeTime;
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        public void SwitchHandServerRpc(ulong clientId)
+        {
+            SwitchHandClientRpc(clientId);
+        }
+
+        [ClientRpc]
+        private void SwitchHandClientRpc(ulong clientId)
+        {
+            var players = NetworkManager.Singleton.ConnectedClientsList
+                .Where((client) => client.ClientId != clientId)
+                .Select((c) => c.PlayerObject.GetComponent<PlayerItemInHand>());
+
+            foreach(var player in players)
+            {
+                player.SwitchHand(clientId);
+            }
         }
     }
 }

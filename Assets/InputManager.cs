@@ -43,6 +43,14 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""5006ff13-45c0-4d26-832c-7614a00484bc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""Squat"",
                     ""type"": ""Button"",
                     ""id"": ""318783f5-db54-45d0-a49d-7473d9e562a5"",
@@ -215,6 +223,17 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""action"": ""RunMode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b20cb954-ac85-46ca-9746-eab7150390a6"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -253,6 +272,7 @@ public class @InputManager : IInputActionCollection, IDisposable
         m_Game_Move = m_Game.FindAction("Move", throwIfNotFound: true);
         m_Game_RunMode = m_Game.FindAction("RunMode", throwIfNotFound: true);
         m_Game_FastRunMode = m_Game.FindAction("FastRunMode", throwIfNotFound: true);
+        m_Game_Jump = m_Game.FindAction("Jump", throwIfNotFound: true);
         m_Game_Squat = m_Game.FindAction("Squat", throwIfNotFound: true);
         m_Game_Rotate = m_Game.FindAction("Rotate", throwIfNotFound: true);
         m_Game_Weapon = m_Game.FindAction("Weapon", throwIfNotFound: true);
@@ -313,6 +333,7 @@ public class @InputManager : IInputActionCollection, IDisposable
     private readonly InputAction m_Game_Move;
     private readonly InputAction m_Game_RunMode;
     private readonly InputAction m_Game_FastRunMode;
+    private readonly InputAction m_Game_Jump;
     private readonly InputAction m_Game_Squat;
     private readonly InputAction m_Game_Rotate;
     private readonly InputAction m_Game_Weapon;
@@ -325,6 +346,7 @@ public class @InputManager : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_Game_Move;
         public InputAction @RunMode => m_Wrapper.m_Game_RunMode;
         public InputAction @FastRunMode => m_Wrapper.m_Game_FastRunMode;
+        public InputAction @Jump => m_Wrapper.m_Game_Jump;
         public InputAction @Squat => m_Wrapper.m_Game_Squat;
         public InputAction @Rotate => m_Wrapper.m_Game_Rotate;
         public InputAction @Weapon => m_Wrapper.m_Game_Weapon;
@@ -348,6 +370,9 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @FastRunMode.started -= m_Wrapper.m_GameActionsCallbackInterface.OnFastRunMode;
                 @FastRunMode.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnFastRunMode;
                 @FastRunMode.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnFastRunMode;
+                @Jump.started -= m_Wrapper.m_GameActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnJump;
                 @Squat.started -= m_Wrapper.m_GameActionsCallbackInterface.OnSquat;
                 @Squat.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnSquat;
                 @Squat.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnSquat;
@@ -376,6 +401,9 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @FastRunMode.started += instance.OnFastRunMode;
                 @FastRunMode.performed += instance.OnFastRunMode;
                 @FastRunMode.canceled += instance.OnFastRunMode;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
                 @Squat.started += instance.OnSquat;
                 @Squat.performed += instance.OnSquat;
                 @Squat.canceled += instance.OnSquat;
@@ -433,6 +461,7 @@ public class @InputManager : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnRunMode(InputAction.CallbackContext context);
         void OnFastRunMode(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
         void OnSquat(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
         void OnWeapon(InputAction.CallbackContext context);

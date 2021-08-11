@@ -24,7 +24,7 @@ public class Weapon : MonoBehaviour
         //_trajectoryLineRenderer = Instantiate(_trajectoryLinePrefab, transform.position, Quaternion.identity).GetComponent<LineRenderer>();
         //_bulletMass = _bulletPrefab.GetComponent<Rigidbody>().mass;
         //_trajectoryLineRenderer.transform.SetParent(null);
-        _mainTransform = GetComponentInParent<Player.PlayerController>().transform;     
+        _mainTransform = GetComponentInParent<Player.InputController>().transform;     
     }
 
     //private void Update()
