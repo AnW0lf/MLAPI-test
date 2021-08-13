@@ -139,12 +139,12 @@ namespace Player
         #region Menu
         private void ToGame(UnityEngine.InputSystem.InputAction.CallbackContext context)
         {
-            
+            Map = InputControllerMap.GAME;
         }
 
         private void ToMenu(UnityEngine.InputSystem.InputAction.CallbackContext context)
         {
-
+            Map = InputControllerMap.MENU;
         }
         #endregion Menu
     }

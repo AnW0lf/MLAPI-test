@@ -45,6 +45,8 @@ namespace Assets.Scripts.Player
             {
                 _squatMode = value;
                 _collider.height = _squatMode ? _squatHeight : _fullHeight;
+                _collider.center = Vector3.up * 0.5f * (_squatMode ? _squatHeight : _fullHeight);
+                _camera.localPosition = Vector3.up * (_squatMode ? _squatHeight : _fullHeight);
                 UpdateSpeed();
             }
         }
@@ -60,11 +62,18 @@ namespace Assets.Scripts.Player
             }
         }
 
+        private void Start()
+        {
+            UpdateSpeed();
+        }
+
         private void FixedUpdate()
         {
             if (MoveDirection != Vector2.zero)
             {
-                transform.position += MoveOffset * Time.fixedDeltaTime;
+                Vector3 offset = MoveOffset;
+                print($"Move: {offset}");
+                transform.position += offset * Time.fixedDeltaTime;
             }
         }
 
@@ -98,7 +107,7 @@ namespace Assets.Scripts.Player
 
         private void UpdateSpeed()
         {
-            _speed = RunMode ? (SquatMode ? _squatRunSpeed : _squatWalkSpeed) : (SquatMode ? _runSpeed : _walkSpeed);
+            _speed = RunMode ? (SquatMode ? _squatRunSpeed : _runSpeed) : (SquatMode ? _squatWalkSpeed : _walkSpeed);
         }
     }
 }
