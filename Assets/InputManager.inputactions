@@ -14,6 +14,38 @@
                     "interactions": ""
                 },
                 {
+                    "name": "RunMode",
+                    "type": "Button",
+                    "id": "46830f14-9f7a-40de-93e3-8105454da145",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "FastRunMode",
+                    "type": "Button",
+                    "id": "afd33394-0425-48d9-9894-82e6ffc940fd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "5006ff13-45c0-4d26-832c-7614a00484bc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Squat",
+                    "type": "Button",
+                    "id": "318783f5-db54-45d0-a49d-7473d9e562a5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Rotate",
                     "type": "Value",
                     "id": "01659258-d5f5-4034-8b2c-f8f7dd55b097",
@@ -22,15 +54,15 @@
                     "interactions": ""
                 },
                 {
-                    "name": "OpenMenu",
+                    "name": "Weapon",
                     "type": "Button",
-                    "id": "31a3851b-eccd-4129-864d-f07360fedc52",
+                    "id": "60de9c4d-a1cb-4ee7-973d-0a340e51c6be",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
                 {
-                    "name": "Fire",
+                    "name": "Use",
                     "type": "Button",
                     "id": "1d63bc05-ccea-4771-81c0-2c1e728c26d4",
                     "expectedControlType": "Button",
@@ -38,9 +70,9 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Weapon",
+                    "name": "ToMenu",
                     "type": "Button",
-                    "id": "60de9c4d-a1cb-4ee7-973d-0a340e51c6be",
+                    "id": "31a3851b-eccd-4129-864d-f07360fedc52",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -115,23 +147,45 @@
                 },
                 {
                     "name": "",
-                    "id": "ea4936d3-ed9c-4764-9420-29cf9ff34b5e",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "OpenMenu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "ea6fe0d9-ae26-47f8-a465-4e62e4863009",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Fire",
+                    "action": "Use",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0944314e-9bd3-4b06-9f2a-57e2da88dd58",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FastRunMode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "297a6b8d-3c6e-430f-906d-90eccb36ebfd",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Squat",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ea4936d3-ed9c-4764-9420-29cf9ff34b5e",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -143,6 +197,55 @@
                     "processors": "",
                     "groups": "",
                     "action": "Weapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e114568c-c94b-4dad-84c2-752e802fdc1c",
+                    "path": "<Keyboard>/capsLock",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RunMode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b20cb954-ac85-46ca-9746-eab7150390a6",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Menu",
+            "id": "52d62e28-59f1-4153-85ea-52e2e5f8ecc9",
+            "actions": [
+                {
+                    "name": "ToGame",
+                    "type": "Button",
+                    "id": "9d2543d1-d172-4b58-9106-a3b800814530",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "66a63ebf-b756-431f-80ea-4afba624a272",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

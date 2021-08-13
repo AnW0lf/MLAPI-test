@@ -1,11 +1,9 @@
-using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using MLAPI;
 using MLAPI.NetworkVariable;
 using MLAPI.Messaging;
-using System;
 
 namespace Game
 {
@@ -26,7 +24,7 @@ namespace Game
         }, 1);
 
         private Dictionary<ulong, bool> _playerConnected = new Dictionary<ulong, bool>();
-        private Player.NetworkPlayer _ownerNetPlayer = null;
+        private Assets.Scripts.Player.NetworkPlayer _ownerNetPlayer = null;
 
         private void Awake()
         {
@@ -52,13 +50,15 @@ namespace Game
                 }
 
                 _ownerNetPlayer = NetworkManager.Singleton.ConnectedClients[NetworkManager.Singleton.LocalClientId]
-                    .PlayerObject.GetComponent<Player.NetworkPlayer>();
+                    .PlayerObject.GetComponent<Assets.Scripts.Player.NetworkPlayer>();
                 PlayerConnectedServerRpc(NetworkManager.Singleton.LocalClientId);
             }
         }
 
         private void SpawnNPC()
         {
+            if(IsServer == false) { return; }
+
             Vector3? randomPlace;
             do
             {

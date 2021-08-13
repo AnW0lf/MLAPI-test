@@ -1,3 +1,4 @@
+using MLAPI.Messaging;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -18,14 +19,28 @@ public class Bullet : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision)
-    {       
-        _thisRigidbody.velocity = Vector3.zero;
-        _thisRigidbody.isKinematic = true;
-        transform.SetParent(collision.transform);
-
-        if (collision.transform.tag == "Civilian")
+    {
+        if (collision.transform.CompareTag("Civilian"))
         {
-            _lifetime = -1;
+            
         }
+        else if (collision.transform.CompareTag("Player"))
+        {
+
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void HitCivilian(ulong civilianId, Vector3 position)
+    {
+
+    }
+
+    private void HitPlayer(ulong playerId, Vector3 position)
+    {
+
     }
 }
