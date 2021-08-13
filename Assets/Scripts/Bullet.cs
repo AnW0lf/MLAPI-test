@@ -18,20 +18,14 @@ public class Bullet : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision)
-    {
-        return;
+    {       
+        _thisRigidbody.velocity = Vector3.zero;
+        _thisRigidbody.isKinematic = true;
+        transform.SetParent(collision.transform);
 
-        if (collision.transform.CompareTag("Civilian") ||
-            collision.transform.CompareTag("Player"))
+        if (collision.transform.tag == "Civilian")
         {
             _lifetime = -1;
-            _thisRigidbody.velocity = Vector3.zero;
-            _thisRigidbody.isKinematic = true;
-            transform.SetParent(collision.transform);
-        }
-        else
-        {
-            Destroy(gameObject);
         }
     }
 }
