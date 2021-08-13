@@ -38,3 +38,13 @@ sysinfo.txt
 *.log
 *.log
 *.log
+Logs/ApiUpdaterCheck.txt
+Logs/AssetImportWorker0.log
+Logs/shadercompiler-AssetImportWorker0.log
+Logs/shadercompiler-AssetImportWorker1.log
+Logs/shadercompiler-AssetImportWorker2.log
+Logs/shadercompiler-AssetImportWorker3.log
+Logs/shadercompiler-UnityShaderCompiler.exe0.log
+Logs/shadercompiler-UnityShaderCompiler.exe1.log
+Logs/shadercompiler-UnityShaderCompiler.exe2.log
+Logs/shadercompiler-UnityShaderCompiler.exe3.log
