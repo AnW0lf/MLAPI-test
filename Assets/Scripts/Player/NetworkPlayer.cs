@@ -2,49 +2,22 @@
 using MLAPI;
 using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
-using Player;
 using UnityEngine;
 
 namespace Assets.Scripts.Player
 {
-    [RequireComponent(typeof(Collider), typeof(Rigidbody))]
     public class NetworkPlayer : NetworkBehaviour
     {
-        [SerializeField] private InputController _playerController = null;
-        [SerializeField] private GameObject _body = null;
-        [SerializeField] private GameObject _camera = null;
+        [SerializeField] private Transform _ownerBody = null;
+        [SerializeField] private Transform _otherBody = null;
 
         private PlayerListItem _lobbyItem = null;
-        private Collider _collider = null;
-        private Rigidbody _rigidbody = null;
 
         private static NetworkVariableInt _iconOffset = new NetworkVariableInt(new NetworkVariableSettings
         {
             WritePermission = NetworkVariablePermission.ServerOnly,
             ReadPermission = NetworkVariablePermission.Everyone
         }, -1);
-
-        private NetworkVariableBool _isWeaponVisible = new NetworkVariableBool(new NetworkVariableSettings
-        {
-            WritePermission = NetworkVariablePermission.OwnerOnly,
-            ReadPermission = NetworkVariablePermission.Everyone
-        }, false);
-
-        public bool IsWeaponVisible
-        {
-            get => _isWeaponVisible.Value;
-            set
-            {
-                if (IsOwner)
-                {
-                    _isWeaponVisible.Value = value;
-                }
-                else
-                {
-                    Debug.LogWarning($"{nameof(IsWeaponVisible)} can't be changed, because you are not owner!..");
-                }
-            }
-        }
 
         #region PersonalData
         private NetworkVariableString _nickname = new NetworkVariableString(new NetworkVariableSettings
@@ -64,7 +37,6 @@ namespace Assets.Scripts.Player
             WritePermission = NetworkVariablePermission.OwnerOnly,
             ReadPermission = NetworkVariablePermission.Everyone
         }, false);
-        #endregion PersonalData
 
         public string Nickname
         {
@@ -114,11 +86,34 @@ namespace Assets.Scripts.Player
             }
         }
 
-        private void Awake()
+        private void SetNickname(string previousValue, string newValue)
         {
-            _collider = GetComponent<Collider>();
-            _rigidbody = GetComponent<Rigidbody>();
+            if (_lobbyItem != null)
+            {
+                _lobbyItem.Nickname = Nickname;
+            }
         }
+
+        private void SetIcon(string previousValue, string newValue)
+        {
+            if (_lobbyItem != null)
+            {
+                _lobbyItem.Icon = Resources.Load<Sprite>(IconPath);
+            }
+        }
+
+        private void SetReady(bool previousValue, bool newValue)
+        {
+            if (_lobbyItem != null)
+            {
+                _lobbyItem.IsReady = IsReady;
+            }
+            if (LobbyManager.Singleton != null)
+            {
+                LobbyManager.Singleton.CheckAllReady();
+            }
+        }
+        #endregion PersonalData
 
         public override void NetworkStart()
         {
@@ -154,6 +149,11 @@ namespace Assets.Scripts.Player
 
         }
 
+        private void Update()
+        {
+            UpdateBody();
+        }
+
         private void OnDestroy()
         {
             Unsubscribe();
@@ -168,8 +168,6 @@ namespace Assets.Scripts.Player
             _iconPath.OnValueChanged += SetIcon;
             _nickname.OnValueChanged += SetNickname;
             _isReady.OnValueChanged += SetReady;
-
-            _isWeaponVisible.OnValueChanged += SetWeaponVisibility;
         }
 
         private void Unsubscribe()
@@ -177,84 +175,83 @@ namespace Assets.Scripts.Player
             _iconPath.OnValueChanged -= SetIcon;
             _nickname.OnValueChanged -= SetNickname;
             _isReady.OnValueChanged -= SetReady;
-
-            _isWeaponVisible.OnValueChanged -= SetWeaponVisibility;
         }
 
-        private void SetNickname(string previousValue, string newValue)
+        #region Body
+        public bool IsBodyEnabled { get; private set; } = false;
+
+        private NetworkVariableVector3 _position = new NetworkVariableVector3(new NetworkVariableSettings
         {
-            if (_lobbyItem != null)
+            WritePermission = NetworkVariablePermission.OwnerOnly,
+            ReadPermission = NetworkVariablePermission.Everyone
+        }, Vector3.zero);
+
+        private NetworkVariableQuaternion _rotation = new NetworkVariableQuaternion(new NetworkVariableSettings
+        {
+            WritePermission = NetworkVariablePermission.OwnerOnly,
+            ReadPermission = NetworkVariablePermission.Everyone
+        }, Quaternion.identity);
+
+        public void EnableBody(Vector3 position, Quaternion rotation)
+        {
+            if (IsOwner)
             {
-                _lobbyItem.Nickname = Nickname;
+                _ownerBody.gameObject.SetActive(true);
+                _otherBody.gameObject.SetActive(false);
+
+                _ownerBody.position = position;
+                _ownerBody.rotation = rotation;
+
+                _position.Value = _ownerBody.position;
+                _rotation.Value = _ownerBody.rotation;
             }
-        }
-
-        private void SetIcon(string previousValue, string newValue)
-        {
-            if (_lobbyItem != null)
+            else
             {
-                _lobbyItem.Icon = Resources.Load<Sprite>(IconPath);
+                _otherBody.gameObject.SetActive(true);
+                _ownerBody.gameObject.SetActive(false);
+
+                _otherBody.position = position;
+                _otherBody.rotation = rotation;
             }
+            IsBodyEnabled = true;
         }
 
-        private void SetReady(bool previousValue, bool newValue)
+        public void DisableBody()
         {
-            if (_lobbyItem != null)
+            if (IsOwner)
             {
-                _lobbyItem.IsReady = IsReady;
+                _ownerBody.gameObject.SetActive(false);
+                _otherBody.gameObject.SetActive(false);
             }
-            if (LobbyManager.Singleton != null)
+            else
             {
-                LobbyManager.Singleton.CheckAllReady();
+                _otherBody.gameObject.SetActive(false);
+                _ownerBody.gameObject.SetActive(false);
             }
+            IsBodyEnabled = false;
         }
 
-        private void SetWeaponVisibility(bool previousValue, bool newValue)
+        private void UpdateBody()
         {
-            if (IsBodyActive == false) { return; }
-        }
-
-        public void Shoot()
-        {
-            if (IsWeaponVisible == false) { return; }
-            if (IsOwner == false) { return; }
-        }
-
-        public bool IsBodyActive
-        {
-            get => _collider.enabled;
-            set
+            if(IsBodyEnabled == false) { return; }
+            if (IsOwner)
             {
-                if (IsBodyActive != value)
+                if(Vector3.Distance(_ownerBody.position, _position.Value) > 0.15f)
                 {
-                    if (IsOwner)
-                    {
-                        _playerController.Map = InputControllerMap.GAME;
-                        _camera.SetActive(value);
-                    }
-                    else
-                    {
-                        _body.SetActive(value);
-                    }
-                    _collider.enabled = value;
-                    _rigidbody.isKinematic = !value;
-                    SetActiveBodyServerRpc(OwnerClientId, value);
+                    _position.Value = _ownerBody.position;
+                }
+
+                if (Quaternion.Angle(_ownerBody.rotation, _rotation.Value) > 1.5f)
+                {
+                    _rotation.Value = _ownerBody.rotation;
                 }
             }
+            else
+            {
+                _otherBody.position = Vector3.Lerp(_otherBody.position, _position.Value, 0.1f);
+                _otherBody.rotation = Quaternion.Lerp(_otherBody.rotation, _rotation.Value, 0.1f);
+            }
         }
-
-        [ServerRpc(RequireOwnership = false)]
-        private void SetActiveBodyServerRpc(ulong clientId, bool active)
-        {
-            SetActiveBodyClientRpc(clientId, active);
-        }
-
-        [ClientRpc]
-        private void SetActiveBodyClientRpc(ulong clientId, bool active)
-        {
-            if (clientId != OwnerClientId) { return; }
-
-            IsBodyActive = active;
-        }
+        #endregion Body
     }
 }

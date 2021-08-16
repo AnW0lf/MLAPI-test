@@ -35,5 +35,10 @@ namespace Assets.Scripts.Player
 
             _ownerGun.Shoot();
         }
+
+        private void Update()
+        {
+            
+        }
     }
 }

@@ -27,15 +27,15 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""RunMode"",
-                    ""type"": ""Button"",
-                    ""id"": ""46830f14-9f7a-40de-93e3-8105454da145"",
-                    ""expectedControlType"": ""Button"",
+                    ""name"": ""Rotate"",
+                    ""type"": ""Value"",
+                    ""id"": ""01659258-d5f5-4034-8b2c-f8f7dd55b097"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""FastRunMode"",
+                    ""name"": ""Sprint"",
                     ""type"": ""Button"",
                     ""id"": ""afd33394-0425-48d9-9894-82e6ffc940fd"",
                     ""expectedControlType"": ""Button"",
@@ -51,7 +51,7 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Squat"",
+                    ""name"": ""Crouch"",
                     ""type"": ""Button"",
                     ""id"": ""318783f5-db54-45d0-a49d-7473d9e562a5"",
                     ""expectedControlType"": ""Button"",
@@ -59,15 +59,7 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Rotate"",
-                    ""type"": ""Value"",
-                    ""id"": ""01659258-d5f5-4034-8b2c-f8f7dd55b097"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Weapon"",
+                    ""name"": ""Hand"",
                     ""type"": ""Button"",
                     ""id"": ""60de9c4d-a1cb-4ee7-973d-0a340e51c6be"",
                     ""expectedControlType"": ""Button"",
@@ -149,17 +141,6 @@ public class @InputManager : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""42528ff8-aefb-4d98-a7ef-5292ed074884"",
-                    ""path"": ""<Mouse>/delta"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Rotate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""ea6fe0d9-ae26-47f8-a465-4e62e4863009"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
@@ -176,7 +157,7 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""FastRunMode"",
+                    ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -187,7 +168,7 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Squat"",
+                    ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -209,18 +190,7 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Weapon"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e114568c-c94b-4dad-84c2-752e802fdc1c"",
-                    ""path"": ""<Keyboard>/capsLock"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RunMode"",
+                    ""action"": ""Hand"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -232,6 +202,17 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""42528ff8-aefb-4d98-a7ef-5292ed074884"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": ""ScaleVector2(x=0.05,y=0.05)"",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -270,12 +251,11 @@ public class @InputManager : IInputActionCollection, IDisposable
         // Game
         m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
         m_Game_Move = m_Game.FindAction("Move", throwIfNotFound: true);
-        m_Game_RunMode = m_Game.FindAction("RunMode", throwIfNotFound: true);
-        m_Game_FastRunMode = m_Game.FindAction("FastRunMode", throwIfNotFound: true);
-        m_Game_Jump = m_Game.FindAction("Jump", throwIfNotFound: true);
-        m_Game_Squat = m_Game.FindAction("Squat", throwIfNotFound: true);
         m_Game_Rotate = m_Game.FindAction("Rotate", throwIfNotFound: true);
-        m_Game_Weapon = m_Game.FindAction("Weapon", throwIfNotFound: true);
+        m_Game_Sprint = m_Game.FindAction("Sprint", throwIfNotFound: true);
+        m_Game_Jump = m_Game.FindAction("Jump", throwIfNotFound: true);
+        m_Game_Crouch = m_Game.FindAction("Crouch", throwIfNotFound: true);
+        m_Game_Hand = m_Game.FindAction("Hand", throwIfNotFound: true);
         m_Game_Use = m_Game.FindAction("Use", throwIfNotFound: true);
         m_Game_ToMenu = m_Game.FindAction("ToMenu", throwIfNotFound: true);
         // Menu
@@ -331,12 +311,11 @@ public class @InputManager : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Game;
     private IGameActions m_GameActionsCallbackInterface;
     private readonly InputAction m_Game_Move;
-    private readonly InputAction m_Game_RunMode;
-    private readonly InputAction m_Game_FastRunMode;
-    private readonly InputAction m_Game_Jump;
-    private readonly InputAction m_Game_Squat;
     private readonly InputAction m_Game_Rotate;
-    private readonly InputAction m_Game_Weapon;
+    private readonly InputAction m_Game_Sprint;
+    private readonly InputAction m_Game_Jump;
+    private readonly InputAction m_Game_Crouch;
+    private readonly InputAction m_Game_Hand;
     private readonly InputAction m_Game_Use;
     private readonly InputAction m_Game_ToMenu;
     public struct GameActions
@@ -344,12 +323,11 @@ public class @InputManager : IInputActionCollection, IDisposable
         private @InputManager m_Wrapper;
         public GameActions(@InputManager wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Game_Move;
-        public InputAction @RunMode => m_Wrapper.m_Game_RunMode;
-        public InputAction @FastRunMode => m_Wrapper.m_Game_FastRunMode;
-        public InputAction @Jump => m_Wrapper.m_Game_Jump;
-        public InputAction @Squat => m_Wrapper.m_Game_Squat;
         public InputAction @Rotate => m_Wrapper.m_Game_Rotate;
-        public InputAction @Weapon => m_Wrapper.m_Game_Weapon;
+        public InputAction @Sprint => m_Wrapper.m_Game_Sprint;
+        public InputAction @Jump => m_Wrapper.m_Game_Jump;
+        public InputAction @Crouch => m_Wrapper.m_Game_Crouch;
+        public InputAction @Hand => m_Wrapper.m_Game_Hand;
         public InputAction @Use => m_Wrapper.m_Game_Use;
         public InputAction @ToMenu => m_Wrapper.m_Game_ToMenu;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
@@ -364,24 +342,21 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @Move.started -= m_Wrapper.m_GameActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnMove;
-                @RunMode.started -= m_Wrapper.m_GameActionsCallbackInterface.OnRunMode;
-                @RunMode.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnRunMode;
-                @RunMode.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnRunMode;
-                @FastRunMode.started -= m_Wrapper.m_GameActionsCallbackInterface.OnFastRunMode;
-                @FastRunMode.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnFastRunMode;
-                @FastRunMode.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnFastRunMode;
-                @Jump.started -= m_Wrapper.m_GameActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnJump;
-                @Squat.started -= m_Wrapper.m_GameActionsCallbackInterface.OnSquat;
-                @Squat.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnSquat;
-                @Squat.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnSquat;
                 @Rotate.started -= m_Wrapper.m_GameActionsCallbackInterface.OnRotate;
                 @Rotate.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnRotate;
                 @Rotate.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnRotate;
-                @Weapon.started -= m_Wrapper.m_GameActionsCallbackInterface.OnWeapon;
-                @Weapon.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnWeapon;
-                @Weapon.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnWeapon;
+                @Sprint.started -= m_Wrapper.m_GameActionsCallbackInterface.OnSprint;
+                @Sprint.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnSprint;
+                @Sprint.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnSprint;
+                @Jump.started -= m_Wrapper.m_GameActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnJump;
+                @Crouch.started -= m_Wrapper.m_GameActionsCallbackInterface.OnCrouch;
+                @Crouch.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnCrouch;
+                @Crouch.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnCrouch;
+                @Hand.started -= m_Wrapper.m_GameActionsCallbackInterface.OnHand;
+                @Hand.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnHand;
+                @Hand.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnHand;
                 @Use.started -= m_Wrapper.m_GameActionsCallbackInterface.OnUse;
                 @Use.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnUse;
                 @Use.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnUse;
@@ -395,24 +370,21 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @RunMode.started += instance.OnRunMode;
-                @RunMode.performed += instance.OnRunMode;
-                @RunMode.canceled += instance.OnRunMode;
-                @FastRunMode.started += instance.OnFastRunMode;
-                @FastRunMode.performed += instance.OnFastRunMode;
-                @FastRunMode.canceled += instance.OnFastRunMode;
-                @Jump.started += instance.OnJump;
-                @Jump.performed += instance.OnJump;
-                @Jump.canceled += instance.OnJump;
-                @Squat.started += instance.OnSquat;
-                @Squat.performed += instance.OnSquat;
-                @Squat.canceled += instance.OnSquat;
                 @Rotate.started += instance.OnRotate;
                 @Rotate.performed += instance.OnRotate;
                 @Rotate.canceled += instance.OnRotate;
-                @Weapon.started += instance.OnWeapon;
-                @Weapon.performed += instance.OnWeapon;
-                @Weapon.canceled += instance.OnWeapon;
+                @Sprint.started += instance.OnSprint;
+                @Sprint.performed += instance.OnSprint;
+                @Sprint.canceled += instance.OnSprint;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+                @Crouch.started += instance.OnCrouch;
+                @Crouch.performed += instance.OnCrouch;
+                @Crouch.canceled += instance.OnCrouch;
+                @Hand.started += instance.OnHand;
+                @Hand.performed += instance.OnHand;
+                @Hand.canceled += instance.OnHand;
                 @Use.started += instance.OnUse;
                 @Use.performed += instance.OnUse;
                 @Use.canceled += instance.OnUse;
@@ -459,12 +431,11 @@ public class @InputManager : IInputActionCollection, IDisposable
     public interface IGameActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnRunMode(InputAction.CallbackContext context);
-        void OnFastRunMode(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
-        void OnSquat(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
-        void OnWeapon(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+        void OnCrouch(InputAction.CallbackContext context);
+        void OnHand(InputAction.CallbackContext context);
         void OnUse(InputAction.CallbackContext context);
         void OnToMenu(InputAction.CallbackContext context);
     }

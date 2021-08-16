@@ -30,17 +30,17 @@ namespace Assets.Scripts.Loading
         public event UnityAction OnSceneLoadingStart;
         public event UnityAction OnSceneLoadingComplete;
 
-        public void LoadGame()
+        public void LoadGame(UnityAction OnComplete = null)
         {
-            StartCoroutine(Load(_gameSceneName));
+            StartCoroutine(Load(_gameSceneName, OnComplete));
         }
 
-        public void LoadLobby()
+        public void LoadLobby(UnityAction OnComplete = null)
         {
-            StartCoroutine(Load(_lobbySceneName));
+            StartCoroutine(Load(_lobbySceneName, OnComplete));
         }
 
-        private IEnumerator Load(string sceneName)
+        private IEnumerator Load(string sceneName, UnityAction OnComplete = null)
         {
             OnSceneLoadingStart?.Invoke();
 
@@ -62,6 +62,8 @@ namespace Assets.Scripts.Loading
             }
 
             _progress = null;
+
+            OnComplete?.Invoke();
 
             OnSceneLoadingComplete?.Invoke();
         }
