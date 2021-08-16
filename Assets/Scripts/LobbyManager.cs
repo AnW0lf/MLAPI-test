@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Assets.Scripts.Loading;
+using Game;
 
 namespace Lobby
 {
@@ -47,7 +48,6 @@ namespace Lobby
             NetworkManager.Singleton.OnClientConnectedCallback -= HandleClientConnected;
             NetworkManager.Singleton.OnClientDisconnectCallback -= HandleClientDisconnect;
         }
-
         public void Host()
         {
             _transport.RoomName = $"{Random.Range(1, 10000)}";
@@ -83,7 +83,7 @@ namespace Lobby
 
         public void StartGame()
         {
-            LoadingManager.Singleton.LoadGame();
+            LoadingManager.Singleton.LoadGame(() => GameController.Singleton.EnableBodies());
         }
 
         private void ToMenu()
@@ -122,6 +122,7 @@ namespace Lobby
 
         public void RemovePlayerListItem(ulong clientId)
         {
+            if (_playerList.ContainsKey(clientId) == false) { return; }
             var item = _playerList[clientId];
             _playerList.Remove(clientId);
             Destroy(item.gameObject);

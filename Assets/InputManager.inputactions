@@ -14,15 +14,15 @@
                     "interactions": ""
                 },
                 {
-                    "name": "RunMode",
-                    "type": "Button",
-                    "id": "46830f14-9f7a-40de-93e3-8105454da145",
-                    "expectedControlType": "Button",
+                    "name": "Rotate",
+                    "type": "Value",
+                    "id": "01659258-d5f5-4034-8b2c-f8f7dd55b097",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 },
                 {
-                    "name": "FastRunMode",
+                    "name": "Sprint",
                     "type": "Button",
                     "id": "afd33394-0425-48d9-9894-82e6ffc940fd",
                     "expectedControlType": "Button",
@@ -38,7 +38,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Squat",
+                    "name": "Crouch",
                     "type": "Button",
                     "id": "318783f5-db54-45d0-a49d-7473d9e562a5",
                     "expectedControlType": "Button",
@@ -46,15 +46,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Rotate",
-                    "type": "Value",
-                    "id": "01659258-d5f5-4034-8b2c-f8f7dd55b097",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Weapon",
+                    "name": "Hand",
                     "type": "Button",
                     "id": "60de9c4d-a1cb-4ee7-973d-0a340e51c6be",
                     "expectedControlType": "Button",
@@ -136,17 +128,6 @@
                 },
                 {
                     "name": "",
-                    "id": "42528ff8-aefb-4d98-a7ef-5292ed074884",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Rotate",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "ea6fe0d9-ae26-47f8-a465-4e62e4863009",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
@@ -163,7 +144,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "FastRunMode",
+                    "action": "Sprint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -174,7 +155,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Squat",
+                    "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -196,18 +177,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Weapon",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e114568c-c94b-4dad-84c2-752e802fdc1c",
-                    "path": "<Keyboard>/capsLock",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RunMode",
+                    "action": "Hand",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -219,6 +189,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "42528ff8-aefb-4d98-a7ef-5292ed074884",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "ScaleVector2(x=0.05,y=0.05)",
+                    "groups": "",
+                    "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1,5 +1,6 @@
 ﻿using Game;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.Weapon
@@ -9,6 +10,7 @@ namespace Assets.Scripts.Weapon
         [SerializeField] private Camera _camera = null;
         [SerializeField] private float _hitDistance = 40f;
         [SerializeField] private float _rechargeDelay = 1f;
+        [SerializeField] private GameObject _gun = null;
 
         private bool _canShoot = true;
 
@@ -16,13 +18,18 @@ namespace Assets.Scripts.Weapon
         {
             if (_canShoot == false) { return; }
 
-            float angle = Vector3.Angle(new Vector3(0f, _camera.transform.forward.y, 0f), _camera.transform.forward);
-            Ray ray = _camera.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0f)
-                + _camera.transform.forward * 0.4f * (1f / Mathf.Cos(angle)));
+            Ray ray = _camera.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0f));
 
-            if (Physics.Raycast(ray, out RaycastHit hit, _hitDistance))
+            RaycastHit[] hits = Physics.RaycastAll(ray, _hitDistance);
+            if (hits != null && hits.Length > 0)
             {
-                AddHit(hit);
+                RaycastHit hit = hits.First((h) => h.transform != transform);
+
+                if (hit.transform != null)
+                {
+                    AddHit(hit);
+                }
+
                 StartCoroutine(Recharge());
             }
         }
@@ -62,6 +69,34 @@ namespace Assets.Scripts.Weapon
             else
             {
                 Debug.LogError($"NetworkWeaponMessanger object not found!..");
+            }
+        }
+
+        private bool _holded = false;
+        private void Update()
+        {
+            if (_gun.activeSelf)
+            {
+                if (Input.GetAxis("Fire1") > 0f)
+                {
+                    Shoot();
+                }
+            }
+
+            if (Input.GetAxis("Fire2") > 0f)
+            {
+                if (_holded == false)
+                {
+                    _gun.SetActive(!_gun.activeSelf);
+                }
+                if (_holded == false)
+                {
+                    _holded = true;
+                }
+            }
+            else if (_holded)
+            {
+                _holded = false;
             }
         }
     }

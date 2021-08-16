@@ -4,6 +4,7 @@ using Random = UnityEngine.Random;
 using MLAPI;
 using MLAPI.NetworkVariable;
 using MLAPI.Messaging;
+using System.Linq;
 
 namespace Game
 {
@@ -23,9 +24,6 @@ namespace Game
             WritePermission = NetworkVariablePermission.ServerOnly
         }, 1);
 
-        private Dictionary<ulong, bool> _playerConnected = new Dictionary<ulong, bool>();
-        private Assets.Scripts.Player.NetworkPlayer _ownerNetPlayer = null;
-
         private void Awake()
         {
             if (Singleton == null) Singleton = this;
@@ -34,39 +32,21 @@ namespace Game
 
         public override void NetworkStart()
         {
-            if (NetworkManager.Singleton != null)
+            if (NetworkManager.Singleton != null && NetworkManager.Singleton.IsServer)
             {
-                if (NetworkManager.Singleton.IsServer)
+                for (int i = 0; i < _maxCount - NetworkManager.Singleton.ConnectedClients.Count; i++)
                 {
-                    foreach (var client in NetworkManager.Singleton.ConnectedClients)
-                    {
-                        _playerConnected.Add(client.Key, false);
-                    }
-
-                    for (int i = 0; i < _maxCount - NetworkManager.Singleton.ConnectedClients.Count; i++)
-                    {
-                        SpawnNPC();
-                    }
+                    SpawnNPC();
                 }
-
-                _ownerNetPlayer = NetworkManager.Singleton.ConnectedClients[NetworkManager.Singleton.LocalClientId]
-                    .PlayerObject.GetComponent<Assets.Scripts.Player.NetworkPlayer>();
-                PlayerConnectedServerRpc(NetworkManager.Singleton.LocalClientId);
             }
         }
 
         private void SpawnNPC()
         {
-            if(IsServer == false) { return; }
-
-            Vector3? randomPlace;
-            do
-            {
-                randomPlace = GetRandomPointOnGround();
-            } while (randomPlace == null);
+            if (IsServer == false) { return; }
 
             GameObject prefab = _civilianPrefabs[Random.Range(0, _civilianPrefabs.Length)];
-            Vector3 position = (Vector3)randomPlace;
+            Vector3 position = RandomPointOnGround;
             Quaternion rotation = Quaternion.Euler(Vector3.up * Random.Range(0f, 360f));
             var civilian = Instantiate(prefab, position, rotation).GetComponent<Civilian>();
             civilian.GetComponent<NetworkObject>().Spawn();
@@ -74,17 +54,16 @@ namespace Game
             _civilianNextId.Value++;
         }
 
-        private void ActivatePlayers()
+        public Vector3 RandomPointOnGround
         {
-            foreach (var clientId in _playerConnected.Keys)
+            get
             {
-                Vector3? randomPlace;
+                Vector3? point = null;
                 do
                 {
-                    randomPlace = GetRandomPointOnGround();
-                } while (randomPlace == null);
-
-                ActiveBodyClientRpc(clientId, (Vector3)randomPlace);
+                    point = GetRandomPointOnGround();
+                } while (point == null);
+                return (Vector3)point;
             }
         }
 
@@ -112,38 +91,13 @@ namespace Game
             }
         }
 
-        [ClientRpc]
-        private void ActiveBodyClientRpc(ulong clientId, Vector3 position)
+        public void EnableBodies()
         {
-            if(clientId != _ownerNetPlayer.OwnerClientId) { return; }
-
-            _ownerNetPlayer.transform.position = position;
-            _ownerNetPlayer.IsBodyActive = true;
-        }
-
-        [ServerRpc(RequireOwnership = false)]
-        private void PlayerConnectedServerRpc(ulong clientId)
-        {
-            if (_playerConnected.ContainsKey(clientId))
+            var players = NetworkManager.Singleton.ConnectedClientsList.Select((client) => client.PlayerObject.GetComponent<Assets.Scripts.Player.NetworkPlayer>());
+            foreach(var player in players)
             {
-                _playerConnected[clientId] = true;
-                PlayerConnectedClientRpc(clientId);
+                player.EnableBody(RandomPointOnGround, Quaternion.identity);
             }
-
-            if (_playerConnected.ContainsValue(false) == false)
-            {
-                ActivatePlayers();
-            }
-        }
-
-        [ClientRpc]
-        private void PlayerConnectedClientRpc(ulong clientId)
-        {
-            if (_playerConnected.ContainsKey(clientId) == false)
-            {
-                _playerConnected.Add(clientId, false);
-            }
-            _playerConnected[clientId] = true;
         }
 
         private void OnDrawGizmosSelected()
