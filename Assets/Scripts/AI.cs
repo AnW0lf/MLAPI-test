@@ -10,6 +10,7 @@ public class AI : MonoBehaviour
     private Vector3 _currentDestination;
     [SerializeField] private float _wanderRange = 10.0f;
     [SerializeField] private bool _directControlEnabled;
+    [SerializeField] private float _speed;
 
     private InputManager _inputManager;
 
@@ -18,12 +19,13 @@ public class AI : MonoBehaviour
         if (_directControlEnabled == true)
         {
             _inputManager = new InputManager();
-            _inputManager.Game.Weapon.performed += SetDestination;           
+            _inputManager.Game.Use.performed += SetDestination;
+            _inputManager.Game.Hand.performed += WarpToDestination;
             _inputManager.Game.Enable();
         }
 
         _agent = gameObject.AddComponent<NavMeshAgent>();
-        _agent.speed = 2;
+        _agent.speed = _speed;
         _agent.angularSpeed = 500;
 
         _currentDestination = transform.position;
@@ -75,12 +77,24 @@ public class AI : MonoBehaviour
     public void SetDestination(InputAction.CallbackContext context)
     {      
         RaycastHit hit;
-        Debug.Log(Mouse.current.position.ReadValue());
+        
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());     
 
         if (Physics.Raycast(ray, out hit))
         {
             _agent.SetDestination(hit.point);
+        }
+    }
+
+    public void WarpToDestination(InputAction.CallbackContext context)
+    {
+        RaycastHit hit;
+
+        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            _agent.Warp(hit.point);
         }
     }
 }

@@ -219,14 +219,15 @@ public class FieldOfView : MonoBehaviour
         }
     }
 
-    public bool CheckTargetVisibility(Transform target, bool withDistance)
+    public bool CheckTargetVisibility(Transform target, float yOffset, bool withDistance)
     {       
         Vector3 dirToTarget = (target.position - transform.position).normalized;
         if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
         {         
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, dirToTarget, out hit, withDistance == true ? viewRadius : 1000) == true)
+            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + yOffset, transform.position.z), dirToTarget, out hit, withDistance == true ? viewRadius : 1000) == true)
             {
+                Debug.Log(hit.transform.name);
                 if (hit.transform == target)
                 {
                     return true;
