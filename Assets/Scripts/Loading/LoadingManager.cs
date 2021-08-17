@@ -63,9 +63,9 @@ namespace Assets.Scripts.Loading
 
             _progress = null;
 
-            OnComplete?.Invoke();
-
             OnSceneLoadingComplete?.Invoke();
+
+            OnComplete?.Invoke();
         }
     }
 }

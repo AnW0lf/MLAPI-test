@@ -359,7 +359,7 @@ public class FirstPersonAIO : MonoBehaviour
             float camFOV = playerCamera.fieldOfView;
 
             //print($"Mouse (X : Y) :: ({Input.GetAxis("Mouse X")} : {Input.GetAxis("Mouse Y")})");
-            print($"Input (X : Y) :: ({((float)_input.MouseDelta.x).ToString()} : {((float)_input.MouseDelta.y).ToString()})");
+            //print($"Input (X : Y) :: ({_input.MouseDelta.x} : {_input.MouseDelta.y})");
 
             if (cameraInputMethod == CameraInputMethod.Traditional || cameraInputMethod == CameraInputMethod.TraditionalWithConstraints)
             {

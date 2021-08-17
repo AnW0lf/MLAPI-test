@@ -83,7 +83,7 @@ namespace Lobby
 
         public void StartGame()
         {
-            LoadingManager.Singleton.LoadGame(() => GameController.Singleton.EnableBodies());
+            LoadingManager.Singleton.LoadGame();
         }
 
         private void ToMenu()
@@ -130,7 +130,7 @@ namespace Lobby
 
         public void ChangeReady()
         {
-            foreach (var networkPlayer in FindObjectsOfType<Assets.Scripts.Player.NetworkPlayer>())
+            foreach (var networkPlayer in FindObjectsOfType<Assets.Scripts.Player.NetworkLocalPlayer>())
             {
                 if (networkPlayer.IsOwner)
                 {
@@ -143,7 +143,7 @@ namespace Lobby
         {
             if (NetworkManager.Singleton.IsHost)
             {
-                foreach (var networkPlayer in FindObjectsOfType<Assets.Scripts.Player.NetworkPlayer>())
+                foreach (var networkPlayer in FindObjectsOfType<Assets.Scripts.Player.NetworkLocalPlayer>())
                 {
                     if (networkPlayer.IsReady == false)
                     {

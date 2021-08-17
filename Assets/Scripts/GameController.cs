@@ -5,6 +5,7 @@ using MLAPI;
 using MLAPI.NetworkVariable;
 using MLAPI.Messaging;
 using System.Linq;
+using Assets.Scripts.Player;
 
 namespace Game
 {
@@ -24,6 +25,8 @@ namespace Game
             WritePermission = NetworkVariablePermission.ServerOnly
         }, 1);
 
+        private Dictionary<ulong, bool> _connectedClients = new Dictionary<ulong, bool>();
+
         private void Awake()
         {
             if (Singleton == null) Singleton = this;
@@ -32,13 +35,25 @@ namespace Game
 
         public override void NetworkStart()
         {
-            if (NetworkManager.Singleton != null && NetworkManager.Singleton.IsServer)
+            if (NetworkManager.Singleton == null) { return; }
+            if (NetworkManager.Singleton.IsServer)
             {
                 for (int i = 0; i < _maxCount - NetworkManager.Singleton.ConnectedClients.Count; i++)
                 {
                     SpawnNPC();
                 }
+
+                foreach (var pair in NetworkManager.Singleton.ConnectedClients)
+                {
+                    if (_connectedClients.ContainsKey(pair.Key) == false)
+                    {
+                        _connectedClients.Add(pair.Key, false);
+                        print($"Connected Clients :: Add client ID: {pair.Key}");
+                    }
+                }
             }
+
+            ClientConnectedServerRpc(NetworkManager.Singleton.LocalClientId);
         }
 
         private void SpawnNPC()
@@ -91,12 +106,42 @@ namespace Game
             }
         }
 
-        public void EnableBodies()
+        private void EnableBodies()
         {
-            var players = NetworkManager.Singleton.ConnectedClientsList.Select((client) => client.PlayerObject.GetComponent<Assets.Scripts.Player.NetworkPlayer>());
-            foreach(var player in players)
+            var players = FindObjectsOfType<NetworkLocalPlayer>();
+            print($"GameController :: EnableBodies {players.Count()}");
+            foreach (var player in players)
             {
+                print($"GameController :: EnableBodies : PlayerId {player.OwnerClientId}");
                 player.EnableBody(RandomPointOnGround, Quaternion.identity);
+            }
+        }
+
+        [ServerRpc(RequireOwnership = true)]
+        public void EnableBodiesServerRpc()
+        {
+            EnableBodiesClientRpc();
+        }
+
+        [ClientRpc]
+        private void EnableBodiesClientRpc()
+        {
+            EnableBodies();
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void ClientConnectedServerRpc(ulong clientId)
+        {
+            if (_connectedClients.ContainsKey(clientId))
+            {
+                _connectedClients[clientId] = true;
+                print($"Connected Clients :: Connect client ID: {clientId}");
+            }
+
+            if (_connectedClients.All((pair) => pair.Value))
+            {
+                print($"Enable bodies");
+                EnableBodiesClientRpc();
             }
         }
 

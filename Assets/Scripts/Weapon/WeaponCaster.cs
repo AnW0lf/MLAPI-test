@@ -1,5 +1,4 @@
-﻿using Game;
-using System.Collections;
+﻿using System.Collections;
 using System.Linq;
 using UnityEngine;
 
@@ -8,11 +7,15 @@ namespace Assets.Scripts.Weapon
     public class WeaponCaster : MonoBehaviour
     {
         [SerializeField] private Camera _camera = null;
-        [SerializeField] private float _hitDistance = 40f;
         [SerializeField] private float _rechargeDelay = 1f;
         [SerializeField] private GameObject _gun = null;
 
         private bool _canShoot = true;
+
+        private void SwitchHand(UnityEngine.InputSystem.InputAction.CallbackContext context)
+        {
+            _gun.SetActive(!_gun.activeSelf);
+        }
 
         public void Shoot()
         {
@@ -20,7 +23,7 @@ namespace Assets.Scripts.Weapon
 
             Ray ray = _camera.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0f));
 
-            RaycastHit[] hits = Physics.RaycastAll(ray, _hitDistance);
+            RaycastHit[] hits = Physics.RaycastAll(ray, _camera.farClipPlane);
             if (hits != null && hits.Length > 0)
             {
                 RaycastHit hit = hits.First((h) => h.transform != transform);
@@ -32,6 +35,11 @@ namespace Assets.Scripts.Weapon
 
                 StartCoroutine(Recharge());
             }
+        }
+
+        private void Shoot(UnityEngine.InputSystem.InputAction.CallbackContext context)
+        {
+            Shoot();
         }
 
         private IEnumerator Recharge()
@@ -49,7 +57,7 @@ namespace Assets.Scripts.Weapon
 
             if (NetworkWeaponMessanger.Singleton != null)
             {
-                if (parent.TryGetComponent(out Player.NetworkPlayer player))
+                if (parent.TryGetComponent(out Player.NetworkLocalPlayer player))
                 {
                     position = parent.InverseTransformPoint(position);
                     rotation *= parent.rotation;
@@ -72,32 +80,28 @@ namespace Assets.Scripts.Weapon
             }
         }
 
-        private bool _holded = false;
-        private void Update()
+        private void Subscribe()
         {
-            if (_gun.activeSelf)
-            {
-                if (Input.GetAxis("Fire1") > 0f)
-                {
-                    Shoot();
-                }
-            }
+            if (InputController.Singleton == null) { return; }
+            InputController.Singleton.OnHandStarted += SwitchHand;
+            InputController.Singleton.OnUseStarted += Shoot;
+        }
 
-            if (Input.GetAxis("Fire2") > 0f)
-            {
-                if (_holded == false)
-                {
-                    _gun.SetActive(!_gun.activeSelf);
-                }
-                if (_holded == false)
-                {
-                    _holded = true;
-                }
-            }
-            else if (_holded)
-            {
-                _holded = false;
-            }
+        private void Unsubscribe()
+        {
+            if (InputController.Singleton == null) { return; }
+            InputController.Singleton.OnHandStarted -= SwitchHand;
+            InputController.Singleton.OnUseStarted -= Shoot;
+        }
+
+        private void Start()
+        {
+            Subscribe();
+        }
+
+        private void OnDestroy()
+        {
+            Unsubscribe();
         }
     }
 }

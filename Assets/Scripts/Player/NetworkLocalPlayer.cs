@@ -6,33 +6,40 @@ using UnityEngine;
 
 namespace Assets.Scripts.Player
 {
-    public class NetworkPlayer : NetworkBehaviour
+    public class NetworkLocalPlayer : NetworkBehaviour
     {
-        [SerializeField] private Transform _ownerBody = null;
-        [SerializeField] private Transform _otherBody = null;
+        [Header("Game settings")]
+        [SerializeField] private GameObject _localBodyPrefab = null;
+        [SerializeField] private GameObject _remoteBodyPrefab = null;
+        [Range(1f, 10f)]
+        [SerializeField] private float _smoothness = 3f;
+        [SerializeField] private float _positionMinStep = 0.15f;
+        [SerializeField] private float _rotationMinStep = 1.5f;
+        private Transform _localBody = null;
+        private Transform _remoteBody = null;
 
         private PlayerListItem _lobbyItem = null;
 
-        private static NetworkVariableInt _iconOffset = new NetworkVariableInt(new NetworkVariableSettings
+        #region PersonalData
+        private static readonly NetworkVariableInt _iconOffset = new NetworkVariableInt(new NetworkVariableSettings
         {
             WritePermission = NetworkVariablePermission.ServerOnly,
             ReadPermission = NetworkVariablePermission.Everyone
         }, -1);
 
-        #region PersonalData
-        private NetworkVariableString _nickname = new NetworkVariableString(new NetworkVariableSettings
+        private readonly NetworkVariableString _nickname = new NetworkVariableString(new NetworkVariableSettings
         {
             WritePermission = NetworkVariablePermission.OwnerOnly,
             ReadPermission = NetworkVariablePermission.Everyone
         }, "Player_9");
 
-        private NetworkVariableString _iconPath = new NetworkVariableString(new NetworkVariableSettings
+        private readonly NetworkVariableString _iconPath = new NetworkVariableString(new NetworkVariableSettings
         {
             WritePermission = NetworkVariablePermission.OwnerOnly,
             ReadPermission = NetworkVariablePermission.Everyone
         }, "Player_9");
 
-        private NetworkVariableBool _isReady = new NetworkVariableBool(new NetworkVariableSettings
+        private readonly NetworkVariableBool _isReady = new NetworkVariableBool(new NetworkVariableSettings
         {
             WritePermission = NetworkVariablePermission.OwnerOnly,
             ReadPermission = NetworkVariablePermission.Everyone
@@ -180,13 +187,13 @@ namespace Assets.Scripts.Player
         #region Body
         public bool IsBodyEnabled { get; private set; } = false;
 
-        private NetworkVariableVector3 _position = new NetworkVariableVector3(new NetworkVariableSettings
+        private readonly NetworkVariableVector3 _position = new NetworkVariableVector3(new NetworkVariableSettings
         {
             WritePermission = NetworkVariablePermission.OwnerOnly,
             ReadPermission = NetworkVariablePermission.Everyone
         }, Vector3.zero);
 
-        private NetworkVariableQuaternion _rotation = new NetworkVariableQuaternion(new NetworkVariableSettings
+        private readonly NetworkVariableQuaternion _rotation = new NetworkVariableQuaternion(new NetworkVariableSettings
         {
             WritePermission = NetworkVariablePermission.OwnerOnly,
             ReadPermission = NetworkVariablePermission.Everyone
@@ -196,23 +203,20 @@ namespace Assets.Scripts.Player
         {
             if (IsOwner)
             {
-                _ownerBody.gameObject.SetActive(true);
-                _otherBody.gameObject.SetActive(false);
+                _localBody = Instantiate(_localBodyPrefab).transform;
 
-                _ownerBody.position = position;
-                _ownerBody.rotation = rotation;
+                _localBody.SetPositionAndRotation(position, rotation);
 
-                _position.Value = _ownerBody.position;
-                _rotation.Value = _ownerBody.rotation;
+                _position.Value = _localBody.position;
+                _rotation.Value = _localBody.rotation;
             }
             else
             {
-                _otherBody.gameObject.SetActive(true);
-                _ownerBody.gameObject.SetActive(false);
+                _remoteBody = Instantiate(_remoteBodyPrefab).transform;
 
-                _otherBody.position = position;
-                _otherBody.rotation = rotation;
+                _remoteBody.SetPositionAndRotation(_position.Value, _rotation.Value);
             }
+
             IsBodyEnabled = true;
         }
 
@@ -220,36 +224,39 @@ namespace Assets.Scripts.Player
         {
             if (IsOwner)
             {
-                _ownerBody.gameObject.SetActive(false);
-                _otherBody.gameObject.SetActive(false);
+                if (_localBody != null)
+                    Destroy(_localBody.gameObject);
             }
             else
             {
-                _otherBody.gameObject.SetActive(false);
-                _ownerBody.gameObject.SetActive(false);
+                if (_remoteBody != null)
+                    Destroy(_remoteBody.gameObject);
             }
+
             IsBodyEnabled = false;
         }
 
         private void UpdateBody()
         {
-            if(IsBodyEnabled == false) { return; }
+            if (IsBodyEnabled == false) { return; }
             if (IsOwner)
             {
-                if(Vector3.Distance(_ownerBody.position, _position.Value) > 0.15f)
+                if (Vector3.Distance(_localBody.position, _position.Value) > _positionMinStep)
                 {
-                    _position.Value = _ownerBody.position;
+                    _position.Value = _localBody.position;
                 }
 
-                if (Quaternion.Angle(_ownerBody.rotation, _rotation.Value) > 1.5f)
+                if (Quaternion.Angle(_localBody.rotation, _rotation.Value) > _rotationMinStep)
                 {
-                    _rotation.Value = _ownerBody.rotation;
+                    _rotation.Value = _localBody.rotation;
                 }
             }
             else
             {
-                _otherBody.position = Vector3.Lerp(_otherBody.position, _position.Value, 0.1f);
-                _otherBody.rotation = Quaternion.Lerp(_otherBody.rotation, _rotation.Value, 0.1f);
+                _remoteBody.SetPositionAndRotation(
+                    Vector3.Lerp(_remoteBody.position, _position.Value, _smoothness * Time.deltaTime),
+                    Quaternion.Lerp(_remoteBody.rotation, _rotation.Value, _smoothness * Time.deltaTime)
+                    );
             }
         }
         #endregion Body
