@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Animator))]
 public class AI : MonoBehaviour
@@ -8,11 +9,23 @@ public class AI : MonoBehaviour
     private Animator _animator;
     private Vector3 _currentDestination;
     [SerializeField] private float _wanderRange = 10.0f;
+    [SerializeField] private bool _directControlEnabled;
+    [SerializeField] private float _speed;
+
+    private InputManager _inputManager;
 
     private void Start()
     {
+        if (_directControlEnabled == true)
+        {
+            _inputManager = new InputManager();
+            _inputManager.Game.Use.performed += SetDestination;
+            _inputManager.Game.Hand.performed += WarpToDestination;
+            _inputManager.Game.Enable();
+        }
+
         _agent = gameObject.AddComponent<NavMeshAgent>();
-        _agent.speed = 2;
+        _agent.speed = _speed;
         _agent.angularSpeed = 500;
 
         _currentDestination = transform.position;
@@ -21,8 +34,8 @@ public class AI : MonoBehaviour
     }
 
     private void Update()
-    {
-        if (Vector3.SqrMagnitude(_currentDestination - transform.position) <= 1)
+    {       
+        if (_directControlEnabled == false && Vector3.SqrMagnitude(_currentDestination - transform.position) <= 1)
         {
             if (RandomPointOnNavmesh(_wanderRange, out Vector3 newDestination))
             {
@@ -30,6 +43,7 @@ public class AI : MonoBehaviour
                 _agent.SetDestination(_currentDestination);
             }
         }
+
         if (_animator != null)
         {
             _animator.SetFloat("zSpeed", Vector3.Project(_agent.velocity, transform.forward).magnitude);
@@ -58,5 +72,29 @@ public class AI : MonoBehaviour
 
         result = Vector3.zero;
         return false;
+    }
+
+    public void SetDestination(InputAction.CallbackContext context)
+    {      
+        RaycastHit hit;
+        
+        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());     
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            _agent.SetDestination(hit.point);
+        }
+    }
+
+    public void WarpToDestination(InputAction.CallbackContext context)
+    {
+        RaycastHit hit;
+
+        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            _agent.Warp(hit.point);
+        }
     }
 }
