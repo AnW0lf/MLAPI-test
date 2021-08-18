@@ -6,6 +6,7 @@ using MLAPI.NetworkVariable;
 using MLAPI.Messaging;
 using System.Linq;
 using Assets.Scripts.Player;
+using System;
 
 namespace Game
 {
@@ -18,6 +19,9 @@ namespace Game
         [SerializeField] private int _maxCount = 100;
         [SerializeField] private Rect _populationArea = Rect.zero;
         [SerializeField] private float _raycastHeight = 20f;
+
+        public event Action OnBodiesEnabled;
+        public event Action OnBodiesDisabled;
 
         private NetworkVariableULong _civilianNextId = new NetworkVariableULong(new NetworkVariableSettings
         {
@@ -48,7 +52,6 @@ namespace Game
                     if (_connectedClients.ContainsKey(pair.Key) == false)
                     {
                         _connectedClients.Add(pair.Key, false);
-                        print($"Connected Clients :: Add client ID: {pair.Key}");
                     }
                 }
             }
@@ -109,12 +112,12 @@ namespace Game
         private void EnableBodies()
         {
             var players = FindObjectsOfType<NetworkLocalPlayer>();
-            print($"GameController :: EnableBodies {players.Count()}");
             foreach (var player in players)
             {
-                print($"GameController :: EnableBodies : PlayerId {player.OwnerClientId}");
                 player.EnableBody(RandomPointOnGround, Quaternion.identity);
             }
+
+            OnBodiesEnabled?.Invoke();
         }
 
         [ServerRpc(RequireOwnership = true)]
@@ -135,12 +138,10 @@ namespace Game
             if (_connectedClients.ContainsKey(clientId))
             {
                 _connectedClients[clientId] = true;
-                print($"Connected Clients :: Connect client ID: {clientId}");
             }
 
             if (_connectedClients.All((pair) => pair.Value))
             {
-                print($"Enable bodies");
                 EnableBodiesClientRpc();
             }
         }
