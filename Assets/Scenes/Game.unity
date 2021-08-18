@@ -3729,6 +3729,7 @@ MonoBehaviour:
   _questLines:
   - {fileID: 67382758}
   - {fileID: 2007374980}
+  - {fileID: 347758977}
 --- !u!4 &1102484230
 Transform:
   m_ObjectHideFlags: 0
