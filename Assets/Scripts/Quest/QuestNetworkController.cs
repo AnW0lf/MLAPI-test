@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.Quest
 {
-    public class QuestNetworkController : MonoBehaviour
+    public class QuestNetworkController : NetworkBehaviour
     {
         [SerializeField] private QuestLine[] _questLines = null;
 
@@ -59,6 +59,8 @@ namespace Assets.Scripts.Quest
         {
             get
             {
+                if (NetworkManager.Singleton.IsServer == false) { return int.MaxValue; }
+
                 List<int> emptyIndexes = new List<int>();
                 for (int i = 0; i < _clientIds.Length; i++)
                 {
