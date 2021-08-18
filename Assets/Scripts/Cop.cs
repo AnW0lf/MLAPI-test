@@ -93,11 +93,11 @@ public class Cop : MonoBehaviour
                     }
                 }
 
-                if (_fieldOfView.CheckTargetVisibility(_debugTarget, 1, true) == true)
-                {                  
-                     _currentChaseTarget = _debugTarget;
-                     SwitchToSuspicious();
-                }
+                //if (_fieldOfView.CheckTargetVisibility(_debugTarget, 1, true) == true)
+                //{                  
+                //     _currentChaseTarget = _debugTarget;
+                //     SwitchToSuspicious();
+                //}
 
                 break;
 
@@ -208,11 +208,11 @@ public class Cop : MonoBehaviour
                     }                 
                 }
 
-                if (_fieldOfView.CheckTargetVisibility(_debugTarget, 1, true) == true)
-                {
-                    _currentChaseTarget = _debugTarget;
-                    SwitchToChase();
-                }
+                //if (_fieldOfView.CheckTargetVisibility(_debugTarget, 1, true) == true)
+                //{
+                //    _currentChaseTarget = _debugTarget;
+                //    SwitchToChase();
+                //}
 
                 if (_searchDestinationReached == true && _searchTimer > 0)
                 {

@@ -432,9 +432,9 @@ MonoBehaviour:
   targetAngles: {x: 0, y: 0, z: 0}
   playerCanMove: 1
   walkByDefault: 1
-  walkSpeed: 4
+  walkSpeed: 2
   sprintKey: 304
-  sprintSpeed: 8
+  sprintSpeed: 4
   jumpPower: 5
   canJump: 1
   canHoldJump: 0
@@ -569,7 +569,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 2493098294660284957}
-  _hitDistance: 40
   _rechargeDelay: 1
   _gun: {fileID: 8199092520541890419}
 --- !u!1 &6058151348189850289

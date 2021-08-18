@@ -937,11 +937,16 @@ MonoBehaviour:
   _walkSpeed: 2
   _runSpeed: 4
   _wanderRange: 20
+  _searchRange: 5
   _changeDestinationDelay: 10
   _fieldOfView: {fileID: 690994103}
   _targetLine: {fileID: 712442314}
   _debugTarget: {fileID: 0}
   _suspiciousDelay: 3
+  _searchDelay: 6
+  _searchLooksCount: 3
+  _searchLookDelay: 1
+  _searchRunsCount: 5
   _stateText: {fileID: 551843953}
 --- !u!114 &690994103
 MonoBehaviour:
@@ -955,7 +960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba487d7203aa604c9ce4f1b1627f534, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 10
+  viewRadius: 15
   viewAngle: 60
   targetMask:
     serializedVersion: 2

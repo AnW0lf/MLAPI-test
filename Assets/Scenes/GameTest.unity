@@ -2221,34 +2221,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 690994103, guid: 7187d7598d1647547b271d94fb3fcf99, type: 3}
-      propertyPath: viewRadius
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 208856683548970284, guid: 7187d7598d1647547b271d94fb3fcf99, type: 3}
       propertyPath: _debugTarget
       value: 
       objectReference: {fileID: 972247201}
-    - target: {fileID: 208856683548970284, guid: 7187d7598d1647547b271d94fb3fcf99, type: 3}
-      propertyPath: _searchDelay
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 208856683548970284, guid: 7187d7598d1647547b271d94fb3fcf99, type: 3}
-      propertyPath: _searchRange
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 208856683548970284, guid: 7187d7598d1647547b271d94fb3fcf99, type: 3}
-      propertyPath: _searchLookDelay
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 208856683548970284, guid: 7187d7598d1647547b271d94fb3fcf99, type: 3}
-      propertyPath: _searchRunsCount
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 208856683548970284, guid: 7187d7598d1647547b271d94fb3fcf99, type: 3}
-      propertyPath: _searchLooksCount
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 8751431591915041735, guid: 7187d7598d1647547b271d94fb3fcf99, type: 3}
       propertyPath: m_RootOrder
       value: 1

@@ -595,6 +595,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _wanderRange: 10
+  _directControlEnabled: 0
+  _speed: 2
 --- !u!1 &8751431591915281419
 GameObject:
   m_ObjectHideFlags: 0
