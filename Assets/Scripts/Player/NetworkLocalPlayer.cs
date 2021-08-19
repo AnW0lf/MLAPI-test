@@ -2,7 +2,9 @@
 using MLAPI;
 using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.Player
 {
@@ -11,12 +13,8 @@ namespace Assets.Scripts.Player
         [Header("Game settings")]
         [SerializeField] private GameObject _localBodyPrefab = null;
         [SerializeField] private GameObject _remoteBodyPrefab = null;
-        [Range(1f, 10f)]
-        [SerializeField] private float _smoothness = 3f;
-        [SerializeField] private float _positionMinStep = 0.15f;
-        [SerializeField] private float _rotationMinStep = 1.5f;
-        private Transform _localBody = null;
-        private Transform _remoteBody = null;
+        private LocalPlayer _localBody = null;
+        private RemotePlayer _remoteBody = null;
 
         private PlayerListItem _lobbyItem = null;
 
@@ -199,22 +197,32 @@ namespace Assets.Scripts.Player
             ReadPermission = NetworkVariablePermission.Everyone
         }, Quaternion.identity);
 
+        private readonly NetworkVariableVector2 _velocity = new NetworkVariableVector2(new NetworkVariableSettings
+        {
+            WritePermission = NetworkVariablePermission.OwnerOnly,
+            ReadPermission = NetworkVariablePermission.Everyone
+        }, Vector2.zero);
+
+        public event Action<Vector3> OnPositionChanged;
+        public event Action<Quaternion> OnRotationChanged;
+        public event Action<Vector2> OnVelocityChanged;
+
         public void EnableBody(Vector3 position, Quaternion rotation)
         {
             if (IsOwner)
             {
-                _localBody = Instantiate(_localBodyPrefab).transform;
+                _localBody = Instantiate(_localBodyPrefab).GetComponent<LocalPlayer>(); ;
 
-                _localBody.SetPositionAndRotation(position, rotation);
+                _localBody.transform.SetPositionAndRotation(position, rotation);
 
-                _position.Value = _localBody.position;
-                _rotation.Value = _localBody.rotation;
+                _position.Value = _localBody.transform.position;
+                _rotation.Value = _localBody.transform.rotation;
             }
             else
             {
-                _remoteBody = Instantiate(_remoteBodyPrefab).transform;
+                _remoteBody = Instantiate(_remoteBodyPrefab).GetComponent<RemotePlayer>(); ;
 
-                _remoteBody.SetPositionAndRotation(_position.Value, _rotation.Value);
+                _remoteBody.transform.SetPositionAndRotation(_position.Value, _rotation.Value);
             }
 
             IsBodyEnabled = true;
@@ -226,6 +234,10 @@ namespace Assets.Scripts.Player
             {
                 if (_localBody != null)
                     Destroy(_localBody.gameObject);
+
+                _position.Value = Vector3.zero;
+                _rotation.Value = Quaternion.identity;
+                _velocity.Value = Vector2.zero;
             }
             else
             {
@@ -241,22 +253,17 @@ namespace Assets.Scripts.Player
             if (IsBodyEnabled == false) { return; }
             if (IsOwner)
             {
-                if (Vector3.Distance(_localBody.position, _position.Value) > _positionMinStep)
-                {
-                    _position.Value = _localBody.position;
-                }
+                if (_localBody == null) { return; }
 
-                if (Quaternion.Angle(_localBody.rotation, _rotation.Value) > _rotationMinStep)
-                {
-                    _rotation.Value = _localBody.rotation;
-                }
+                _position.Value = _localBody.transform.position;
+                _rotation.Value = _localBody.transform.rotation;
+                _velocity.Value = _localBody.Velocity;
             }
             else
             {
-                _remoteBody.SetPositionAndRotation(
-                    Vector3.Lerp(_remoteBody.position, _position.Value, _smoothness * Time.deltaTime),
-                    Quaternion.Lerp(_remoteBody.rotation, _rotation.Value, _smoothness * Time.deltaTime)
-                    );
+                OnPositionChanged?.Invoke(_position.Value);
+                OnRotationChanged?.Invoke(_rotation.Value);
+                OnVelocityChanged?.Invoke(_velocity.Value);
             }
         }
         #endregion Body

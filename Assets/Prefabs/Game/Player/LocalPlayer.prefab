@@ -254,6 +254,7 @@ GameObject:
   - component: {fileID: 2541670375398150269}
   - component: {fileID: 5171045411909914518}
   - component: {fileID: 2138110933169509059}
+  - component: {fileID: 7730488199429258342}
   m_Layer: 0
   m_Name: LocalPlayer
   m_TagString: Player
@@ -571,6 +572,19 @@ MonoBehaviour:
   _camera: {fileID: 2493098294660284957}
   _rechargeDelay: 1
   _gun: {fileID: 8199092520541890419}
+--- !u!114 &7730488199429258342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2510424013269367995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9bc9c20e650abc43baa7bf8b9e15dbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _controller: {fileID: 2541670375398150269}
 --- !u!1 &6058151348189850289
 GameObject:
   m_ObjectHideFlags: 0

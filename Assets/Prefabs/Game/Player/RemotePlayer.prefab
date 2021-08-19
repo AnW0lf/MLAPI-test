@@ -618,6 +618,7 @@ GameObject:
   - component: {fileID: 5224230782529156733}
   - component: {fileID: 1940750665212391900}
   - component: {fileID: 167390983823816971}
+  - component: {fileID: 7428834347312412177}
   m_Layer: 0
   m_Name: RemotePlayer
   m_TagString: Civilian
@@ -652,7 +653,7 @@ Animator:
   m_GameObject: {fileID: 4809987962402567313}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: ad52d12ad7e12c644a18f176d31a93bb, type: 3}
-  m_Controller: {fileID: 9100000, guid: 5876447dc0d64004da12323a7d0ae86f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 114ba25c0dc07ba46ad268b5790584fe, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -770,11 +771,30 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 100
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 2
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!114 &7428834347312412177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4809987962402567313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ab801cc4dd911c4b9671ced4969751e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 4809987962395202543}
+  _minPositionStep: 0.15
+  _minRotationStep: 1.5
+  _minVelocityStep: 0.1
+  _positionSmoothness: 3
+  _rotationSmoothness: 3
+  _velocitySmoothness: 3
 --- !u!1 &4809987962402569729
 GameObject:
   m_ObjectHideFlags: 0
