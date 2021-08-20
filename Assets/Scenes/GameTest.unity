@@ -1953,6 +1953,11 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!1 &538805122 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2030677539, guid: 7187d7598d1647547b271d94fb3fcf99, type: 3}
+  m_PrefabInstance: {fileID: 690055269}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &566459999
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2225,6 +2230,14 @@ PrefabInstance:
       propertyPath: _debugTarget
       value: 
       objectReference: {fileID: 972247201}
+    - target: {fileID: 208856683548970284, guid: 7187d7598d1647547b271d94fb3fcf99, type: 3}
+      propertyPath: _policeStation
+      value: 
+      objectReference: {fileID: 752725303}
+    - target: {fileID: 208856683548970284, guid: 7187d7598d1647547b271d94fb3fcf99, type: 3}
+      propertyPath: _fieldOfViewMesh
+      value: 
+      objectReference: {fileID: 538805122}
     - target: {fileID: 8751431591915041735, guid: 7187d7598d1647547b271d94fb3fcf99, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3982,7 +3995,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8980844830417322274, guid: 8431c994dfc3ec44687e92417b1d8cb2, type: 3}
       propertyPath: _speed
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8980844830417322274, guid: 8431c994dfc3ec44687e92417b1d8cb2, type: 3}
       propertyPath: _directControlEnabled
