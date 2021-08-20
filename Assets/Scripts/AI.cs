@@ -14,6 +14,10 @@ public class AI : MonoBehaviour
 
     private InputManager _inputManager;
 
+    public Transform OwningCopTransform { get; set; }
+    public bool UnderArrest { get; set; }
+    public bool InPrison { get; set; }
+
     private void Start()
     {
         if (_directControlEnabled == true)
@@ -35,7 +39,16 @@ public class AI : MonoBehaviour
 
     private void Update()
     {       
-        if (_directControlEnabled == false && Vector3.SqrMagnitude(_currentDestination - transform.position) <= 1)
+        if (InPrison == true)
+        {          
+            return;
+        }
+
+        if (UnderArrest == true)
+        {
+            _agent.SetDestination(OwningCopTransform.position);
+        }
+        else if (_directControlEnabled == false && Vector3.SqrMagnitude(_currentDestination - transform.position) <= 1)
         {
             if (RandomPointOnNavmesh(_wanderRange, out Vector3 newDestination))
             {
@@ -76,6 +89,11 @@ public class AI : MonoBehaviour
 
     public void SetDestination(InputAction.CallbackContext context)
     {      
+        if (UnderArrest == true)
+        {
+            return;
+        }
+
         RaycastHit hit;
         
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());     
@@ -88,6 +106,11 @@ public class AI : MonoBehaviour
 
     public void WarpToDestination(InputAction.CallbackContext context)
     {
+        if (UnderArrest == true)
+        {
+            return;
+        }
+
         RaycastHit hit;
 
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
@@ -96,5 +119,12 @@ public class AI : MonoBehaviour
         {
             _agent.Warp(hit.point);
         }
+    }
+
+    public void GoToPrison(Transform prisonTransform)
+    {
+        _agent.SetDestination(prisonTransform.position);
+        InPrison = true;
+        UnderArrest = false;
     }
 }
