@@ -251,6 +251,15 @@ public class FirstPersonAIO : MonoBehaviour
 
     private InputController _input = null;
 
+    public Vector3 Velocity
+    {
+        get
+        {
+            if (fps_Rigidbody == null) return Vector3.zero;
+            return fps_Rigidbody.velocity;
+        }
+    }
+
     private void Awake()
     {
         #region Look Settings - Awake
@@ -359,7 +368,7 @@ public class FirstPersonAIO : MonoBehaviour
             float camFOV = playerCamera.fieldOfView;
 
             //print($"Mouse (X : Y) :: ({Input.GetAxis("Mouse X")} : {Input.GetAxis("Mouse Y")})");
-            print($"Input (X : Y) :: ({((float)_input.MouseDelta.x).ToString()} : {((float)_input.MouseDelta.y).ToString()})");
+            //print($"Input (X : Y) :: ({_input.MouseDelta.x} : {_input.MouseDelta.y})");
 
             if (cameraInputMethod == CameraInputMethod.Traditional || cameraInputMethod == CameraInputMethod.TraditionalWithConstraints)
             {
@@ -586,8 +595,7 @@ public class FirstPersonAIO : MonoBehaviour
 
         if (playerCanMove && !controllerPauseState)
         {
-            fps_Rigidbody.velocity = MoveDirection + (Vector3.up * yVelocity);
-
+            fps_Rigidbody.velocity = MoveDirection + (transform.up * yVelocity);
         }
         else { fps_Rigidbody.velocity = Vector3.zero; }
 

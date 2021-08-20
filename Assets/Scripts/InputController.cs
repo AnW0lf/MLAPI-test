@@ -11,7 +11,6 @@ public class InputController : MonoBehaviour
         if (Singleton == null) Singleton = this;
         else if (Singleton != this) Destroy(gameObject);
 
-        DontDestroyOnLoad(gameObject);
         _inputs = new InputManager();
         Init();
     }
@@ -299,55 +298,55 @@ public class InputController : MonoBehaviour
     #endregion Game - Crouch
 
     #region Game - Hand
-    public event Action<bool> OnHandStarted;
-    public event Action<bool> OnHandPerformed;
-    public event Action<bool> OnHandCancelled;
+    public event Action<UnityEngine.InputSystem.InputAction.CallbackContext> OnHandStarted;
+    public event Action<UnityEngine.InputSystem.InputAction.CallbackContext> OnHandPerformed;
+    public event Action<UnityEngine.InputSystem.InputAction.CallbackContext> OnHandCancelled;
     public bool IsHand { get; private set; } = false;
     public bool IsHandDown { get; private set; } = false;
     public bool IsHandUp { get; private set; } = false;
     private void HandStarted(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         IsHand = true;
-        OnHandStarted?.Invoke(IsHand);
+        OnHandStarted?.Invoke(context);
         IsHandDown = true;
     }
 
     private void HandPerformed(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        OnHandPerformed?.Invoke(IsHand);
+        OnHandPerformed?.Invoke(context);
     }
 
     private void HandCancelled(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         IsHand = false;
-        OnHandCancelled?.Invoke(IsHand);
+        OnHandCancelled?.Invoke(context);
         IsHandUp = true;
     }
     #endregion Game - Hand
 
     #region Game - Use
-    public event Action<bool> OnUseStarted;
-    public event Action<bool> OnUsePerformed;
-    public event Action<bool> OnUseCancelled;
+    public event Action<UnityEngine.InputSystem.InputAction.CallbackContext> OnUseStarted;
+    public event Action<UnityEngine.InputSystem.InputAction.CallbackContext> OnUsePerformed;
+    public event Action<UnityEngine.InputSystem.InputAction.CallbackContext> OnUseCancelled;
     public bool IsUse { get; private set; } = false;
     public bool IsUseDown { get; private set; } = false;
     public bool IsUseUp { get; private set; } = false;
     private void UseStarted(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         IsUse = true;
-        OnUseStarted?.Invoke(IsUse);
+        OnUseStarted?.Invoke(context);
         IsUseDown = true;
     }
 
     private void UsePerformed(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        OnUsePerformed?.Invoke(IsUse);
+        OnUsePerformed?.Invoke(context);
     }
 
     private void UseCancelled(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         IsUse = false;
-        OnUseCancelled?.Invoke(IsUse);
+        OnUseCancelled?.Invoke(context);
         IsUseUp = true;
     }
     #endregion Game - Use

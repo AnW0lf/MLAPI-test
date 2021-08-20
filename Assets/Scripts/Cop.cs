@@ -27,11 +27,9 @@ public class Cop : MonoBehaviour
     private CopState _currentCopState = CopState.Calm;
 
     [SerializeField] private FieldOfView _fieldOfView;
-    [SerializeField] private GameObject _fieldOfViewMesh;
     [SerializeField] private LineRenderer _targetLine;
 
     [SerializeField] private Transform _debugTarget;
-    private AI _currentTargetAI;
     private Transform _currentChaseTarget;
     private Vector3 _lastTargetPosition;
     private Vector3 _lastTargetLookAtPosition;
@@ -53,16 +51,13 @@ public class Cop : MonoBehaviour
     private float _targetLostTimer = 0.1f;
 
     [SerializeField] private TextMesh _stateText;
-    [SerializeField] private Transform _policeStation;
     private void Start()
     {
         _agent = gameObject.AddComponent<NavMeshAgent>();
         _agent.speed = _walkSpeed;
         _agent.angularSpeed = 1200;
         _agent.acceleration = 100;
-        _agent.autoBraking = false;
         _currentDestination = transform.position;
-        _currentTargetAI = _debugTarget.GetComponent<AI>();
 
         _animator = GetComponent<Animator>();
         _changeDestinationTimer = _changeDestinationDelay;
@@ -98,11 +93,11 @@ public class Cop : MonoBehaviour
                     }
                 }
 
-                if (_currentTargetAI.UnderArrest == false && _currentTargetAI.InPrison == false && _fieldOfView.CheckTargetVisibility(_debugTarget, 1, true) == true)
-                {                  
-                     _currentChaseTarget = _debugTarget;
-                     SwitchToSuspicious();
-                }
+                //if (_fieldOfView.CheckTargetVisibility(_debugTarget, 1, true) == true)
+                //{                  
+                //     _currentChaseTarget = _debugTarget;
+                //     SwitchToSuspicious();
+                //}
 
                 break;
 
@@ -164,11 +159,6 @@ public class Cop : MonoBehaviour
                     _targetLostTimer = 0.1f;
                 }
 
-                if (Vector3.SqrMagnitude(_currentChaseTarget.position - transform.position) < 4)
-                {
-                    SwitchToArrest();
-                }
-
                 break;
 
             case CopState.Search:
@@ -218,11 +208,11 @@ public class Cop : MonoBehaviour
                     }                 
                 }
 
-                if (_fieldOfView.CheckTargetVisibility(_debugTarget, 1, true) == true)
-                {
-                    _currentChaseTarget = _debugTarget;
-                    SwitchToChase();
-                }
+                //if (_fieldOfView.CheckTargetVisibility(_debugTarget, 1, true) == true)
+                //{
+                //    _currentChaseTarget = _debugTarget;
+                //    SwitchToChase();
+                //}
 
                 if (_searchDestinationReached == true && _searchTimer > 0)
                 {
@@ -237,13 +227,6 @@ public class Cop : MonoBehaviour
 
             case CopState.Arrest:
 
-                _agent.SetDestination(_policeStation.position);
-                if (Vector3.SqrMagnitude(_policeStation.position - transform.position) < 4)
-                {
-                    _currentChaseTarget.GetComponent<AI>().GoToPrison(_policeStation.transform);
-                    SwitchToCalm();
-                }
-
                 break;
 
             default:
@@ -256,7 +239,6 @@ public class Cop : MonoBehaviour
     private void SwitchToCalm()
     {
         _currentCopState = CopState.Calm;
-        _fieldOfViewMesh.SetActive(true);
         _suspiciousTimer = 0;
         
         _agent.speed = _walkSpeed;
@@ -311,18 +293,7 @@ public class Cop : MonoBehaviour
 
     private void SwitchToArrest()
     {
-        _currentCopState = CopState.Arrest;
-        _currentTargetAI.UnderArrest = true;
-        _currentTargetAI.OwningCopTransform = transform;
-        _agent.speed = _walkSpeed;
-        _fieldOfViewMesh.SetActive(false);
 
-        _targetLine.SetPosition(0, transform.position);
-        _targetLine.SetPosition(1, transform.position);
-        _targetLine.startColor = Color.yellow;
-        _targetLine.endColor = Color.yellow;
-
-        _stateText.text = "Now pray, scum";
     }
 
     private void SetRandomDestination()

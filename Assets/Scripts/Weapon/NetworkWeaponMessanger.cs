@@ -28,7 +28,7 @@ namespace Assets.Scripts.Weapon
         [ClientRpc]
         private void HitPlayerClientRpc(ulong playerId, Vector3 hitPosition, Quaternion hitRotation)
         {
-            Player.NetworkPlayer player = NetworkManager.Singleton.ConnectedClients[playerId].PlayerObject.GetComponent<Player.NetworkPlayer>();
+            Player.NetworkLocalPlayer player = NetworkManager.Singleton.ConnectedClients[playerId].PlayerObject.GetComponent<Player.NetworkLocalPlayer>();
             if (player == null) { return; }
 
             var hitMarker = Instantiate(_hitMarkerPrefab, player.transform).GetComponent<HitMarker>();

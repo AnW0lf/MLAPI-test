@@ -5,6 +5,8 @@ using MLAPI;
 using MLAPI.NetworkVariable;
 using MLAPI.Messaging;
 using System.Linq;
+using Assets.Scripts.Player;
+using System;
 
 namespace Game
 {
@@ -18,11 +20,16 @@ namespace Game
         [SerializeField] private Rect _populationArea = Rect.zero;
         [SerializeField] private float _raycastHeight = 20f;
 
+        public event Action OnBodiesEnabled;
+        public event Action OnBodiesDisabled;
+
         private NetworkVariableULong _civilianNextId = new NetworkVariableULong(new NetworkVariableSettings
         {
             ReadPermission = NetworkVariablePermission.Everyone,
             WritePermission = NetworkVariablePermission.ServerOnly
         }, 1);
+
+        private Dictionary<ulong, bool> _connectedClients = new Dictionary<ulong, bool>();
 
         private void Awake()
         {
@@ -32,13 +39,24 @@ namespace Game
 
         public override void NetworkStart()
         {
-            if (NetworkManager.Singleton != null && NetworkManager.Singleton.IsServer)
+            if (NetworkManager.Singleton == null) { return; }
+            if (NetworkManager.Singleton.IsServer)
             {
                 for (int i = 0; i < _maxCount - NetworkManager.Singleton.ConnectedClients.Count; i++)
                 {
                     SpawnNPC();
                 }
+
+                foreach (var pair in NetworkManager.Singleton.ConnectedClients)
+                {
+                    if (_connectedClients.ContainsKey(pair.Key) == false)
+                    {
+                        _connectedClients.Add(pair.Key, false);
+                    }
+                }
             }
+
+            ClientConnectedServerRpc(NetworkManager.Singleton.LocalClientId);
         }
 
         private void SpawnNPC()
@@ -91,12 +109,40 @@ namespace Game
             }
         }
 
-        public void EnableBodies()
+        private void EnableBodies()
         {
-            var players = NetworkManager.Singleton.ConnectedClientsList.Select((client) => client.PlayerObject.GetComponent<Assets.Scripts.Player.NetworkPlayer>());
-            foreach(var player in players)
+            var players = FindObjectsOfType<NetworkLocalPlayer>();
+            foreach (var player in players)
             {
                 player.EnableBody(RandomPointOnGround, Quaternion.identity);
+            }
+
+            OnBodiesEnabled?.Invoke();
+        }
+
+        [ServerRpc(RequireOwnership = true)]
+        public void EnableBodiesServerRpc()
+        {
+            EnableBodiesClientRpc();
+        }
+
+        [ClientRpc]
+        private void EnableBodiesClientRpc()
+        {
+            EnableBodies();
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void ClientConnectedServerRpc(ulong clientId)
+        {
+            if (_connectedClients.ContainsKey(clientId))
+            {
+                _connectedClients[clientId] = true;
+            }
+
+            if (_connectedClients.All((pair) => pair.Value))
+            {
+                EnableBodiesClientRpc();
             }
         }
 

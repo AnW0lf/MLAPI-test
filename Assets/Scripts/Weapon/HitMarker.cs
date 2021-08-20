@@ -8,7 +8,7 @@ namespace Assets.Scripts.Weapon
     public class HitMarker : MonoBehaviour
     {
         public float LifeTime { get; set; } = -1f;
-        public Player.NetworkPlayer Player { get; set; } = null;
+        public Player.NetworkLocalPlayer Player { get; set; } = null;
         public Civilian Civilian { get; set; } = null;
 
         private void Update()
