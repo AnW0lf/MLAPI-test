@@ -63,7 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _civilianPrefabs:
   - {fileID: 8751431591915280027, guid: 8431c994dfc3ec44687e92417b1d8cb2, type: 3}
-  _maxCount: 0
+  _maxCount: 25
   _populationArea:
     serializedVersion: 2
     x: -5.8

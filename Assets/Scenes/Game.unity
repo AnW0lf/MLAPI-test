@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.00073049753, g: 0.001656254, b: 0.04389727, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -26556,17 +26556,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5118559711138674614, guid: bd51da9ea2f0cb44b993f17a5e5a2790, type: 3}
-      propertyPath: _maxCount
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5118559711138674614, guid: bd51da9ea2f0cb44b993f17a5e5a2790, type: 3}
-      propertyPath: _civilianPrefabs.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5118559711138674614, guid: bd51da9ea2f0cb44b993f17a5e5a2790, type: 3}
       propertyPath: _civilianPrefabs.Array.data[1]
       value: 
-      objectReference: {fileID: 8751431591915280027, guid: 7187d7598d1647547b271d94fb3fcf99, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 5118559711138674615, guid: bd51da9ea2f0cb44b993f17a5e5a2790, type: 3}
       propertyPath: m_Name
       value: GameController

@@ -223,6 +223,7 @@ namespace Assets.Scripts.Player
                 _remoteBody = Instantiate(_remoteBodyPrefab).GetComponent<RemotePlayer>(); ;
 
                 _remoteBody.transform.SetPositionAndRotation(_position.Value, _rotation.Value);
+                _remoteBody.ConnectToNetworkPlayer(this);
             }
 
             IsBodyEnabled = true;
