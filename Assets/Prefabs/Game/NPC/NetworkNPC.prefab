@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5118559711138674615
+--- !u!1 &8731330161750732350
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,66 +8,58 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5118559711138674617}
-  - component: {fileID: 4314255410616911550}
-  - component: {fileID: 5118559711138674614}
+  - component: {fileID: 6902487283928284603}
+  - component: {fileID: 7326545736457102380}
+  - component: {fileID: -8036068608716658162}
   m_Layer: 0
-  m_Name: GameController
+  m_Name: NetworkNPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5118559711138674617
+--- !u!4 &6902487283928284603
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5118559711138674615}
+  m_GameObject: {fileID: 8731330161750732350}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4314255410616911550
+--- !u!114 &7326545736457102380
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5118559711138674615}
+  m_GameObject: {fileID: 8731330161750732350}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   NetworkInstanceId: 0
-  PrefabHash: 11898639618283956779
-  PrefabHashGenerator: GameController
+  PrefabHash: 14809531337109240914
+  PrefabHashGenerator: NetworkNPC
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
---- !u!114 &5118559711138674614
+--- !u!114 &-8036068608716658162
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5118559711138674615}
+  m_GameObject: {fileID: 8731330161750732350}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9318242f92339e04ba75069f423cef12, type: 3}
+  m_Script: {fileID: 11500000, guid: a39ce26de3b1fe24db32b6cbb73103a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _networkNpcPrefabs:
-  - {fileID: 8731330161750732350, guid: 07e106ee8ae51174d88b760dd051815d, type: 3}
-  _maxCount: 25
-  _populationArea:
-    serializedVersion: 2
-    x: -5.8
-    y: -3.35
-    width: 99.3
-    height: 77.5
-  _raycastHeight: 35
+  _localPrefab: {fileID: 8751431591915280027, guid: 451f28d03174079488fdb884b362e5d6, type: 3}
+  _remotePrefab: {fileID: 8751431591915280027, guid: 56e25cfe03fe71c4997e6d5819394b14, type: 3}

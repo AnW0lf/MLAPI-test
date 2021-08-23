@@ -7,6 +7,7 @@ using MLAPI.Messaging;
 using System.Linq;
 using Assets.Scripts.Player;
 using System;
+using Assets.Scripts.NPC;
 
 namespace Game
 {
@@ -15,7 +16,7 @@ namespace Game
         public static GameController Singleton { get; private set; } = null;
 
         [Header("Population")]
-        [SerializeField] private GameObject[] _civilianPrefabs = null;
+        [SerializeField] private GameObject[] _networkNpcPrefabs = null;
         [SerializeField] private int _maxCount = 100;
         [SerializeField] private Rect _populationArea = Rect.zero;
         [SerializeField] private float _raycastHeight = 20f;
@@ -63,12 +64,15 @@ namespace Game
         {
             if (IsServer == false) { return; }
 
-            GameObject prefab = _civilianPrefabs[Random.Range(0, _civilianPrefabs.Length)];
+            GameObject prefab = _networkNpcPrefabs[Random.Range(0, _networkNpcPrefabs.Length)];
             Vector3 position = RandomPointOnGround;
             Quaternion rotation = Quaternion.Euler(Vector3.up * Random.Range(0f, 360f));
-            var civilian = Instantiate(prefab, position, rotation).GetComponent<Civilian>();
-            civilian.GetComponent<NetworkObject>().Spawn();
-            civilian.UniqueId = _civilianNextId.Value;
+
+            var netNpc = Instantiate(prefab).GetComponent<NetworkNPC>();
+            netNpc.GetComponent<NetworkObject>().Spawn();
+            netNpc.NpcId = _civilianNextId.Value;
+            netNpc.SpawnLocal(position, rotation);
+
             _civilianNextId.Value++;
         }
 
