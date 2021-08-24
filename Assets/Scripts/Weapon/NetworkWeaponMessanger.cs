@@ -47,14 +47,14 @@ namespace Assets.Scripts.Weapon
         [ClientRpc]
         private void HitCivilianClientRpc(ulong civilianId, Vector3 hitPosition, Quaternion hitRotation)
         {
-            CitizenNPC civilian = FindObjectsOfType<CitizenNPC>().First((c) => c.UniqueId == civilianId);
-            if (civilian == null) { return; }
+            //CitizenNPC civilian = FindObjectsOfType<CitizenNPC>().First((c) => c.UniqueId == civilianId);
+            //if (civilian == null) { return; }
 
-            var hitMarker = Instantiate(_hitMarkerPrefab, civilian.transform).GetComponent<HitMarker>();
-            hitMarker.transform.localPosition = hitPosition;
-            hitMarker.transform.localRotation = hitRotation;
-            hitMarker.LifeTime = _hitMarkerLifeTime;
-            hitMarker.Civilian = civilian;
+            //var hitMarker = Instantiate(_hitMarkerPrefab, civilian.transform).GetComponent<HitMarker>();
+            //hitMarker.transform.localPosition = hitPosition;
+            //hitMarker.transform.localRotation = hitRotation;
+            //hitMarker.LifeTime = _hitMarkerLifeTime;
+            //hitMarker.Civilian = civilian;
         }
 
         [ServerRpc(RequireOwnership = false)]

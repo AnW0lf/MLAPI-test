@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Assets.Scripts.NPC
 {
@@ -7,7 +8,7 @@ namespace Assets.Scripts.NPC
     {
         [SerializeField] private Transform _body = null;
         [SerializeField] private Animator _animator = null;
-        [SerializeField] private Rigidbody _rigidbody = null;
+        [SerializeField] private NavMeshAgent _agent = null;
         [Header("Minimum difference")]
         [SerializeField] private float _minPositionStep = 0.2f;
         [SerializeField] private float _minRotationStep = 1.5f;
@@ -23,8 +24,8 @@ namespace Assets.Scripts.NPC
         {
             get
             {
-                float xx = Vector3.Project(_rigidbody.velocity, _body.right).magnitude;
-                float yy = Vector3.Project(_rigidbody.velocity, _body.forward).magnitude;
+                float xx = Vector3.Project(_agent.velocity, _body.right).magnitude;
+                float yy = Vector3.Project(_agent.velocity, _body.forward).magnitude;
                 return new Vector2(xx, yy);
             }
         }

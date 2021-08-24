@@ -67,7 +67,7 @@ namespace Assets.Scripts.Weapon
                 {
                     position = parent.InverseTransformPoint(position);
                     rotation *= parent.rotation;
-                    NetworkWeaponMessanger.Singleton.HitCivilianServerRpc(civilian.UniqueId, position, rotation);
+                    //NetworkWeaponMessanger.Singleton.HitCivilianServerRpc(civilian.UniqueId, position, rotation);
                 }
                 else
                 {
