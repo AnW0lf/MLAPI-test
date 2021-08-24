@@ -43,11 +43,6 @@ namespace Game
             if (NetworkManager.Singleton == null) { return; }
             if (NetworkManager.Singleton.IsServer)
             {
-                for (int i = 0; i < _maxCount - NetworkManager.Singleton.ConnectedClients.Count; i++)
-                {
-                    SpawnNPC();
-                }
-
                 foreach (var pair in NetworkManager.Singleton.ConnectedClients)
                 {
                     if (_connectedClients.ContainsKey(pair.Key) == false)
@@ -146,6 +141,11 @@ namespace Game
 
             if (_connectedClients.All((pair) => pair.Value))
             {
+                for (int i = 0; i < _maxCount - NetworkManager.Singleton.ConnectedClients.Count; i++)
+                {
+                    SpawnNPC();
+                }
+
                 EnableBodiesClientRpc();
             }
         }

@@ -63,7 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _networkNpcPrefabs:
   - {fileID: 8731330161750732350, guid: 07e106ee8ae51174d88b760dd051815d, type: 3}
-  _maxCount: 25
+  _maxCount: 5
   _populationArea:
     serializedVersion: 2
     x: -5.8

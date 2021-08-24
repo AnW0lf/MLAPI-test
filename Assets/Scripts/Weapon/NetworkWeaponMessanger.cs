@@ -47,7 +47,7 @@ namespace Assets.Scripts.Weapon
         [ClientRpc]
         private void HitCivilianClientRpc(ulong civilianId, Vector3 hitPosition, Quaternion hitRotation)
         {
-            Civilian civilian = FindObjectsOfType<Civilian>().First((c) => c.UniqueId == civilianId);
+            CitizenNPC civilian = FindObjectsOfType<CitizenNPC>().First((c) => c.UniqueId == civilianId);
             if (civilian == null) { return; }
 
             var hitMarker = Instantiate(_hitMarkerPrefab, civilian.transform).GetComponent<HitMarker>();

@@ -499,6 +499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _body: {fileID: 8751431591915041735}
+  _animator: {fileID: 8751431591922610661}
   _rigidbody: {fileID: 8751431591915280031}
   _minPositionStep: 0.2
   _minRotationStep: 1.5

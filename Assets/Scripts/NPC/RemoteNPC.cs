@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.NPC
 {
@@ -12,6 +10,10 @@ namespace Assets.Scripts.NPC
         [SerializeField] private float _positionSmoothness = 3f;
         [SerializeField] private float _rotationSmoothness = 3f;
         [SerializeField] private float _velocitySmoothness = 3f;
+        [Header("Maximum difference to interpolate")]
+        [SerializeField] private float _maxPositionStep = 1.5f;
+        [SerializeField] private float _maxRotationStep = 30f;
+        [SerializeField] private float _maxVelocityStep = 1f;
 
         private Vector3 _targetPosition = Vector3.zero;
         private Quaternion _targetRotation = Quaternion.identity;
@@ -81,9 +83,32 @@ namespace Assets.Scripts.NPC
 
         private void Update()
         {
-            _position = Vector3.Lerp(_position, _targetPosition, _positionSmoothness * Time.deltaTime);
-            _rotation = Quaternion.Lerp(_rotation, _targetRotation, _rotationSmoothness * Time.deltaTime);
-            _velocity = Vector2.Lerp(_velocity, _targetVelocity, _velocitySmoothness * Time.deltaTime);
+            if (Vector3.Distance(_position, _targetPosition) > _maxPositionStep)
+            {
+                _position = _targetPosition;
+            }
+            else
+            {
+                _position = Vector3.Lerp(_position, _targetPosition, _positionSmoothness * Time.deltaTime);
+            }
+
+            if (Quaternion.Angle(_rotation, _targetRotation) > _maxRotationStep)
+            {
+                _rotation = _targetRotation;
+            }
+            else
+            {
+                _rotation = Quaternion.Lerp(_rotation, _targetRotation, _rotationSmoothness * Time.deltaTime);
+            }
+
+            if (Vector2.Distance(_velocity, _targetVelocity) > _maxVelocityStep)
+            {
+                _velocity = _targetVelocity;
+            }
+            else
+            {
+                _velocity = Vector2.Lerp(_velocity, _targetVelocity, _velocitySmoothness * Time.deltaTime);
+            }
         }
 
         private void OnDestroy()

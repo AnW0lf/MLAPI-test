@@ -2,7 +2,7 @@ using UnityEngine;
 using MLAPI;
 using MLAPI.NetworkVariable;
 
-public class Civilian : NetworkBehaviour
+public class CitizenNPC : NetworkBehaviour
 {
     private NetworkVariableULong _uniqueId = new NetworkVariableULong(new NetworkVariableSettings
     {

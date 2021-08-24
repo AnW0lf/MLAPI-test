@@ -9,7 +9,7 @@ namespace Assets.Scripts.Weapon
     {
         public float LifeTime { get; set; } = -1f;
         public Player.NetworkLocalPlayer Player { get; set; } = null;
-        public Civilian Civilian { get; set; } = null;
+        public CitizenNPC Civilian { get; set; } = null;
 
         private void Update()
         {

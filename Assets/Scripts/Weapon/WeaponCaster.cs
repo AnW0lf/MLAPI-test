@@ -63,7 +63,7 @@ namespace Assets.Scripts.Weapon
                     rotation *= parent.rotation;
                     NetworkWeaponMessanger.Singleton.HitPlayerServerRpc(player.OwnerClientId, position, rotation);
                 }
-                else if (parent.TryGetComponent(out Civilian civilian))
+                else if (parent.TryGetComponent(out CitizenNPC civilian))
                 {
                     position = parent.InverseTransformPoint(position);
                     rotation *= parent.rotation;

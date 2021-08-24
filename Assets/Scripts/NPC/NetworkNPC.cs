@@ -71,6 +71,7 @@ namespace Assets.Scripts.NPC
         public void SpawnLocal(Vector3 position, Quaternion rotation)
         {
             if (IsServer == false) { return; }
+            if (IsSpawned) { return; }
 
             _local = Instantiate(_localPrefab, position, rotation).GetComponent<LocalNPC>();
             _position.Value = position;
