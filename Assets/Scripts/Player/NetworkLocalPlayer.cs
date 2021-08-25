@@ -9,11 +9,11 @@ namespace Assets.Scripts.Player
 {
     public class NetworkLocalPlayer : NetworkBehaviour
     {
-        [Header("Game settings")]
-        [SerializeField] private GameObject _localBodyPrefab = null;
-        [SerializeField] private GameObject _remoteBodyPrefab = null;
-        private LocalPlayer _localBody = null;
-        private RemotePlayer _remoteBody = null;
+        [SerializeField] private GameObject _localPrefab = null;
+        [SerializeField] private GameObject _remotePrefab = null;
+
+        private LocalPlayer _local = null;
+        private RemotePlayer _remote = null;
 
         private PlayerListItem _lobbyItem = null;
 
@@ -184,6 +184,8 @@ namespace Assets.Scripts.Player
         #region Body
         public bool IsBodyEnabled { get; private set; } = false;
 
+        public Transform Body => IsOwner ? _local.transform : _remote.transform;
+
         private readonly NetworkVariableVector3 _position = new NetworkVariableVector3(new NetworkVariableSettings
         {
             WritePermission = NetworkVariablePermission.OwnerOnly,
@@ -210,19 +212,20 @@ namespace Assets.Scripts.Player
         {
             if (IsOwner)
             {
-                _localBody = Instantiate(_localBodyPrefab).GetComponent<LocalPlayer>(); ;
+                _local = Instantiate(_localPrefab).GetComponent<LocalPlayer>(); ;
+                _local.NetworkParent = this;
 
-                _localBody.transform.SetPositionAndRotation(position, rotation);
+                _local.transform.SetPositionAndRotation(position, rotation);
 
-                _position.Value = _localBody.transform.position;
-                _rotation.Value = _localBody.transform.rotation;
+                _position.Value = _local.transform.position;
+                _rotation.Value = _local.transform.rotation;
             }
             else
             {
-                _remoteBody = Instantiate(_remoteBodyPrefab).GetComponent<RemotePlayer>(); ;
+                _remote = Instantiate(_remotePrefab).GetComponent<RemotePlayer>(); ;
 
-                _remoteBody.transform.SetPositionAndRotation(_position.Value, _rotation.Value);
-                _remoteBody.ConnectToNetworkPlayer(this);
+                _remote.transform.SetPositionAndRotation(_position.Value, _rotation.Value);
+                _remote.ConnectToNetworkPlayer(this);
             }
 
             IsBodyEnabled = true;
@@ -232,8 +235,8 @@ namespace Assets.Scripts.Player
         {
             if (IsOwner)
             {
-                if (_localBody != null)
-                    Destroy(_localBody.gameObject);
+                if (_local != null)
+                    Destroy(_local.gameObject);
 
                 _position.Value = Vector3.zero;
                 _rotation.Value = Quaternion.identity;
@@ -241,8 +244,8 @@ namespace Assets.Scripts.Player
             }
             else
             {
-                if (_remoteBody != null)
-                    Destroy(_remoteBody.gameObject);
+                if (_remote != null)
+                    Destroy(_remote.gameObject);
             }
 
             IsBodyEnabled = false;
@@ -253,11 +256,11 @@ namespace Assets.Scripts.Player
             if (IsBodyEnabled == false) { return; }
             if (IsOwner)
             {
-                if (_localBody == null) { return; }
+                if (_local == null) { return; }
 
-                _position.Value = _localBody.transform.position;
-                _rotation.Value = _localBody.transform.rotation;
-                _velocity.Value = _localBody.Velocity;
+                _position.Value = _local.transform.position;
+                _rotation.Value = _local.transform.rotation;
+                _velocity.Value = _local.Velocity;
             }
             else
             {

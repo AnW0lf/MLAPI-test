@@ -54,6 +54,8 @@ namespace Assets.Scripts.NPC
             }
         }
 
+        public Transform Body => IsServer ? _local.transform : _remote.transform;
+
         public bool IsSpawned => _local != null || _remote != null;
 
         private void OnDestroy()
@@ -74,6 +76,7 @@ namespace Assets.Scripts.NPC
             if (IsSpawned) { return; }
 
             _local = Instantiate(_localPrefab, position, rotation).GetComponent<LocalNPC>();
+            _local.NetworkParent = this;
             _position.Value = position;
             _rotation.Value = rotation;
             SubscribeToLocalNpc();

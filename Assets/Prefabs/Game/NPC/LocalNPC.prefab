@@ -543,7 +543,7 @@ MonoBehaviour:
   _agent: {fileID: 1435289349704224070}
   _searchRange: 50
   _offsetError: 0.2
-  _timeError: 2.5
+  _timeError: 1
 --- !u!1 &8751431591915281419
 GameObject:
   m_ObjectHideFlags: 0

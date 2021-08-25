@@ -17,6 +17,7 @@ namespace Assets.Scripts.Player
         [SerializeField] private float _velocitySmoothness = 3f;
 
         private NetworkLocalPlayer _networkPlayer = null;
+        public NetworkLocalPlayer NetworkParent => _networkPlayer;
 
         private Vector3 _targetPosition = Vector3.zero;
         private Quaternion _targetRotation = Quaternion.identity;

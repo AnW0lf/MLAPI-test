@@ -14,6 +14,8 @@ namespace Assets.Scripts.NPC
         [SerializeField] private float _minRotationStep = 1.5f;
         [SerializeField] private float _minVelocityStep = 0.1f;
 
+        public NetworkNPC NetworkParent { get; set; } = null;
+
         private Vector3 _oldPosition = Vector3.zero;
         private Quaternion _oldRotation = Quaternion.identity;
         private Vector2 _oldVelocity = Vector2.zero;

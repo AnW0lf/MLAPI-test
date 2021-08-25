@@ -44,26 +44,27 @@ namespace Assets.Scripts.NPC
             }
         }
 
-        private NetworkNPC _netNpc = null;
+        private NetworkNPC _networkNpc = null;
+        public NetworkNPC NetworkParent => _networkNpc;
 
-        public void SubscribeToNetworkNpc(NetworkNPC netNpc)
+        public void SubscribeToNetworkNpc(NetworkNPC networkNpc)
         {
-            _netNpc = netNpc;
+            _networkNpc = networkNpc;
 
-            if (_netNpc == null) { return; }
+            if (_networkNpc == null) { return; }
 
-            _netNpc.PositionChanged += SetPosition;
-            _netNpc.RotationChanged += SetRotation;
-            _netNpc.VelocityChanged += SetVelocity;
+            _networkNpc.PositionChanged += SetPosition;
+            _networkNpc.RotationChanged += SetRotation;
+            _networkNpc.VelocityChanged += SetVelocity;
         }
 
         private void UnsubscribeFromNetworkNpc()
         {
-            if (_netNpc == null) { return; }
+            if (_networkNpc == null) { return; }
 
-            _netNpc.PositionChanged -= SetPosition;
-            _netNpc.RotationChanged -= SetRotation;
-            _netNpc.VelocityChanged -= SetVelocity;
+            _networkNpc.PositionChanged -= SetPosition;
+            _networkNpc.RotationChanged -= SetRotation;
+            _networkNpc.VelocityChanged -= SetVelocity;
         }
 
         private void SetPosition(Vector3 position)

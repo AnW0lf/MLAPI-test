@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Player;
+﻿using Assets.Scripts.NPC;
+using Assets.Scripts.Player;
 using MLAPI;
 using MLAPI.Messaging;
 using System.Linq;
@@ -8,7 +9,8 @@ namespace Assets.Scripts.Weapon
 {
     public class NetworkWeaponMessanger : MonoBehaviour
     {
-        [SerializeField] private GameObject _hitMarkerPrefab = null;
+        [SerializeField] private GameObject _serverHitMarkerPrefab = null;
+        [SerializeField] private GameObject _clientHitMarkerPrefab = null;
         [SerializeField] private float _hitMarkerLifeTime = 60f;
 
         public static NetworkWeaponMessanger Singleton { get; private set; } = null;
@@ -19,76 +21,82 @@ namespace Assets.Scripts.Weapon
             else if (Singleton != this) Destroy(gameObject);
         }
 
+        #region ServerRPC
         [ServerRpc(RequireOwnership = false)]
-        public void HitPlayerServerRpc(ulong playerId, Vector3 hitPosition, Quaternion hitRotation)
+        public void HitPlayerServerRpc(ulong playerId, Vector3 localPosition, Quaternion localRotation)
         {
-            HitPlayerClientRpc(playerId, hitPosition, hitRotation);
+            Transform body = NetworkManager.Singleton
+                .ConnectedClients[playerId].PlayerObject
+                .GetComponent<NetworkLocalPlayer>().Body;
+            if (body == null) { return; }
+
+            HitMarker hitMarker = AddHitMarker(body, localPosition, localRotation);
+
+            HitPlayerClientRpc(playerId, localPosition, localRotation);
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        public void HitNpcServerRpc(ulong npcId, Vector3 localPosition, Quaternion localRotation)
+        {
+            Transform body = FindObjectsOfType<NetworkNPC>().First((npc) => npc.NpcId == npcId).Body;
+            if (body == null) { return; }
+
+            HitMarker hitMarker = AddHitMarker(body, localPosition, localRotation);
+
+            HitNpcClientRpc(npcId, localPosition, localRotation);
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        public void HitObjectServerRpc(Vector3 position, Quaternion rotation)
+        {
+            AddHitMarker(null, position, rotation);
+
+            HitObjectClientRpc(position, rotation);
+        }
+        #endregion ServerRPC
+
+        #region ClientRPC
+        [ClientRpc]
+        private void HitPlayerClientRpc(ulong playerId, Vector3 localPosition, Quaternion localRotation)
+        {
+            if (NetworkManager.Singleton.IsHost) { return; }
+
+            Transform body = NetworkManager.Singleton
+                .ConnectedClients[playerId].PlayerObject
+                .GetComponent<NetworkLocalPlayer>().Body;
+            if (body == null) { return; }
+
+            HitMarker hitMarker = AddHitMarker(body, localPosition, localRotation);
         }
 
         [ClientRpc]
-        private void HitPlayerClientRpc(ulong playerId, Vector3 hitPosition, Quaternion hitRotation)
+        private void HitNpcClientRpc(ulong npcId, Vector3 localPosition, Quaternion localRotation)
         {
-            Player.NetworkLocalPlayer player = NetworkManager.Singleton.ConnectedClients[playerId].PlayerObject.GetComponent<Player.NetworkLocalPlayer>();
-            if (player == null) { return; }
+            if (NetworkManager.Singleton.IsHost) { return; }
 
-            var hitMarker = Instantiate(_hitMarkerPrefab, player.transform).GetComponent<HitMarker>();
-            hitMarker.transform.localPosition = hitPosition;
-            hitMarker.transform.localRotation = hitRotation;
+            Transform body = FindObjectsOfType<NetworkNPC>().First((npc) => npc.NpcId == npcId).Body;
+            if (body == null) { return; }
+
+            HitMarker hitMarker = AddHitMarker(body, localPosition, localRotation);
+        }
+
+        [ClientRpc]
+        private void HitObjectClientRpc(Vector3 position, Quaternion rotation)
+        {
+            if (NetworkManager.Singleton.IsHost) { return; }
+
+            AddHitMarker(null, position, rotation);
+        }
+        #endregion ClientRPC
+
+        public HitMarker AddHitMarker(Transform parent, Vector3 localPosition, Quaternion localRotation)
+        {
+            GameObject prefab = NetworkManager.Singleton.IsServer ? _serverHitMarkerPrefab : _clientHitMarkerPrefab;
+            HitMarker hitMarker = Instantiate(prefab, parent).GetComponent<HitMarker>();
+            hitMarker.transform.localPosition = localPosition;
+            hitMarker.transform.localRotation = localRotation;
             hitMarker.LifeTime = _hitMarkerLifeTime;
-            hitMarker.Player = player;
-        }
-
-        [ServerRpc(RequireOwnership = false)]
-        public void HitCivilianServerRpc(ulong civilianId, Vector3 hitPosition, Quaternion hitRotation)
-        {
-            HitCivilianClientRpc(civilianId, hitPosition, hitRotation);
-        }
-
-        [ClientRpc]
-        private void HitCivilianClientRpc(ulong civilianId, Vector3 hitPosition, Quaternion hitRotation)
-        {
-            //CitizenNPC civilian = FindObjectsOfType<CitizenNPC>().First((c) => c.UniqueId == civilianId);
-            //if (civilian == null) { return; }
-
-            //var hitMarker = Instantiate(_hitMarkerPrefab, civilian.transform).GetComponent<HitMarker>();
-            //hitMarker.transform.localPosition = hitPosition;
-            //hitMarker.transform.localRotation = hitRotation;
-            //hitMarker.LifeTime = _hitMarkerLifeTime;
-            //hitMarker.Civilian = civilian;
-        }
-
-        [ServerRpc(RequireOwnership = false)]
-        public void HitObjectServerRpc(Vector3 hitPosition, Quaternion hitRotation)
-        {
-            HitObjectClientRpc(hitPosition, hitRotation);
-        }
-
-        [ClientRpc]
-        private void HitObjectClientRpc(Vector3 hitPosition, Quaternion hitRotation)
-        {
-            var hitMarker = Instantiate(_hitMarkerPrefab, null).GetComponent<HitMarker>();
-            hitMarker.transform.localPosition = hitPosition;
-            hitMarker.transform.localRotation = hitRotation;
-            hitMarker.LifeTime = _hitMarkerLifeTime;
-        }
-
-        [ServerRpc(RequireOwnership = false)]
-        public void SwitchHandServerRpc(ulong clientId)
-        {
-            SwitchHandClientRpc(clientId);
-        }
-
-        [ClientRpc]
-        private void SwitchHandClientRpc(ulong clientId)
-        {
-            var players = NetworkManager.Singleton.ConnectedClientsList
-                .Where((client) => client.ClientId != clientId)
-                .Select((c) => c.PlayerObject.GetComponent<PlayerItemInHand>());
-
-            foreach(var player in players)
-            {
-                player.SwitchHand(clientId);
-            }
+            return hitMarker;
         }
     }
 }

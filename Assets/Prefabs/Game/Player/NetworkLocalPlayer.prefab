@@ -61,8 +61,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46807d7ce96d3ee4f9e21b796eb62a86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localBodyPrefab: {fileID: 2510424013269367995, guid: 5008cbc4e2674e442b4e3d1b85531e7d, type: 3}
-  _remoteBodyPrefab: {fileID: 4809987962402567313, guid: a71b2fd413a880443b1e1f3275a21960, type: 3}
-  _smoothness: 3
-  _positionMinStep: 0.15
-  _rotationMinStep: 1.5
+  _localPrefab: {fileID: 2510424013269367995, guid: 5008cbc4e2674e442b4e3d1b85531e7d, type: 3}
+  _remotePrefab: {fileID: 4809987962402567313, guid: a71b2fd413a880443b1e1f3275a21960, type: 3}

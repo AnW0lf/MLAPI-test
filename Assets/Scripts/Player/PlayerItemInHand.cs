@@ -20,7 +20,7 @@ namespace Assets.Scripts.Player
             if (NetworkManager.Singleton.LocalClientId == clientId)
             {
                 _ownerGun.gameObject.SetActive(_isHandActive);
-                NetworkWeaponMessanger.Singleton.SwitchHandServerRpc(clientId);
+                //NetworkWeaponMessanger.Singleton.SwitchHandServerRpc(clientId);
             }
             else
             {
