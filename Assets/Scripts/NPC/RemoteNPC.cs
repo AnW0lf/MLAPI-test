@@ -19,23 +19,23 @@ namespace Assets.Scripts.NPC
         private Quaternion _targetRotation = Quaternion.identity;
         private Vector2 _targetVelocity = Vector2.zero;
 
-        private Vector3 _position
+        public Vector3 Position
         {
             get => _body.position;
-            set => _body.position = value;
+            private set => _body.position = value;
         }
 
-        private Quaternion _rotation
+        public Quaternion Rotation
         {
             get => _body.rotation;
-            set => _body.rotation = value;
+            private set => _body.rotation = value;
         }
 
         private Vector2 _velocityCash = Vector2.zero;
-        private Vector2 _velocity
+        public Vector2 Velocity
         {
             get => _velocityCash;
-            set
+            private set
             {
                 _velocityCash = value;
 
@@ -84,31 +84,31 @@ namespace Assets.Scripts.NPC
 
         private void Update()
         {
-            if (Vector3.Distance(_position, _targetPosition) > _maxPositionStep)
+            if (Vector3.Distance(Position, _targetPosition) > _maxPositionStep)
             {
-                _position = _targetPosition;
+                Position = _targetPosition;
             }
             else
             {
-                _position = Vector3.Lerp(_position, _targetPosition, _positionSmoothness * Time.deltaTime);
+                Position = Vector3.Lerp(Position, _targetPosition, _positionSmoothness * Time.deltaTime);
             }
 
-            if (Quaternion.Angle(_rotation, _targetRotation) > _maxRotationStep)
+            if (Quaternion.Angle(Rotation, _targetRotation) > _maxRotationStep)
             {
-                _rotation = _targetRotation;
+                Rotation = _targetRotation;
             }
             else
             {
-                _rotation = Quaternion.Lerp(_rotation, _targetRotation, _rotationSmoothness * Time.deltaTime);
+                Rotation = Quaternion.Lerp(Rotation, _targetRotation, _rotationSmoothness * Time.deltaTime);
             }
 
-            if (Vector2.Distance(_velocity, _targetVelocity) > _maxVelocityStep)
+            if (Vector2.Distance(Velocity, _targetVelocity) > _maxVelocityStep)
             {
-                _velocity = _targetVelocity;
+                Velocity = _targetVelocity;
             }
             else
             {
-                _velocity = Vector2.Lerp(_velocity, _targetVelocity, _velocitySmoothness * Time.deltaTime);
+                Velocity = Vector2.Lerp(Velocity, _targetVelocity, _velocitySmoothness * Time.deltaTime);
             }
         }
 

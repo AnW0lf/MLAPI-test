@@ -788,13 +788,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ab801cc4dd911c4b9671ced4969751e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _body: {fileID: 4809987962402968013}
   _animator: {fileID: 4809987962395202543}
-  _minPositionStep: 0.15
-  _minRotationStep: 1.5
-  _minVelocityStep: 0.1
   _positionSmoothness: 3
   _rotationSmoothness: 3
   _velocitySmoothness: 3
+  _maxPositionStep: 1.5
+  _maxRotationStep: 30
+  _maxVelocityStep: 1
 --- !u!1 &4809987962402569729
 GameObject:
   m_ObjectHideFlags: 0

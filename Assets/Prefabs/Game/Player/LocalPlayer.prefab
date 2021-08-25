@@ -596,7 +596,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9bc9c20e650abc43baa7bf8b9e15dbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _body: {fileID: 2512777945199175057}
+  _animator: {fileID: 0}
   _rigidbody: {fileID: 2454756892846697547}
+  _gun: {fileID: 8199092520541890419}
+  _minPositionStep: 0.2
+  _minRotationStep: 1.5
+  _minVelocityStep: 0.1
 --- !u!1001 &6568719409098070519
 PrefabInstance:
   m_ObjectHideFlags: 0

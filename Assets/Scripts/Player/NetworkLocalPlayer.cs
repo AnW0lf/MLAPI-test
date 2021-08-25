@@ -1,5 +1,6 @@
 ﻿using Lobby;
 using MLAPI;
+using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
 using System;
 using UnityEngine;
@@ -153,18 +154,12 @@ namespace Assets.Scripts.Player
 
         }
 
-        private void Update()
-        {
-            UpdateBody();
-        }
-
         private void OnDestroy()
         {
             Unsubscribe();
-            if (LobbyManager.Singleton != null)
-            {
-                LobbyManager.Singleton.StartCoroutine(LobbyManager.Singleton.DelayedCheckAllReady());
-            }
+
+            if (IsOwner) DeleteLocal();
+            else DeleteRemote();
         }
 
         private void Subscribe()
@@ -182,9 +177,11 @@ namespace Assets.Scripts.Player
         }
 
         #region Body
-        public bool IsBodyEnabled { get; private set; } = false;
-
         public Transform Body => IsOwner ? _local.transform : _remote.transform;
+
+        public bool IsSpawned => IsSpawnedLocal || IsSpawnedRemote;
+        public bool IsSpawnedLocal => _local != null;
+        public bool IsSpawnedRemote => _remote != null;
 
         private readonly NetworkVariableVector3 _position = new NetworkVariableVector3(new NetworkVariableSettings
         {
@@ -204,71 +201,151 @@ namespace Assets.Scripts.Player
             ReadPermission = NetworkVariablePermission.Everyone
         }, Vector2.zero);
 
-        public event Action<Vector3> OnPositionChanged;
-        public event Action<Quaternion> OnRotationChanged;
-        public event Action<Vector2> OnVelocityChanged;
+        public event Action<Vector3> PositionChanged;
+        public event Action<Quaternion> RotationChanged;
+        public event Action<Vector2> VelocityChanged;
 
-        public void EnableBody(Vector3 position, Quaternion rotation)
+        #region Local
+        public void SpawnLocal(Vector3 position, Quaternion rotation)
         {
-            if (IsOwner)
-            {
-                _local = Instantiate(_localPrefab).GetComponent<LocalPlayer>(); ;
-                _local.NetworkParent = this;
+            if (IsSpawnedLocal) { return; }
+            if (IsOwner == false) { return; }
 
-                _local.transform.SetPositionAndRotation(position, rotation);
+            _local = Instantiate(_localPrefab, position, rotation).GetComponent<LocalPlayer>(); ;
+            _local.NetworkParent = this;
+            _position.Value = position;
+            _rotation.Value = rotation;
+            SubscribeToLocalNpc();
 
-                _position.Value = _local.transform.position;
-                _rotation.Value = _local.transform.rotation;
-            }
-            else
-            {
-                _remote = Instantiate(_remotePrefab).GetComponent<RemotePlayer>(); ;
-
-                _remote.transform.SetPositionAndRotation(_position.Value, _rotation.Value);
-                _remote.ConnectToNetworkPlayer(this);
-            }
-
-            IsBodyEnabled = true;
+            SpawnRemoteServerRpc();
         }
 
-        public void DisableBody()
+        private void SubscribeToLocalNpc()
         {
-            if (IsOwner)
-            {
-                if (_local != null)
-                    Destroy(_local.gameObject);
+            if (IsSpawnedLocal == false) { return; }
 
-                _position.Value = Vector3.zero;
-                _rotation.Value = Quaternion.identity;
-                _velocity.Value = Vector2.zero;
-            }
-            else
-            {
-                if (_remote != null)
-                    Destroy(_remote.gameObject);
-            }
-
-            IsBodyEnabled = false;
+            _local.PositionChanged += OnLocalPlayerPositionChanged;
+            _local.RotationChanged += OnLocalPlayerRotationChanged;
+            _local.VelocityChanged += OnLocalPlayerVelocityChanged;
         }
 
-        private void UpdateBody()
+        private void UnsubscribeFromLocalNpc()
         {
-            if (IsBodyEnabled == false) { return; }
-            if (IsOwner)
-            {
-                if (_local == null) { return; }
+            if (IsSpawnedLocal == false) { return; }
 
-                _position.Value = _local.transform.position;
-                _rotation.Value = _local.transform.rotation;
-                _velocity.Value = _local.Velocity;
-            }
-            else
-            {
-                OnPositionChanged?.Invoke(_position.Value);
-                OnRotationChanged?.Invoke(_rotation.Value);
-                OnVelocityChanged?.Invoke(_velocity.Value);
-            }
+            _local.PositionChanged -= OnLocalPlayerPositionChanged;
+            _local.RotationChanged -= OnLocalPlayerRotationChanged;
+            _local.VelocityChanged -= OnLocalPlayerVelocityChanged;
         }
+
+        private void OnLocalPlayerPositionChanged(Vector3 position)
+        {
+            _position.Value = position;
+        }
+
+        private void OnLocalPlayerRotationChanged(Quaternion rotation)
+        {
+            _rotation.Value = rotation;
+        }
+
+        private void OnLocalPlayerVelocityChanged(Vector2 velocity)
+        {
+            _velocity.Value = velocity;
+        }
+
+        public void DeleteLocal()
+        {
+            if (IsSpawnedLocal == false) { return; }
+
+            UnsubscribeFromLocalNpc();
+            Destroy(_local.gameObject);
+
+            _position.Value = Vector3.zero;
+            _rotation.Value = Quaternion.identity;
+            _velocity.Value = Vector2.zero;
+
+            DeleteRemoteServerRpc();
+        }
+        #endregion Local
+
+        #region Remote
+        [ServerRpc(RequireOwnership = false)]
+        public void SpawnRemoteServerRpc()
+        {
+            SpawnRemoteClientRpc();
+        }
+
+        [ClientRpc]
+        public void SpawnRemoteClientRpc()
+        {
+            SpawnRemote();
+        }
+
+        public void SpawnRemote()
+        {
+            if (IsSpawnedRemote) { return; }
+            if (IsOwner) { return; }
+
+            Vector3 position = _position.Value;
+            Quaternion rotation = _rotation.Value;
+            _remote = Instantiate(_remotePrefab, position, rotation).GetComponent<RemotePlayer>();
+            SubscribeToNetworkNpc();
+            _remote.SubscribeToNetworkPlayer(this);
+        }
+
+        private void SubscribeToNetworkNpc()
+        {
+            _position.OnValueChanged += OnNetworkPlayerPositionChanged;
+            _rotation.OnValueChanged += OnNetworkPlayerRotationChanged;
+            _velocity.OnValueChanged += OnNetworkPlayerVelocityChanged;
+        }
+
+        private void UnsubscribeFromNetworkNpc()
+        {
+            _position.OnValueChanged -= OnNetworkPlayerPositionChanged;
+            _rotation.OnValueChanged -= OnNetworkPlayerRotationChanged;
+            _velocity.OnValueChanged -= OnNetworkPlayerVelocityChanged;
+        }
+
+        private void OnNetworkPlayerPositionChanged(Vector3 previousValue, Vector3 newValue)
+        {
+            PositionChanged?.Invoke(newValue);
+        }
+
+        private void OnNetworkPlayerRotationChanged(Quaternion previousValue, Quaternion newValue)
+        {
+            RotationChanged?.Invoke(newValue);
+        }
+
+        private void OnNetworkPlayerVelocityChanged(Vector2 previousValue, Vector2 newValue)
+        {
+            VelocityChanged?.Invoke(newValue);
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void DeleteRemoteServerRpc()
+        {
+            if (IsServer == false) { return; }
+
+            DeleteRemoteClientRpc();
+        }
+
+        [ClientRpc]
+        private void DeleteRemoteClientRpc()
+        {
+            if (IsOwner) { return; }
+
+            DeleteRemote();
+        }
+
+        private void DeleteRemote()
+        {
+            if (IsSpawnedRemote == false) { return; }
+
+            UnsubscribeFromNetworkNpc();
+            Destroy(_remote.gameObject);
+        }
+        #endregion Remote
         #endregion Body
     }
 }

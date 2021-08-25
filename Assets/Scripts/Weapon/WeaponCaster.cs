@@ -14,11 +14,6 @@ namespace Assets.Scripts.Weapon
 
         private bool _canShoot = true;
 
-        private void SwitchHand(UnityEngine.InputSystem.InputAction.CallbackContext context)
-        {
-            _gun.SetActive(!_gun.activeSelf);
-        }
-
         public void Shoot()
         {
             if (_gun.activeSelf == false) { return; }
@@ -61,13 +56,13 @@ namespace Assets.Scripts.Weapon
 
         private void AddHit(RaycastHit hit)
         {
-            ulong id = ulong.MaxValue;
             Vector3 position = hit.point + hit.normal * 0.05f;
             Quaternion rotation = Quaternion.LookRotation(-hit.normal, Vector3.forward);
             Transform target = hit.transform;
 
             if (NetworkWeaponMessanger.Singleton != null)
             {
+                ulong id;
                 if (target.TryGetComponent(out RemotePlayer remotePlayer))
                 {
                     id = remotePlayer.NetworkParent.OwnerClientId;
@@ -111,14 +106,12 @@ namespace Assets.Scripts.Weapon
         private void Subscribe()
         {
             if (InputController.Singleton == null) { return; }
-            InputController.Singleton.OnHandStarted += SwitchHand;
             InputController.Singleton.OnUseStarted += Shoot;
         }
 
         private void Unsubscribe()
         {
             if (InputController.Singleton == null) { return; }
-            InputController.Singleton.OnHandStarted -= SwitchHand;
             InputController.Singleton.OnUseStarted -= Shoot;
         }
 

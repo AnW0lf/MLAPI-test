@@ -24,13 +24,13 @@ namespace Game
         public event Action OnBodiesEnabled;
         public event Action OnBodiesDisabled;
 
-        private NetworkVariableULong _civilianNextId = new NetworkVariableULong(new NetworkVariableSettings
+        private readonly NetworkVariableULong _civilianNextId = new NetworkVariableULong(new NetworkVariableSettings
         {
             ReadPermission = NetworkVariablePermission.Everyone,
             WritePermission = NetworkVariablePermission.ServerOnly
         }, 1);
 
-        private Dictionary<ulong, bool> _connectedClients = new Dictionary<ulong, bool>();
+        private readonly Dictionary<ulong, bool> _connectedClients = new Dictionary<ulong, bool>();
 
         private void Awake()
         {
@@ -75,7 +75,7 @@ namespace Game
         {
             get
             {
-                Vector3? point = null;
+                Vector3? point;
                 do
                 {
                     point = GetRandomPointOnGround();
@@ -108,27 +108,16 @@ namespace Game
             }
         }
 
-        private void EnableBodies()
-        {
-            var players = FindObjectsOfType<NetworkLocalPlayer>();
-            foreach (var player in players)
-            {
-                player.EnableBody(RandomPointOnGround, Quaternion.identity);
-            }
-
-            OnBodiesEnabled?.Invoke();
-        }
-
-        [ServerRpc(RequireOwnership = true)]
-        public void EnableBodiesServerRpc()
-        {
-            EnableBodiesClientRpc();
-        }
-
         [ClientRpc]
         private void EnableBodiesClientRpc()
         {
-            EnableBodies();
+            var localClient = NetworkManager.Singleton.ConnectedClientsList
+                .First((cc) => cc.ClientId == NetworkManager.Singleton.LocalClientId);
+
+            if (localClient == null) { return; }
+
+            localClient.PlayerObject.GetComponent<NetworkLocalPlayer>()
+                .SpawnLocal(RandomPointOnGround, Quaternion.Euler(0f, Random.Range(-180f, 180f), 0f));
         }
 
         [ServerRpc(RequireOwnership = false)]

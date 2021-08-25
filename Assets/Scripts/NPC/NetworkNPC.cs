@@ -56,20 +56,11 @@ namespace Assets.Scripts.NPC
 
         public Transform Body => IsServer ? _local.transform : _remote.transform;
 
-        public bool IsSpawned => _local != null || _remote != null;
+        public bool IsSpawned => IsSpawnedLocal || IsSpawnedRemote;
+        public bool IsSpawnedLocal => _local != null;
+        public bool IsSpawnedRemote => _remote != null;
 
-        private void OnDestroy()
-        {
-            if (IsServer)
-            {
-                UnsubscribeFromLocalNpc();
-            }
-            else
-            {
-                UnsubscribeFromNetworkNpc();
-            }
-        }
-
+        #region Local
         public void SpawnLocal(Vector3 position, Quaternion rotation)
         {
             if (IsServer == false) { return; }
@@ -117,10 +108,34 @@ namespace Assets.Scripts.NPC
             _velocity.Value = velocity;
         }
 
+        public void DeleteLocal()
+        {
+            if (IsServer == false) { return; }
+            if (IsSpawnedLocal == false) { return; }
+
+            UnsubscribeFromNetworkNpc();
+            Destroy(_local.gameObject);
+
+            _position.Value = Vector3.zero;
+            _rotation.Value = Quaternion.identity;
+            _velocity.Value = Vector2.zero;
+
+            DeleteRemoteServerRpc();
+        }
+        #endregion Local
+
+        #region Remote
         [ClientRpc]
         private void SpawnRemoteClientRpc()
         {
             if (IsServer) { return; }
+
+            SpawnRemote();
+        }
+
+        private void SpawnRemote()
+        {
+            if (IsSpawnedRemote) { return; }
 
             Vector3 position = _position.Value;
             Quaternion rotation = _rotation.Value;
@@ -157,5 +172,31 @@ namespace Assets.Scripts.NPC
         {
             VelocityChanged?.Invoke(newValue);
         }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void DeleteRemoteServerRpc()
+        {
+            if (IsServer == false) { return; }
+
+            DeleteRemoteClientRpc();
+        }
+
+        [ClientRpc]
+        private void DeleteRemoteClientRpc()
+        {
+            if (IsOwner) { return; }
+
+            DeleteRemote();
+        }
+
+        private void DeleteRemote()
+        {
+            if (IsServer) { return; }
+            if (IsSpawnedRemote == false) { return; }
+
+            UnsubscribeFromNetworkNpc();
+            Destroy(_remote.gameObject);
+        }
+        #endregion Remote
     }
 }
