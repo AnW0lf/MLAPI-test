@@ -1512,8 +1512,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _body: {fileID: 620871831539552073}
-  _hand: {fileID: 0}
-  _tp_controller: {fileID: 0}
+  _hand: {fileID: 5902491187838774599}
+  _tp_controller: {fileID: 620871831539552075}
   _minPositionStep: 0.2
   _minRotationStep: 1.5
   _minAnimatorFloatStep: 0.1
