@@ -16,6 +16,11 @@ public class CitizenNPC : MonoBehaviour
 
     private void Update()
     {
+        if (_agent == null)
+        {
+            _agent = GetComponent<NavMeshAgent>();
+        }
+
         switch (_state)
         {
             case CitizenNPCState.FOLLOW:

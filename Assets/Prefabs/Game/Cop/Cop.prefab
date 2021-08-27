@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &551843952
 Transform:
   m_ObjectHideFlags: 0
@@ -791,7 +791,7 @@ Animator:
   m_GameObject: {fileID: 8751431591915280027}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: ad52d12ad7e12c644a18f176d31a93bb, type: 3}
-  m_Controller: {fileID: 9100000, guid: 5876447dc0d64004da12323a7d0ae86f, type: 2}
+  m_Controller: {fileID: 9100000, guid: b4689db0bc05e8344bd0a9640d23b1b0, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -922,6 +922,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aff1ef6849d1bb446b5562153dfa43b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _agent: {fileID: 0}
+  _searchRange: 5
+  _offsetError: 0.2
+  _timeError: 5
 --- !u!114 &208856683548970284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -934,20 +938,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4668362878030143b80e40dba59c563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 8751431591922610661}
   _walkSpeed: 2
   _runSpeed: 4
   _wanderRange: 20
   _searchRange: 5
   _changeDestinationDelay: 10
   _fieldOfView: {fileID: 690994103}
+  _fieldOfViewMesh: {fileID: 2030677539}
   _targetLine: {fileID: 712442314}
-  _debugTarget: {fileID: 0}
+  _currentTarget: {fileID: 0}
   _suspiciousDelay: 3
   _searchDelay: 6
   _searchLooksCount: 3
   _searchLookDelay: 1
   _searchRunsCount: 5
   _stateText: {fileID: 551843953}
+  _policeStation: {fileID: 0}
 --- !u!114 &690994103
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ public class Cop : MonoBehaviour
     }
 
     private NavMeshAgent _agent;
-    private Animator _animator;
+    [SerializeField] private Animator _animator;
     private Vector3 _currentDestination;
     [SerializeField] private float _walkSpeed;
     [SerializeField] private float _runSpeed;
@@ -30,7 +30,7 @@ public class Cop : MonoBehaviour
     [SerializeField] private GameObject _fieldOfViewMesh;
     [SerializeField] private LineRenderer _targetLine;
 
-    [SerializeField] private Transform _debugTarget;
+    [SerializeField] private Transform _currentTarget;
     private AI _currentTargetAI;
     private Transform _currentChaseTarget;
     private Vector3 _lastTargetPosition;
@@ -62,9 +62,12 @@ public class Cop : MonoBehaviour
         _agent.acceleration = 100;
         _agent.autoBraking = false;
         _currentDestination = transform.position;
-        _currentTargetAI = _debugTarget.GetComponent<AI>();
 
-        _animator = GetComponent<Animator>();
+        if (_currentTarget != null)
+        {
+            _currentTargetAI = _currentTarget.GetComponent<AI>();
+        }
+
         _changeDestinationTimer = _changeDestinationDelay;
 
         SwitchToCalm();
@@ -84,8 +87,8 @@ public class Cop : MonoBehaviour
 
                 if (_animator != null)
                 {
-                    _animator.SetFloat("zSpeed", Vector3.Project(_agent.velocity, transform.forward).magnitude);
-                    _animator.SetFloat("xSpeed", Vector3.Project(_agent.velocity, transform.right).magnitude);
+                    _animator.SetFloat("velocityX", Vector3.Project(_agent.velocity, transform.forward).magnitude);
+                    _animator.SetFloat("velocityY", Vector3.Project(_agent.velocity, transform.right).magnitude);
                 }
 
                 if (_changeDestinationTimer > 0)
@@ -98,9 +101,9 @@ public class Cop : MonoBehaviour
                     }
                 }
 
-                if (_currentTargetAI.UnderArrest == false && _currentTargetAI.InPrison == false && _fieldOfView.CheckTargetVisibility(_debugTarget, 1, true) == true)
+                if (_currentTarget != null && _currentTargetAI.UnderArrest == false && _currentTargetAI.InPrison == false && _fieldOfView.CheckTargetVisibility(_currentTarget, 1, true) == true)
                 {                  
-                     _currentChaseTarget = _debugTarget;
+                     _currentChaseTarget = _currentTarget;
                      SwitchToSuspicious();
                 }
 
@@ -142,8 +145,8 @@ public class Cop : MonoBehaviour
 
                 if (_animator != null)
                 {
-                    _animator.SetFloat("zSpeed", Vector3.Project(_agent.velocity, transform.forward).magnitude);
-                    _animator.SetFloat("xSpeed", Vector3.Project(_agent.velocity, transform.right).magnitude);
+                    _animator.SetFloat("velocityX", Vector3.Project(_agent.velocity, transform.forward).magnitude);
+                    _animator.SetFloat("velocityY", Vector3.Project(_agent.velocity, transform.right).magnitude);
                 }
 
                 _agent.SetDestination(_currentChaseTarget.position);
@@ -175,8 +178,8 @@ public class Cop : MonoBehaviour
 
                 if (_animator != null)
                 {
-                    _animator.SetFloat("zSpeed", Vector3.Project(_agent.velocity, transform.forward).magnitude);
-                    _animator.SetFloat("xSpeed", Vector3.Project(_agent.velocity, transform.right).magnitude);
+                    _animator.SetFloat("velocityX", Vector3.Project(_agent.velocity, transform.forward).magnitude);
+                    _animator.SetFloat("velocityY", Vector3.Project(_agent.velocity, transform.right).magnitude);
                 }
 
                 if (_lookAtPlayerSearchTimer > 0)
@@ -218,9 +221,9 @@ public class Cop : MonoBehaviour
                     }                 
                 }
 
-                if (_fieldOfView.CheckTargetVisibility(_debugTarget, 1, true) == true)
+                if (_fieldOfView.CheckTargetVisibility(_currentTarget, 1, true) == true)
                 {
-                    _currentChaseTarget = _debugTarget;
+                    _currentChaseTarget = _currentTarget;
                     SwitchToChase();
                 }
 
@@ -274,8 +277,8 @@ public class Cop : MonoBehaviour
     {
         _currentCopState = CopState.Suspicious;
         _agent.speed = 0;
-        _animator.SetFloat("zSpeed", 0);
-        _animator.SetFloat("xSpeed", 0);
+        _animator.SetFloat("velocityX", 0);
+        _animator.SetFloat("velocityY", 0);
         _suspiciousTimer = _suspiciousDelay;
         _stateText.text = "?";
         _targetLostTimer = 0.1f;
