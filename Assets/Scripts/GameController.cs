@@ -111,12 +111,12 @@ namespace Game
         [ClientRpc]
         private void EnableBodiesClientRpc()
         {
-            var localClient = NetworkManager.Singleton.ConnectedClientsList
-                .First((cc) => cc.ClientId == NetworkManager.Singleton.LocalClientId);
+            var localClient = FindObjectsOfType<NetworkLocalPlayer>()
+                .First((cc) => cc.OwnerClientId == NetworkManager.Singleton.LocalClientId);
 
             if (localClient == null) { return; }
 
-            localClient.PlayerObject.GetComponent<NetworkLocalPlayer>()
+            localClient.GetComponent<NetworkLocalPlayer>()
                 .SpawnLocal(RandomPointOnGround, Quaternion.Euler(0f, Random.Range(-180f, 180f), 0f));
         }
 

@@ -77,10 +77,18 @@ public class InputController : MonoBehaviour
                 case InputControllerMap.DISABLED:
                     _inputs.Menu.Disable();
                     _inputs.Game.Disable();
+
+                    OnMoveCancelled?.Invoke(Vector2.zero);
+                    OnRotateCancelled?.Invoke(Vector2.zero);
+                    OnSprintCancelled?.Invoke(false);
                     break;
                 case InputControllerMap.MENU:
                     _inputs.Menu.Enable();
                     _inputs.Game.Disable();
+
+                    OnMoveCancelled?.Invoke(Vector2.zero);
+                    OnRotateCancelled?.Invoke(Vector2.zero);
+                    OnSprintCancelled?.Invoke(false);
                     break;
                 case InputControllerMap.GAME:
                     _inputs.Menu.Disable();

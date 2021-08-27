@@ -41,6 +41,7 @@ namespace Assets.Scripts.Player
 
                 _animator.SetFloat("velocityX", _velocityCash.x);
                 _animator.SetFloat("velocityY", _velocityCash.y);
+                _animator.SetFloat("velocityMagnitude", _velocityCash.magnitude);
             }
         }
 

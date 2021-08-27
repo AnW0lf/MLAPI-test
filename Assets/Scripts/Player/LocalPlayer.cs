@@ -6,7 +6,6 @@ namespace Assets.Scripts.Player
     public class LocalPlayer : MonoBehaviour
     {
         [SerializeField] private Transform _body = null;
-        [SerializeField] private Animator _animator = null;
         [SerializeField] private Rigidbody _rigidbody = null;
         [SerializeField] private GameObject _gun = null;
         [Header("Minimum difference")]
@@ -51,8 +50,6 @@ namespace Assets.Scripts.Player
             }
 
             Vector2 velocity = _velocity;
-            //_animator.SetFloat("velocityX", velocity.x);
-            //_animator.SetFloat("velocityY", velocity.y);
 
             if (Vector2.Distance(_oldVelocity, velocity) > _minVelocityStep)
             {
