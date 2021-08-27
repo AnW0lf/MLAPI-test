@@ -183,27 +183,90 @@ namespace Assets.Scripts.Player
         public bool IsSpawnedLocal => _local != null;
         public bool IsSpawnedRemote => _remote != null;
 
+        #region Variables
+        #region Transform
         private readonly NetworkVariableVector3 _position = new NetworkVariableVector3(new NetworkVariableSettings
         {
             WritePermission = NetworkVariablePermission.OwnerOnly,
             ReadPermission = NetworkVariablePermission.Everyone
         }, Vector3.zero);
+        public event Action<Vector3> PositionChanged;
 
         private readonly NetworkVariableQuaternion _rotation = new NetworkVariableQuaternion(new NetworkVariableSettings
         {
             WritePermission = NetworkVariablePermission.OwnerOnly,
             ReadPermission = NetworkVariablePermission.Everyone
         }, Quaternion.identity);
+        public event Action<Quaternion> RotationChanged;
+        #endregion Transform
 
-        private readonly NetworkVariableVector2 _velocity = new NetworkVariableVector2(new NetworkVariableSettings
+        #region Animator
+        private readonly NetworkVariableFloat _inputHorizontal = new NetworkVariableFloat(new NetworkVariableSettings
         {
             WritePermission = NetworkVariablePermission.OwnerOnly,
             ReadPermission = NetworkVariablePermission.Everyone
-        }, Vector2.zero);
+        }, 0f);
+        public event Action<float> InputHorizontalChanged;
 
-        public event Action<Vector3> PositionChanged;
-        public event Action<Quaternion> RotationChanged;
-        public event Action<Vector2> VelocityChanged;
+        private readonly NetworkVariableFloat _inputVertical = new NetworkVariableFloat(new NetworkVariableSettings
+        {
+            WritePermission = NetworkVariablePermission.OwnerOnly,
+            ReadPermission = NetworkVariablePermission.Everyone
+        }, 0f);
+        public event Action<float> InputVerticalChanged;
+
+        private readonly NetworkVariableFloat _inputMagnitude = new NetworkVariableFloat(new NetworkVariableSettings
+        {
+            WritePermission = NetworkVariablePermission.OwnerOnly,
+            ReadPermission = NetworkVariablePermission.Everyone
+        }, 0f);
+        public event Action<float> InputMagnitudeChanged;
+
+        private readonly NetworkVariableBool _isGrounded = new NetworkVariableBool(new NetworkVariableSettings
+        {
+            WritePermission = NetworkVariablePermission.OwnerOnly,
+            ReadPermission = NetworkVariablePermission.Everyone
+        }, false);
+        public event Action<bool> IsGroundedChanged;
+
+        private readonly NetworkVariableBool _isStrafing = new NetworkVariableBool(new NetworkVariableSettings
+        {
+            WritePermission = NetworkVariablePermission.OwnerOnly,
+            ReadPermission = NetworkVariablePermission.Everyone
+        }, false);
+        public event Action<bool> IsStrafingChanged;
+
+        private readonly NetworkVariableBool _isSprinting = new NetworkVariableBool(new NetworkVariableSettings
+        {
+            WritePermission = NetworkVariablePermission.OwnerOnly,
+            ReadPermission = NetworkVariablePermission.Everyone
+        }, false);
+        public event Action<bool> IsSprintingChanged;
+
+        private readonly NetworkVariableBool _isCrouching = new NetworkVariableBool(new NetworkVariableSettings
+        {
+            WritePermission = NetworkVariablePermission.OwnerOnly,
+            ReadPermission = NetworkVariablePermission.Everyone
+        }, false);
+        public event Action<bool> IsCrouchingChanged;
+
+        private readonly NetworkVariableFloat _groundDistance = new NetworkVariableFloat(new NetworkVariableSettings
+        {
+            WritePermission = NetworkVariablePermission.OwnerOnly,
+            ReadPermission = NetworkVariablePermission.Everyone
+        }, 0f);
+        public event Action<float> GroundDistanceChanged;
+        #endregion Animator
+
+        #region Hand
+        NetworkVariableBool _isHandVisible = new NetworkVariableBool(new NetworkVariableSettings
+        {
+            WritePermission = NetworkVariablePermission.OwnerOnly,
+            ReadPermission = NetworkVariablePermission.Everyone
+        }, false);
+        public event Action<bool> IsHandVisibleChanged;
+        #endregion Hand
+        #endregion Variables
 
         #region Local
         public void SpawnLocal(Vector3 position, Quaternion rotation)
@@ -220,24 +283,55 @@ namespace Assets.Scripts.Player
             SpawnRemoteServerRpc();
         }
 
+        private bool _subscribedToLocal = false;
         private void SubscribeToLocalNpc()
         {
             if (IsSpawnedLocal == false) { return; }
+            if (_subscribedToLocal) { return; }
 
             _local.PositionChanged += OnLocalPlayerPositionChanged;
             _local.RotationChanged += OnLocalPlayerRotationChanged;
-            _local.VelocityChanged += OnLocalPlayerVelocityChanged;
+
+            _local.InputHorizontalChanged += OnLocalInputHorizontalChanged;
+            _local.InputVerticalChanged += OnLocalInputVerticalChanged;
+            _local.InputMagnitudeChanged += OnLocalInputMagnitudeChanged;
+            _local.GroundDistanceChanged += OnLocalGroundDistanceChanged;
+
+            _local.IsCrouchingChanged += OnLocalIsCrouchingChanged;
+            _local.IsGroundedChanged += OnLocalIsGroundedChanged;
+            _local.IsSprintingChanged += OnLocalIsSprintingChanged;
+            _local.IsStrafingChanged += OnLocalIsStrafingChanged;
+
+            _local.IsHandVisibleChanged += OnLocalIsHandVisibleChanged;
+
+            _subscribedToLocal = true;
         }
 
         private void UnsubscribeFromLocalNpc()
         {
             if (IsSpawnedLocal == false) { return; }
+            if (_subscribedToLocal == false) { return; }
 
             _local.PositionChanged -= OnLocalPlayerPositionChanged;
             _local.RotationChanged -= OnLocalPlayerRotationChanged;
-            _local.VelocityChanged -= OnLocalPlayerVelocityChanged;
+
+            _local.InputHorizontalChanged -= OnLocalInputHorizontalChanged;
+            _local.InputVerticalChanged -= OnLocalInputVerticalChanged;
+            _local.InputMagnitudeChanged -= OnLocalInputMagnitudeChanged;
+            _local.GroundDistanceChanged -= OnLocalGroundDistanceChanged;
+
+            _local.IsCrouchingChanged -= OnLocalIsCrouchingChanged;
+            _local.IsGroundedChanged -= OnLocalIsGroundedChanged;
+            _local.IsSprintingChanged -= OnLocalIsSprintingChanged;
+            _local.IsStrafingChanged -= OnLocalIsStrafingChanged;
+
+            _local.IsHandVisibleChanged -= OnLocalIsHandVisibleChanged;
+
+            _subscribedToLocal = false;
         }
 
+        #region Local - Actions
+        #region Transform - Actions
         private void OnLocalPlayerPositionChanged(Vector3 position)
         {
             _position.Value = position;
@@ -247,11 +341,57 @@ namespace Assets.Scripts.Player
         {
             _rotation.Value = rotation;
         }
+        #endregion Transform - Actions
 
-        private void OnLocalPlayerVelocityChanged(Vector2 velocity)
+        #region Animator - Actions
+        private void OnLocalInputHorizontalChanged(float inputHorizontal)
         {
-            _velocity.Value = velocity;
+            _inputHorizontal.Value = inputHorizontal;
         }
+
+        private void OnLocalInputVerticalChanged(float inputVertical)
+        {
+            _inputVertical.Value = inputVertical;
+        }
+
+        private void OnLocalInputMagnitudeChanged(float inputMagnitude)
+        {
+            _inputMagnitude.Value = inputMagnitude;
+        }
+
+        private void OnLocalGroundDistanceChanged(float groundDistance)
+        {
+            _groundDistance.Value = groundDistance;
+        }
+
+        private void OnLocalIsCrouchingChanged(bool isCrouching)
+        {
+            _isCrouching.Value = isCrouching;
+        }
+
+        private void OnLocalIsGroundedChanged(bool isGrounded)
+        {
+            _isGrounded.Value = isGrounded;
+        }
+
+        private void OnLocalIsSprintingChanged(bool isSprinting)
+        {
+            _isSprinting.Value = isSprinting;
+        }
+
+        private void OnLocalIsStrafingChanged(bool isStrafing)
+        {
+            _isStrafing.Value = isStrafing;
+        }
+        #endregion Animator - Actions
+
+        #region Hand - Actions
+        private void OnLocalIsHandVisibleChanged(bool isHandVisible)
+        {
+            _isHandVisible.Value = isHandVisible;
+        }
+        #endregion Hand - Actions
+        #endregion Local - Actions
 
         public void DeleteLocal()
         {
@@ -262,7 +402,6 @@ namespace Assets.Scripts.Player
 
             _position.Value = Vector3.zero;
             _rotation.Value = Quaternion.identity;
-            _velocity.Value = Vector2.zero;
 
             DeleteRemoteServerRpc();
         }
@@ -293,20 +432,53 @@ namespace Assets.Scripts.Player
             _remote.SubscribeToNetworkPlayer(this);
         }
 
+        private bool _subscribedToNetwork = false;
         private void SubscribeToNetworkNpc()
         {
+            if (_subscribedToNetwork) { return; }
+
             _position.OnValueChanged += OnNetworkPlayerPositionChanged;
             _rotation.OnValueChanged += OnNetworkPlayerRotationChanged;
-            _velocity.OnValueChanged += OnNetworkPlayerVelocityChanged;
+
+            _inputHorizontal.OnValueChanged += OnNetworkInputHorizontalChanged;
+            _inputVertical.OnValueChanged += OnNetworkInputVerticalChanged;
+            _inputMagnitude.OnValueChanged += OnNetworkInputMagnitudeChanged;
+            _groundDistance.OnValueChanged += OnNetworkGroundDistanceChanged;
+
+            _isCrouching.OnValueChanged += OnNetworkIsCrouchingChanged;
+            _isGrounded.OnValueChanged += OnNetworkIsGroundedChanged;
+            _isSprinting.OnValueChanged += OnNetworkIsSprintingChanged;
+            _isStrafing.OnValueChanged += OnNetworkIsStrafingChanged;
+
+            _isHandVisible.OnValueChanged += OnNetworkIsHandVisibleChanged;
+
+            _subscribedToNetwork = true;
         }
 
         private void UnsubscribeFromNetworkNpc()
         {
+            if (_subscribedToNetwork == false) { return; }
+
             _position.OnValueChanged -= OnNetworkPlayerPositionChanged;
             _rotation.OnValueChanged -= OnNetworkPlayerRotationChanged;
-            _velocity.OnValueChanged -= OnNetworkPlayerVelocityChanged;
+
+            _inputHorizontal.OnValueChanged -= OnNetworkInputHorizontalChanged;
+            _inputVertical.OnValueChanged -= OnNetworkInputVerticalChanged;
+            _inputMagnitude.OnValueChanged -= OnNetworkInputMagnitudeChanged;
+            _groundDistance.OnValueChanged -= OnNetworkGroundDistanceChanged;
+
+            _isCrouching.OnValueChanged -= OnNetworkIsCrouchingChanged;
+            _isGrounded.OnValueChanged -= OnNetworkIsGroundedChanged;
+            _isSprinting.OnValueChanged -= OnNetworkIsSprintingChanged;
+            _isStrafing.OnValueChanged -= OnNetworkIsStrafingChanged;
+
+            _isHandVisible.OnValueChanged -= OnNetworkIsHandVisibleChanged;
+
+            _subscribedToNetwork = false;
         }
 
+        #region Remote - Actions
+        #region Transform - Actions
         private void OnNetworkPlayerPositionChanged(Vector3 previousValue, Vector3 newValue)
         {
             PositionChanged?.Invoke(newValue);
@@ -316,11 +488,57 @@ namespace Assets.Scripts.Player
         {
             RotationChanged?.Invoke(newValue);
         }
+        #endregion Transform - Actions
 
-        private void OnNetworkPlayerVelocityChanged(Vector2 previousValue, Vector2 newValue)
+        #region Animator - Actions
+        private void OnNetworkInputHorizontalChanged(float previousValue, float newValue)
         {
-            VelocityChanged?.Invoke(newValue);
+            InputHorizontalChanged?.Invoke(newValue);
         }
+
+        private void OnNetworkInputVerticalChanged(float previousValue, float newValue)
+        {
+            InputVerticalChanged?.Invoke(newValue);
+        }
+
+        private void OnNetworkInputMagnitudeChanged(float previousValue, float newValue)
+        {
+            InputMagnitudeChanged?.Invoke(newValue);
+        }
+
+        private void OnNetworkGroundDistanceChanged(float previousValue, float newValue)
+        {
+            GroundDistanceChanged?.Invoke(newValue);
+        }
+
+        private void OnNetworkIsCrouchingChanged(bool previousValue, bool newValue)
+        {
+            IsCrouchingChanged?.Invoke(newValue);
+        }
+
+        private void OnNetworkIsGroundedChanged(bool previousValue, bool newValue)
+        {
+            IsGroundedChanged?.Invoke(newValue);
+        }
+
+        private void OnNetworkIsSprintingChanged(bool previousValue, bool newValue)
+        {
+            IsSprintingChanged?.Invoke(newValue);
+        }
+
+        private void OnNetworkIsStrafingChanged(bool previousValue, bool newValue)
+        {
+            IsStrafingChanged?.Invoke(newValue);
+        }
+        #endregion Animator - Actions
+
+        #region Hand - Actions
+        private void OnNetworkIsHandVisibleChanged(bool previousValue, bool newValue)
+        {
+            IsHandVisibleChanged?.Invoke(newValue);
+        }
+        #endregion Hand - Actions
+        #endregion Remote - Actions
 
         [ServerRpc(RequireOwnership = false)]
         private void DeleteRemoteServerRpc()

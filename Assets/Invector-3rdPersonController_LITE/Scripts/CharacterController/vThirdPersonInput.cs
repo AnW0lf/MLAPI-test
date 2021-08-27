@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Player;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Invector.vCharacterController
 {
@@ -7,6 +9,7 @@ namespace Invector.vCharacterController
         #region Variables       
 
         [SerializeField] private GameObject _cameraPrefab = null;
+        [SerializeField] private HandMotion _hand = null;
         [HideInInspector] public vThirdPersonController cc;
         [HideInInspector] public vThirdPersonCamera tpCamera;
         [HideInInspector] public Camera cameraMain;
@@ -68,6 +71,8 @@ namespace Invector.vCharacterController
 
             InputController.Singleton.OnCrouchStarted += CrouchInput;
 
+            InputController.Singleton.OnHandStarted += HandInput;
+
             InputController.Singleton.OnToMenuStarted += PauseController;
             InputController.Singleton.OnToGameStarted += PauseController;
         }
@@ -90,6 +95,8 @@ namespace Invector.vCharacterController
             InputController.Singleton.OnJumpStarted -= JumpInput;
 
             InputController.Singleton.OnCrouchStarted -= CrouchInput;
+
+            InputController.Singleton.OnHandStarted -= HandInput;
 
             InputController.Singleton.OnToMenuStarted -= PauseController;
             InputController.Singleton.OnToGameStarted -= PauseController;
@@ -187,6 +194,12 @@ namespace Invector.vCharacterController
         protected virtual void CrouchInput(bool isCrouch)
         {
             cc.Crouch(!cc.isCrouching);
+        }
+
+        private void HandInput(InputAction.CallbackContext obj)
+        {
+            _hand.SwitchHand();
+            cc.freeSpeed.rotateWithCamera = _hand.HandVisible;
         }
 
         /// <summary>

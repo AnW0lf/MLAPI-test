@@ -620,7 +620,7 @@ GameObject:
   - component: {fileID: 167390983823816971}
   - component: {fileID: 7428834347312412177}
   m_Layer: 0
-  m_Name: RemotePlayer
+  m_Name: FPC_RemotePlayer
   m_TagString: Civilian
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -652,7 +652,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4809987962402567313}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: ad52d12ad7e12c644a18f176d31a93bb, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 340f99b8334a14c4a8a01dce6e1e5348, type: 3}
   m_Controller: {fileID: 9100000, guid: 114ba25c0dc07ba46ad268b5790584fe, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -790,12 +790,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _body: {fileID: 4809987962402968013}
   _animator: {fileID: 4809987962395202543}
-  _positionSmoothness: 3
-  _rotationSmoothness: 3
-  _velocitySmoothness: 3
+  _hand: {fileID: 0}
+  _positionSmooth: 3
+  _rotationSmooth: 3
+  _animationSmooth: 0.2
   _maxPositionStep: 1.5
   _maxRotationStep: 30
-  _maxVelocityStep: 1
+  _maxAnimatorFloatStep: 0.5
 --- !u!1 &4809987962402569729
 GameObject:
   m_ObjectHideFlags: 0
