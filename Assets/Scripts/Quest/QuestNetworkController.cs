@@ -22,7 +22,7 @@ namespace Assets.Scripts.Quest
                 for (int i = 0; i < _clientIds.Length; _clientIds[i] = ulong.MaxValue, i++) ;
             }
 
-            GameController.Singleton.OnBodiesEnabled += RequestQuestLine;
+            GameController.Singleton.OnBodyEnabled += RequestQuestLine;
         }
 
         private void RequestQuestLine()

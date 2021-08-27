@@ -21,8 +21,8 @@ namespace Game
         [SerializeField] private Rect _populationArea = Rect.zero;
         [SerializeField] private float _raycastHeight = 20f;
 
-        public event Action OnBodiesEnabled;
-        public event Action OnBodiesDisabled;
+        public event Action OnBodyEnabled;
+        public event Action OnBodyDisabled;
 
         private readonly NetworkVariableULong _civilianNextId = new NetworkVariableULong(new NetworkVariableSettings
         {
@@ -118,6 +118,8 @@ namespace Game
 
             localClient.GetComponent<NetworkLocalPlayer>()
                 .SpawnLocal(RandomPointOnGround, Quaternion.Euler(0f, Random.Range(-180f, 180f), 0f));
+
+            OnBodyEnabled?.Invoke();
         }
 
         [ServerRpc(RequireOwnership = false)]

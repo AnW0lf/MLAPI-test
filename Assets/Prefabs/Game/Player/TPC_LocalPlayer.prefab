@@ -1348,6 +1348,7 @@ GameObject:
   - component: {fileID: 906218399590884949}
   - component: {fileID: 2065605768163020886}
   - component: {fileID: 5902491187838774599}
+  - component: {fileID: 4688648140784459471}
   m_Layer: 0
   m_Name: TPC_LocalPlayer
   m_TagString: Player
@@ -1651,6 +1652,18 @@ MonoBehaviour:
     - {fileID: 4976127012308349017}
   _handMotionSpeed: 2
   item: {fileID: 2206964749411941796}
+--- !u!114 &4688648140784459471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620871831539552079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4386e01111574214aa64fd74f3ec7635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &620871831545237684
 GameObject:
   m_ObjectHideFlags: 0
@@ -4311,6 +4324,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 892805f855b9f3044946b73600548fbc, type: 3}
+--- !u!4 &8371625208412318587 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3089962702705042084, guid: 892805f855b9f3044946b73600548fbc, type: 3}
+  m_PrefabInstance: {fileID: 6830901192385595871}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2206964749411941796 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4642237935350871163, guid: 892805f855b9f3044946b73600548fbc, type: 3}
@@ -4322,8 +4340,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 268c229af0f17854bbe957e518391f29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &8371625208412318587 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3089962702705042084, guid: 892805f855b9f3044946b73600548fbc, type: 3}
-  m_PrefabInstance: {fileID: 6830901192385595871}
-  m_PrefabAsset: {fileID: 0}
