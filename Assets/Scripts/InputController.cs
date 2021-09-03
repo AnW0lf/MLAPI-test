@@ -28,7 +28,9 @@ public class InputController : MonoBehaviour
                 break;
             case InputControllerMap.MENU:
                 {
-
+                    // Menu - ToGame
+                    if (IsToGameDown) IsToGameDown = false;
+                    if (IsToGameUp) IsToGameUp = false;
                 }
                 break;
             case InputControllerMap.GAME:
@@ -45,16 +47,15 @@ public class InputController : MonoBehaviour
                     // Game - Hand
                     if (IsHandDown) IsHandDown = false;
                     if (IsHandUp) IsHandUp = false;
+                    // Game - Aim
+                    if (IsAimDown) IsAimDown = false;
+                    if (IsAimUp) IsAimUp = false;
                     // Game - Use
                     if (IsUseDown) IsUseDown = false;
                     if (IsUseUp) IsUseUp = false;
                     // Game - ToMenu
                     if (IsToMenuDown) IsToMenuDown = false;
                     if (IsToMenuUp) IsToMenuUp = false;
-
-                    // Menu - ToGame
-                    if (IsToGameDown) IsToGameDown = false;
-                    if (IsToGameUp) IsToGameUp = false;
                 }
                 break;
         }
@@ -136,6 +137,12 @@ public class InputController : MonoBehaviour
         _inputs.Game.Hand.performed += HandPerformed;
         _inputs.Game.Hand.canceled += HandCancelled;
         #endregion Init - Game - Hand
+
+        #region Init - Game - Aim
+        _inputs.Game.Aim.started += AimStarted;
+        _inputs.Game.Aim.performed += AimPerformed;
+        _inputs.Game.Aim.canceled += AimCancelled;
+        #endregion Init - Game - Aim
 
         #region Init - Game - Use
         _inputs.Game.Use.started += UseStarted;
@@ -332,29 +339,56 @@ public class InputController : MonoBehaviour
     }
     #endregion Game - Hand
 
+    #region Game - Aim
+    public event Action<bool> OnAimStarted;
+    public event Action<bool> OnAimPerformed;
+    public event Action<bool> OnAimCancelled;
+    public bool IsAim { get; private set; } = false;
+    public bool IsAimDown { get; private set; } = false;
+    public bool IsAimUp { get; private set; } = false;
+    private void AimStarted(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        IsAim = true;
+        OnAimStarted?.Invoke(true);
+        IsAimDown = true;
+    }
+
+    private void AimPerformed(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        OnAimPerformed?.Invoke(true);
+    }
+
+    private void AimCancelled(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        IsAim = false;
+        OnAimCancelled?.Invoke(false);
+        IsAimUp = true;
+    }
+    #endregion Game - Aim
+
     #region Game - Use
-    public event Action<UnityEngine.InputSystem.InputAction.CallbackContext> OnUseStarted;
-    public event Action<UnityEngine.InputSystem.InputAction.CallbackContext> OnUsePerformed;
-    public event Action<UnityEngine.InputSystem.InputAction.CallbackContext> OnUseCancelled;
+    public event Action<bool> OnUseStarted;
+    public event Action<bool> OnUsePerformed;
+    public event Action<bool> OnUseCancelled;
     public bool IsUse { get; private set; } = false;
     public bool IsUseDown { get; private set; } = false;
     public bool IsUseUp { get; private set; } = false;
     private void UseStarted(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         IsUse = true;
-        OnUseStarted?.Invoke(context);
+        OnUseStarted?.Invoke(true);
         IsUseDown = true;
     }
 
     private void UsePerformed(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        OnUsePerformed?.Invoke(context);
+        OnUsePerformed?.Invoke(true);
     }
 
     private void UseCancelled(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         IsUse = false;
-        OnUseCancelled?.Invoke(context);
+        OnUseCancelled?.Invoke(false);
         IsUseUp = true;
     }
     #endregion Game - Use

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
@@ -9,9 +10,14 @@ namespace Assets.Scripts.Player
     {
         [Header("Hand Settings")]
         [SerializeField] private Hand _hand = null;
+        [SerializeField] private Transform _handAnchorPoint = null;
+        [SerializeField] private Transform _handTargetPoint = null;
         [SerializeField] [Range(0.1f, 10f)] private float _handMotionSpeed = 2f;
         [Header("Item Reference")]
         public Item item;
+
+        private readonly Quaternion _handRotationOffset = Quaternion.Euler(0f, -90f, -90f);
+        private readonly float _handTargetDistance = 0.5f;
 
         private enum HandState { FREE = 0, BAG = 1, VISIBLE = 2 }
         private HandState State => (HandState)(Mathf.RoundToInt(Mathf.Clamp(_hand.State, 0f, 2f)));
@@ -28,6 +34,9 @@ namespace Assets.Scripts.Player
             }
         }
 
+        public vThirdPersonCamera tpCamera { get; set; } = null;
+        public bool IsAim { get; set; } = false;
+
         private void Update()
         {
             if (ItemActive)
@@ -38,6 +47,50 @@ namespace Assets.Scripts.Player
             else
             {
                 _hand.wrist.weight = Mathf.Clamp(_hand.wrist.weight - Time.deltaTime * 5f, 0f, 1f);
+            }
+
+            if (HandVisible)
+            {
+                if (IsAim)
+                {
+                    if (tpCamera)
+                    {
+                        Vector3 hitPoint = tpCamera.RayCastCenter(transform);
+                        Vector3 direction = (hitPoint - _handAnchorPoint.position).normalized;
+                        Vector3 position = _handAnchorPoint.position + direction * _handTargetDistance;
+
+                        _handTargetPoint.position = position;
+                        _handTargetPoint.LookAt(hitPoint);
+                        _handTargetPoint.rotation *= _handRotationOffset;
+                    }
+                }
+                else
+                {
+                    _handTargetPoint.position = _handAnchorPoint.position + transform.forward * _handTargetDistance;
+                    _handTargetPoint.localRotation = _handRotationOffset;
+                }
+            }
+        }
+
+        private void OnDrawGizmos()
+        {
+            if (IsAim)
+            {
+                if (tpCamera)
+                {
+                    Vector3 from = tpCamera.transform.position;
+                    Vector3 to = tpCamera.RayCastCenter(transform);
+
+                    Gizmos.color = Color.green;
+                    Gizmos.DrawLine(from, to);
+                    Gizmos.DrawWireSphere(to, 0.2f);
+
+                    from = _handTargetPoint.position;
+                    to = from + _handTargetPoint.up * 10f;
+
+                    Gizmos.color = Color.red;
+                    Gizmos.DrawLine(from, to);
+                }
             }
         }
 

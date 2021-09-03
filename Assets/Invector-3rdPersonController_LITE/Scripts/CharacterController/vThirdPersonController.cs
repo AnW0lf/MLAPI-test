@@ -49,8 +49,35 @@ namespace Invector.vCharacterController
                 // calculate input smooth
                 inputSmooth = Vector3.Lerp(inputSmooth, input, (isStrafing ? strafeSpeed.movementSmooth : freeSpeed.movementSmooth) * Time.deltaTime);
 
-                Vector3 dir = (isStrafing && (!isSprinting || sprintOnlyFree == false) || (freeSpeed.rotateWithCamera && input == Vector3.zero)) && rotateTarget ? rotateTarget.forward : moveDirection;
+                Vector3 dir = moveDirection;
+                if (rotateTarget)
+                {
+                    if(isStrafing && (!isSprinting || sprintOnlyFree == false))
+                    {
+                        dir = rotateTarget.forward;
+                    }
+                    else if (freeSpeed.rotateWithCamera && input == Vector3.zero)
+                    {
+                        dir = rotateTarget.forward;
+                    }
+                }
+
+
                 RotateToDirection(dir);
+            }
+        }
+
+        public virtual void ControlRotationType(Vector3 lookDirection)
+        {
+            if (lockRotation) return;
+
+            bool validInput = input != Vector3.zero || (isStrafing ? strafeSpeed.rotateWithCamera : freeSpeed.rotateWithCamera);
+
+            if (validInput)
+            {
+                // calculate input smooth
+                inputSmooth = Vector3.Lerp(inputSmooth, input, (isStrafing ? strafeSpeed.movementSmooth : freeSpeed.movementSmooth) * Time.deltaTime);
+                RotateToDirection(lookDirection);
             }
         }
 

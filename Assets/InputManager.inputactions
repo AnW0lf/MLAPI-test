@@ -54,6 +54,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Aim",
+                    "type": "Button",
+                    "id": "3028bb4c-892b-4e5e-9f92-6d6874a7f042",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Use",
                     "type": "Button",
                     "id": "1d63bc05-ccea-4771-81c0-2c1e728c26d4",
@@ -200,6 +208,17 @@
                     "processors": "ScaleVector2(x=0.05,y=0.05)",
                     "groups": "",
                     "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1d555934-c7e5-45d6-b9c4-63159c9489dd",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

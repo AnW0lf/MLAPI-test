@@ -1,4 +1,5 @@
 ﻿using Invector;
+using System.Linq;
 using UnityEngine;
 
 public class vThirdPersonCamera : MonoBehaviour
@@ -14,6 +15,7 @@ public class vThirdPersonCamera : MonoBehaviour
     public bool lockCamera;
 
     public float rightOffset = 0f;
+    public float upOffset = 0f;
     public float defaultDistance = 2.5f;
     public float height = 1.4f;
     public float smoothFollow = 10f;
@@ -154,7 +156,7 @@ public class vThirdPersonCamera : MonoBehaviour
 
         distance = Mathf.Lerp(distance, defaultDistance, smoothFollow * Time.deltaTime);
         cullingDistance = Mathf.Lerp(cullingDistance, distance, Time.deltaTime);
-        var camDir = (forward * targetLookAt.forward) + (rightOffset * targetLookAt.right);
+        var camDir = (forward * targetLookAt.forward) + (upOffset * targetLookAt.up) + (rightOffset * targetLookAt.right);
 
         camDir = camDir.normalized;
 
@@ -246,5 +248,32 @@ public class vThirdPersonCamera : MonoBehaviour
         }
 
         return hitInfo.collider && value;
+    }
+
+    public Vector3 RayCastCenter(Transform exclude = null)
+    {
+        Ray ray = new Ray(transform.position, transform.forward);
+        RaycastHit[] hits = Physics.RaycastAll(ray, _camera.farClipPlane);
+        Vector3 result = transform.position + transform.forward * _camera.farClipPlane;
+        if (hits != null && hits.Length > 0)
+        {
+            var sortedHits = hits
+                .Where((sh) => sh.transform != exclude
+                && Vector3.Distance(sh.point, transform.position) > defaultDistance
+                && sh.collider.isTrigger == false)
+                .ToList();
+
+            if (sortedHits.Count != 0)
+            {
+                sortedHits.Sort((hit_1, hit_2) =>
+                    Vector3.Distance(transform.position, hit_1.point)
+                    .CompareTo(Vector3.Distance(transform.position, hit_2.point))
+                    );
+
+                RaycastHit hit = sortedHits[0];
+                result = hit.point;
+            }
+        }
+        return result;
     }
 }

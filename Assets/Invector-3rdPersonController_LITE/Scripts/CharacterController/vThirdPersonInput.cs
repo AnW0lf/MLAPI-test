@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Player;
+using Assets.Scripts.Weapon;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +11,11 @@ namespace Invector.vCharacterController
 
         [SerializeField] private GameObject _cameraPrefab = null;
         [SerializeField] private HandMotion _hand = null;
+        [SerializeField] private TPCWeapon _weapon = null;
+        [SerializeField] [Range(-1f, 1f)] private float _horizontalWeaponOffset = 0f;
+        [SerializeField] [Range(-1f, 1f)] private float _verticalWeaponOffset = 0f;
+        [SerializeField] [Range(0f, 10f)] private float _normalCameraDistance = 2.5f;
+        [SerializeField] [Range(0f, 10f)] private float _aimCameraDistance = 0.5f;
         [HideInInspector] public vThirdPersonController cc;
         [HideInInspector] public vThirdPersonCamera tpCamera;
         [HideInInspector] public Camera cameraMain;
@@ -20,7 +26,7 @@ namespace Invector.vCharacterController
         {
             InitilizeController();
             InitializeTpCamera();
-            SunscribeToInput();
+            SubscribeToInput();
 
             Cursor.lockState = CursorLockMode.Locked;
         }
@@ -29,7 +35,17 @@ namespace Invector.vCharacterController
         {
             cc.UpdateMotor();               // updates the ThirdPersonMotor methods
             cc.ControlLocomotionType();     // handle the controller locomotion type and movespeed
-            cc.ControlRotationType();       // handle the controller rotation type
+            if (cc.freeSpeed.rotateWithCamera)
+            {
+                if (cameraMain)
+                {
+                    cc.ControlRotationType(cameraMain.transform.forward);       // handle the controller rotation type
+                }
+            }
+            else
+            {
+                cc.ControlRotationType();       // handle the controller rotation type
+            }
 
             if (cameraMain)
             {
@@ -49,10 +65,10 @@ namespace Invector.vCharacterController
 
         private void OnDestroy()
         {
-            UnsunscribeFromInput();
+            UnsubscribeFromInput();
         }
 
-        private void SunscribeToInput()
+        private void SubscribeToInput()
         {
             if (InputController.Singleton == null) { return; }
 
@@ -73,11 +89,16 @@ namespace Invector.vCharacterController
 
             InputController.Singleton.OnHandStarted += HandInput;
 
+            InputController.Singleton.OnAimStarted += AimInput;
+            InputController.Singleton.OnAimCancelled += AimInput;
+
+            InputController.Singleton.OnUseStarted += UseInput;
+
             InputController.Singleton.OnToMenuStarted += PauseController;
             InputController.Singleton.OnToGameStarted += PauseController;
         }
 
-        private void UnsunscribeFromInput()
+        private void UnsubscribeFromInput()
         {
             if (InputController.Singleton == null) { return; }
 
@@ -97,6 +118,11 @@ namespace Invector.vCharacterController
             InputController.Singleton.OnCrouchStarted -= CrouchInput;
 
             InputController.Singleton.OnHandStarted -= HandInput;
+
+            InputController.Singleton.OnAimStarted -= AimInput;
+            InputController.Singleton.OnAimCancelled -= AimInput;
+
+            InputController.Singleton.OnUseStarted -= UseInput;
 
             InputController.Singleton.OnToMenuStarted -= PauseController;
             InputController.Singleton.OnToGameStarted -= PauseController;
@@ -140,6 +166,8 @@ namespace Invector.vCharacterController
                     tpCamera.SetMainTarget(this.transform);
                     tpCamera.Init();
                 }
+
+                _hand.tpCamera = tpCamera;
             }
         }
 
@@ -196,10 +224,29 @@ namespace Invector.vCharacterController
             cc.Crouch(!cc.isCrouching);
         }
 
-        private void HandInput(InputAction.CallbackContext obj)
+        private void HandInput(InputAction.CallbackContext context)
         {
             _hand.SwitchHand();
-            cc.freeSpeed.rotateWithCamera = _hand.HandVisible;
+            AimInput(false);
+        }
+
+        private void AimInput(bool press)
+        {
+            bool active = press && _hand.HandVisible;
+
+            cc.freeSpeed.rotateWithCamera = active;
+            tpCamera.rightOffset = active ? _horizontalWeaponOffset : 0f;
+            tpCamera.upOffset = active ? _verticalWeaponOffset : 0f;
+            tpCamera.defaultDistance = active ? _aimCameraDistance : _normalCameraDistance;
+            _hand.IsAim = active;
+        }
+
+        private void UseInput(bool use)
+        {
+            if (_hand.HandVisible == false) { return; }
+            if (_hand.IsAim == false) { return; }
+
+            _weapon.Shoot();
         }
 
         /// <summary>

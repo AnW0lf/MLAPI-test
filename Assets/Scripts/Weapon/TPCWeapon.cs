@@ -6,32 +6,43 @@ using UnityEngine;
 
 namespace Assets.Scripts.Weapon
 {
-    public class WeaponCaster : MonoBehaviour
+    public class TPCWeapon : MonoBehaviour
     {
-        [SerializeField] private Camera _camera = null;
+        [SerializeField] private Transform _weapon = null;
         [SerializeField] private float _rechargeDelay = 1f;
-        [SerializeField] private GameObject _gun = null;
 
         private bool _canShoot = true;
 
-        public void Shoot()
+        private void OnDrawGizmos()
         {
-            if (_gun.activeSelf == false) { return; }
-            if (_canShoot == false) { return; }
-            if (_camera == null) { return; }
-            
-            Ray ray = _camera.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0f));
+            Vector3 from = _weapon.position;
+            Vector3 to = from + _weapon.forward * 10f;
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(from, to);
+        }
 
-            RaycastHit[] hits = Physics.RaycastAll(ray, _camera.farClipPlane);
+        public void Shoot(Transform exclude = null)
+        {
+            if (_canShoot == false) { return; }
+
+            Ray ray = new Ray(_weapon.position, _weapon.forward);
+
+            RaycastHit[] hits = Physics.RaycastAll(ray, 50f);
             if (hits != null && hits.Length > 0)
             {
-                var sortedHits = hits.ToList();
+                var sortedHits = hits
+                    .Where((sh) => sh.transform != exclude
+                    && sh.collider.isTrigger == false)
+                    .ToList();
+
+                if (sortedHits.Count == 0) { return; }
+
                 sortedHits.Sort((hit_1, hit_2) =>
                     Vector3.Distance(transform.position, hit_1.point)
                     .CompareTo(Vector3.Distance(transform.position, hit_2.point))
                     );
 
-                RaycastHit hit = sortedHits.First((h) => h.transform != transform);
+                RaycastHit hit = sortedHits[0];
 
                 if (hit.transform != null)
                 {

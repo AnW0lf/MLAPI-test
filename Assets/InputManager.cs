@@ -67,6 +67,14 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""3028bb4c-892b-4e5e-9f92-6d6874a7f042"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""Use"",
                     ""type"": ""Button"",
                     ""id"": ""1d63bc05-ccea-4771-81c0-2c1e728c26d4"",
@@ -215,6 +223,17 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1d555934-c7e5-45d6-b9c4-63159c9489dd"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -256,6 +275,7 @@ public class @InputManager : IInputActionCollection, IDisposable
         m_Game_Jump = m_Game.FindAction("Jump", throwIfNotFound: true);
         m_Game_Crouch = m_Game.FindAction("Crouch", throwIfNotFound: true);
         m_Game_Hand = m_Game.FindAction("Hand", throwIfNotFound: true);
+        m_Game_Aim = m_Game.FindAction("Aim", throwIfNotFound: true);
         m_Game_Use = m_Game.FindAction("Use", throwIfNotFound: true);
         m_Game_ToMenu = m_Game.FindAction("ToMenu", throwIfNotFound: true);
         // Menu
@@ -316,6 +336,7 @@ public class @InputManager : IInputActionCollection, IDisposable
     private readonly InputAction m_Game_Jump;
     private readonly InputAction m_Game_Crouch;
     private readonly InputAction m_Game_Hand;
+    private readonly InputAction m_Game_Aim;
     private readonly InputAction m_Game_Use;
     private readonly InputAction m_Game_ToMenu;
     public struct GameActions
@@ -328,6 +349,7 @@ public class @InputManager : IInputActionCollection, IDisposable
         public InputAction @Jump => m_Wrapper.m_Game_Jump;
         public InputAction @Crouch => m_Wrapper.m_Game_Crouch;
         public InputAction @Hand => m_Wrapper.m_Game_Hand;
+        public InputAction @Aim => m_Wrapper.m_Game_Aim;
         public InputAction @Use => m_Wrapper.m_Game_Use;
         public InputAction @ToMenu => m_Wrapper.m_Game_ToMenu;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
@@ -357,6 +379,9 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @Hand.started -= m_Wrapper.m_GameActionsCallbackInterface.OnHand;
                 @Hand.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnHand;
                 @Hand.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnHand;
+                @Aim.started -= m_Wrapper.m_GameActionsCallbackInterface.OnAim;
+                @Aim.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnAim;
+                @Aim.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnAim;
                 @Use.started -= m_Wrapper.m_GameActionsCallbackInterface.OnUse;
                 @Use.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnUse;
                 @Use.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnUse;
@@ -385,6 +410,9 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @Hand.started += instance.OnHand;
                 @Hand.performed += instance.OnHand;
                 @Hand.canceled += instance.OnHand;
+                @Aim.started += instance.OnAim;
+                @Aim.performed += instance.OnAim;
+                @Aim.canceled += instance.OnAim;
                 @Use.started += instance.OnUse;
                 @Use.performed += instance.OnUse;
                 @Use.canceled += instance.OnUse;
@@ -436,6 +464,7 @@ public class @InputManager : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnHand(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
         void OnUse(InputAction.CallbackContext context);
         void OnToMenu(InputAction.CallbackContext context);
     }
