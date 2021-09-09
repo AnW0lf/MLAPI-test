@@ -259,13 +259,22 @@ namespace Assets.Scripts.Player
         #endregion Animator
 
         #region Hand
-        NetworkVariableBool _isHandVisible = new NetworkVariableBool(new NetworkVariableSettings
+        private readonly NetworkVariableBool _isHandVisible = new NetworkVariableBool(new NetworkVariableSettings
         {
             WritePermission = NetworkVariablePermission.OwnerOnly,
             ReadPermission = NetworkVariablePermission.Everyone
         }, false);
         public event Action<bool> IsHandVisibleChanged;
         #endregion Hand
+
+        #region Skin
+        private readonly NetworkVariableInt _skinIndex = new NetworkVariableInt(new NetworkVariableSettings
+        {
+            WritePermission = NetworkVariablePermission.OwnerOnly,
+            ReadPermission = NetworkVariablePermission.Everyone
+        }, -1);
+        public event Action<int> SkinIndexChanged;
+        #endregion Skin
         #endregion Variables
 
         #region Local
@@ -304,6 +313,8 @@ namespace Assets.Scripts.Player
 
             _local.IsHandVisibleChanged += OnLocalIsHandVisibleChanged;
 
+            _local.SkinIndexChanged += OnSkinIndexChanged;
+
             _subscribedToLocal = true;
         }
 
@@ -326,6 +337,8 @@ namespace Assets.Scripts.Player
             _local.IsStrafingChanged -= OnLocalIsStrafingChanged;
 
             _local.IsHandVisibleChanged -= OnLocalIsHandVisibleChanged;
+
+            _local.SkinIndexChanged -= OnSkinIndexChanged;
 
             _subscribedToLocal = false;
         }
@@ -391,6 +404,13 @@ namespace Assets.Scripts.Player
             _isHandVisible.Value = isHandVisible;
         }
         #endregion Hand - Actions
+
+        #region Skin - Actions
+        private void OnSkinIndexChanged(int skinIndex)
+        {
+            _skinIndex.Value = skinIndex;
+        }
+        #endregion Skin - Actions
         #endregion Local - Actions
 
         public void DeleteLocal()
@@ -452,6 +472,8 @@ namespace Assets.Scripts.Player
 
             _isHandVisible.OnValueChanged += OnNetworkIsHandVisibleChanged;
 
+            _skinIndex.OnValueChanged += OnNetworkSkinIndexChanged;
+
             _subscribedToNetwork = true;
         }
 
@@ -473,6 +495,8 @@ namespace Assets.Scripts.Player
             _isStrafing.OnValueChanged -= OnNetworkIsStrafingChanged;
 
             _isHandVisible.OnValueChanged -= OnNetworkIsHandVisibleChanged;
+
+            _skinIndex.OnValueChanged -= OnNetworkSkinIndexChanged;
 
             _subscribedToNetwork = false;
         }
@@ -538,6 +562,13 @@ namespace Assets.Scripts.Player
             IsHandVisibleChanged?.Invoke(newValue);
         }
         #endregion Hand - Actions
+
+        #region Skin - Actions
+        private void OnNetworkSkinIndexChanged(int previousValue, int newValue)
+        {
+            SkinIndexChanged?.Invoke(newValue);
+        }
+        #endregion Skin - Actions
         #endregion Remote - Actions
 
         [ServerRpc(RequireOwnership = false)]

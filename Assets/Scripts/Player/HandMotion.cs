@@ -39,7 +39,7 @@ namespace Assets.Scripts.Player
 
         private void Update()
         {
-            if (ItemActive)
+            if (HandVisible && ItemActive)
             {
                 _hand.wrist.weight = Mathf.Clamp(_hand.wrist.weight + Time.deltaTime * 5f, 0f, 1f);
                 _hand.SetFingerPositions(item.WristData);

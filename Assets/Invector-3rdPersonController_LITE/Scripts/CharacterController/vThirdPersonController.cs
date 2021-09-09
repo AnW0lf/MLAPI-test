@@ -8,11 +8,12 @@ namespace Invector.vCharacterController
         {
             if (!this.enabled) return;
 
-            if (inputSmooth == Vector3.zero)
-            {
-                transform.position = animator.rootPosition;
-                transform.rotation = animator.rootRotation;
-            }
+            // ХЗ зачем это, но ЭТО вызывало подёргивание пока стоишь на месте
+            //if (inputSmooth == Vector3.zero)
+            //{
+            //    transform.position = animator.rootPosition;
+            //    transform.rotation = animator.rootRotation;
+            //}
 
             if (useRootMotion)
                 MoveCharacter(moveDirection);

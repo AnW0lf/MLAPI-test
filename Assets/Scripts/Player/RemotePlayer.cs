@@ -16,6 +16,8 @@ namespace Assets.Scripts.Player
         [SerializeField] private float _maxPositionStep = 1.5f;
         [SerializeField] private float _maxRotationStep = 30f;
         [SerializeField] private float _maxAnimatorFloatStep = 0.5f;
+        [Header("Skin")]
+        [SerializeField] private GameObject[] _skins = null;
 
         private NetworkLocalPlayer _networkPlayer = null;
         public NetworkLocalPlayer NetworkParent => _networkPlayer;
@@ -123,20 +125,22 @@ namespace Assets.Scripts.Player
             if (_networkPlayer == null) { return; }
             if (_subscribedToNetwork) { return; }
 
-            _networkPlayer.PositionChanged += SetTargetPosition;
-            _networkPlayer.RotationChanged += SetTargetRotation;
+            _networkPlayer.PositionChanged += OnTargetPositionChanged;
+            _networkPlayer.RotationChanged += OnTargetRotationChanged;
 
-            _networkPlayer.InputHorizontalChanged += SetInputHorizontalChanged;
-            _networkPlayer.InputVerticalChanged += SetInputVerticalChanged;
-            _networkPlayer.InputMagnitudeChanged += SetInputMagnitudeChanged;
-            _networkPlayer.GroundDistanceChanged += SetGroundDistanceChanged;
+            _networkPlayer.InputHorizontalChanged += OnInputHorizontalChanged;
+            _networkPlayer.InputVerticalChanged += OnInputVerticalChanged;
+            _networkPlayer.InputMagnitudeChanged += OnInputMagnitudeChanged;
+            _networkPlayer.GroundDistanceChanged += OnGroundDistanceChanged;
 
-            _networkPlayer.IsCrouchingChanged += SetIsCrouchingChanged;
-            _networkPlayer.IsGroundedChanged += SetIsGroundedChanged;
-            _networkPlayer.IsSprintingChanged += SetIsSprintingChanged;
-            _networkPlayer.IsStrafingChanged += SetIsStrafingChanged;
+            _networkPlayer.IsCrouchingChanged += OnIsCrouchingChanged;
+            _networkPlayer.IsGroundedChanged += OnIsGroundedChanged;
+            _networkPlayer.IsSprintingChanged += OnIsSprintingChanged;
+            _networkPlayer.IsStrafingChanged += OnIsStrafingChanged;
 
-            _networkPlayer.IsHandVisibleChanged += SetIsHandVisibleChanged;
+            _networkPlayer.IsHandVisibleChanged += OnIsHandVisibleChanged;
+
+            _networkPlayer.SkinIndexChanged += OnSkinIndexChanged;
 
             _subscribedToNetwork = true;
         }
@@ -146,85 +150,95 @@ namespace Assets.Scripts.Player
             if (_networkPlayer == null) { return; }
             if (_subscribedToNetwork == false) { return; }
 
-            _networkPlayer.PositionChanged -= SetTargetPosition;
-            _networkPlayer.RotationChanged -= SetTargetRotation;
+            _networkPlayer.PositionChanged -= OnTargetPositionChanged;
+            _networkPlayer.RotationChanged -= OnTargetRotationChanged;
 
-            _networkPlayer.InputHorizontalChanged -= SetInputHorizontalChanged;
-            _networkPlayer.InputVerticalChanged -= SetInputVerticalChanged;
-            _networkPlayer.InputMagnitudeChanged -= SetInputMagnitudeChanged;
-            _networkPlayer.GroundDistanceChanged -= SetGroundDistanceChanged;
+            _networkPlayer.InputHorizontalChanged -= OnInputHorizontalChanged;
+            _networkPlayer.InputVerticalChanged -= OnInputVerticalChanged;
+            _networkPlayer.InputMagnitudeChanged -= OnInputMagnitudeChanged;
+            _networkPlayer.GroundDistanceChanged -= OnGroundDistanceChanged;
 
-            _networkPlayer.IsCrouchingChanged -= SetIsCrouchingChanged;
-            _networkPlayer.IsGroundedChanged -= SetIsGroundedChanged;
-            _networkPlayer.IsSprintingChanged -= SetIsSprintingChanged;
-            _networkPlayer.IsStrafingChanged -= SetIsStrafingChanged;
+            _networkPlayer.IsCrouchingChanged -= OnIsCrouchingChanged;
+            _networkPlayer.IsGroundedChanged -= OnIsGroundedChanged;
+            _networkPlayer.IsSprintingChanged -= OnIsSprintingChanged;
+            _networkPlayer.IsStrafingChanged -= OnIsStrafingChanged;
 
-            _networkPlayer.IsHandVisibleChanged -= SetIsHandVisibleChanged;
+            _networkPlayer.IsHandVisibleChanged -= OnIsHandVisibleChanged;
+
+            _networkPlayer.SkinIndexChanged -= OnSkinIndexChanged;
 
             _subscribedToNetwork = false;
         }
 
         #region Actions
         #region Transform - Actions
-        private void SetTargetPosition(Vector3 position)
+        private void OnTargetPositionChanged(Vector3 position)
         {
             _targetPosition = position;
         }
 
-        private void SetTargetRotation(Quaternion rotation)
+        private void OnTargetRotationChanged(Quaternion rotation)
         {
             _targetRotation = rotation;
         }
         #endregion Transform - Actions
 
         #region Animator - Actions
-        private void SetInputHorizontalChanged(float inputHorizontal)
+        private void OnInputHorizontalChanged(float inputHorizontal)
         {
             _inputHorizontal = inputHorizontal;
         }
 
-        private void SetInputVerticalChanged(float inputVertical)
+        private void OnInputVerticalChanged(float inputVertical)
         {
             _inputVertical = inputVertical;
         }
 
-        private void SetInputMagnitudeChanged(float inputMagnitude)
+        private void OnInputMagnitudeChanged(float inputMagnitude)
         {
             _inputMagnitude = inputMagnitude;
         }
 
-        private void SetGroundDistanceChanged(float groundDistance)
+        private void OnGroundDistanceChanged(float groundDistance)
         {
             _groundDistance = groundDistance;
         }
 
-        private void SetIsCrouchingChanged(bool isCrouching)
+        private void OnIsCrouchingChanged(bool isCrouching)
         {
             _animator.SetBool(n_IsCrouching, isCrouching);
         }
 
-        private void SetIsGroundedChanged(bool isGrounded)
+        private void OnIsGroundedChanged(bool isGrounded)
         {
             _animator.SetBool(n_IsGrounded, isGrounded);
         }
 
-        private void SetIsSprintingChanged(bool isSprinting)
+        private void OnIsSprintingChanged(bool isSprinting)
         {
             _animator.SetBool(n_IsSprinting, isSprinting);
         }
 
-        private void SetIsStrafingChanged(bool isStrafing)
+        private void OnIsStrafingChanged(bool isStrafing)
         {
             _animator.SetBool(n_IsStrafing, isStrafing);
         }
         #endregion Animator - Actions
 
         #region Hand - Actions
-        private void SetIsHandVisibleChanged(bool isHandVisible)
+        private void OnIsHandVisibleChanged(bool isHandVisible)
         {
             _hand.HandVisible = isHandVisible;
         }
         #endregion Hand - Actions
+
+        #region Skin - Actions
+        private void OnSkinIndexChanged(int skinIndex)
+        {
+            foreach (var skin in _skins) skin.SetActive(false);
+            _skins[skinIndex].SetActive(true);
+        }
+        #endregion Skin - Actions
         #endregion Actions
     }
 }

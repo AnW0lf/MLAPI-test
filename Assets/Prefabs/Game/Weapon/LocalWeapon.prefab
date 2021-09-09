@@ -105,9 +105,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3089962702705475204}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: -0.5}
+  m_LocalPosition: {x: 17.5, y: 1.2, z: -7.9}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
   - {fileID: 3089962702705042086}
   - {fileID: 6914831887314580049}
@@ -132,7 +132,7 @@ MonoBehaviour:
     middleFinger: {x: 0.015, y: -0.05, z: 0.06}
     ringFinger: {x: 0.015, y: -0.075, z: 0.06}
     littleFinger: {x: 0.015, y: -0.1, z: 0.04}
-  _position: {x: -3.4, y: 12, z: 2.2}
+  _position: {x: 17.5, y: 1.2, z: -7.9}
   _rotation: {x: 0.49999997, y: -0.49999997, z: 0.49999997, w: 0.49999997}
 --- !u!1 &3089962702705475206
 GameObject:

@@ -13,6 +13,8 @@ namespace Assets.Scripts.Player
         [SerializeField] private float _minPositionStep = 0.2f;
         [SerializeField] private float _minRotationStep = 1.5f;
         [SerializeField] private float _minAnimatorFloatStep = 0.1f;
+        [Header("Skin")]
+        [SerializeField] private GameObject[] _skins = null;
 
         #region Transform
         private Vector3 _position => _body.position;
@@ -55,11 +57,21 @@ namespace Assets.Scripts.Player
         public event Action<bool> IsHandVisibleChanged;
         #endregion Hand
 
+        #region Skin
+        public event Action<int> SkinIndexChanged;
+        #endregion Skin
+
         public NetworkLocalPlayer NetworkParent { get; set; } = null;
 
         private void Start()
         {
             SubscribeToTPAnimator();
+
+            // Set random skin
+            foreach (var skin in _skins) skin.SetActive(false);
+            int skinIndex = UnityEngine.Random.Range(0, _skins.Length);
+            _skins[skinIndex].SetActive(true);
+            SkinIndexChanged?.Invoke(skinIndex);
         }
 
         private void Update()
