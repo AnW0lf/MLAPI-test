@@ -1135,7 +1135,7 @@ MonoBehaviour:
     RegisteredScenes:
     - Lobby
     - Loading
-    - Game
+    - Game1
     AllowRuntimeSceneChanges: 0
     NetworkPrefabs:
     - Prefab: {fileID: 3699393010595935711, guid: 4e038d1b4496e7c4ead909680f564f34, type: 3}
@@ -3239,7 +3239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lobbySceneName: Lobby
   _loadingSceneName: Loading
-  _gameSceneName: Game
+  _gameSceneName: Game1
 --- !u!1 &2021965139
 GameObject:
   m_ObjectHideFlags: 0
