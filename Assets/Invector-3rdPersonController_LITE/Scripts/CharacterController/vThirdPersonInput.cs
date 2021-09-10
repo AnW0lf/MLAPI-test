@@ -235,6 +235,7 @@ namespace Invector.vCharacterController
             bool active = press && _hand.HandVisible;
 
             cc.freeSpeed.rotateWithCamera = active;
+            cc.isStrafing = active;
             tpCamera.rightOffset = active ? _horizontalWeaponOffset : 0f;
             tpCamera.upOffset = active ? _verticalWeaponOffset : 0f;
             tpCamera.defaultDistance = active ? _aimCameraDistance : _normalCameraDistance;
