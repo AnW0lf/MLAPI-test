@@ -13,10 +13,12 @@ namespace Assets.Scripts.Player
         [SerializeField] private Transform _handAnchorPoint = null;
         [SerializeField] private Transform _handTargetPoint = null;
         [SerializeField] [Range(0.1f, 10f)] private float _handMotionSpeed = 2f;
-        [Header("Item Reference")]
+        [Header("Item Settings")]
         public Item item;
+        [SerializeField] private float _verticalOffset = -0.085f;
 
-        private readonly Quaternion _handRotationOffset = Quaternion.Euler(0f, -90f, -90f);
+        private readonly Quaternion _handRotationOffset = Quaternion.Euler(0f, 90f, 90f);
+        private readonly Quaternion _handRotationAimOffset = Quaternion.Euler(90f, -90f, 0f);
         private readonly float _handTargetDistance = 0.5f;
 
         private enum HandState { FREE = 0, BAG = 1, VISIBLE = 2 }
@@ -56,12 +58,20 @@ namespace Assets.Scripts.Player
                     if (tpCamera)
                     {
                         Vector3 hitPoint = tpCamera.RayCastCenter(transform);
-                        Vector3 direction = (hitPoint - _handAnchorPoint.position).normalized;
+                        Vector3 fromHandToPoint = hitPoint - _handAnchorPoint.position;
+                        Vector3 direction = fromHandToPoint.normalized;
+                        float distance = fromHandToPoint.magnitude;
                         Vector3 position = _handAnchorPoint.position + direction * _handTargetDistance;
 
                         _handTargetPoint.position = position;
                         _handTargetPoint.LookAt(hitPoint);
-                        _handTargetPoint.rotation *= _handRotationOffset;
+                        _handTargetPoint.rotation *= _handRotationAimOffset;
+
+                        if (distance != 0f)
+                        {
+                            float angle = Mathf.Atan(_verticalOffset / distance) * Mathf.Rad2Deg;
+                            _handTargetPoint.rotation *= Quaternion.Euler(0f, angle, 0f);
+                        }
                     }
                 }
                 else
@@ -86,7 +96,7 @@ namespace Assets.Scripts.Player
                     Gizmos.DrawWireSphere(to, 0.2f);
 
                     from = _handTargetPoint.position;
-                    to = from + _handTargetPoint.up * 10f;
+                    to = from + _handTargetPoint.right * 10f;
 
                     Gizmos.color = Color.red;
                     Gizmos.DrawLine(from, to);

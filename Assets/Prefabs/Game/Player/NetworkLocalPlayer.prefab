@@ -61,5 +61,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46807d7ce96d3ee4f9e21b796eb62a86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localPrefab: {fileID: 620871831539552079, guid: a42bc78c0592fa4489d52b02d71024c7, type: 3}
-  _remotePrefab: {fileID: 620871831539552079, guid: b7c05d6565360c647972dc01d416d8c0, type: 3}
+  _localPrefab: {fileID: 5699902396908867414, guid: 226c20b3cb3f2d0419ee1bf22ff9d02c, type: 3}
+  _remotePrefab: {fileID: 5699902396908867414, guid: 44cf75e9474f7b640932202fe9607187, type: 3}

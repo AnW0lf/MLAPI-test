@@ -60,6 +60,12 @@ namespace Assets.Scripts.NPC
         public bool IsSpawnedLocal => _local != null;
         public bool IsSpawnedRemote => _remote != null;
 
+        private void OnDestroy()
+        {
+            DeleteLocal();
+            DeleteRemote();
+        }
+
         #region Local
         public void SpawnLocal(Vector3 position, Quaternion rotation)
         {
@@ -113,7 +119,7 @@ namespace Assets.Scripts.NPC
             if (IsServer == false) { return; }
             if (IsSpawnedLocal == false) { return; }
 
-            UnsubscribeFromNetworkNpc();
+            UnsubscribeFromLocalNpc();
             Destroy(_local.gameObject);
 
             _position.Value = Vector3.zero;

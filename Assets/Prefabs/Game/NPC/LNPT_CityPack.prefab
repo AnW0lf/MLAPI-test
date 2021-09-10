@@ -2697,7 +2697,7 @@ GameObject:
   - component: {fileID: 4959382459796141991}
   - component: {fileID: -975822727019755996}
   m_Layer: 0
-  m_Name: TPC_LP_CityPack
+  m_Name: LNPT_CityPack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
