@@ -102,6 +102,7 @@ namespace Assets.Scripts.NPC
             ReadPermission = NetworkVariablePermission.Everyone
         }, -1);
         public event Action<int> SkinIndexChanged;
+        public int SkinIndex => _skinIndex.Value;
         #endregion Skin
         #endregion NetworkVariables
 

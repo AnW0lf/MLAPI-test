@@ -142,6 +142,11 @@ namespace Assets.Scripts.Player
 
             _networkPlayer.SkinIndexChanged += OnSkinIndexChanged;
 
+            if (NetworkParent.SkinIndex >= 0)
+            {
+                OnSkinIndexChanged(NetworkParent.SkinIndex);
+            }
+
             _subscribedToNetwork = true;
         }
 

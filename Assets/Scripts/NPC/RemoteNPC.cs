@@ -138,6 +138,11 @@ namespace Assets.Scripts.NPC
 
             _networkNpc.SkinIndexChanged += OnSkinIndexChanged;
 
+            if (NetworkParent.SkinIndex >= 0)
+            {
+                OnSkinIndexChanged(NetworkParent.SkinIndex);
+            }
+
             _subscribedToNetwork = true;
         }
 
