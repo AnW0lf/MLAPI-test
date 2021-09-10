@@ -448,12 +448,12 @@ namespace Assets.Scripts.Player
             Vector3 position = _position.Value;
             Quaternion rotation = _rotation.Value;
             _remote = Instantiate(_remotePrefab, position, rotation).GetComponent<RemotePlayer>();
-            SubscribeToNetworkNpc();
+            SubscribeToNetworkPlayer();
             _remote.SubscribeToNetworkPlayer(this);
         }
 
         private bool _subscribedToNetwork = false;
-        private void SubscribeToNetworkNpc()
+        private void SubscribeToNetworkPlayer()
         {
             if (_subscribedToNetwork) { return; }
 
@@ -477,7 +477,7 @@ namespace Assets.Scripts.Player
             _subscribedToNetwork = true;
         }
 
-        private void UnsubscribeFromNetworkNpc()
+        private void UnsubscribeFromNetworkPlayer()
         {
             if (_subscribedToNetwork == false) { return; }
 
@@ -591,7 +591,7 @@ namespace Assets.Scripts.Player
         {
             if (IsSpawnedRemote == false) { return; }
 
-            UnsubscribeFromNetworkNpc();
+            UnsubscribeFromNetworkPlayer();
             Destroy(_remote.gameObject);
         }
         #endregion Remote

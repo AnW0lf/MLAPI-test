@@ -7,90 +7,96 @@ namespace Assets.Scripts.NPC
         [SerializeField] private Transform _body = null;
         [SerializeField] private Animator _animator = null;
         [Header("Smoothness")]
-        [SerializeField] private float _positionSmoothness = 3f;
-        [SerializeField] private float _rotationSmoothness = 3f;
-        [SerializeField] private float _velocitySmoothness = 3f;
+        [SerializeField] private float _positionSmooth = 3f;
+        [SerializeField] private float _rotationSmooth = 3f;
+        [SerializeField] private float _animationSmooth = 0.2f;
         [Header("Maximum difference to interpolate")]
         [SerializeField] private float _maxPositionStep = 1.5f;
         [SerializeField] private float _maxRotationStep = 30f;
-        [SerializeField] private float _maxVelocityStep = 1f;
+        [SerializeField] private float _maxAnimatorFloatStep = 0.5f;
+        [Header("Skin")]
+        [SerializeField] private GameObject[] _skins = null;
 
+        private NetworkNPC _networkNpc = null;
+        public NetworkNPC NetworkParent => _networkNpc;
+
+        #region Transform
         private Vector3 _targetPosition = Vector3.zero;
-        private Quaternion _targetRotation = Quaternion.identity;
-        private Vector2 _targetVelocity = Vector2.zero;
-
         public Vector3 Position
         {
             get => _body.position;
             private set => _body.position = value;
         }
 
+        private Quaternion _targetRotation = Quaternion.identity;
         public Quaternion Rotation
         {
             get => _body.rotation;
             private set => _body.rotation = value;
         }
+        #endregion Transform
 
-        private Vector2 _velocityCash = Vector2.zero;
-        public Vector2 Velocity
+        #region Animator
+        private readonly static int n_InputHorizontal = Animator.StringToHash("InputHorizontal");
+        private readonly static int n_InputVertical = Animator.StringToHash("InputVertical");
+        private readonly static int n_InputMagnitude = Animator.StringToHash("InputMagnitude");
+        private readonly static int n_IsGrounded = Animator.StringToHash("IsGrounded");
+        private readonly static int n_IsStrafing = Animator.StringToHash("IsStrafing");
+        private readonly static int n_IsSprinting = Animator.StringToHash("IsSprinting");
+        private readonly static int n_IsCrouching = Animator.StringToHash("IsCrouching");
+        private readonly static int n_GroundDistance = Animator.StringToHash("GroundDistance");
+
+        private float _inputHorizontal
         {
-            get => _velocityCash;
-            private set
+            get => _animator.GetFloat(n_InputHorizontal);
+            set
             {
-                _velocityCash = value;
-
-                _animator.SetFloat("velocityX", _velocityCash.x);
-                _animator.SetFloat("velocityY", _velocityCash.y);
+                if (Mathf.Abs(_inputHorizontal - value) > _maxAnimatorFloatStep) _animator.SetFloat(n_InputHorizontal, value);
+                else _animator.SetFloat(n_InputHorizontal, value, _animationSmooth, Time.deltaTime);
             }
         }
 
-        private NetworkNPC _networkNpc = null;
-        public NetworkNPC NetworkParent => _networkNpc;
-
-        public void SubscribeToNetworkNpc(NetworkNPC networkNpc)
+        private float _inputVertical
         {
-            _networkNpc = networkNpc;
-
-            if (_networkNpc == null) { return; }
-
-            _networkNpc.PositionChanged += SetPosition;
-            _networkNpc.RotationChanged += SetRotation;
-            _networkNpc.VelocityChanged += SetVelocity;
+            get => _animator.GetFloat(n_InputVertical);
+            set
+            {
+                if (Mathf.Abs(_inputVertical - value) > _maxAnimatorFloatStep) _animator.SetFloat(n_InputVertical, value);
+                else _animator.SetFloat(n_InputVertical, value, _animationSmooth, Time.deltaTime);
+            }
         }
 
-        private void UnsubscribeFromNetworkNpc()
+        private float _inputMagnitude
         {
-            if (_networkNpc == null) { return; }
-
-            _networkNpc.PositionChanged -= SetPosition;
-            _networkNpc.RotationChanged -= SetRotation;
-            _networkNpc.VelocityChanged -= SetVelocity;
+            get => _animator.GetFloat(n_InputMagnitude);
+            set
+            {
+                if (Mathf.Abs(_inputMagnitude - value) > _maxAnimatorFloatStep) _animator.SetFloat(n_InputMagnitude, value);
+                else _animator.SetFloat(n_InputMagnitude, value, _animationSmooth, Time.deltaTime);
+            }
         }
 
-        private void SetPosition(Vector3 position)
+        private float _groundDistance
         {
-            _targetPosition = position;
+            get => _animator.GetFloat(n_GroundDistance);
+            set
+            {
+                if (Mathf.Abs(_groundDistance - value) > _maxAnimatorFloatStep) _animator.SetFloat(n_GroundDistance, value);
+                else _animator.SetFloat(n_GroundDistance, value, _animationSmooth, Time.deltaTime);
+            }
         }
-
-        private void SetRotation(Quaternion rotation)
-        {
-            _targetRotation = rotation;
-        }
-
-        private void SetVelocity(Vector2 velocity)
-        {
-            _targetVelocity = velocity;
-        }
+        #endregion Animator
 
         private void Update()
         {
+            #region Transform - Update
             if (Vector3.Distance(Position, _targetPosition) > _maxPositionStep)
             {
                 Position = _targetPosition;
             }
             else
             {
-                Position = Vector3.Lerp(Position, _targetPosition, _positionSmoothness * Time.deltaTime);
+                Position = Vector3.Lerp(Position, _targetPosition, _positionSmooth * Time.deltaTime);
             }
 
             if (Quaternion.Angle(Rotation, _targetRotation) > _maxRotationStep)
@@ -99,22 +105,127 @@ namespace Assets.Scripts.NPC
             }
             else
             {
-                Rotation = Quaternion.Lerp(Rotation, _targetRotation, _rotationSmoothness * Time.deltaTime);
+                Rotation = Quaternion.Lerp(Rotation, _targetRotation, _rotationSmooth * Time.deltaTime);
             }
-
-            if (Vector2.Distance(Velocity, _targetVelocity) > _maxVelocityStep)
-            {
-                Velocity = _targetVelocity;
-            }
-            else
-            {
-                Velocity = Vector2.Lerp(Velocity, _targetVelocity, _velocitySmoothness * Time.deltaTime);
-            }
+            #endregion Transform - Update
         }
 
         private void OnDestroy()
         {
-            UnsubscribeFromNetworkNpc();
+            UnsubscribeFromNetworkPlayer();
         }
+
+        private bool _subscribedToNetwork = false;
+        public void SubscribeToNetworkNpc(NetworkNPC networkNpc)
+        {
+            _networkNpc = networkNpc;
+
+            if (_networkNpc == null) { return; }
+            if (_subscribedToNetwork) { return; }
+
+            _networkNpc.PositionChanged += OnTargetPositionChanged;
+            _networkNpc.RotationChanged += OnTargetRotationChanged;
+
+            _networkNpc.InputHorizontalChanged += OnInputHorizontalChanged;
+            _networkNpc.InputVerticalChanged += OnInputVerticalChanged;
+            _networkNpc.InputMagnitudeChanged += OnInputMagnitudeChanged;
+            _networkNpc.GroundDistanceChanged += OnGroundDistanceChanged;
+
+            _networkNpc.IsCrouchingChanged += OnIsCrouchingChanged;
+            _networkNpc.IsGroundedChanged += OnIsGroundedChanged;
+            _networkNpc.IsSprintingChanged += OnIsSprintingChanged;
+            _networkNpc.IsStrafingChanged += OnIsStrafingChanged;
+
+            _networkNpc.SkinIndexChanged += OnSkinIndexChanged;
+
+            _subscribedToNetwork = true;
+        }
+
+        private void UnsubscribeFromNetworkPlayer()
+        {
+            if (_networkNpc == null) { return; }
+            if (_subscribedToNetwork == false) { return; }
+
+            _networkNpc.PositionChanged -= OnTargetPositionChanged;
+            _networkNpc.RotationChanged -= OnTargetRotationChanged;
+
+            _networkNpc.InputHorizontalChanged -= OnInputHorizontalChanged;
+            _networkNpc.InputVerticalChanged -= OnInputVerticalChanged;
+            _networkNpc.InputMagnitudeChanged -= OnInputMagnitudeChanged;
+            _networkNpc.GroundDistanceChanged -= OnGroundDistanceChanged;
+
+            _networkNpc.IsCrouchingChanged -= OnIsCrouchingChanged;
+            _networkNpc.IsGroundedChanged -= OnIsGroundedChanged;
+            _networkNpc.IsSprintingChanged -= OnIsSprintingChanged;
+            _networkNpc.IsStrafingChanged -= OnIsStrafingChanged;
+
+            _networkNpc.SkinIndexChanged -= OnSkinIndexChanged;
+
+            _subscribedToNetwork = false;
+        }
+
+        #region Actions
+        #region Transform - Actions
+        private void OnTargetPositionChanged(Vector3 position)
+        {
+            _targetPosition = position;
+        }
+
+        private void OnTargetRotationChanged(Quaternion rotation)
+        {
+            _targetRotation = rotation;
+        }
+        #endregion Transform - Actions
+
+        #region Animator - Actions
+        private void OnInputHorizontalChanged(float inputHorizontal)
+        {
+            _inputHorizontal = inputHorizontal;
+        }
+
+        private void OnInputVerticalChanged(float inputVertical)
+        {
+            _inputVertical = inputVertical;
+        }
+
+        private void OnInputMagnitudeChanged(float inputMagnitude)
+        {
+            _inputMagnitude = inputMagnitude;
+        }
+
+        private void OnGroundDistanceChanged(float groundDistance)
+        {
+            _groundDistance = groundDistance;
+        }
+
+        private void OnIsCrouchingChanged(bool isCrouching)
+        {
+            _animator.SetBool(n_IsCrouching, isCrouching);
+        }
+
+        private void OnIsGroundedChanged(bool isGrounded)
+        {
+            _animator.SetBool(n_IsGrounded, isGrounded);
+        }
+
+        private void OnIsSprintingChanged(bool isSprinting)
+        {
+            _animator.SetBool(n_IsSprinting, isSprinting);
+        }
+
+        private void OnIsStrafingChanged(bool isStrafing)
+        {
+            _animator.SetBool(n_IsStrafing, isStrafing);
+        }
+        #endregion Animator - Actions
+
+        #region Skin - Actions
+        private void OnSkinIndexChanged(int skinIndex)
+        {
+            foreach (var skin in _skins) skin.SetActive(false);
+            _skins[skinIndex].SetActive(true);
+        }
+        #endregion Skin - Actions
+        #endregion Actions
     }
 }
