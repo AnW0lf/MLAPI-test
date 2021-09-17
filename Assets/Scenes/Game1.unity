@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 2.3018966, g: 1.4711857, b: 1.0919514, a: 1}
+  m_IndirectSpecularColor: {r: 2.3047323, g: 1.4726982, b: 1.0916805, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -27162,7 +27162,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5118559711138674614, guid: bd51da9ea2f0cb44b993f17a5e5a2790, type: 3}
       propertyPath: _networkNpcPrefabs.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5118559711138674614, guid: bd51da9ea2f0cb44b993f17a5e5a2790, type: 3}
       propertyPath: _civilianPrefabs.Array.data[1]
@@ -27171,7 +27171,7 @@ PrefabInstance:
     - target: {fileID: 5118559711138674614, guid: bd51da9ea2f0cb44b993f17a5e5a2790, type: 3}
       propertyPath: _networkNpcPrefabs.Array.data[1]
       value: 
-      objectReference: {fileID: 8751431591915280027, guid: 7187d7598d1647547b271d94fb3fcf99, type: 3}
+      objectReference: {fileID: 8731330161750732350, guid: e85ea8ba5d26f2942b0fee3ab954df17, type: 3}
     - target: {fileID: 5118559711138674615, guid: bd51da9ea2f0cb44b993f17a5e5a2790, type: 3}
       propertyPath: m_Name
       value: GameController

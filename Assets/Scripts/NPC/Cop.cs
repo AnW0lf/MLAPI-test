@@ -15,7 +15,6 @@ public class Cop : MonoBehaviour
     }
 
     private NavMeshAgent _agent;
-    [SerializeField] private Animator _animator;
     private Vector3 _currentDestination;
     [SerializeField] private float _walkSpeed;
     [SerializeField] private float _runSpeed;
@@ -56,7 +55,7 @@ public class Cop : MonoBehaviour
     [SerializeField] private Transform _policeStation;
     private void Start()
     {
-        _agent = gameObject.AddComponent<NavMeshAgent>();
+        _agent = GetComponent<NavMeshAgent>();
         _agent.speed = _walkSpeed;
         _agent.angularSpeed = 1200;
         _agent.acceleration = 100;
@@ -85,11 +84,11 @@ public class Cop : MonoBehaviour
                     SetRandomDestination();
                 }
 
-                if (_animator != null)
+              /*  if (_animator != null)
                 {
                     _animator.SetFloat("velocityX", Vector3.Project(_agent.velocity, transform.forward).magnitude);
                     _animator.SetFloat("velocityY", Vector3.Project(_agent.velocity, transform.right).magnitude);
-                }
+                }*/
 
                 if (_changeDestinationTimer > 0)
                 {
@@ -101,7 +100,7 @@ public class Cop : MonoBehaviour
                     }
                 }
 
-                if (_currentTarget != null && _currentTargetAI.UnderArrest == false && _currentTargetAI.InPrison == false && _fieldOfView.CheckTargetVisibility(_currentTarget, 1, true) == true)
+                if (_currentTarget != null && _currentTargetAI.HasMark == true && _currentTargetAI.UnderArrest == false && _currentTargetAI.InPrison == false && _fieldOfView.CheckTargetVisibility(_currentTarget, 1, true) == true)
                 {                  
                      _currentChaseTarget = _currentTarget;
                      SwitchToSuspicious();
@@ -143,11 +142,11 @@ public class Cop : MonoBehaviour
 
             case CopState.Chase:
 
-                if (_animator != null)
+             /*   if (_animator != null)
                 {
                     _animator.SetFloat("velocityX", Vector3.Project(_agent.velocity, transform.forward).magnitude);
                     _animator.SetFloat("velocityY", Vector3.Project(_agent.velocity, transform.right).magnitude);
-                }
+                }*/
 
                 _agent.SetDestination(_currentChaseTarget.position);
                 _targetLine.SetPosition(0, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z));
@@ -176,11 +175,11 @@ public class Cop : MonoBehaviour
 
             case CopState.Search:
 
-                if (_animator != null)
+               /* if (_animator != null)
                 {
                     _animator.SetFloat("velocityX", Vector3.Project(_agent.velocity, transform.forward).magnitude);
                     _animator.SetFloat("velocityY", Vector3.Project(_agent.velocity, transform.right).magnitude);
-                }
+                }*/
 
                 if (_lookAtPlayerSearchTimer > 0)
                 {
@@ -277,8 +276,8 @@ public class Cop : MonoBehaviour
     {
         _currentCopState = CopState.Suspicious;
         _agent.speed = 0;
-        _animator.SetFloat("velocityX", 0);
-        _animator.SetFloat("velocityY", 0);
+       // _animator.SetFloat("velocityX", 0);
+       // _animator.SetFloat("velocityY", 0);
         _suspiciousTimer = _suspiciousDelay;
         _stateText.text = "?";
         _targetLostTimer = 0.1f;
@@ -329,7 +328,7 @@ public class Cop : MonoBehaviour
     }
 
     private void SetRandomDestination()
-    {
+    {    
         if (RandomPointOnNavmesh(transform.position, _wanderRange, out Vector3 newDestination))
         {
             _currentDestination = newDestination;

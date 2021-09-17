@@ -15,6 +15,7 @@ public class AI : MonoBehaviour
     private InputManager _inputManager;
 
     public Transform OwningCopTransform { get; set; }
+    public bool HasMark { get; set; }
     public bool UnderArrest { get; set; }
     public bool InPrison { get; set; }
 
@@ -50,11 +51,11 @@ public class AI : MonoBehaviour
         }
         else if (_directControlEnabled == false && Vector3.SqrMagnitude(_currentDestination - transform.position) <= 1)
         {
-            if (RandomPointOnNavmesh(_wanderRange, out Vector3 newDestination))
+           /* if (RandomPointOnNavmesh(_wanderRange, out Vector3 newDestination))
             {
                 _currentDestination = newDestination;
                 _agent.SetDestination(_currentDestination);
-            }
+            }*/
         }
 
         if (_animator != null)

@@ -24,7 +24,7 @@ public class Weapon : MonoBehaviour
         //_trajectoryLineRenderer = Instantiate(_trajectoryLinePrefab, transform.position, Quaternion.identity).GetComponent<LineRenderer>();
         //_bulletMass = _bulletPrefab.GetComponent<Rigidbody>().mass;
         //_trajectoryLineRenderer.transform.SetParent(null);
-        _mainTransform = GetComponentInParent<InputController>().transform;     
+        //_mainTransform = GetComponentInParent<InputController>().transform;     
     }
 
     //private void Update()
@@ -37,9 +37,27 @@ public class Weapon : MonoBehaviour
         if(_ready == false) { return; }
 
         GameObject newBullet = Instantiate(_bulletPrefab, _bulletSpawnTransform.position, _bulletSpawnTransform.rotation);
-        newBullet.GetComponent<Rigidbody>().AddForce((_bulletSpawnTransform.forward + _mainTransform.up * _verticalForceMult) * _bulletForce);
+        newBullet.GetComponent<Rigidbody>().AddForce(_bulletSpawnTransform.forward * _bulletForce);
         _ready = false;
         StartCoroutine(ShootDelay(_shootDelay));     
+    }
+
+    public void RaycastShoot()
+    {
+        if (_ready == false) { return; }
+
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit))
+        {
+           if (hit.transform.tag == "Civilian")
+           {
+                hit.transform.GetComponent<AI>().HasMark = true;
+           }
+        }
+        _ready = false;
+        StartCoroutine(ShootDelay(_shootDelay));
     }
 
     private IEnumerator ShootDelay(float delay)
