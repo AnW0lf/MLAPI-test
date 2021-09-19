@@ -91,6 +91,7 @@ namespace Assets.Scripts.Weapon
 
         public HitMarker AddHitMarker(Transform parent, Vector3 localPosition, Quaternion localRotation)
         {
+            print($"Add hit {localPosition}");
             GameObject prefab = NetworkManager.Singleton.IsServer ? _serverHitMarkerPrefab : _clientHitMarkerPrefab;
             HitMarker hitMarker = Instantiate(prefab, parent).GetComponent<HitMarker>();
             hitMarker.transform.localPosition = localPosition;

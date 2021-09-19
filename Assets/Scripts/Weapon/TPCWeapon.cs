@@ -10,6 +10,7 @@ namespace Assets.Scripts.Weapon
     {
         [SerializeField] private Transform _weapon = null;
         [SerializeField] private float _rechargeDelay = 1f;
+        [SerializeField] private float _shootDistance = 50f;
 
         private bool _canShoot = true;
 
@@ -25,9 +26,9 @@ namespace Assets.Scripts.Weapon
         {
             if (_canShoot == false) { return; }
 
-            Ray ray = new Ray(_weapon.position, _weapon.forward);
+            Ray ray = new Ray(_weapon.position + _weapon.forward * 0.5f, _weapon.forward);
 
-            RaycastHit[] hits = Physics.RaycastAll(ray, 50f);
+            RaycastHit[] hits = Physics.RaycastAll(ray, _shootDistance);
             if (hits != null && hits.Length > 0)
             {
                 var sortedHits = hits
@@ -62,6 +63,8 @@ namespace Assets.Scripts.Weapon
 
         private void AddHit(RaycastHit hit)
         {
+            if (hit.transform == null) { return; }
+
             Vector3 position = hit.point + hit.normal * 0.05f;
             Quaternion rotation = Quaternion.LookRotation(-hit.normal, Vector3.forward);
             Transform target = hit.transform;
