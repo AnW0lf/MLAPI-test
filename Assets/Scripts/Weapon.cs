@@ -51,10 +51,17 @@ public class Weapon : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-           if (hit.transform.tag == "Civilian")
-           {
-                hit.transform.GetComponent<AI>().HasMark = true;
-           }
+            /* if (hit.transform.tag == "Civilian")
+             {
+                  hit.transform.GetComponent<AI>().HasMark = true;
+             }*/
+
+            GameObject newHit = Instantiate(_bulletPrefab, hit.point, Quaternion.identity);
+            if (hit.transform.tag == "Civilian")
+            {
+                // hit.transform.GetComponent<AI>().HasMark = true;
+                newHit.transform.SetParent(hit.transform);
+            }
         }
         _ready = false;
         StartCoroutine(ShootDelay(_shootDelay));

@@ -14,6 +14,8 @@ namespace Assets.Scripts.Weapon
         public NetworkLocalPlayer _player { get; private set; } = null;
         public NetworkNPC _npc { get; private set; } = null;
         private bool _isPlaced = false;
+        [SerializeField] private GameObject _raycastObject;
+        private float _activationTimer = 0.1f;
 
         public HitMarketTargetType TargetType
         {
@@ -68,6 +70,15 @@ namespace Assets.Scripts.Weapon
 
         private void Update()
         {
+            if (_activationTimer > 0)
+            {
+                _activationTimer -= Time.deltaTime;
+                if (_activationTimer <= 0)
+                {
+                    _raycastObject.SetActive(true);
+                }
+            }
+
             if (LifeTime > 0f)
             {
                 LifeTime -= Time.deltaTime;

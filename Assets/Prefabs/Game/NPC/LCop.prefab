@@ -188,7 +188,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.1
+    widthMultiplier: 0.3
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -2073,8 +2073,8 @@ CapsuleCollider:
   m_GameObject: {fileID: 5699902396908867414}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.4
+  m_Enabled: 0
+  m_Radius: 0.2
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.935, z: 0}
@@ -2161,8 +2161,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba487d7203aa604c9ce4f1b1627f534, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 15
-  viewAngle: 60
+  viewRadius: 30
+  viewAngle: 120
   targetMask:
     serializedVersion: 2
     m_Bits: 0
