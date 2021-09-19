@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - Civilian
   - Cop
+  - Mark
+  - Prison
   layers:
   - Default
   - TransparentFX

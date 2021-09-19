@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class AI : MonoBehaviour
 {
     private NavMeshAgent _agent;
-    private Animator _animator;
     private Vector3 _currentDestination;
     [SerializeField] private float _wanderRange = 10.0f;
     [SerializeField] private bool _directControlEnabled;
@@ -15,6 +14,7 @@ public class AI : MonoBehaviour
     private InputManager _inputManager;
 
     public Transform OwningCopTransform { get; set; }
+    public bool HasMark { get; set; }
     public bool UnderArrest { get; set; }
     public bool InPrison { get; set; }
 
@@ -28,13 +28,10 @@ public class AI : MonoBehaviour
             _inputManager.Game.Enable();
         }
 
-        _agent = gameObject.AddComponent<NavMeshAgent>();
+        _agent = GetComponent<NavMeshAgent>();
         _agent.speed = _speed;
-        _agent.angularSpeed = 500;
 
         _currentDestination = transform.position;
-
-        _animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -55,12 +52,6 @@ public class AI : MonoBehaviour
                 _currentDestination = newDestination;
                 _agent.SetDestination(_currentDestination);
             }
-        }
-
-        if (_animator != null)
-        {
-            _animator.SetFloat("zSpeed", Vector3.Project(_agent.velocity, transform.forward).magnitude);
-            _animator.SetFloat("xSpeed", Vector3.Project(_agent.velocity, transform.right).magnitude);
         }
     }
 
@@ -123,6 +114,7 @@ public class AI : MonoBehaviour
 
     public void GoToPrison(Transform prisonTransform)
     {
+        _agent.speed = _speed;
         _agent.SetDestination(prisonTransform.position);
         InPrison = true;
         UnderArrest = false;

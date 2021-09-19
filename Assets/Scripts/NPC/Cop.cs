@@ -15,7 +15,6 @@ public class Cop : MonoBehaviour
     }
 
     private NavMeshAgent _agent;
-    [SerializeField] private Animator _animator;
     private Vector3 _currentDestination;
     [SerializeField] private float _walkSpeed;
     [SerializeField] private float _runSpeed;
@@ -31,6 +30,7 @@ public class Cop : MonoBehaviour
     [SerializeField] private LineRenderer _targetLine;
 
     [SerializeField] private Transform _currentTarget;
+    public Transform CurrentTarget { get { return _currentTarget; } set { _currentTarget = value; } }
     private AI _currentTargetAI;
     private Transform _currentChaseTarget;
     private Vector3 _lastTargetPosition;
@@ -54,20 +54,27 @@ public class Cop : MonoBehaviour
 
     [SerializeField] private TextMesh _stateText;
     [SerializeField] private Transform _policeStation;
+
+    private float _findMarksTimer;
+
     private void Start()
     {
-        _agent = gameObject.AddComponent<NavMeshAgent>();
-        _agent.speed = _walkSpeed;
-        _agent.angularSpeed = 1200;
+        _agent = GetComponent<NavMeshAgent>();
+
+        /*_agent.angularSpeed = 1200;
         _agent.acceleration = 100;
-        _agent.autoBraking = false;
+        _agent.autoBraking = false;*/
         _currentDestination = transform.position;
 
-        if (_currentTarget != null)
+        if (_policeStation == null)
         {
-            _currentTargetAI = _currentTarget.GetComponent<AI>();
+            GameObject prison = GameObject.FindGameObjectWithTag("Prison");
+            if (prison != null)
+            {
+                _policeStation = prison.transform;
+            }
         }
-
+    
         _changeDestinationTimer = _changeDestinationDelay;
 
         SwitchToCalm();
@@ -85,11 +92,11 @@ public class Cop : MonoBehaviour
                     SetRandomDestination();
                 }
 
-                if (_animator != null)
+              /*  if (_animator != null)
                 {
                     _animator.SetFloat("velocityX", Vector3.Project(_agent.velocity, transform.forward).magnitude);
                     _animator.SetFloat("velocityY", Vector3.Project(_agent.velocity, transform.right).magnitude);
-                }
+                }*/
 
                 if (_changeDestinationTimer > 0)
                 {
@@ -101,17 +108,19 @@ public class Cop : MonoBehaviour
                     }
                 }
 
-                if (_currentTarget != null && _currentTargetAI.UnderArrest == false && _currentTargetAI.InPrison == false && _fieldOfView.CheckTargetVisibility(_currentTarget, 1, true) == true)
-                {                  
-                     _currentChaseTarget = _currentTarget;
-                     SwitchToSuspicious();
-                }
+                /* if (_currentTarget != null && _currentTargetAI.HasMark == true && _currentTargetAI.UnderArrest == false && _currentTargetAI.InPrison == false && _fieldOfView.CheckTargetVisibility(_currentTarget, 1, true) == true)
+                 {                  
+                      _currentChaseTarget = _currentTarget;
+                      SwitchToSuspicious();
+                 } */
+
+                FindMarks();
 
                 break;
 
             case CopState.Suspicious:
 
-                if (_fieldOfView.CheckTargetVisibility(_currentChaseTarget, 1, false) == false)
+                if (_fieldOfView.CheckTargetVisibility(_currentChaseTarget, 1.5f, false) == false)
                 {
                     _targetLostTimer -= Time.deltaTime;
                     if (_targetLostTimer <= 0)
@@ -143,17 +152,17 @@ public class Cop : MonoBehaviour
 
             case CopState.Chase:
 
-                if (_animator != null)
+             /*   if (_animator != null)
                 {
                     _animator.SetFloat("velocityX", Vector3.Project(_agent.velocity, transform.forward).magnitude);
                     _animator.SetFloat("velocityY", Vector3.Project(_agent.velocity, transform.right).magnitude);
-                }
+                }*/
 
                 _agent.SetDestination(_currentChaseTarget.position);
                 _targetLine.SetPosition(0, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z));
                 _targetLine.SetPosition(1, new Vector3(_currentChaseTarget.position.x, _currentChaseTarget.position.y + 1, _currentChaseTarget.position.z));
 
-                if (_fieldOfView.CheckTargetVisibility(_currentChaseTarget, 1, false) == false)
+                if (_fieldOfView.CheckTargetVisibility(_currentChaseTarget, 1.5f, false) == false)
                 {
                     _targetLostTimer -= Time.deltaTime;
                     if (_targetLostTimer <= 0)
@@ -176,11 +185,11 @@ public class Cop : MonoBehaviour
 
             case CopState.Search:
 
-                if (_animator != null)
+               /* if (_animator != null)
                 {
                     _animator.SetFloat("velocityX", Vector3.Project(_agent.velocity, transform.forward).magnitude);
                     _animator.SetFloat("velocityY", Vector3.Project(_agent.velocity, transform.right).magnitude);
-                }
+                }*/
 
                 if (_lookAtPlayerSearchTimer > 0)
                 {
@@ -221,7 +230,7 @@ public class Cop : MonoBehaviour
                     }                 
                 }
 
-                if (_fieldOfView.CheckTargetVisibility(_currentTarget, 1, true) == true)
+                if (_fieldOfView.CheckTargetVisibility(_currentTarget, 1.5f, true) == true)
                 {
                     _currentChaseTarget = _currentTarget;
                     SwitchToChase();
@@ -254,6 +263,11 @@ public class Cop : MonoBehaviour
         }
 
         _stateText.transform.rotation = Quaternion.identity;
+
+        if (_findMarksTimer > 0)
+        {
+            _findMarksTimer -= Time.deltaTime;
+        }
     }
 
     private void SwitchToCalm()
@@ -277,8 +291,8 @@ public class Cop : MonoBehaviour
     {
         _currentCopState = CopState.Suspicious;
         _agent.speed = 0;
-        _animator.SetFloat("velocityX", 0);
-        _animator.SetFloat("velocityY", 0);
+       // _animator.SetFloat("velocityX", 0);
+       // _animator.SetFloat("velocityY", 0);
         _suspiciousTimer = _suspiciousDelay;
         _stateText.text = "?";
         _targetLostTimer = 0.1f;
@@ -315,6 +329,10 @@ public class Cop : MonoBehaviour
     private void SwitchToArrest()
     {
         _currentCopState = CopState.Arrest;
+
+        _currentTargetAI.GetComponent<CitizenNPC>().enabled = false;
+        _currentTargetAI.enabled = true;
+
         _currentTargetAI.UnderArrest = true;
         _currentTargetAI.OwningCopTransform = transform;
         _agent.speed = _walkSpeed;
@@ -329,7 +347,7 @@ public class Cop : MonoBehaviour
     }
 
     private void SetRandomDestination()
-    {
+    {    
         if (RandomPointOnNavmesh(transform.position, _wanderRange, out Vector3 newDestination))
         {
             _currentDestination = newDestination;
@@ -353,5 +371,37 @@ public class Cop : MonoBehaviour
 
         result = Vector3.zero;
         return false;
+    }
+
+    private void FindMarks()
+    {
+        if (_currentTarget != null || _findMarksTimer > 0)
+        {
+            return;
+        }
+
+        Collider[] neighbors = Physics.OverlapSphere(transform.position, _fieldOfView.viewRadius);
+        foreach(Collider tempCollider in neighbors)
+        {
+            if (tempCollider.tag == "Mark")
+            {               
+                if (_fieldOfView.CheckTargetVisibility(tempCollider.transform, 1.5f, true) == true)
+                {
+                    Debug.Log("FOUND");
+                    AI tempAI = tempCollider.transform.GetComponentInParent<AI>();
+                    if (tempAI != null && tempAI.UnderArrest == false)
+                    {                                       
+                        Debug.Log("AI");
+                        CurrentTarget = tempAI.transform;
+                        _currentChaseTarget = _currentTarget;
+                        _currentTargetAI = tempAI;
+                        SwitchToSuspicious();
+                        break;
+                    }                   
+                }                    
+            }
+        }
+
+        _findMarksTimer = 0.2f;
     }
 }

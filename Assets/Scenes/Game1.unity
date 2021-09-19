@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 2.3018966, g: 1.4711857, b: 1.0919514, a: 1}
+  m_IndirectSpecularColor: {r: 2.3061414, g: 1.4736547, b: 1.0922241, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2593,6 +2593,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4460254254511972, guid: adbceecd7507b1444acf558c3aaaba8f, type: 3}
   m_PrefabInstance: {fileID: 566459999}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &607298865
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 607298866}
+  m_Layer: 0
+  m_Name: PrisonPoint
+  m_TagString: Prison
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &607298866
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607298865}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.467, z: 5.62}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1792994554}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &669226016
 GameObject:
   m_ObjectHideFlags: 0
@@ -5297,6 +5327,10 @@ PrefabInstance:
       propertyPath: m_Shadows.m_Type
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3268323092236086885, guid: 8e3ebc0de9ee08d4d8b4ea1836bb9ec5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3268323092845671920, guid: 8e3ebc0de9ee08d4d8b4ea1836bb9ec5, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -5351,6 +5385,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e3ebc0de9ee08d4d8b4ea1836bb9ec5, type: 3}
+--- !u!4 &1792994554 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3268323092236342731, guid: 8e3ebc0de9ee08d4d8b4ea1836bb9ec5, type: 3}
+  m_PrefabInstance: {fileID: 1792994553}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1801139729
 GameObject:
   m_ObjectHideFlags: 0
@@ -27162,7 +27201,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5118559711138674614, guid: bd51da9ea2f0cb44b993f17a5e5a2790, type: 3}
       propertyPath: _networkNpcPrefabs.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5118559711138674614, guid: bd51da9ea2f0cb44b993f17a5e5a2790, type: 3}
       propertyPath: _civilianPrefabs.Array.data[1]
@@ -27171,7 +27210,7 @@ PrefabInstance:
     - target: {fileID: 5118559711138674614, guid: bd51da9ea2f0cb44b993f17a5e5a2790, type: 3}
       propertyPath: _networkNpcPrefabs.Array.data[1]
       value: 
-      objectReference: {fileID: 8751431591915280027, guid: 7187d7598d1647547b271d94fb3fcf99, type: 3}
+      objectReference: {fileID: 8731330161750732350, guid: e85ea8ba5d26f2942b0fee3ab954df17, type: 3}
     - target: {fileID: 5118559711138674615, guid: bd51da9ea2f0cb44b993f17a5e5a2790, type: 3}
       propertyPath: m_Name
       value: GameController

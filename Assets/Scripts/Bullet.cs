@@ -22,7 +22,8 @@ public class Bullet : MonoBehaviour
     {
         if (collision.transform.CompareTag("Civilian"))
         {
-            
+            transform.SetParent(collision.transform);
+            _thisRigidbody.isKinematic = false;
         }
         else if (collision.transform.CompareTag("Player"))
         {

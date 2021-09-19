@@ -221,14 +221,17 @@ public class FieldOfView : MonoBehaviour
 
     public bool CheckTargetVisibility(Transform target, float yOffset, bool withDistance)
     {       
-        Vector3 dirToTarget = (target.position - transform.position).normalized;
+        Vector3 dirToTarget = (target.position - transform.TransformPoint(0, yOffset, 0.5f)).normalized;
+        //Debug.Log(Vector3.Angle(transform.forward, dirToTarget));
         if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
-        {         
+        {        
             RaycastHit hit;
-            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + yOffset, transform.position.z), dirToTarget, out hit, withDistance == true ? viewRadius : 1000) == true)
+            // if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + yOffset, transform.position.z), dirToTarget, out hit, withDistance == true ? viewRadius : 1000) == true)
+            if (Physics.Raycast(transform.TransformPoint(0, yOffset, 0.5f), dirToTarget, out hit, withDistance == true ? viewRadius : 1000) == true)
             {
-                Debug.Log(hit.transform.name);
-                if (hit.transform == target)
+                Debug.Log(hit.collider.transform.name);
+                Debug.DrawLine(transform.TransformPoint(0, yOffset, 0.5f), new Vector3(hit.point.x, 1.5f, hit.point.z));
+                if (hit.collider.transform == target)
                 {
                     return true;
                 }
