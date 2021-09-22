@@ -1,6 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using MLAPI.NetworkVariable;
+using Assets.Scripts.Player;
 
 namespace Assets.Scripts.TestLogic
 {
@@ -9,6 +9,7 @@ namespace Assets.Scripts.TestLogic
         [Header("Components")]
         [SerializeField] private Transform _transform = null;
         [SerializeField] private Animator _animator = null;
+        [SerializeField] private HandMotion _handMotion = null;
         [Header("Maximum offset")]
         [SerializeField] private float _positionOffset = 1f;
         [SerializeField] private float _rotationOffset = 30f;
@@ -35,6 +36,10 @@ namespace Assets.Scripts.TestLogic
         private RemoteBool _isStrafing = null;
         #endregion Animator
 
+        #region Hand
+        private RemoteBool _isHandVisible = null;
+        #endregion Hand
+
         #endregion Remote Variables
 
         #region Remote Actions
@@ -55,6 +60,10 @@ namespace Assets.Scripts.TestLogic
         private NetworkVariableBool.OnValueChangedDelegate _isSprintingChanged;
         private NetworkVariableBool.OnValueChangedDelegate _isStrafingChanged;
         #endregion Animator
+
+        #region Hand
+        private NetworkVariableBool.OnValueChangedDelegate _isHandVisibleChanged;
+        #endregion Hand
 
         #endregion Remote Actions
 
@@ -139,15 +148,25 @@ namespace Assets.Scripts.TestLogic
             {
                 IsEquals = (target) => target == _animator.GetBool(AnimatorParameters.IsSprinting)
             };
-            _isGrounded.SetValue += (value) => _animator.SetBool(AnimatorParameters.IsSprinting, value);
+            _isSprinting.SetValue += (value) => _animator.SetBool(AnimatorParameters.IsSprinting, value);
 
             _isStrafing = new RemoteBool(false)
             {
                 IsEquals = (target) => target == _animator.GetBool(AnimatorParameters.IsStrafing)
             };
-            _isGrounded.SetValue += (value) => _animator.SetBool(AnimatorParameters.IsStrafing, value);
+            _isStrafing.SetValue += (value) => _animator.SetBool(AnimatorParameters.IsStrafing, value);
 
             #endregion Initialize Variables - Animator
+
+            #region Initialize Variables - Hand
+
+            _isHandVisible = new RemoteBool(false)
+            {
+                IsEquals = (target) => target == _handMotion.IsHandVisible
+            };
+            _isHandVisible.SetValue += (value) => _handMotion.IsHandVisible = value;
+
+            #endregion Initialize Variables - Hand
         }
 
         protected override void InitializeArchitectorActions()
@@ -172,6 +191,12 @@ namespace Assets.Scripts.TestLogic
             _isStrafingChanged = (oldValue, newValue) => _isStrafing.Target = newValue;
 
             #endregion Initialize Actions - Animator
+
+            #region Initialize Actions - Hand
+
+            _isHandVisibleChanged = (oldValue, newValue) => _handMotion.IsHandVisible = newValue;
+
+            #endregion Initialize Actions - Hand
         }
 
         protected override void Subscribe()
@@ -198,6 +223,12 @@ namespace Assets.Scripts.TestLogic
             bodyArchitector.IsStrafing.OnValueChanged += _isStrafingChanged;
 
             #endregion Subscribe - Animator
+
+            #region Subscribe - Hand
+
+            bodyArchitector.IsHandVisible.OnValueChanged += _isHandVisibleChanged;
+
+            #endregion Subscribe - Hand
         }
 
         protected override void Unsubscribe()
@@ -224,6 +255,12 @@ namespace Assets.Scripts.TestLogic
             bodyArchitector.IsStrafing.OnValueChanged -= _isStrafingChanged;
 
             #endregion Unsubscribe - Animator
+
+            #region Subscribe - Hand
+
+            bodyArchitector.IsHandVisible.OnValueChanged -= _isHandVisibleChanged;
+
+            #endregion Subscribe - Hand
         }
 
         protected override void UpdateVariables()
@@ -248,6 +285,12 @@ namespace Assets.Scripts.TestLogic
             _isStrafing.Update();
 
             #endregion Update Variables - Animator
+
+            #region Update Variables - Hand
+
+            _isHandVisible.Update();
+
+            #endregion Update Variables - Hand
         }
     }
 }

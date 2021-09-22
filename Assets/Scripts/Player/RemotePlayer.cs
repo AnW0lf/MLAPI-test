@@ -233,7 +233,7 @@ namespace Assets.Scripts.Player
         #region Hand - Actions
         private void OnIsHandVisibleChanged(bool isHandVisible)
         {
-            _hand.HandVisible = isHandVisible;
+            _hand.IsHandVisible = isHandVisible;
         }
         #endregion Hand - Actions
 

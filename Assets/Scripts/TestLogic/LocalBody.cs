@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Assets.Scripts.Player;
 using UnityEngine;
 
 namespace Assets.Scripts.TestLogic
@@ -8,6 +8,7 @@ namespace Assets.Scripts.TestLogic
         [Header("Components")]
         [SerializeField] private Transform _transform = null;
         [SerializeField] private Animator _animator = null;
+        [SerializeField] private HandMotion _handMotion = null;
         [Header("Minimum offset")]
         [SerializeField] private float _positionOffset = 0.15f;
         [SerializeField] private float _rotationOffset = 1.5f;
@@ -30,6 +31,10 @@ namespace Assets.Scripts.TestLogic
         public LocalBool IsSprinting { get; private set; }
         public LocalBool IsStrafing { get; private set; }
         #endregion Animator
+
+        #region Hand
+        public LocalBool IsHandVisible { get; private set; }
+        #endregion Hand
 
         #endregion Local Variables
 
@@ -56,6 +61,12 @@ namespace Assets.Scripts.TestLogic
             IsStrafing = new LocalBool(_animator.GetBool(AnimatorParameters.IsStrafing));
 
             #endregion Initialize Variables - Animator
+
+            #region Initialize Variables - Hand
+
+            IsHandVisible = new LocalBool(_handMotion.IsHandVisible);
+
+            #endregion Initialize Variables - Hand
         }
 
         protected override void UpdateVariables()
@@ -80,6 +91,12 @@ namespace Assets.Scripts.TestLogic
             IsStrafing.Value = _animator.GetBool(AnimatorParameters.IsStrafing);
 
             #endregion Update Variables - Animator
+
+            #region Update Variables - Hand
+
+            IsHandVisible.Value = _handMotion.IsHandVisible;
+
+            #endregion Update Variables - Hand
         }
     }
 

@@ -2915,6 +2915,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _transform: {fileID: 5699902396908508022}
   _animator: {fileID: 5699902396908867417}
+  _handMotion: {fileID: -1512227190735005434}
   _positionOffset: 5
   _rotationOffset: 30
   _animationOffset: 0.8

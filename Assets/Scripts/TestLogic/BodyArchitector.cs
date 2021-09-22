@@ -74,6 +74,14 @@ namespace Assets.Scripts.TestLogic
 
         #endregion Animator
 
+        #region Hand
+        public readonly NetworkVariableBool IsHandVisible = new NetworkVariableBool(new NetworkVariableSettings
+        {
+            WritePermission = NetworkVariablePermission.OwnerOnly,
+            ReadPermission = NetworkVariablePermission.Everyone
+        }, false);
+        #endregion Hand
+
         #endregion Network Variables
 
         #region OnLocalChanged Actions
@@ -95,6 +103,10 @@ namespace Assets.Scripts.TestLogic
         private Action<bool> _isStrafingChanged = null;
         #endregion Animator
 
+        #region Hand
+        private Action<bool> _isHandVisibleChanged = null;
+        #endregion Hand
+
         #endregion OnLocalChanged Actions
 
         protected override void InitializeActions()
@@ -111,6 +123,8 @@ namespace Assets.Scripts.TestLogic
             _isGroundedChanged = (value) => IsGrounded.Value = value;
             _isSprintingChanged = (value) => IsSprinting.Value = value;
             _isStrafingChanged = (value) => IsStrafing.Value = value;
+
+            _isHandVisibleChanged = (value) => IsHandVisible.Value = value;
         }
 
         protected override void Synchronize()
@@ -129,6 +143,8 @@ namespace Assets.Scripts.TestLogic
             IsGrounded.Value = localBody.IsGrounded.Value;
             IsSprinting.Value = localBody.IsSprinting.Value;
             IsStrafing.Value = localBody.IsStrafing.Value;
+
+            IsHandVisible.Value = localBody.IsHandVisible.Value;
         }
 
         protected override void Subscribe()
@@ -147,6 +163,8 @@ namespace Assets.Scripts.TestLogic
             localBody.IsGrounded.ValueChanged += _isGroundedChanged;
             localBody.IsSprinting.ValueChanged += _isSprintingChanged;
             localBody.IsStrafing.ValueChanged += _isStrafingChanged;
+
+            localBody.IsHandVisible.ValueChanged += _isHandVisibleChanged;
         }
 
         protected override void Unsubscribe()
@@ -165,6 +183,8 @@ namespace Assets.Scripts.TestLogic
             localBody.IsGrounded.ValueChanged -= _isGroundedChanged;
             localBody.IsSprinting.ValueChanged -= _isSprintingChanged;
             localBody.IsStrafing.ValueChanged -= _isStrafingChanged;
+
+            localBody.IsHandVisible.ValueChanged -= _isHandVisibleChanged;
         }
     }
 }

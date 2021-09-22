@@ -24,14 +24,14 @@ namespace Assets.Scripts.Player
         private enum HandState { FREE = 0, BAG = 1, VISIBLE = 2 }
         private HandState State => (HandState)(Mathf.RoundToInt(Mathf.Clamp(_hand.State, 0f, 2f)));
 
-        private bool _handVisible = false;
-        public bool HandVisible
+        private bool _isHandVisible = false;
+        public bool IsHandVisible
         {
-            get => _handVisible;
+            get => _isHandVisible;
             set
             {
-                _handVisible = value;
-                if (_handVisible) ShowItem();
+                _isHandVisible = value;
+                if (_isHandVisible) ShowItem();
                 else HideItem();
             }
         }
@@ -41,7 +41,7 @@ namespace Assets.Scripts.Player
 
         private void Update()
         {
-            if (HandVisible && ItemActive)
+            if (IsHandVisible && ItemActive)
             {
                 _hand.wrist.weight = Mathf.Clamp(_hand.wrist.weight + Time.deltaTime * 5f, 0f, 1f);
                 _hand.SetFingerPositions(item.WristData);
@@ -51,7 +51,7 @@ namespace Assets.Scripts.Player
                 _hand.wrist.weight = Mathf.Clamp(_hand.wrist.weight - Time.deltaTime * 5f, 0f, 1f);
             }
 
-            if (HandVisible)
+            if (IsHandVisible)
             {
                 if (IsAim)
                 {
@@ -189,7 +189,7 @@ namespace Assets.Scripts.Player
 
         public void SwitchHand()
         {
-            HandVisible = !HandVisible;
+            IsHandVisible = !IsHandVisible;
         }
     }
 

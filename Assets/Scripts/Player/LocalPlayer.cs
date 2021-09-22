@@ -52,7 +52,7 @@ namespace Assets.Scripts.Player
         #endregion Animator
 
         #region Hand
-        private bool _isHandVisible => _hand.HandVisible;
+        private bool _isHandVisible => _hand.IsHandVisible;
         private bool _oldIsHandVisible = false;
         public event Action<bool> IsHandVisibleChanged;
         #endregion Hand

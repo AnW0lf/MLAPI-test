@@ -3032,6 +3032,7 @@ MonoBehaviour:
   _updateRate: 20
   _transform: {fileID: 5699902396908508022}
   _animator: {fileID: 5699902396908867417}
+  _handMotion: {fileID: -1512227190735005434}
   _positionOffset: 0.01
   _rotationOffset: 1
   _animationOffset: 0.01

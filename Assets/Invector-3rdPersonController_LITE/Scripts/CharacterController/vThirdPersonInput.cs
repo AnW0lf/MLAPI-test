@@ -232,7 +232,7 @@ namespace Invector.vCharacterController
 
         private void AimInput(bool press)
         {
-            bool active = press && _hand.HandVisible;
+            bool active = press && _hand.IsHandVisible;
 
             cc.freeSpeed.rotateWithCamera = active;
             cc.isStrafing = active;
@@ -244,7 +244,7 @@ namespace Invector.vCharacterController
 
         private void UseInput(bool use)
         {
-            if (_hand.HandVisible == false) { return; }
+            if (_hand.IsHandVisible == false) { return; }
             if (_hand.IsAim == false) { return; }
 
             _weapon.Shoot();
