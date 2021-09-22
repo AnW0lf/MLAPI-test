@@ -910,8 +910,9 @@ GameObject:
   - component: {fileID: 8055641144021950339}
   - component: {fileID: 8055641144021950338}
   - component: {fileID: 3377147246814680230}
+  - component: {fileID: 1662889024402938658}
   m_Layer: 5
-  m_Name: PlayerListItem
+  m_Name: PC_RP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -998,6 +999,19 @@ MonoBehaviour:
   _ownerNotReadyFlag: {fileID: 3483000449802012526}
   _notOwnerReadyFlag: {fileID: 2840482816631737515}
   _notOwnerNotReadyFlag: {fileID: 8313837837711722566}
+--- !u!114 &1662889024402938658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8055641144021950336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79fc8a41c8d47b448d4c745ca43bc68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _card: {fileID: 3377147246814680230}
 --- !u!1 &8055641145451575270
 GameObject:
   m_ObjectHideFlags: 0

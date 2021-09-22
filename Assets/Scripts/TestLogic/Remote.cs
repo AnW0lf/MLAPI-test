@@ -1,106 +1,120 @@
 ﻿using System;
 using UnityEngine;
-using MLAPI.NetworkVariable;
 
 namespace Assets.Scripts.TestLogic
 {
     public class Remote : MonoBehaviour
     {
-        [SerializeField] private Transform _transform = null;
-        //[SerializeField] private Animator _animator = null;
-        [Header("Maximum offset")]
-        [SerializeField] private float _positionOffset = 1f;
-        [SerializeField] private float _rotationOffset = 30f;
-        [Space(25)]
-        [SerializeField] private float _smoothness = 3f;
+        private bool _subscribedToArchitector = false;
+        private Architector _architector = null;
 
-        private RemoteVector3 _position = null;
-        private RemoteQuaternion _rotation = null;
-
-
-        private NetworkVariableVector3.OnValueChangedDelegate _positionChanged;
-        private NetworkVariableQuaternion.OnValueChangedDelegate _rotationChanged;
-
-        private Network _networkParent = null;
-        public Network NetworkParent
+        /// <summary>
+        /// Свойство определяющее логику работы с сылкой на Network объект
+        /// Инкапсулирует логику для безопасного изменения данных
+        /// </summary>
+        public Architector Architector
         {
-            get => _networkParent;
+            get => _architector;
             set
             {
-                if (_networkParent != null)
+                if (_architector != null)
                 {
-                    UnsubscribeFromNetwork();
+                    UnsubscribeFromArchitector();
                 }
 
-                _networkParent = value;
+                _architector = value;
 
-                if (_networkParent != null)
+                if (_architector != null)
                 {
-                    SubscribeToNetwork();
+                    SubscribeToArchitector();
                 }
             }
         }
 
-        private void InitializeRemoteVariables()
+        /// <summary>
+        /// Инициализирует необходимые компоненты объекта
+        /// </summary>
+        protected void Initialize()
         {
-            _position = new RemoteVector3(Vector3.zero, _positionOffset);
-            _position.IsEquals = (target) => Vector3.Distance(target, _transform.position) == 0f;
-            _position.IsOverOffset = (target, offset) => Vector3.Distance(target, _transform.position) > offset;
-            _position.SetValue += (value) => _transform.position = value;
-            _position.UpdateValue += (value) => _transform.position = Vector3.Lerp(_transform.position, value, _smoothness * Time.deltaTime);
-
-            _rotation = new RemoteQuaternion(Quaternion.identity, _rotationOffset);
-            _rotation.IsEquals = (target) => Quaternion.Angle(target, _transform.rotation) == 0f;
-            _rotation.IsOverOffset = (target, offset) => Quaternion.Angle(target, _transform.rotation) > offset;
-            _rotation.SetValue += (value) => _transform.rotation = value;
-            _rotation.UpdateValue += (value) => _transform.rotation = Quaternion.Lerp(_transform.rotation, value, _smoothness * Time.deltaTime);
+            InitializeVariables();
+            InitializeArchitectorActions();
         }
 
-        private void InitializeNetworkActions()
+        /// <summary>
+        /// Инициализирует Remote переменные
+        /// Необходимо переопределить
+        /// </summary>
+        protected virtual void InitializeVariables() { }
+
+        /// <summary>
+        /// Инициализирует Actions для соответствующих событий NetworkParent
+        /// Необходимо переопределить
+        /// </summary>
+        protected virtual void InitializeArchitectorActions() { }
+
+        /// <summary>
+        /// Подписывает объект на события NetworkParent
+        /// Содержит проверки корректности операции
+        /// Сами подписки необходимо реализовать переопределением метода Subscribe
+        /// </summary>
+        protected void SubscribeToArchitector()
         {
-            _positionChanged = (oldValue, newValue) => _position.Target = newValue;
-            _rotationChanged = (oldValue, newValue) => _rotation.Target = newValue;
+            if (_architector == null) { return; }
+            if (_subscribedToArchitector) { return; }
+
+            Subscribe();
+
+            _subscribedToArchitector = true;
         }
+
+        /// <summary>
+        /// Отписывает объект от событий NetworkParent
+        /// Содержит проверки корректности операции
+        /// Сами отписки необходимо реализовать переопределением метода Unsubscribe
+        /// </summary>
+        protected void UnsubscribeFromArchitector()
+        {
+            if (_architector == null) { return; }
+            if (_subscribedToArchitector == false) { return; }
+
+            Unsubscribe();
+
+            _subscribedToArchitector = false;
+        }
+
+        /// <summary>
+        /// Осуществляет подписку объекта на события NetworkParent
+        /// Необходимо переопределить в соответствии с требуемыми событиями
+        /// Не требует проверок на корректность операций при работе с NetworkParent
+        /// </summary>
+        protected virtual void Subscribe() { }
+
+        /// <summary>
+        /// Осуществляет отписку объекта от событий NetworkParent
+        /// Необходимо переопределить в соответствии с требуемыми событиями
+        /// Не требует проверок на корректность операций при работе с NetworkParent
+        /// </summary>
+        protected virtual void Unsubscribe() { }
+
+        /// <summary>
+        /// Вызывает метод Update в Remote переменных объекта
+        /// Необходимо переопределить
+        /// </summary>
+        protected virtual void UpdateVariables() { }
 
         private void Awake()
         {
-            InitializeRemoteVariables();
-            InitializeNetworkActions();
+            Initialize();
         }
 
         private void Update()
         {
-            _position.Update();
-            _rotation.Update();
+            UpdateVariables();
         }
 
         private void OnDestroy()
         {
-            UnsubscribeFromNetwork();
-            NetworkParent = null;
-        }
-
-        private bool _subscribedToNetwork = false;
-        private void SubscribeToNetwork()
-        {
-            if (_networkParent == null) { return; }
-            if (_subscribedToNetwork) { return; }
-
-            NetworkParent.Position.OnValueChanged += _positionChanged;
-            NetworkParent.Rotation.OnValueChanged += _rotationChanged;
-
-            _subscribedToNetwork = true;
-        }
-
-        private void UnsubscribeFromNetwork()
-        {
-            if (_networkParent == null) { return; }
-            if (_subscribedToNetwork == false) { return; }
-
-            NetworkParent.Position.OnValueChanged -= _positionChanged;
-            NetworkParent.Rotation.OnValueChanged -= _rotationChanged;
-
-            _subscribedToNetwork = false;
+            Architector = null;
         }
     }
 
@@ -114,10 +128,10 @@ namespace Assets.Scripts.TestLogic
         public RemoteBool(bool target)
         {
             _target = target;
-            UpdateValue?.Invoke(_target);
+            SetValue?.Invoke(_target);
         }
 
-        public event Action<bool> UpdateValue;
+        public event Action<bool> SetValue;
         public Func<bool, bool> IsEquals;
 
         public bool Target
@@ -133,14 +147,14 @@ namespace Assets.Scripts.TestLogic
         public void Update()
         {
             if (IsEquals(_target)) { return; }
-            UpdateValue?.Invoke(_target);
+            SetValue?.Invoke(_target);
         }
     }
 
     class RemoteFloat
     {
         private float _target;
-        private float _offset;
+        private readonly float _offset;
 
         public RemoteFloat() : this(0f, 0f) { }
 
@@ -184,7 +198,7 @@ namespace Assets.Scripts.TestLogic
     class RemoteVector2
     {
         private Vector2 _target;
-        private float _offset;
+        private readonly float _offset;
 
         public RemoteVector2() : this(Vector2.zero, 0f) { }
 
@@ -228,7 +242,7 @@ namespace Assets.Scripts.TestLogic
     class RemoteVector3
     {
         private Vector3 _target;
-        private float _offset;
+        private readonly float _offset;
 
         public RemoteVector3() : this(Vector3.zero, 0f) { }
 
@@ -272,7 +286,7 @@ namespace Assets.Scripts.TestLogic
     class RemoteQuaternion
     {
         private Quaternion _target;
-        private float _offset;
+        private readonly float _offset;
 
         public RemoteQuaternion() : this(Quaternion.identity, 0f) { }
 
@@ -289,6 +303,82 @@ namespace Assets.Scripts.TestLogic
         public Func<Quaternion, float, bool> IsOverOffset;
 
         public Quaternion Target
+        {
+            get => _target;
+            set
+            {
+                _target = value;
+                Update();
+            }
+        }
+
+        public void Update()
+        {
+            if (IsEquals(_target)) { return; }
+
+            if (IsOverOffset(_target, _offset))
+            {
+                SetValue.Invoke(_target);
+            }
+            else
+            {
+                UpdateValue?.Invoke(_target);
+            }
+        }
+    }
+
+    class RemoteString
+    {
+        private string _target;
+
+        public RemoteString() : this(string.Empty) { }
+
+        public RemoteString(string target)
+        {
+            _target = target;
+            SetValue?.Invoke(_target);
+        }
+
+        public event Action<string> SetValue;
+        public Func<string, bool> IsEquals;
+
+        public string Target
+        {
+            get => _target;
+            set
+            {
+                _target = value;
+                Update();
+            }
+        }
+
+        public void Update()
+        {
+            if (IsEquals(_target)) { return; }
+            SetValue?.Invoke(_target);
+        }
+    }
+
+    class RemoteInt
+    {
+        private int _target;
+        private readonly int _offset;
+
+        public RemoteInt() : this(0, 0) { }
+
+        public RemoteInt(int target, int offset)
+        {
+            _target = target;
+            _offset = offset;
+            UpdateValue?.Invoke(_target);
+        }
+
+        public event Action<int> UpdateValue;
+        public event Action<int> SetValue;
+        public Func<int, bool> IsEquals;
+        public Func<int, int, bool> IsOverOffset;
+
+        public int Target
         {
             get => _target;
             set

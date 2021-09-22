@@ -1,3 +1,5 @@
+using Assets.Scripts.TestLogic;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -5,7 +7,7 @@ using UnityEngine.UI;
 
 namespace Lobby
 {
-    public class PlayerListItem : MonoBehaviour
+    public class PlayerCard : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _nickname = null;
         [SerializeField] private Image _icon = null;
@@ -14,16 +16,39 @@ namespace Lobby
         [SerializeField] private GameObject _notOwnerReadyFlag = null;
         [SerializeField] private GameObject _notOwnerNotReadyFlag = null;
 
+        private PlayerProfile _profile = null;
+        public PlayerProfile Profile
+        {
+            get => _profile;
+            set
+            {
+                _profile = value;
+
+                if (_profile == null)
+                {
+                    Nickname = "Unknown";
+                    IconIndex = 0;
+                    IsReady = false;
+                }
+                else
+                {
+                    Nickname = _profile.Nickname;
+                    IconIndex = _profile.IconIndex;
+                    IsReady = false;
+                }
+            }
+        }
+
         public string Nickname
         {
             get => _nickname.text;
             set
             {
                 _nickname.text = value;
-                OnNicknameChanged?.Invoke(_nickname.text);
+                NicknameChanged?.Invoke(_nickname.text);
             }
         }
-        public event UnityAction<string> OnNicknameChanged = null;
+        public event Action<string> NicknameChanged = null;
 
         public Sprite Icon
         {
@@ -31,10 +56,26 @@ namespace Lobby
             set
             {
                 _icon.sprite = value;
-                OnIconChanged?.Invoke(_icon.sprite);
+                IconChanged?.Invoke(_icon.sprite);
             }
         }
-        public event UnityAction<Sprite> OnIconChanged = null;
+        public event Action<Sprite> IconChanged = null;
+
+        private int _iconIndex = 0;
+        public int IconIndex
+        {
+            get => _iconIndex;
+            set
+            {
+                if (_iconIndex != value)
+                {
+                    _iconIndex = value;
+                    _icon.sprite = Resources.Load<Sprite>($"Player_{_iconIndex}");
+                    IconIndexChanged?.Invoke(_iconIndex);
+                }
+            }
+        }
+        public event Action<int> IconIndexChanged = null;
 
         public bool IsReady
         {
@@ -43,7 +84,7 @@ namespace Lobby
             {
                 switch (Style)
                 {
-                    case PlayerListItemStyle.OWNER:
+                    case PlayerCardStyle.OWNER:
                         {
                             if (value)
                             {
@@ -61,7 +102,7 @@ namespace Lobby
                             }
                         }
                         break;
-                    case PlayerListItemStyle.NOTOWNER:
+                    case PlayerCardStyle.NOTOWNER:
                         {
                             if (value)
                             {
@@ -80,13 +121,13 @@ namespace Lobby
                         }
                         break;
                 }
-                OnReady?.Invoke(value);
+                IsReadyChanged?.Invoke(value);
             }
         }
-        public event UnityAction<bool> OnReady = null;
+        public event Action<bool> IsReadyChanged = null;
 
-        private PlayerListItemStyle _style = PlayerListItemStyle.NOTOWNER;
-        public PlayerListItemStyle Style
+        private PlayerCardStyle _style = PlayerCardStyle.NOTOWNER;
+        public PlayerCardStyle Style
         {
             get => _style;
             set
@@ -96,8 +137,8 @@ namespace Lobby
                 OnStyleChanged?.Invoke(_style);
             }
         }
-        public event UnityAction<PlayerListItemStyle> OnStyleChanged = null;
+        public event UnityAction<PlayerCardStyle> OnStyleChanged = null;
     }
 
-    public enum PlayerListItemStyle { OWNER, NOTOWNER }
+    public enum PlayerCardStyle { OWNER, NOTOWNER }
 }

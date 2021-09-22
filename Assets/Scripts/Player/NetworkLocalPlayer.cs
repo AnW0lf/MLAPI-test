@@ -16,7 +16,7 @@ namespace Assets.Scripts.Player
         private LocalPlayer _local = null;
         private RemotePlayer _remote = null;
 
-        private PlayerListItem _lobbyItem = null;
+        private PlayerCard _lobbyItem = null;
 
         #region PersonalData
         private static readonly NetworkVariableInt _iconOffset = new NetworkVariableInt(new NetworkVariableSettings
@@ -136,14 +136,14 @@ namespace Assets.Scripts.Player
                 Nickname = $"Player_{OwnerClientId}";
                 IconPath = $"Player_{((int)OwnerClientId + _iconOffset.Value) % 10}";
                 IsReady = false;
-                _lobbyItem.Style = PlayerListItemStyle.OWNER;
+                _lobbyItem.Style = PlayerCardStyle.OWNER;
             }
             else
             {
                 SetNickname("", Nickname);
                 SetIcon("", IconPath);
                 SetReady(false, IsReady);
-                _lobbyItem.Style = PlayerListItemStyle.NOTOWNER;
+                _lobbyItem.Style = PlayerCardStyle.NOTOWNER;
             }
 
             if (LobbyManager.Singleton != null)

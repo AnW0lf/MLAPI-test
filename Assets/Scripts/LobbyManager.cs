@@ -23,7 +23,7 @@ namespace Lobby
         [SerializeField] private TextMeshProUGUI _roomNameText = null;
         [SerializeField] private Transform _playerListContainer = null;
         [SerializeField] private GameObject _playerListItemPrefab = null;
-        private Dictionary<ulong, PlayerListItem> _playerList = new Dictionary<ulong, PlayerListItem>();
+        private Dictionary<ulong, PlayerCard> _playerList = new Dictionary<ulong, PlayerCard>();
         [Header("Lobby ToGameButtons")]
         [SerializeField] private Button _btnStartGame = null;
 
@@ -112,9 +112,9 @@ namespace Lobby
             RemovePlayerListItem(clientId);
         }
 
-        public PlayerListItem AddPlayerListItem(ulong clientId)
+        public PlayerCard AddPlayerListItem(ulong clientId)
         {
-            var item = Instantiate(_playerListItemPrefab, _playerListContainer).GetComponent<PlayerListItem>();
+            var item = Instantiate(_playerListItemPrefab, _playerListContainer).GetComponent<PlayerCard>();
             item.IsReady = false;
             _playerList.Add(clientId, item);
             return item;

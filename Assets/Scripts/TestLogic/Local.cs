@@ -5,50 +5,52 @@ namespace Assets.Scripts.TestLogic
 {
     public class Local : MonoBehaviour
     {
-        [SerializeField] private Transform _transform = null;
-        //[SerializeField] private Animator _animator = null;
-        [Header("Minimum offset")]
-        [SerializeField] private float _positionOffset = 0.15f;
-        [SerializeField] private float _rotationOffset = 1.5f;
+        [Header("Update variables")]
+        [SerializeField] private bool _isOnUndate = true;
+        [SerializeField] [Range(1, 60)] private int _updateRate = 20;
+        private float _delay = 0.05f;
+        private float _timer = 0f;
 
-        public LocalVector3 Position { get; private set; }
-        public LocalQuaternion Rotation { get; private set; }
+        public Architector Architector { get; set; } = null;
 
-        public Network NetworkParent { get; set; } = null;
-
-        private void InitializeVariables()
+        /// <summary>
+        /// Инициализирует необходимые компоненты объекта
+        /// </summary>
+        protected void Initialize()
         {
-            Position = new LocalVector3(_transform.position, _positionOffset);
-            Rotation = new LocalQuaternion(_transform.rotation, _rotationOffset);
+            _delay = 1f / _updateRate;
+            InitializeVariables();
         }
 
-        private void UpdateVariables()
-        {
-            Position.Value = _transform.position;
-            Rotation.Value = _transform.rotation;
-        }
+        /// <summary>
+        /// Инициализирует Local переменные
+        /// Необходимо переопределить
+        /// </summary>
+        protected virtual void InitializeVariables() { }
+
+        /// <summary>
+        /// Обновляет состояния Local переменных
+        /// Необходимо переопределить
+        /// </summary>
+        protected virtual void UpdateVariables() { }
 
         private void Awake()
         {
-            InitializeVariables();
+            Initialize();
         }
 
         private void Update()
         {
-            UpdateVariables();
+            if (_isOnUndate)
+            {
+                _timer += Time.deltaTime;
+                if (_timer > _delay)
+                {
+                    _timer = 0f;
+                    UpdateVariables();
+                }
+            }
         }
-    }
-
-    public static class AnimatorParameters
-    {
-        public static int InputHorizontal = Animator.StringToHash("InputHorizontal");
-        public static int InputVertical = Animator.StringToHash("InputVertical");
-        public static int InputMagnitude = Animator.StringToHash("InputMagnitude");
-        public static int GroundDistance = Animator.StringToHash("GroundDistance");
-        public static int IsCrouching = Animator.StringToHash("IsCrouching");
-        public static int IsGrounded = Animator.StringToHash("IsGrounded");
-        public static int IsStrafing = Animator.StringToHash("IsStrafing");
-        public static int IsSprinting = Animator.StringToHash("IsSprinting");
     }
 
     #region Local Variables
@@ -192,6 +194,64 @@ namespace Assets.Scripts.TestLogic
             set
             {
                 if (Quaternion.Angle(value, _old) > _offset)
+                {
+                    _old = value;
+                    ValueChanged?.Invoke(value);
+                }
+            }
+        }
+    }
+
+    public class LocalString
+    {
+        private string _old;
+
+        public event Action<string> ValueChanged;
+
+        public LocalString() : this(string.Empty) { }
+
+        public LocalString(string value)
+        {
+            _old = value;
+            ValueChanged?.Invoke(value);
+        }
+
+        public string Value
+        {
+            get => _old;
+            set
+            {
+                if (_old != value)
+                {
+                    _old = value;
+                    ValueChanged?.Invoke(value);
+                }
+            }
+        }
+    }
+
+    public class LocalInt
+    {
+        private int _old;
+        private readonly int _offset;
+
+        public event Action<int> ValueChanged;
+
+        public LocalInt() : this(0, 0) { }
+
+        public LocalInt(int value, int offset)
+        {
+            _old = value;
+            _offset = offset;
+            ValueChanged?.Invoke(value);
+        }
+
+        public int Value
+        {
+            get => _old;
+            set
+            {
+                if (Mathf.Abs(value - _old) > _offset)
                 {
                     _old = value;
                     ValueChanged?.Invoke(value);
