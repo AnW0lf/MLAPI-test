@@ -102,7 +102,7 @@ namespace Assets.Scripts.Network
         /// </summary>
         protected virtual void UpdateVariables() { }
 
-        private void Awake()
+        private void Start()
         {
             Initialize();
         }
