@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.2541505, g: 0.34911174, b: 0.44391888, a: 1}
+  m_IndirectSpecularColor: {r: 0.25425062, g: 0.3492729, b: 0.44417238, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6173,6 +6173,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _placer: {fileID: 25215706}
+  _networkNpcSet:
+  - _count: 50
+    _npcPrefab: {fileID: 856769483722413915, guid: ac829f6f85b52d54fa0046a539c42ebe, type: 3}
 --- !u!4 &2010362248
 Transform:
   m_ObjectHideFlags: 0
@@ -6284,7 +6287,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2067614252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6313,7 +6316,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.13333334
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: b4785b24a8e065b46b74d6c53386b225, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: a5f66573223c6794082fe3a5e1512e4b, type: 2}
 --- !u!4 &2067614253
 Transform:
   m_ObjectHideFlags: 0
@@ -6322,7 +6325,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2067614251}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.1, y: 13.94, z: -23.4}
+  m_LocalPosition: {x: -13.1, y: 15.19, z: -23.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

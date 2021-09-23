@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 namespace Assets.Scripts.Game
 {
@@ -24,6 +25,11 @@ namespace Assets.Scripts.Game
                 point = Cast(castPosition);
             } while (point == null);
             obj.position = (Vector3)point;
+
+            if (obj.TryGetComponent(out NavMeshAgent agent))
+            {
+                agent.Warp(obj.position);
+            }
         }
 
         public void SetRandomRotation(Transform obj)
@@ -39,7 +45,8 @@ namespace Assets.Scripts.Game
             Ray ray = new Ray(origin, Vector3.down);
             if (Physics.Raycast(ray, out RaycastHit hit, _size.y))
             {
-                result = hit.point;
+                if (hit.transform.CompareTag("Ground"))
+                    result = hit.point;
             }
             return result;
         }

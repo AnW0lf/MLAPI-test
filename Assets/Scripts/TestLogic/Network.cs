@@ -21,8 +21,8 @@ namespace Assets.Scripts.TestLogic
 
         public override void NetworkStart()
         {
-            _bodyArchitector.Initialize();
-            _cardArchitector.Initialize();
+            _bodyArchitector?.Initialize();
+            _cardArchitector?.Initialize();
 
             if (IsOwner)
             {
@@ -30,11 +30,17 @@ namespace Assets.Scripts.TestLogic
             }
             else
             {
-                _bodyArchitector.IsLocalSpawned.OnValueChanged += OnIsLocalBodySpawnedChanged;
-                OnIsLocalBodySpawnedChanged(_bodyArchitector.IsLocalSpawned.Value, _bodyArchitector.IsLocalSpawned.Value);
+                if (_bodyArchitector != null)
+                {
+                    _bodyArchitector.IsLocalSpawned.OnValueChanged += OnIsLocalBodySpawnedChanged;
+                    OnIsLocalBodySpawnedChanged(_bodyArchitector.IsLocalSpawned.Value, _bodyArchitector.IsLocalSpawned.Value);
+                }
 
-                _cardArchitector.IsLocalSpawned.OnValueChanged += OnIsLocalCardSpawnedChanged;
-                OnIsLocalCardSpawnedChanged(_cardArchitector.IsLocalSpawned.Value, _cardArchitector.IsLocalSpawned.Value);
+                if (_cardArchitector != null)
+                {
+                    _cardArchitector.IsLocalSpawned.OnValueChanged += OnIsLocalCardSpawnedChanged;
+                    OnIsLocalCardSpawnedChanged(_cardArchitector.IsLocalSpawned.Value, _cardArchitector.IsLocalSpawned.Value);
+                }
             }
 
         }
@@ -43,13 +49,13 @@ namespace Assets.Scripts.TestLogic
         {
             if (IsOwner)
             {
-                _bodyArchitector.DeleteLocal();
-                _cardArchitector.DeleteLocal();
+                _bodyArchitector?.DeleteLocal();
+                _cardArchitector?.DeleteLocal();
             }
             else
             {
-                _bodyArchitector.DeleteRemote();
-                _cardArchitector.DeleteRemote();
+                _bodyArchitector?.DeleteRemote();
+                _cardArchitector?.DeleteRemote();
             }
         }
 
@@ -59,11 +65,11 @@ namespace Assets.Scripts.TestLogic
 
             if (newValue)
             {
-                _bodyArchitector.SpawnRemote();
+                _bodyArchitector?.SpawnRemote();
             }
             else
             {
-                _bodyArchitector.DeleteRemote();
+                _bodyArchitector?.DeleteRemote();
             }
         }
 
@@ -80,11 +86,11 @@ namespace Assets.Scripts.TestLogic
                     throw new NullReferenceException("Object with component of type \"PlayerPanel\" not found");
                 }
 
-                _cardArchitector.SpawnRemote(playerPanel.transform);
+                _cardArchitector?.SpawnRemote(playerPanel.transform);
             }
             else
             {
-                _cardArchitector.DeleteRemote();
+                _cardArchitector?.DeleteRemote();
             }
         }
     }

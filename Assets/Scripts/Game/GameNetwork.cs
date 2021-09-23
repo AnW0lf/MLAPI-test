@@ -2,14 +2,17 @@ using MLAPI;
 using UnityEngine;
 using System.Collections.Generic;
 using Network = Assets.Scripts.TestLogic.Network;
+using System;
 
 namespace Assets.Scripts.Game
 {
     public class GameNetwork : NetworkBehaviour
     {
         [SerializeField] private Placer _placer = null;
+        [SerializeField] private NetworkNPCSet[] _networkNpcSet = null;
 
         private readonly Dictionary<ulong, Network> _clients = new Dictionary<ulong, Network>();
+        private readonly Dictionary<ulong, Network> _npcs = new Dictionary<ulong, Network>();
         private ulong _id = 0;
         private ulong NextId
         {
@@ -51,9 +54,54 @@ namespace Assets.Scripts.Game
                         }
                     }
                 }
+
+                if (Manager.IsHost)
+                {
+                    foreach (var nnpcSet in _networkNpcSet)
+                    {
+                        for (int i = 0; i < nnpcSet.Count; i++)
+                        {
+                            SpawnNpc(nnpcSet.NetworkNPCPrefab);
+                        }
+                    }
+                }
             }
         }
 
+        private void OnDestroy()
+        {
+            foreach (var pair in _npcs)
+            {
+                if (pair.Value != null)
+                    Destroy(pair.Value.gameObject);
+            }
+            _npcs.Clear();
+        }
 
+        private void SpawnNpc(Network prefab)
+        {
+            Network npc = Instantiate(prefab);
+            npc.GetComponent<NetworkObject>().Spawn();
+            npc.BodyArchitector.SpawnLocal();
+            npc.ID.Value = NextId;
+            _npcs.Add(npc.ID.Value, npc);
+            _placer.Place(npc.BodyArchitector.Local.transform);
+        }
+    }
+
+    [Serializable]
+    public class NetworkNPCSet
+    {
+        [SerializeField] private int _count;
+        [SerializeField] private Network _npcPrefab;
+
+        public NetworkNPCSet(int count, Network npcPrefab)
+        {
+            _count = count;
+            _npcPrefab = npcPrefab;
+        }
+
+        public int Count => _count;
+        public Network NetworkNPCPrefab => _npcPrefab;
     }
 }
