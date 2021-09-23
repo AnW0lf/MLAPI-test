@@ -3043,6 +3043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aff1ef6849d1bb446b5562153dfa43b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 5699902396908867417}
   _agent: {fileID: 4197570492876496954}
   _searchRange: 50
   _offsetError: 0.1
