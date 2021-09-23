@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace Lobby
+namespace Assets.Scripts.Lobby
 {
     public class PlayerCard : MonoBehaviour
     {

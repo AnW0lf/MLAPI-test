@@ -1,4 +1,4 @@
-﻿using Lobby;
+﻿using Assets.Scripts.Lobby;
 using MLAPI.NetworkVariable;
 using UnityEngine;
 

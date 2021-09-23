@@ -1,7 +1,7 @@
-﻿using MLAPI;
-using MLAPI.SceneManagement;
+﻿using MLAPI.SceneManagement;
+using System;
 using System.Collections;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,6 +13,8 @@ namespace Assets.Scripts.Loading
         [SerializeField] private string _loadingSceneName = "Loading";
         [SerializeField] private string _gameSceneName = "Game";
 
+        private Dictionary<SceneType, string> _scenes = new Dictionary<SceneType, string>();
+
         public static LoadingManager Singleton { get; private set; } = null;
 
         private void Awake()
@@ -21,38 +23,39 @@ namespace Assets.Scripts.Loading
             else if (Singleton != this) Destroy(gameObject);
 
             DontDestroyOnLoad(gameObject);
+
+            _scenes.Add(SceneType.LOBBY, _lobbySceneName);
+            _scenes.Add(SceneType.LOADING, _loadingSceneName);
+            _scenes.Add(SceneType.GAME, _gameSceneName);
         }
 
         SceneSwitchProgress _progress = null;
-        public int DoneClientsCount => _progress.DoneClients.Count;
-        public int AllClientsCount => NetworkManager.Singleton.ConnectedClientsList.Count;
 
-        public event UnityAction OnSceneLoadingStart;
-        public event UnityAction OnSceneLoadingComplete;
+        public event Action OnSceneLoadingStart;
+        public event Action OnSceneLoadingComplete;
 
         public void LoadGame(UnityAction OnComplete = null)
         {
-            StartCoroutine(Load(_gameSceneName, OnComplete));
+            StartCoroutine(Load(_scenes[SceneType.GAME], OnComplete));
         }
 
         public void LoadLobby(UnityAction OnComplete = null)
         {
-            StartCoroutine(Load(_lobbySceneName, OnComplete));
+            StartCoroutine(Load(_scenes[SceneType.LOBBY], OnComplete));
         }
 
         private IEnumerator Load(string sceneName, UnityAction OnComplete = null)
         {
             OnSceneLoadingStart?.Invoke();
 
-            _progress = NetworkSceneManager.SwitchScene(_loadingSceneName);
-            Task frameTask = Task.Delay(50);
+            _progress = NetworkSceneManager.SwitchScene(_scenes[SceneType.LOADING]);
 
             while(_progress.IsAllClientsDoneLoading == false)
             {
                 yield return null;
             }
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.1f);
 
             _progress = NetworkSceneManager.SwitchScene(sceneName);
 
@@ -68,4 +71,6 @@ namespace Assets.Scripts.Loading
             OnComplete?.Invoke();
         }
     }
+
+    public enum SceneType { LOBBY, LOADING, GAME }
 }

@@ -1,6 +1,8 @@
 ﻿using Assets.Scripts.Lobby;
 using MLAPI;
 using MLAPI.Messaging;
+using MLAPI.NetworkVariable;
+using MLAPI.Transports.PhotonRealtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +15,24 @@ namespace Assets.Scripts.TestLogic
     {
         [SerializeField] private PlayerProfile _profile = null;
         [SerializeField] private NetworkManager _manager = null;
-        [SerializeField] private bool _isHost = false;
+        [SerializeField] private PhotonRealtimeTransport _transport = null;
 
         public static Server Singleton { get; private set; } = null;
 
+        private string _room = string.Empty;
         private Dictionary<ulong, Network> _networks = new Dictionary<ulong, Network>();
+
+        public event Action<Network> OnLocalConnected;
+        public event Action OnDisconnected;
 
         private ulong _id = 0;
         private ulong NextId => ++_id;
+
+        public readonly NetworkVariableBool IsAllReady = new NetworkVariableBool(new NetworkVariableSettings
+        {
+            WritePermission = NetworkVariablePermission.ServerOnly,
+            ReadPermission = NetworkVariablePermission.Everyone
+        }, false);
 
         private void Awake()
         {
@@ -31,40 +43,44 @@ namespace Assets.Scripts.TestLogic
             SubscribeToNetworkManager();
         }
 
-        private void Start()
+        private void OnApplicationQuit()
         {
-            SceneType = SceneType.LOBBY;
+            TryStop();
+        }
 
-            if (_isHost) StartHost();
-            else StartClient();
+        private void OnDestroy()
+        {
+            TryStop();
         }
 
         #region SceneType
 
-        private SceneType _sceneType = SceneType.EMPTY;
-        public SceneType SceneType
+        private GameMode _gameMode = GameMode.EMPTY;
+        public GameMode Mode
         {
-            get => _sceneType;
+            get => _gameMode;
             set
             {
-                _sceneType = value;
+                _gameMode = value;
                 UpdateClientState();
 
                 if (_manager == null) { return; }
                 if (_manager.IsServer == false) { return; }
 
-                OnSceneTypeChangedClientRpc(_sceneType);
+                OnSceneTypeChangedClientRpc(_gameMode);
             }
         }
 
-        private void SetClientState(Network client, SceneType sceneType)
+        private void SetClientState(Network client, GameMode sceneType)
         {
+            _gameMode = sceneType;
+
             if (client == null) { return; }
             if (client.IsOwner == false) { return; }
 
-            switch (_sceneType)
+            switch (sceneType)
             {
-                case SceneType.EMPTY:
+                case GameMode.EMPTY:
                     {
                         if (client.CardArchitector.IsLocalSpawned.Value == false)
                         {
@@ -77,7 +93,7 @@ namespace Assets.Scripts.TestLogic
                         }
                     }
                     break;
-                case SceneType.LOBBY:
+                case GameMode.LOBBY:
                     {
                         if (client.BodyArchitector.IsLocalSpawned.Value == false)
                         {
@@ -98,7 +114,7 @@ namespace Assets.Scripts.TestLogic
                         }
                     }
                     break;
-                case SceneType.GAME:
+                case GameMode.GAME:
                     {
                         if (client.CardArchitector.IsLocalSpawned.Value == false)
                         {
@@ -125,7 +141,7 @@ namespace Assets.Scripts.TestLogic
         {
             foreach (var pair in _networks)
             {
-                SetClientState(pair.Value, _sceneType);
+                SetClientState(pair.Value, _gameMode);
             }
         }
 
@@ -133,33 +149,86 @@ namespace Assets.Scripts.TestLogic
 
         #region Host
 
-        public void StartHost()
+        public void StartHost(string room)
         {
+            _networks.Clear();
+            _room = room;
+            _transport.RoomName = _room;
+
             SubscribeToNetworkManager();
             _manager.StartHost();
+
+            Mode = GameMode.LOBBY;
         }
 
         public void StopHost()
         {
+            if (IsHost == false) { return; }
+
+            _manager.ConnectionApprovalCallback -= ApprovalCheck;
             _manager.StopHost();
             UnsubscribeFromNetworkManager();
+
+            _room = string.Empty;
+            Mode = GameMode.EMPTY;
+            _networks.Clear();
+        }
+
+        private void ApprovalCheck(byte[] connectionData, ulong clientId, MLAPI.NetworkManager.ConnectionApprovedDelegate callback)
+        {
+            string password = System.Text.Encoding.ASCII.GetString(connectionData);
+            string check = _room + (Mode == GameMode.GAME ? "_GAME" : string.Empty);
+
+            bool approve = check == password;
+            bool createPlayerObject = true;
+
+            // The prefab hash. Use null to use the default player prefab
+            // If using this hash, replace "MyPrefabHashGenerator" with the name of a prefab added to the NetworkPrefabs field of your NetworkManager object in the scene
+            //ulong? prefabHash = NetworkSpawnManager.GetPrefabHashFromGenerator("MyPrefabHashGenerator");
+            ulong? prefabHash = null;
+
+            //If approve is true, the connection gets added. If it's false. The client gets disconnected
+            callback(createPlayerObject, prefabHash, approve, Vector3.zero, Quaternion.identity);
         }
 
         #endregion Host
 
         #region Client
 
-        public void StartClient()
+        public void StartClient(string room)
         {
+            _networks.Clear();
+            _room = room;
+            _transport.RoomName = _room;
+
+            _manager.NetworkConfig.ConnectionData = System.Text.Encoding.ASCII.GetBytes(_room);
             _manager.StartClient();
         }
 
         public void StopClient()
         {
+            if (IsHost) { return; }
+
             _manager.StopClient();
+
+            _room = string.Empty;
+            Mode = GameMode.EMPTY;
+            _networks.Clear();
         }
 
         #endregion Client
+
+        private void TryStop()
+        {
+            if (_manager.IsHost)
+            {
+                StopHost();
+            }
+            else if (_manager.IsClient)
+            {
+                StopClient();
+            }
+        }
 
         #region NetworkManager Subscribing
 
@@ -168,6 +237,8 @@ namespace Assets.Scripts.TestLogic
         {
             if (_manager == null) { return; }
             if (_subscribedToNetworkManager) { return; }
+
+            _manager.ConnectionApprovalCallback += ApprovalCheck;
 
             _manager.OnServerStarted += OnServerStarted;
             _manager.OnClientConnectedCallback += OnClientConnected;
@@ -181,8 +252,11 @@ namespace Assets.Scripts.TestLogic
             if (_manager == null) { return; }
             if (_subscribedToNetworkManager == false) { return; }
 
-            _manager.OnClientConnectedCallback += OnClientConnected;
-            _manager.OnClientDisconnectCallback += OnClientDisconnected;
+            _manager.ConnectionApprovalCallback -= ApprovalCheck;
+
+            _manager.OnServerStarted -= OnServerStarted;
+            _manager.OnClientConnectedCallback -= OnClientConnected;
+            _manager.OnClientDisconnectCallback -= OnClientDisconnected;
 
             _subscribedToNetworkManager = false;
         }
@@ -219,9 +293,13 @@ namespace Assets.Scripts.TestLogic
             client.ID.Value = id;
             _networks.Add(id, client);
 
-            SetClientState(client, _sceneType);
+            SetClientState(client, _gameMode);
+
+            if (client.IsOwner) OnLocalConnected?.Invoke(client);
 
             OnClientConnectedClientRpc(id);
+
+            CheckAllReadyServerRpc();
         }
 
         private void OnClientDisconnected(ulong clientId)
@@ -240,7 +318,11 @@ namespace Assets.Scripts.TestLogic
                 _networks.Remove(clientId);
             }
 
+            OnDisconnected?.Invoke();
+
             OnClientDisconnectedClientRpc(clientId);
+
+            CheckAllReadyServerRpc();
         }
 
         #endregion NetworkManager Actions
@@ -259,7 +341,9 @@ namespace Assets.Scripts.TestLogic
             if (_networks.ContainsKey(clientId)) { return; }
 
             _networks.Add(clientId, client);
-            SetClientState(client, _sceneType);
+            SetClientState(client, _gameMode);
+
+            if (client.IsOwner) OnLocalConnected?.Invoke(client);
         }
 
         [ClientRpc]
@@ -278,19 +362,46 @@ namespace Assets.Scripts.TestLogic
             {
                 _networks.Remove(clientId);
             }
+
+            OnDisconnected?.Invoke();
         }
 
         [ClientRpc]
-        private void OnSceneTypeChangedClientRpc(SceneType sceneType)
+        private void OnSceneTypeChangedClientRpc(GameMode sceneType)
         {
             if (_manager == null) { return; }
             if (_manager.IsServer) { return; }
 
-            SceneType = sceneType;
+            Mode = sceneType;
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        public void CheckAllReadyServerRpc()
+        {
+            if (Mode != GameMode.LOBBY) return;
+
+            foreach(var client in _networks.Values)
+            {
+                if (client.CardArchitector.IsLocalSpawned.Value)
+                {
+                    bool isReady = (client.CardArchitector as CardArchitector).IsReady.Value;
+                    if (isReady == false)
+                    {
+                        if(IsAllReady.Value) IsAllReady.Value = false;
+                        return;
+                    }
+                }
+                else
+                {
+                    if (IsAllReady.Value) IsAllReady.Value = false;
+                    return;
+                }
+            }
+            if (IsAllReady.Value == false) IsAllReady.Value = true;
         }
 
         #endregion Messaging
     }
 
-    public enum SceneType { EMPTY, LOBBY, GAME }
+    public enum GameMode { EMPTY, LOBBY, GAME }
 }

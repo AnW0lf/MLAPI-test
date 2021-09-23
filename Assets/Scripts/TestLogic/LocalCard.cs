@@ -1,4 +1,4 @@
-﻿using Lobby;
+﻿using Assets.Scripts.Lobby;
 using UnityEngine;
 
 namespace Assets.Scripts.TestLogic

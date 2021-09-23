@@ -39,7 +39,14 @@ namespace Assets.Scripts.TestLogic
         {
             _nicknameChanged = (value) => Nickname.Value = value;
             _iconIndexChanged = (value) => IconIndex.Value = value;
-            _isReadyChanged = (value) => IsReady.Value = value;
+            _isReadyChanged = (value) =>
+            {
+                IsReady.Value = value;
+                if (Server.Singleton != null)
+                {
+                    Server.Singleton.CheckAllReadyServerRpc();
+                }
+            };
         }
 
         protected override void Synchronize()

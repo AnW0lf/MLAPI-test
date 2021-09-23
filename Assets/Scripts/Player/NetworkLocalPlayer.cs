@@ -1,4 +1,4 @@
-﻿using Lobby;
+﻿using Assets.Scripts.Lobby;
 using MLAPI;
 using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
@@ -113,10 +113,10 @@ namespace Assets.Scripts.Player
             {
                 _lobbyItem.IsReady = IsReady;
             }
-            if (LobbyManager.Singleton != null)
-            {
-                LobbyManager.Singleton.CheckAllReady();
-            }
+            //if (LobbyManager.Singleton != null)
+            //{
+            //    LobbyManager.Singleton.CheckAllReady();
+            //}
         }
         #endregion PersonalData
 
@@ -129,7 +129,7 @@ namespace Assets.Scripts.Player
                 _iconOffset.Value = Random.Range(0, 10);
             }
 
-            _lobbyItem = LobbyManager.Singleton.AddPlayerListItem(OwnerClientId);
+            //_lobbyItem = LobbyManager.Singleton.AddPlayerListItem(OwnerClientId);
 
             if (IsOwner)
             {
@@ -146,11 +146,11 @@ namespace Assets.Scripts.Player
                 _lobbyItem.Style = PlayerCardStyle.NOTOWNER;
             }
 
-            if (LobbyManager.Singleton != null)
-            {
-                LobbyManager.Singleton.CheckAllReady();
-                LobbyManager.Singleton.ToLobby();
-            }
+            //if (LobbyManager.Singleton != null)
+            //{
+            //    LobbyManager.Singleton.CheckAllReady();
+            //    LobbyManager.Singleton.ToLobby();
+            //}
 
         }
 
