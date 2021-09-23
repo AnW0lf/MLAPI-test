@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System;
 using Assets.Scripts.Network;
 using Assets.Scripts.Game.Quest;
+using System.Collections;
 
 namespace Assets.Scripts.Game
 {
@@ -43,20 +44,6 @@ namespace Assets.Scripts.Game
             _clients.Clear();
             if (Manager.IsClient)
             {
-                foreach (var n_client in Manager.ConnectedClientsList)
-                {
-                    NetworkActor client = n_client.PlayerObject.GetComponent<NetworkActor>();
-                    if (_clients.ContainsValue(client) == false)
-                    {
-                        _clients.Add(client.ID.Value, client);
-                        if (client.IsOwner)
-                        {
-                            client.BodyArchitector.SpawnLocal();
-                            _placer.Place(client.BodyArchitector.Local.transform);
-                        }
-                    }
-                }
-
                 if (Manager.IsHost)
                 {
                     foreach (var nnpcSet in _networkNpcSet)
@@ -65,6 +52,26 @@ namespace Assets.Scripts.Game
                         {
                             SpawnNpc(nnpcSet.NetworkNPCPrefab);
                         }
+                    }
+                }
+            }
+
+            StartCoroutine(DelayedSpawn());
+        }
+
+        private IEnumerator DelayedSpawn()
+        {
+            yield return new WaitForSeconds(2f);
+
+            foreach (var client in FindObjectsOfType<NetworkActor>())
+            {
+                if (_clients.ContainsValue(client) == false)
+                {
+                    _clients.Add(client.ID.Value, client);
+                    if (client.IsOwner)
+                    {
+                        client.BodyArchitector.SpawnLocal();
+                        _placer.Place(client.BodyArchitector.Local.transform);
                     }
                 }
             }
