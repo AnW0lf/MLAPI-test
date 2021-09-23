@@ -1,8 +1,10 @@
+using Assets.Scripts.Network;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class CitizenNPC : MonoBehaviour
 {
+    [SerializeField] private Animator _animator = null;
     [SerializeField] private NavMeshAgent _agent = null;
     [SerializeField] private float _searchRange = 5f;
     [Header("Error settings")]
@@ -30,6 +32,9 @@ public class CitizenNPC : MonoBehaviour
                 OnStay();
                 break;
         }
+
+        float speed = 0.5f * (_agent.velocity.magnitude / _agent.speed);
+        _animator.SetFloat(AnimatorParameters.InputMagnitude, speed);
     }
 
     private void OnDrawGizmosSelected()
