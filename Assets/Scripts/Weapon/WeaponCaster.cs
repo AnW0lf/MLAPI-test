@@ -64,14 +64,14 @@ namespace Assets.Scripts.Weapon
                     id = renote.Architector.OwnerClientId;
                     position = target.InverseTransformPoint(position);
                     rotation = target.rotation * rotation;
-                    NetworkWeaponMessanger.Singleton.HitPlayerServerRpc(id, position, rotation);
+                    NetworkWeaponMessanger.Singleton.HitActorServerRpc(id, position, rotation);
                 }
                 else if (target.TryGetComponent(out Local local))
                 {
                     id = local.Architector.OwnerClientId;
                     position = target.InverseTransformPoint(position);
                     rotation = target.rotation * rotation;
-                    NetworkWeaponMessanger.Singleton.HitPlayerServerRpc(id, position, rotation);
+                    NetworkWeaponMessanger.Singleton.HitActorServerRpc(id, position, rotation);
                 }
                 else
                 {

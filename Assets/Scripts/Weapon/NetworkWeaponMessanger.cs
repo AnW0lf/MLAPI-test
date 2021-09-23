@@ -3,12 +3,13 @@ using Assets.Scripts.NPC;
 using Assets.Scripts.Player;
 using MLAPI;
 using MLAPI.Messaging;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.Weapon
 {
-    public class NetworkWeaponMessanger : MonoBehaviour
+    public class NetworkWeaponMessanger : NetworkBehaviour
     {
         [SerializeField] private GameObject _serverHitMarkerPrefab = null;
         [SerializeField] private GameObject _clientHitMarkerPrefab = null;
@@ -16,44 +17,48 @@ namespace Assets.Scripts.Weapon
 
         public static NetworkWeaponMessanger Singleton { get; private set; } = null;
 
+        private readonly Dictionary<ulong, NetworkActor> _actors = new Dictionary<ulong, NetworkActor>();
+        private void FindActors()
+        {
+            foreach(var actor in FindObjectsOfType<NetworkActor>())
+            {
+                if (_actors.ContainsValue(actor) == false)
+                {
+                    _actors.Add(actor.ID.Value, actor);
+                }
+            }
+        }
+
         private void Awake()
         {
+            _actors.Clear();
             if (Singleton == null) Singleton = this;
             else if (Singleton != this) Destroy(gameObject);
         }
 
         #region ServerRPC
         [ServerRpc(RequireOwnership = false)]
-        public void HitPlayerServerRpc(ulong playerId, Vector3 localPosition, Quaternion localRotation)
+        public void HitActorServerRpc(ulong actorId, Vector3 localPosition, Quaternion localRotation)
         {
-            Transform body = NetworkManager.Singleton
-                .ConnectedClients[playerId].PlayerObject
-                .GetComponent<NetworkActor>().BodyArchitector.Body;
-            if (body == null) { return; }
-
-            HitMarker hitMarker = AddHitMarker(body, localPosition, localRotation);
-
-            HitActorClientRpc(playerId, localPosition, localRotation);
+            if (_actors.ContainsKey(actorId)) FindActors();
+            HitActorClientRpc(actorId, localPosition, localRotation);
         }
 
         [ServerRpc(RequireOwnership = false)]
         public void HitObjectServerRpc(Vector3 position, Quaternion rotation)
         {
-            AddHitMarker(null, position, rotation);
-
             HitObjectClientRpc(position, rotation);
         }
         #endregion ServerRPC
 
         #region ClientRPC
         [ClientRpc]
-        private void HitActorClientRpc(ulong playerId, Vector3 localPosition, Quaternion localRotation)
+        private void HitActorClientRpc(ulong actorId, Vector3 localPosition, Quaternion localRotation)
         {
-            if (NetworkManager.Singleton.IsHost) { return; }
+            if (_actors.ContainsKey(actorId) == false) FindActors();
 
-            Transform body = NetworkManager.Singleton
-                .ConnectedClients[playerId].PlayerObject
-                .GetComponent<NetworkActor>().BodyArchitector.Body;
+            Transform body = _actors[actorId].BodyArchitector.Body;
+
             if (body == null) { return; }
 
             AddHitMarker(body, localPosition, localRotation);
@@ -62,8 +67,6 @@ namespace Assets.Scripts.Weapon
         [ClientRpc]
         private void HitObjectClientRpc(Vector3 position, Quaternion rotation)
         {
-            if (NetworkManager.Singleton.IsHost) { return; }
-
             AddHitMarker(null, position, rotation);
         }
         #endregion ClientRPC

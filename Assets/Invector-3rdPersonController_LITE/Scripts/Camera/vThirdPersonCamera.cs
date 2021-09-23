@@ -259,7 +259,7 @@ public class vThirdPersonCamera : MonoBehaviour
         {
             var sortedHits = hits
                 .Where((sh) => sh.transform != exclude
-                && Vector3.Distance(sh.point, transform.position) > defaultDistance
+                && Vector3.Distance(sh.point, transform.position) > defaultDistance + 1f
                 && sh.collider.isTrigger == false)
                 .ToList();
 

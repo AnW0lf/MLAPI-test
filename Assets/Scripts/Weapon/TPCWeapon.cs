@@ -75,17 +75,17 @@ namespace Assets.Scripts.Weapon
                 ulong id;
                 if (target.TryGetComponent(out Remote remote))
                 {
-                    id = remote.Architector.OwnerClientId;
+                    id = remote.Architector.GetComponent<NetworkActor>().ID.Value;
                     position = target.InverseTransformPoint(position);
                     rotation = target.rotation * rotation;
-                    NetworkWeaponMessanger.Singleton.HitPlayerServerRpc(id, position, rotation);
+                    NetworkWeaponMessanger.Singleton.HitActorServerRpc(id, position, rotation);
                 }
                 else if (target.TryGetComponent(out Local local))
                 {
-                    id = local.Architector.OwnerClientId;
+                    id = local.Architector.GetComponent<NetworkActor>().ID.Value;
                     position = target.InverseTransformPoint(position);
                     rotation = target.rotation * rotation;
-                    NetworkWeaponMessanger.Singleton.HitPlayerServerRpc(id, position, rotation);
+                    NetworkWeaponMessanger.Singleton.HitActorServerRpc(id, position, rotation);
                 }
                 else
                 {
