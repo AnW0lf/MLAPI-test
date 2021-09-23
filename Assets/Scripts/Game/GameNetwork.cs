@@ -42,19 +42,7 @@ namespace Assets.Scripts.Game
         public override void NetworkStart()
         {
             _clients.Clear();
-            if (Manager.IsClient)
-            {
-                if (Manager.IsHost)
-                {
-                    foreach (var nnpcSet in _networkNpcSet)
-                    {
-                        for (int i = 0; i < nnpcSet.Count; i++)
-                        {
-                            SpawnNpc(nnpcSet.NetworkNPCPrefab);
-                        }
-                    }
-                }
-            }
+            _npcs.Clear();
 
             StartCoroutine(DelayedSpawn());
         }
@@ -63,15 +51,29 @@ namespace Assets.Scripts.Game
         {
             yield return new WaitForSeconds(2f);
 
-            foreach (var client in FindObjectsOfType<NetworkActor>())
+            if (Manager.IsClient)
             {
-                if (_clients.ContainsValue(client) == false)
+                foreach (var client in FindObjectsOfType<NetworkActor>())
                 {
-                    _clients.Add(client.ID.Value, client);
-                    if (client.IsOwner)
+                    if (_clients.ContainsValue(client) == false)
                     {
-                        client.BodyArchitector.SpawnLocal();
-                        _placer.Place(client.BodyArchitector.Local.transform);
+                        _clients.Add(client.ID.Value, client);
+                        if (client.IsOwner)
+                        {
+                            client.BodyArchitector.SpawnLocal();
+                            _placer.Place(client.BodyArchitector.Local.transform);
+                        }
+                    }
+                }
+
+                if (Manager.IsHost)
+                {
+                    foreach (var nnpcSet in _networkNpcSet)
+                    {
+                        for (int i = 0; i < nnpcSet.Count; i++)
+                        {
+                            SpawnNpc(nnpcSet.NetworkNPCPrefab);
+                        }
                     }
                 }
             }
