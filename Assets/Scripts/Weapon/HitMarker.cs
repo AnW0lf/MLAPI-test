@@ -1,8 +1,5 @@
 ﻿using Assets.Scripts.NPC;
 using Assets.Scripts.Player;
-using Game;
-using MLAPI;
-using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.Weapon

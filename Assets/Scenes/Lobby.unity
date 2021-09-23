@@ -597,7 +597,7 @@ GameObject:
   - component: {fileID: 468435090}
   - component: {fileID: 468435089}
   m_Layer: 0
-  m_Name: LobbyManager
+  m_Name: LobbyLogic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1068,7 +1068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52c005b32a68a254cbe502a4e5cb8eb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NickName: 
+  m_NickName: player_0
   m_RoomName: test_room_0
   m_MaxPlayers: 16
   m_ChannelIdCodesStartRange: 0
@@ -1091,7 +1091,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DontDestroy: 1
   RunInBackground: 1
-  LogLevel: 3
+  LogLevel: 0
   NetworkConfig:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 640255684}
@@ -1740,7 +1740,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 811606293}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 468435089}
+        m_TargetAssemblyTypeName: Assets.Scripts.Lobby.LobbyManager, Assembly-CSharp
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &811606293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3030,7 +3042,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1990997515
 MonoBehaviour:
@@ -3143,7 +3155,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -3331,8 +3343,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _profile: {fileID: 11400000, guid: b2e91f77bb4243d4c8e332d515459553, type: 2}
-  _manager: {fileID: 640255685}
-  _transport: {fileID: 640255684}
 --- !u!1 &5432227760477855129
 GameObject:
   m_ObjectHideFlags: 0
@@ -3345,7 +3355,7 @@ GameObject:
   - component: {fileID: 7639568840985669206}
   - component: {fileID: 5070252173370823838}
   m_Layer: 0
-  m_Name: _Server
+  m_Name: LobbyNetwork
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3363,7 +3373,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7639568840985669206
 MonoBehaviour:
@@ -3378,7 +3388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NetworkInstanceId: 0
-  PrefabHash: 6129205555006778716
-  PrefabHashGenerator: Server
+  PrefabHash: 9444025186383274127
+  PrefabHashGenerator: LobbyNetwork
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0

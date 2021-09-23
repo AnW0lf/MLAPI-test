@@ -1,5 +1,4 @@
-﻿using Game;
-using MLAPI;
+﻿using MLAPI;
 using MLAPI.Messaging;
 using System;
 using System.Collections.Generic;
@@ -22,7 +21,7 @@ namespace Assets.Scripts.Quest
                 for (int i = 0; i < _clientIds.Length; _clientIds[i] = ulong.MaxValue, i++) ;
             }
 
-            GameController.Singleton.OnBodyEnabled += RequestQuestLine;
+            //GameNetwork.Singleton.OnBodyEnabled += RequestQuestLine;
         }
 
         private void RequestQuestLine()
