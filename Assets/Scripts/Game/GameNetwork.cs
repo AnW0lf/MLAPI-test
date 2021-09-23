@@ -24,7 +24,7 @@ namespace Assets.Scripts.Game
                 do
                 {
                     _id++;
-                } while (_clients.ContainsKey(_id));
+                } while (_clients.ContainsKey(_id) || _npcs.ContainsKey(_id));
                 return _id;
             }
         }
