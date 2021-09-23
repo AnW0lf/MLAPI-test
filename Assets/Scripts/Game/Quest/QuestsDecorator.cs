@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Scripts.Quest
+namespace Assets.Scripts.Game.Quest
 {
     public class QuestsDecorator : MonoBehaviour
     {

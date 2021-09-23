@@ -5,15 +5,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Assets.Scripts.Quest
+namespace Assets.Scripts.Game.Quest
 {
-    public class QuestNetworkController : NetworkBehaviour
+    public class QuestNetwork : NetworkBehaviour
     {
         [SerializeField] private QuestLine[] _questLines = null;
 
         private ulong[] _clientIds = null;
 
-        private void Start()
+        public override void NetworkStart()
         {
             if (NetworkManager.Singleton.IsServer)
             {
@@ -21,11 +21,6 @@ namespace Assets.Scripts.Quest
                 for (int i = 0; i < _clientIds.Length; _clientIds[i] = ulong.MaxValue, i++) ;
             }
 
-            //GameNetwork.Singleton.OnBodyEnabled += RequestQuestLine;
-        }
-
-        private void RequestQuestLine()
-        {
             RequestQuestLineServerRpc(NetworkManager.Singleton.LocalClientId);
         }
 

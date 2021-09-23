@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Quest
+namespace Assets.Scripts.Game.Quest
 {
     [RequireComponent(typeof(Collider))]
     public class QuestAreaTriggerEnter : BaseQuestTrigger

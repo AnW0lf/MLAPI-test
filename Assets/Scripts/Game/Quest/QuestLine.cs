@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Assets.Scripts.Quest
+namespace Assets.Scripts.Game.Quest
 {
     public class QuestLine : MonoBehaviour
     {

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.Quest
+namespace Assets.Scripts.Game.Quest
 {
     public class QuestNote : MonoBehaviour
     {

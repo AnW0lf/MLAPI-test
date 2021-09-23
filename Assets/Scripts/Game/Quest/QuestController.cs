@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.Quest
+namespace Assets.Scripts.Game.Quest
 {
     public class QuestController : MonoBehaviour
     {

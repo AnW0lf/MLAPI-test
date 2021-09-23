@@ -1440,7 +1440,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 600, y: 50}
+  m_SizeDelta: {x: 600, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &315352529
 MonoBehaviour:
@@ -4186,15 +4186,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1102484230}
-  - component: {fileID: 1102484229}
   - component: {fileID: 1102484231}
+  - component: {fileID: 1102484229}
   m_Layer: 0
   m_Name: Quests
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1102484229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5116,7 +5116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1462661659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5188,7 +5188,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -6173,6 +6173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _placer: {fileID: 25215706}
+  _questNetwork: {fileID: 0}
   _networkNpcSet:
   - _count: 50
     _npcPrefab: {fileID: 856769483722413915, guid: ac829f6f85b52d54fa0046a539c42ebe, type: 3}

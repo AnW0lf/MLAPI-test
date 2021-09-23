@@ -3,12 +3,14 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 using Assets.Scripts.Network;
+using Assets.Scripts.Game.Quest;
 
 namespace Assets.Scripts.Game
 {
     public class GameNetwork : NetworkBehaviour
     {
         [SerializeField] private Placer _placer = null;
+        [SerializeField] private QuestNetwork _questNetwork = null;
         [SerializeField] private NetworkNPCSet[] _networkNpcSet = null;
 
         private readonly Dictionary<ulong, Network.NetworkActor> _clients = new Dictionary<ulong, Network.NetworkActor>();
