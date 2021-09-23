@@ -1,7 +1,7 @@
 ﻿using MLAPI.NetworkVariable;
 using System;
 
-namespace Assets.Scripts.TestLogic
+namespace Assets.Scripts.Network
 {
     public class CardArchitector : Architector
     {

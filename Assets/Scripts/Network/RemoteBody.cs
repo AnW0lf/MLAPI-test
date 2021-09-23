@@ -2,7 +2,7 @@
 using MLAPI.NetworkVariable;
 using Assets.Scripts.Player;
 
-namespace Assets.Scripts.TestLogic
+namespace Assets.Scripts.Network
 {
     public class RemoteBody : Remote
     {
@@ -10,6 +10,7 @@ namespace Assets.Scripts.TestLogic
         [SerializeField] private Transform _transform = null;
         [SerializeField] private Animator _animator = null;
         [SerializeField] private HandMotion _handMotion = null;
+        [SerializeField] private Skinner _skinner = null;
         [Header("Maximum offset")]
         [SerializeField] private float _positionOffset = 1f;
         [SerializeField] private float _rotationOffset = 30f;
@@ -40,6 +41,10 @@ namespace Assets.Scripts.TestLogic
         private RemoteBool _isHandVisible = null;
         #endregion Hand
 
+        #region Skin
+        private RemoteInt _skinIndex = null;
+        #endregion Skin
+
         #endregion Remote Variables
 
         #region Remote Actions
@@ -65,14 +70,20 @@ namespace Assets.Scripts.TestLogic
         private NetworkVariableBool.OnValueChangedDelegate _isHandVisibleChanged;
         #endregion Hand
 
+        #region Hand
+        private NetworkVariableInt.OnValueChangedDelegate _skinIndexChanged;
+        #endregion Hand
+
         #endregion Remote Actions
 
 
         protected override void InitializeVariables()
         {
+            BodyArchitector bodyArchitector = Architector as BodyArchitector;
+
             #region Initialize Variables - Transform
 
-            _position = new RemoteVector3(Vector3.zero, _positionOffset)
+            _position = new RemoteVector3(bodyArchitector.Position.Value, _positionOffset)
             {
                 IsEquals = (target) => Vector3.Distance(target, _transform.position) == 0f,
                 IsOverOffset = (target, offset) => Vector3.Distance(target, _transform.position) > offset
@@ -80,7 +91,7 @@ namespace Assets.Scripts.TestLogic
             _position.SetValue += (value) => _transform.position = value;
             _position.UpdateValue += (value) => _transform.position = Vector3.Lerp(_transform.position, value, _smoothness * Time.deltaTime);
 
-            _rotation = new RemoteQuaternion(Quaternion.identity, _rotationOffset)
+            _rotation = new RemoteQuaternion(bodyArchitector.Rotation.Value, _rotationOffset)
             {
                 IsEquals = (target) => Quaternion.Angle(target, _transform.rotation) == 0f,
                 IsOverOffset = (target, offset) => Quaternion.Angle(target, _transform.rotation) > offset
@@ -160,13 +171,25 @@ namespace Assets.Scripts.TestLogic
 
             #region Initialize Variables - Hand
 
-            _isHandVisible = new RemoteBool(false)
+            _isHandVisible = new RemoteBool(bodyArchitector.IsHandVisible.Value)
             {
                 IsEquals = (target) => target == _handMotion.IsHandVisible
             };
             _isHandVisible.SetValue += (value) => _handMotion.IsHandVisible = value;
 
             #endregion Initialize Variables - Hand
+
+            #region Initialize Variables - Skin
+
+            _skinIndex = new RemoteInt(bodyArchitector.SkinIndex.Value, 0)
+            {
+                IsEquals = (target) => target == _skinner.SkinIndex,
+                IsOverOffset = (target, offset) => Mathf.Abs(target - _skinner.SkinIndex) > offset
+            };
+            _skinIndex.SetValue += (value) => _skinner.SkinIndex = value;
+            _skinIndex.UpdateValue += (value) => _skinner.SkinIndex = value;
+
+            #endregion Initialize Variables - Skin
         }
 
         protected override void InitializeArchitectorActions()
@@ -197,6 +220,12 @@ namespace Assets.Scripts.TestLogic
             _isHandVisibleChanged = (oldValue, newValue) => _handMotion.IsHandVisible = newValue;
 
             #endregion Initialize Actions - Hand
+
+            #region Initialize Actions - Skin
+
+            _skinIndexChanged = (oldValue, newValue) => _skinner.SkinIndex = newValue;
+
+            #endregion Initialize Actions - Skin
         }
 
         protected override void Subscribe()
@@ -229,6 +258,12 @@ namespace Assets.Scripts.TestLogic
             bodyArchitector.IsHandVisible.OnValueChanged += _isHandVisibleChanged;
 
             #endregion Subscribe - Hand
+
+            #region Subscribe - Skin
+
+            bodyArchitector.SkinIndex.OnValueChanged += _skinIndexChanged;
+
+            #endregion Subscribe - Skin
         }
 
         protected override void Unsubscribe()
@@ -261,6 +296,12 @@ namespace Assets.Scripts.TestLogic
             bodyArchitector.IsHandVisible.OnValueChanged -= _isHandVisibleChanged;
 
             #endregion Subscribe - Hand
+
+            #region Subscribe - Skin
+
+            bodyArchitector.SkinIndex.OnValueChanged -= _skinIndexChanged;
+
+            #endregion Subscribe - Skin
         }
 
         protected override void UpdateVariables()

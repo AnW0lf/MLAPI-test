@@ -2,7 +2,7 @@
 using UnityEngine;
 using MLAPI.NetworkVariable;
 
-namespace Assets.Scripts.TestLogic
+namespace Assets.Scripts.Network
 {
     public class BodyArchitector : Architector
     {
@@ -82,6 +82,14 @@ namespace Assets.Scripts.TestLogic
         }, false);
         #endregion Hand
 
+        #region Skin
+        public readonly NetworkVariableInt SkinIndex = new NetworkVariableInt(new NetworkVariableSettings
+        {
+            WritePermission = NetworkVariablePermission.OwnerOnly,
+            ReadPermission = NetworkVariablePermission.Everyone
+        }, -1);
+        #endregion Skin
+
         #endregion Network Variables
 
         #region OnLocalChanged Actions
@@ -107,6 +115,10 @@ namespace Assets.Scripts.TestLogic
         private Action<bool> _isHandVisibleChanged = null;
         #endregion Hand
 
+        #region Skin
+        private Action<int> _skinIndexChanged = null;
+        #endregion Skin
+
         #endregion OnLocalChanged Actions
 
         protected override void InitializeActions()
@@ -125,6 +137,8 @@ namespace Assets.Scripts.TestLogic
             _isStrafingChanged = (value) => IsStrafing.Value = value;
 
             _isHandVisibleChanged = (value) => IsHandVisible.Value = value;
+
+            _skinIndexChanged = (value) => SkinIndex.Value = value;
         }
 
         protected override void Synchronize()
@@ -145,6 +159,8 @@ namespace Assets.Scripts.TestLogic
             IsStrafing.Value = localBody.IsStrafing.Value;
 
             IsHandVisible.Value = localBody.IsHandVisible.Value;
+
+            SkinIndex.Value = localBody.SkinIndex.Value;
         }
 
         protected override void Subscribe()
@@ -165,6 +181,8 @@ namespace Assets.Scripts.TestLogic
             localBody.IsStrafing.ValueChanged += _isStrafingChanged;
 
             localBody.IsHandVisible.ValueChanged += _isHandVisibleChanged;
+
+            localBody.SkinIndex.ValueChanged += _skinIndexChanged;
         }
 
         protected override void Unsubscribe()
@@ -185,6 +203,8 @@ namespace Assets.Scripts.TestLogic
             localBody.IsStrafing.ValueChanged -= _isStrafingChanged;
 
             localBody.IsHandVisible.ValueChanged -= _isHandVisibleChanged;
+
+            localBody.SkinIndex.ValueChanged -= _skinIndexChanged;
         }
     }
 }

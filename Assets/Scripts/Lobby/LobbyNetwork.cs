@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Loading;
-using Assets.Scripts.TestLogic;
+using Assets.Scripts.Network;
+using Assets.Scripts.Player;
 using MLAPI;
 using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
@@ -8,8 +9,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Network = Assets.Scripts.TestLogic.Network;
-using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.Lobby
 {
@@ -23,9 +22,9 @@ namespace Assets.Scripts.Lobby
         public static LobbyNetwork Singleton { get; private set; } = null;
 
         private string _room = string.Empty;
-        private Dictionary<ulong, Network> _clients = new Dictionary<ulong, Network>();
+        private Dictionary<ulong, Network.NetworkActor> _clients = new Dictionary<ulong, Network.NetworkActor>();
 
-        public event Action<Network> OnLocalConnected;
+        public event Action<Network.NetworkActor> OnLocalConnected;
         public event Action OnDisconnected;
 
         private ulong _id = 0;
@@ -56,7 +55,7 @@ namespace Assets.Scripts.Lobby
                 {
                     foreach (var n_client in Manager.ConnectedClientsList)
                     {
-                        Network client = n_client.PlayerObject.GetComponent<Network>();
+                        NetworkActor client = n_client.PlayerObject.GetComponent<NetworkActor>();
                         if (_clients.ContainsValue(client) == false)
                         {
                             _clients.Add(client.ID.Value, client);
@@ -71,7 +70,7 @@ namespace Assets.Scripts.Lobby
             UnsubscribeFromNetworkManager();
         }
 
-        private void SpawnCard(Network client)
+        private void SpawnCard(Network.NetworkActor client)
         {
             if (client.IsOwner == false) { return; }
 
@@ -219,7 +218,7 @@ namespace Assets.Scripts.Lobby
             foreach (var pair in Manager.ConnectedClients)
             {
 
-                Network client = pair.Value.PlayerObject.GetComponent<Network>();
+                NetworkActor client = pair.Value.PlayerObject.GetComponent<NetworkActor>();
                 if (_clients.ContainsValue(client)) { break; }
 
                 OnClientConnected(pair.Key);
@@ -231,7 +230,7 @@ namespace Assets.Scripts.Lobby
             if (Manager == null) { return; }
             if (Manager.IsServer == false) { return; }
 
-            Network client = Manager.ConnectedClients[clientId].PlayerObject.GetComponent<Network>();
+            NetworkActor client = Manager.ConnectedClients[clientId].PlayerObject.GetComponent<NetworkActor>();
 
             if (_clients.ContainsValue(client)) { return; }
 
@@ -286,7 +285,7 @@ namespace Assets.Scripts.Lobby
             if (Manager == null) { return; }
             if (Manager.IsServer) { return; }
 
-            Network client = FindObjectsOfType<Network>().First((n) => n.ID.Value == clientId);
+            NetworkActor client = FindObjectsOfType<NetworkActor>().First((n) => n.ID.Value == clientId);
 
             if (client == null) { return; }
             if (_clients.ContainsKey(clientId)) { return; }

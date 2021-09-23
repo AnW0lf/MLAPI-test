@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.TestLogic
+namespace Assets.Scripts.Player
 {
     [CreateAssetMenu(fileName = "New Player Profile", menuName = "Custom/Player Profile")]
     public class PlayerProfile : ScriptableObject

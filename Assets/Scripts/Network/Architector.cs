@@ -2,7 +2,7 @@
 using MLAPI.NetworkVariable;
 using UnityEngine;
 
-namespace Assets.Scripts.TestLogic
+namespace Assets.Scripts.Network
 {
     public class Architector : NetworkBehaviour
     {
@@ -11,6 +11,16 @@ namespace Assets.Scripts.TestLogic
 
         public Local Local { get; protected set; } = null;
         public Remote Remote { get; protected set; } = null;
+        public Transform Body
+        {
+            get
+            {
+                if (IsLocalSpawned.Value == false) return null;
+                if (Local != null) return Local.transform;
+                if (Remote != null) return Remote.transform;
+                return null;
+            }
+        }
 
         public readonly NetworkVariableBool IsLocalSpawned = new NetworkVariableBool(new NetworkVariableSettings
         {

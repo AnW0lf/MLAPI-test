@@ -4,9 +4,9 @@ using MLAPI.NetworkVariable;
 using System;
 using UnityEngine;
 
-namespace Assets.Scripts.TestLogic
+namespace Assets.Scripts.Network
 {
-    public class Network : NetworkBehaviour
+    public class NetworkActor : NetworkBehaviour
     {
         [SerializeField] private Architector _bodyArchitector = null;
         [SerializeField] private Architector _cardArchitector = null;

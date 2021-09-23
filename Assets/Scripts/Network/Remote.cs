@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Assets.Scripts.TestLogic
+namespace Assets.Scripts.Network
 {
     public class Remote : MonoBehaviour
     {

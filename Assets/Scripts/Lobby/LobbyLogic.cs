@@ -2,7 +2,7 @@ using MLAPI;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Network = Assets.Scripts.TestLogic.Network;
+using Network = Assets.Scripts.Network.NetworkActor;
 
 namespace Assets.Scripts.Lobby
 {
@@ -169,7 +169,7 @@ namespace Assets.Scripts.Lobby
             _subscribedToServer = false;
         }
 
-        private void OnConnected(Network client)
+        private void OnConnected(Network.NetworkActor client)
         {
             _client = client;
             _client.CardArchitector.IsLocalSpawned.OnValueChanged += OnCardSpawned;
@@ -181,7 +181,7 @@ namespace Assets.Scripts.Lobby
             }
         }
 
-        private Network _client = null;
+        private Network.NetworkActor _client = null;
 
         private void OnCardSpawned(bool previousValue, bool newValue)
         {

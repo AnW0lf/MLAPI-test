@@ -1,4 +1,4 @@
-using Assets.Scripts.TestLogic;
+using Assets.Scripts.Player;
 using System;
 using TMPro;
 using UnityEngine;

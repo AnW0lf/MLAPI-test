@@ -2,7 +2,7 @@
 using MLAPI.NetworkVariable;
 using UnityEngine;
 
-namespace Assets.Scripts.TestLogic
+namespace Assets.Scripts.Network
 {
     public class RemoteCard : Remote
     {

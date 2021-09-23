@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.NPC;
+﻿using Assets.Scripts.Network;
+using Assets.Scripts.NPC;
 using Assets.Scripts.Player;
 using MLAPI;
 using MLAPI.Messaging;
@@ -27,23 +28,12 @@ namespace Assets.Scripts.Weapon
         {
             Transform body = NetworkManager.Singleton
                 .ConnectedClients[playerId].PlayerObject
-                .GetComponent<NetworkLocalPlayer>().Body;
+                .GetComponent<NetworkActor>().BodyArchitector.Body;
             if (body == null) { return; }
 
             HitMarker hitMarker = AddHitMarker(body, localPosition, localRotation);
 
-            HitPlayerClientRpc(playerId, localPosition, localRotation);
-        }
-
-        [ServerRpc(RequireOwnership = false)]
-        public void HitNpcServerRpc(ulong npcId, Vector3 localPosition, Quaternion localRotation)
-        {
-            Transform body = FindObjectsOfType<NetworkNPC>().First((npc) => npc.NpcId == npcId).Body;
-            if (body == null) { return; }
-
-            HitMarker hitMarker = AddHitMarker(body, localPosition, localRotation);
-
-            HitNpcClientRpc(npcId, localPosition, localRotation);
+            HitActorClientRpc(playerId, localPosition, localRotation);
         }
 
         [ServerRpc(RequireOwnership = false)]
@@ -57,27 +47,16 @@ namespace Assets.Scripts.Weapon
 
         #region ClientRPC
         [ClientRpc]
-        private void HitPlayerClientRpc(ulong playerId, Vector3 localPosition, Quaternion localRotation)
+        private void HitActorClientRpc(ulong playerId, Vector3 localPosition, Quaternion localRotation)
         {
             if (NetworkManager.Singleton.IsHost) { return; }
 
             Transform body = NetworkManager.Singleton
                 .ConnectedClients[playerId].PlayerObject
-                .GetComponent<NetworkLocalPlayer>().Body;
+                .GetComponent<NetworkActor>().BodyArchitector.Body;
             if (body == null) { return; }
 
-            HitMarker hitMarker = AddHitMarker(body, localPosition, localRotation);
-        }
-
-        [ClientRpc]
-        private void HitNpcClientRpc(ulong npcId, Vector3 localPosition, Quaternion localRotation)
-        {
-            if (NetworkManager.Singleton.IsHost) { return; }
-
-            Transform body = FindObjectsOfType<NetworkNPC>().First((npc) => npc.NpcId == npcId).Body;
-            if (body == null) { return; }
-
-            HitMarker hitMarker = AddHitMarker(body, localPosition, localRotation);
+            AddHitMarker(body, localPosition, localRotation);
         }
 
         [ClientRpc]

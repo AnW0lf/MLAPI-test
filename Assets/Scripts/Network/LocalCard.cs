@@ -1,7 +1,7 @@
 ﻿using Assets.Scripts.Lobby;
 using UnityEngine;
 
-namespace Assets.Scripts.TestLogic
+namespace Assets.Scripts.Network
 {
     public class LocalCard : Local
     {

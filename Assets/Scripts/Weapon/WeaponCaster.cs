@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.NPC;
+﻿using Assets.Scripts.Network;
+using Assets.Scripts.NPC;
 using Assets.Scripts.Player;
 using System.Collections;
 using System.Linq;
@@ -58,34 +59,19 @@ namespace Assets.Scripts.Weapon
             if (NetworkWeaponMessanger.Singleton != null)
             {
                 ulong id;
-                if (target.TryGetComponent(out RemotePlayer remotePlayer))
+                if (target.TryGetComponent(out Remote renote))
                 {
-                    id = remotePlayer.NetworkParent.OwnerClientId;
+                    id = renote.Architector.OwnerClientId;
                     position = target.InverseTransformPoint(position);
                     rotation = target.rotation * rotation;
                     NetworkWeaponMessanger.Singleton.HitPlayerServerRpc(id, position, rotation);
                 }
-                else if (target.TryGetComponent(out RemoteNPC remoteNpc))
+                else if (target.TryGetComponent(out Local local))
                 {
-                    id = remoteNpc.NetworkParent.NpcId;
-                    position = target.InverseTransformPoint(position);
-                    rotation = target.rotation * rotation;
-                    NetworkWeaponMessanger.Singleton.HitNpcServerRpc(id, position, rotation);
-
-                }
-                else if (target.TryGetComponent(out LocalPlayer localPlayer))
-                {
-                    id = localPlayer.NetworkParent.OwnerClientId;
+                    id = local.Architector.OwnerClientId;
                     position = target.InverseTransformPoint(position);
                     rotation = target.rotation * rotation;
                     NetworkWeaponMessanger.Singleton.HitPlayerServerRpc(id, position, rotation);
-                }
-                else if (target.TryGetComponent(out LocalNPC localNpc))
-                {
-                    id = localNpc.NetworkParent.NpcId;
-                    position = target.InverseTransformPoint(position);
-                    rotation = target.rotation * rotation;
-                    NetworkWeaponMessanger.Singleton.HitNpcServerRpc(id, position, rotation);
                 }
                 else
                 {

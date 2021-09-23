@@ -1,7 +1,7 @@
 ﻿using Assets.Scripts.Player;
 using UnityEngine;
 
-namespace Assets.Scripts.TestLogic
+namespace Assets.Scripts.Network
 {
     public class LocalBody : Local
     {
@@ -9,6 +9,7 @@ namespace Assets.Scripts.TestLogic
         [SerializeField] private Transform _transform = null;
         [SerializeField] private Animator _animator = null;
         [SerializeField] private HandMotion _handMotion = null;
+        [SerializeField] private Skinner _skinner = null;
         [Header("Minimum offset")]
         [SerializeField] private float _positionOffset = 0.15f;
         [SerializeField] private float _rotationOffset = 1.5f;
@@ -36,8 +37,16 @@ namespace Assets.Scripts.TestLogic
         public LocalBool IsHandVisible { get; private set; }
         #endregion Hand
 
+        #region Skin
+        public LocalInt SkinIndex { get; private set; }
+        #endregion Skin
+
         #endregion Local Variables
 
+        private void OnDestroy()
+        {
+            UnsubscribeFromSkinner();
+        }
 
         protected override void InitializeVariables()
         {
@@ -67,6 +76,13 @@ namespace Assets.Scripts.TestLogic
             IsHandVisible = new LocalBool(_handMotion.IsHandVisible);
 
             #endregion Initialize Variables - Hand
+
+            #region Initialize Variables - Skin
+
+            SkinIndex = new LocalInt(_skinner.SkinIndex, 0);
+            SubscribeToSkinner();
+
+            #endregion Initialize Variables - Skin
         }
 
         protected override void UpdateVariables()
@@ -97,6 +113,33 @@ namespace Assets.Scripts.TestLogic
             IsHandVisible.Value = _handMotion.IsHandVisible;
 
             #endregion Update Variables - Hand
+        }
+
+        private bool _subscribedToSkinner = false;
+        private void SubscribeToSkinner()
+        {
+            if (_skinner == null) { return; }
+            if (_subscribedToSkinner) { return; }
+
+            _skinner.SkinIndexChanged += OnSkinIndexChanged;
+
+            _subscribedToSkinner = true;
+        }
+
+        private void UnsubscribeFromSkinner()
+        {
+            if (_skinner == null) { return; }
+            if (_subscribedToSkinner == false) { return; }
+
+            _skinner.SkinIndexChanged -= OnSkinIndexChanged;
+
+            _subscribedToSkinner = false;
+        }
+
+        private void OnSkinIndexChanged(int skinIndex)
+        {
+            SkinIndex.Value = skinIndex;
+            UnsubscribeFromSkinner();
         }
     }
 
