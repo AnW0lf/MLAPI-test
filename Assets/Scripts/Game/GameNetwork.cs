@@ -14,8 +14,8 @@ namespace Assets.Scripts.Game
         [SerializeField] private QuestNetwork _questNetwork = null;
         [SerializeField] private NetworkNPCSet[] _networkNpcSet = null;
 
-        private readonly Dictionary<ulong, Network.NetworkActor> _clients = new Dictionary<ulong, Network.NetworkActor>();
-        private readonly Dictionary<ulong, Network.NetworkActor> _npcs = new Dictionary<ulong, Network.NetworkActor>();
+        private readonly Dictionary<ulong, NetworkActor> _clients = new Dictionary<ulong, NetworkActor>();
+        private readonly Dictionary<ulong, NetworkActor> _npcs = new Dictionary<ulong, NetworkActor>();
         private ulong _id = 0;
         private ulong NextId
         {

@@ -43,11 +43,6 @@ namespace Assets.Scripts.Network
 
         #endregion Local Variables
 
-        private void OnDestroy()
-        {
-            UnsubscribeFromSkinner();
-        }
-
         protected override void InitializeVariables()
         {
             #region Initialize Variables - Transform
@@ -80,7 +75,6 @@ namespace Assets.Scripts.Network
             #region Initialize Variables - Skin
 
             SkinIndex = new LocalInt(_skinner.SkinIndex, 0);
-            SubscribeToSkinner();
 
             #endregion Initialize Variables - Skin
         }
@@ -113,33 +107,12 @@ namespace Assets.Scripts.Network
             IsHandVisible.Value = _handMotion.IsHandVisible;
 
             #endregion Update Variables - Hand
-        }
 
-        private bool _subscribedToSkinner = false;
-        private void SubscribeToSkinner()
-        {
-            if (_skinner == null) { return; }
-            if (_subscribedToSkinner) { return; }
+            #region Update Variables - Skin
 
-            _skinner.SkinIndexChanged += OnSkinIndexChanged;
+            SkinIndex.Value = _skinner.SkinIndex;
 
-            _subscribedToSkinner = true;
-        }
-
-        private void UnsubscribeFromSkinner()
-        {
-            if (_skinner == null) { return; }
-            if (_subscribedToSkinner == false) { return; }
-
-            _skinner.SkinIndexChanged -= OnSkinIndexChanged;
-
-            _subscribedToSkinner = false;
-        }
-
-        private void OnSkinIndexChanged(int skinIndex)
-        {
-            SkinIndex.Value = skinIndex;
-            UnsubscribeFromSkinner();
+            #endregion Update Variables - Skin
         }
     }
 

@@ -26,15 +26,17 @@ namespace Assets.Scripts.Network
 
         protected override void InitializeVariables()
         {
+            CardArchitector cardArchitector = Architector as CardArchitector;
+
             _card.Style = PlayerCardStyle.NOTOWNER;
 
-            _nickname = new RemoteString(string.Empty)
+            _nickname = new RemoteString(cardArchitector.Nickname.Value)
             {
                 IsEquals = (target) => target == _card.Nickname
             };
             _nickname.SetValue += (value) => _card.Nickname = value;
 
-            _iconIndex = new RemoteInt(0, 0)
+            _iconIndex = new RemoteInt(cardArchitector.IconIndex.Value, 0)
             {
                 IsEquals = (target) => target == _card.IconIndex,
                 IsOverOffset = (target, offset) => Mathf.Abs(target - _card.IconIndex) > offset
@@ -42,7 +44,7 @@ namespace Assets.Scripts.Network
             _iconIndex.SetValue += (value) => _card.IconIndex = value;
             _iconIndex.UpdateValue += (value) => _card.IconIndex = value;
 
-            _isReady = new RemoteBool(false)
+            _isReady = new RemoteBool(cardArchitector.IsReady.Value)
             {
                 IsEquals = (target) => target == _card.IsReady
             };

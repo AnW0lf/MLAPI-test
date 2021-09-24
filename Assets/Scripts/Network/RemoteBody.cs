@@ -103,7 +103,7 @@ namespace Assets.Scripts.Network
 
             #region Initialize Variables - Animator
 
-            _groundDistance = new RemoteFloat(0f, _animationOffset)
+            _groundDistance = new RemoteFloat(bodyArchitector.GroundDistance.Value, _animationOffset)
             {
                 IsEquals = (target) => Mathf.Abs(target - _animator.GetFloat(AnimatorParameters.GroundDistance)) == 0f,
                 IsOverOffset = (target, offset) => Mathf.Abs(target - _animator.GetFloat(AnimatorParameters.GroundDistance)) > offset
@@ -113,7 +113,7 @@ namespace Assets.Scripts.Network
                 , Mathf.Lerp(_animator.GetFloat(AnimatorParameters.GroundDistance)
                 , value, _smoothness * Time.deltaTime));
 
-            _inputHorizontal = new RemoteFloat(0f, _animationOffset)
+            _inputHorizontal = new RemoteFloat(bodyArchitector.InputHorizontal.Value, _animationOffset)
             {
                 IsEquals = (target) => Mathf.Abs(target - _animator.GetFloat(AnimatorParameters.InputHorizontal)) == 0f,
                 IsOverOffset = (target, offset) => Mathf.Abs(target - _animator.GetFloat(AnimatorParameters.InputHorizontal)) > offset
@@ -123,7 +123,7 @@ namespace Assets.Scripts.Network
                 , Mathf.Lerp(_animator.GetFloat(AnimatorParameters.InputHorizontal)
                 , value, _smoothness * Time.deltaTime));
 
-            _inputMagnitude = new RemoteFloat(0f, _animationOffset)
+            _inputMagnitude = new RemoteFloat(bodyArchitector.InputMagnitude.Value, _animationOffset)
             {
                 IsEquals = (target) => Mathf.Abs(target - _animator.GetFloat(AnimatorParameters.InputMagnitude)) == 0f,
                 IsOverOffset = (target, offset) => Mathf.Abs(target - _animator.GetFloat(AnimatorParameters.InputMagnitude)) > offset
@@ -133,7 +133,7 @@ namespace Assets.Scripts.Network
                 , Mathf.Lerp(_animator.GetFloat(AnimatorParameters.InputMagnitude)
                 , value, _smoothness * Time.deltaTime));
 
-            _inputVertical = new RemoteFloat(0f, _animationOffset)
+            _inputVertical = new RemoteFloat(bodyArchitector.InputVertical.Value, _animationOffset)
             {
                 IsEquals = (target) => Mathf.Abs(target - _animator.GetFloat(AnimatorParameters.InputVertical)) == 0f,
                 IsOverOffset = (target, offset) => Mathf.Abs(target - _animator.GetFloat(AnimatorParameters.InputVertical)) > offset
@@ -143,25 +143,25 @@ namespace Assets.Scripts.Network
                 , Mathf.Lerp(_animator.GetFloat(AnimatorParameters.InputVertical)
                 , value, _smoothness * Time.deltaTime));
 
-            _isCrouching = new RemoteBool(false)
+            _isCrouching = new RemoteBool(bodyArchitector.IsCrouching.Value)
             {
                 IsEquals = (target) => target == _animator.GetBool(AnimatorParameters.IsCrouching)
             };
             _isCrouching.SetValue += (value) => _animator.SetBool(AnimatorParameters.IsCrouching, value);
 
-            _isGrounded = new RemoteBool(false)
+            _isGrounded = new RemoteBool(bodyArchitector.IsGrounded.Value)
             {
                 IsEquals = (target) => target == _animator.GetBool(AnimatorParameters.IsGrounded)
             };
             _isGrounded.SetValue += (value) => _animator.SetBool(AnimatorParameters.IsGrounded, value);
 
-            _isSprinting = new RemoteBool(false)
+            _isSprinting = new RemoteBool(bodyArchitector.IsSprinting.Value)
             {
                 IsEquals = (target) => target == _animator.GetBool(AnimatorParameters.IsSprinting)
             };
             _isSprinting.SetValue += (value) => _animator.SetBool(AnimatorParameters.IsSprinting, value);
 
-            _isStrafing = new RemoteBool(false)
+            _isStrafing = new RemoteBool(bodyArchitector.IsStrafing.Value)
             {
                 IsEquals = (target) => target == _animator.GetBool(AnimatorParameters.IsStrafing)
             };
