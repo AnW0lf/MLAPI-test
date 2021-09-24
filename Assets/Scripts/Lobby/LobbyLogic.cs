@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Network = Assets.Scripts.Network.NetworkActor;
+using Assets.Scripts.Network;
 
 namespace Assets.Scripts.Lobby
 {
@@ -17,6 +18,8 @@ namespace Assets.Scripts.Lobby
         [SerializeField] private Button btn_Ready = null;
         [SerializeField] private Button btn_NotReady = null;
         [SerializeField] private Button btn_Start = null;
+
+        private LobbyNetwork _lobbyNetwork = null;
 
         private string _roomName = string.Empty;
         public string RoomName
@@ -41,12 +44,17 @@ namespace Assets.Scripts.Lobby
             }
         }
 
+        private void Awake()
+        {
+            _lobbyNetwork = LobbyNetwork.Singleton;
+        }
+
         private void Start()
         {
-            if (LobbyNetwork.Singleton.Manager.IsClient)
+            if (_lobbyNetwork.Manager.IsClient)
             {
                 _animator.SetTrigger("Lobby");
-                RoomName = LobbyNetwork.Singleton.Transport.RoomName;
+                RoomName = _lobbyNetwork.Transport.RoomName;
             }
         }
 
@@ -57,28 +65,34 @@ namespace Assets.Scripts.Lobby
 
         public void CreateRoom()
         {
+            if (_lobbyNetwork == null) { return; }
+
             SubscribeToServer();
 
             RoomName = $"{Random.Range(1000, 10000)}";
-            LobbyNetwork.Singleton?.StartHost(RoomName);
+            _lobbyNetwork.StartHost(RoomName);
 
             UpdateLobbyButtonsState();
         }
 
         public void JoinRoom()
         {
+            if (_lobbyNetwork == null) { return; }
+
             SubscribeToServer();
 
             RoomName = if_roomName.text;
-            LobbyNetwork.Singleton?.StartClient(RoomName);
+            _lobbyNetwork.StartClient(RoomName);
 
             UpdateLobbyButtonsState();
         }
 
         public void Leave()
         {
+            if (_lobbyNetwork == null) { return; }
+
             RoomName = string.Empty;
-            LobbyNetwork.Singleton?.Leave();
+            _lobbyNetwork.Leave();
 
             Card = null;
             UnsubscribeFromServer();
@@ -89,19 +103,21 @@ namespace Assets.Scripts.Lobby
         {
             if (Card == null) { return; }
             Card.IsReady = !Card.IsReady;
-            LobbyNetwork.Singleton?.CheckAllReadyServerRpc();
+            _lobbyNetwork.CheckAllReadyServerRpc();
             UpdateLobbyButtonsState();
         }
 
         public void StartGame()
         {
-            if (LobbyNetwork.Singleton == null) { return; }
+            if (_lobbyNetwork == null) { return; }
 
-            LobbyNetwork.Singleton?.StartGame();
+            _lobbyNetwork.StartGame();
         }
 
         private void UpdateLobbyButtonsState()
         {
+            if (_lobbyNetwork == null) { return; }
+
             if (NetworkManager.Singleton != null)
             {
                 if (NetworkManager.Singleton.IsClient)
@@ -122,8 +138,8 @@ namespace Assets.Scripts.Lobby
                     if (NetworkManager.Singleton.IsHost)
                     {
                         btn_Start.gameObject.SetActive(true);
-                        LobbyNetwork.Singleton?.CheckAllReadyServerRpc();
-                        btn_Start.interactable = LobbyNetwork.Singleton.IsAllReady.Value;
+                        _lobbyNetwork.CheckAllReadyServerRpc();
+                        btn_Start.interactable = _lobbyNetwork.IsAllReady.Value;
                     }
                     else
                     {
@@ -153,29 +169,29 @@ namespace Assets.Scripts.Lobby
         private bool _subscribedToServer = false;
         private void SubscribeToServer()
         {
-            if (LobbyNetwork.Singleton == null) { return; }
+            if (_lobbyNetwork == null) { return; }
             if (_subscribedToServer) { return; }
 
-            LobbyNetwork.Singleton.OnLocalConnected += OnConnected;
-            LobbyNetwork.Singleton.OnDisconnected += OnDisconnected;
-            LobbyNetwork.Singleton.IsAllReady.OnValueChanged += OnIsAllReady;
+            _lobbyNetwork.OnLocalConnected += OnConnected;
+            _lobbyNetwork.OnDisconnected += OnDisconnected;
+            _lobbyNetwork.IsAllReady.OnValueChanged += OnIsAllReady;
 
             _subscribedToServer = true;
         }
 
         private void UnsubscribeFromServer()
         {
-            if (LobbyNetwork.Singleton == null) { return; }
+            if (_lobbyNetwork == null) { return; }
             if (_subscribedToServer == false) { return; }
 
-            LobbyNetwork.Singleton.OnLocalConnected -= OnConnected;
-            LobbyNetwork.Singleton.OnDisconnected -= OnDisconnected;
-            LobbyNetwork.Singleton.IsAllReady.OnValueChanged -= OnIsAllReady;
+            _lobbyNetwork.OnLocalConnected -= OnConnected;
+            _lobbyNetwork.OnDisconnected -= OnDisconnected;
+            _lobbyNetwork.IsAllReady.OnValueChanged -= OnIsAllReady;
 
             _subscribedToServer = false;
         }
 
-        private void OnConnected(Network.NetworkActor client)
+        private void OnConnected(NetworkActor client)
         {
             _client = client;
             _client.CardArchitector.IsLocalSpawned.OnValueChanged += OnCardSpawned;
@@ -187,7 +203,7 @@ namespace Assets.Scripts.Lobby
             }
         }
 
-        private Network.NetworkActor _client = null;
+        private NetworkActor _client = null;
 
         private void OnCardSpawned(bool previousValue, bool newValue)
         {
