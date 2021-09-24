@@ -5,7 +5,6 @@ namespace Assets.Scripts.Network
 {
     public class Remote : MonoBehaviour
     {
-        private bool _subscribedToArchitector = false;
         private Architector _architector = null;
         private bool _initialized = false;
 
