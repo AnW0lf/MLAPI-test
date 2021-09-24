@@ -19,7 +19,7 @@ namespace Assets.Scripts.Lobby
         [SerializeField] private Button btn_NotReady = null;
         [SerializeField] private Button btn_Start = null;
 
-        private LobbyNetwork _lobbyNetwork = null;
+        private LobbyNetwork LN => LobbyNetwork.Singleton;
 
         private string _roomName = string.Empty;
         public string RoomName
@@ -44,17 +44,12 @@ namespace Assets.Scripts.Lobby
             }
         }
 
-        private void Awake()
-        {
-            _lobbyNetwork = LobbyNetwork.Singleton;
-        }
-
         private void Start()
         {
-            if (_lobbyNetwork.Manager.IsClient)
+            if (LN.Manager.IsClient)
             {
                 _animator.SetTrigger("Lobby");
-                RoomName = _lobbyNetwork.Transport.RoomName;
+                RoomName = LN.Transport.RoomName;
             }
         }
 
@@ -65,34 +60,34 @@ namespace Assets.Scripts.Lobby
 
         public void CreateRoom()
         {
-            if (_lobbyNetwork == null) { return; }
+            if (LN == null) { return; }
 
             SubscribeToServer();
 
             RoomName = $"{Random.Range(1000, 10000)}";
-            _lobbyNetwork.StartHost(RoomName);
+            LN.StartHost(RoomName);
 
             UpdateLobbyButtonsState();
         }
 
         public void JoinRoom()
         {
-            if (_lobbyNetwork == null) { return; }
+            if (LN == null) { return; }
 
             SubscribeToServer();
 
             RoomName = if_roomName.text;
-            _lobbyNetwork.StartClient(RoomName);
+            LN.StartClient(RoomName);
 
             UpdateLobbyButtonsState();
         }
 
         public void Leave()
         {
-            if (_lobbyNetwork == null) { return; }
+            if (LN == null) { return; }
 
             RoomName = string.Empty;
-            _lobbyNetwork.Leave();
+            LN.Leave();
 
             Card = null;
             UnsubscribeFromServer();
@@ -103,20 +98,20 @@ namespace Assets.Scripts.Lobby
         {
             if (Card == null) { return; }
             Card.IsReady = !Card.IsReady;
-            _lobbyNetwork.CheckAllReadyServerRpc();
+            LN.CheckAllReadyServerRpc();
             UpdateLobbyButtonsState();
         }
 
         public void StartGame()
         {
-            if (_lobbyNetwork == null) { return; }
+            if (LN == null) { return; }
 
-            _lobbyNetwork.StartGame();
+            LN.StartGame();
         }
 
         private void UpdateLobbyButtonsState()
         {
-            if (_lobbyNetwork == null) { return; }
+            if (LN == null) { return; }
 
             if (NetworkManager.Singleton != null)
             {
@@ -138,8 +133,8 @@ namespace Assets.Scripts.Lobby
                     if (NetworkManager.Singleton.IsHost)
                     {
                         btn_Start.gameObject.SetActive(true);
-                        _lobbyNetwork.CheckAllReadyServerRpc();
-                        btn_Start.interactable = _lobbyNetwork.IsAllReady.Value;
+                        LN.CheckAllReadyServerRpc();
+                        btn_Start.interactable = LN.IsAllReady.Value;
                     }
                     else
                     {
@@ -169,24 +164,24 @@ namespace Assets.Scripts.Lobby
         private bool _subscribedToServer = false;
         private void SubscribeToServer()
         {
-            if (_lobbyNetwork == null) { return; }
+            if (LN == null) { return; }
             if (_subscribedToServer) { return; }
 
-            _lobbyNetwork.OnLocalConnected += OnConnected;
-            _lobbyNetwork.OnDisconnected += OnDisconnected;
-            _lobbyNetwork.IsAllReady.OnValueChanged += OnIsAllReady;
+            LN.OnLocalConnected += OnConnected;
+            LN.OnDisconnected += OnDisconnected;
+            LN.IsAllReady.OnValueChanged += OnIsAllReady;
 
             _subscribedToServer = true;
         }
 
         private void UnsubscribeFromServer()
         {
-            if (_lobbyNetwork == null) { return; }
+            if (LN == null) { return; }
             if (_subscribedToServer == false) { return; }
 
-            _lobbyNetwork.OnLocalConnected -= OnConnected;
-            _lobbyNetwork.OnDisconnected -= OnDisconnected;
-            _lobbyNetwork.IsAllReady.OnValueChanged -= OnIsAllReady;
+            LN.OnLocalConnected -= OnConnected;
+            LN.OnDisconnected -= OnDisconnected;
+            LN.IsAllReady.OnValueChanged -= OnIsAllReady;
 
             _subscribedToServer = false;
         }
