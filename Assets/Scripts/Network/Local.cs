@@ -6,20 +6,22 @@ namespace Assets.Scripts.Network
     public class Local : MonoBehaviour
     {
         [Header("Update variables")]
-        [SerializeField] private bool _isOnUndate = true;
         [SerializeField] [Range(1, 60)] private int _updateRate = 20;
         private float _delay = 0.05f;
         private float _timer = 0f;
+        private bool _initialized = false;
 
         public Architector Architector { get; set; } = null;
 
         /// <summary>
         /// Инициализирует необходимые компоненты объекта
         /// </summary>
-        protected void Initialize()
+        public void Initialize()
         {
+            if(_initialized) { return; }
             _delay = 1f / _updateRate;
             InitializeVariables();
+            _initialized = true;
         }
 
         /// <summary>
@@ -34,21 +36,13 @@ namespace Assets.Scripts.Network
         /// </summary>
         protected virtual void UpdateVariables() { }
 
-        private void Awake()
+        private void FixedUpdate()
         {
-            Initialize();
-        }
-
-        private void Update()
-        {
-            if (_isOnUndate)
+            _timer += Time.deltaTime;
+            if (_timer > _delay)
             {
-                _timer += Time.deltaTime;
-                if (_timer > _delay)
-                {
-                    _timer = 0f;
-                    UpdateVariables();
-                }
+                _timer = 0f;
+                UpdateVariables();
             }
         }
     }

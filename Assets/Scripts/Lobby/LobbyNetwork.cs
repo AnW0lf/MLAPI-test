@@ -70,7 +70,7 @@ namespace Assets.Scripts.Lobby
             UnsubscribeFromNetworkManager();
         }
 
-        private void SpawnCard(Network.NetworkActor client)
+        private void SpawnCard(NetworkActor client)
         {
             if (client.IsOwner == false) { return; }
 
@@ -245,7 +245,10 @@ namespace Assets.Scripts.Lobby
 
             SpawnCard(client);
 
-            if (client.IsOwner) OnLocalConnected?.Invoke(client);
+            if (client.IsOwner)
+            {
+                OnLocalConnected?.Invoke(client);
+            }
 
             OnClientConnectedClientRpc(id);
 
@@ -319,6 +322,7 @@ namespace Assets.Scripts.Lobby
         [ServerRpc(RequireOwnership = false)]
         public void CheckAllReadyServerRpc()
         {
+            if (_clients == null) { return; }
             foreach (var client in _clients.Values)
             {
                 if (client.CardArchitector.IsLocalSpawned.Value)

@@ -18,6 +18,8 @@ namespace Assets.Scripts.Network
         [Space(25)]
         [SerializeField] private float _smoothness = 3f;
 
+        BodyArchitector bodyArchitector = null;
+
         #region Remote Variables
 
         #region Transform
@@ -47,40 +49,8 @@ namespace Assets.Scripts.Network
 
         #endregion Remote Variables
 
-        #region Remote Actions
-
-        #region Transform
-        private NetworkVariableVector3.OnValueChangedDelegate _positionChanged;
-        private NetworkVariableQuaternion.OnValueChangedDelegate _rotationChanged;
-        #endregion Transform
-
-        #region Animator
-        private NetworkVariableFloat.OnValueChangedDelegate _groundDistanceChanged;
-        private NetworkVariableFloat.OnValueChangedDelegate _inputHorizontalChanged;
-        private NetworkVariableFloat.OnValueChangedDelegate _inputMagnitudeChanged;
-        private NetworkVariableFloat.OnValueChangedDelegate _inputVerticalChanged;
-
-        private NetworkVariableBool.OnValueChangedDelegate _isCrouchingChanged;
-        private NetworkVariableBool.OnValueChangedDelegate _isGroundedChanged;
-        private NetworkVariableBool.OnValueChangedDelegate _isSprintingChanged;
-        private NetworkVariableBool.OnValueChangedDelegate _isStrafingChanged;
-        #endregion Animator
-
-        #region Hand
-        private NetworkVariableBool.OnValueChangedDelegate _isHandVisibleChanged;
-        #endregion Hand
-
-        #region Hand
-        private NetworkVariableInt.OnValueChangedDelegate _skinIndexChanged;
-        #endregion Hand
-
-        #endregion Remote Actions
-
-
         protected override void InitializeVariables()
         {
-            BodyArchitector bodyArchitector = Architector as BodyArchitector;
-
             #region Initialize Variables - Transform
 
             _position = new RemoteVector3(bodyArchitector.Position.Value, _positionOffset)
@@ -89,7 +59,8 @@ namespace Assets.Scripts.Network
                 IsOverOffset = (target, offset) => Vector3.Distance(target, _transform.position) > offset
             };
             _position.SetValue += (value) => _transform.position = value;
-            _position.UpdateValue += (value) => _transform.position = Vector3.Lerp(_transform.position, value, _smoothness * Time.deltaTime);
+            _position.UpdateValue += (value) => _transform.position = Vector3.Lerp(_transform.position, value, _smoothness * Time.fixedDeltaTime);
+            _transform.position = _position.Target;
 
             _rotation = new RemoteQuaternion(bodyArchitector.Rotation.Value, _rotationOffset)
             {
@@ -97,7 +68,8 @@ namespace Assets.Scripts.Network
                 IsOverOffset = (target, offset) => Quaternion.Angle(target, _transform.rotation) > offset
             };
             _rotation.SetValue += (value) => _transform.rotation = value;
-            _rotation.UpdateValue += (value) => _transform.rotation = Quaternion.Lerp(_transform.rotation, value, _smoothness * Time.deltaTime);
+            _rotation.UpdateValue += (value) => _transform.rotation = Quaternion.Lerp(_transform.rotation, value, _smoothness * Time.fixedDeltaTime);
+            _transform.rotation = _rotation.Target;
 
             #endregion Initialize Variables - Transform
 
@@ -111,7 +83,8 @@ namespace Assets.Scripts.Network
             _groundDistance.SetValue += (value) => _animator.SetFloat(AnimatorParameters.GroundDistance, value);
             _groundDistance.UpdateValue += (value) => _animator.SetFloat(AnimatorParameters.GroundDistance
                 , Mathf.Lerp(_animator.GetFloat(AnimatorParameters.GroundDistance)
-                , value, _smoothness * Time.deltaTime));
+                , value, _smoothness * Time.fixedDeltaTime));
+            _animator.SetFloat(AnimatorParameters.GroundDistance, _groundDistance.Target);
 
             _inputHorizontal = new RemoteFloat(bodyArchitector.InputHorizontal.Value, _animationOffset)
             {
@@ -121,7 +94,8 @@ namespace Assets.Scripts.Network
             _inputHorizontal.SetValue += (value) => _animator.SetFloat(AnimatorParameters.InputHorizontal, value);
             _inputHorizontal.UpdateValue += (value) => _animator.SetFloat(AnimatorParameters.InputHorizontal
                 , Mathf.Lerp(_animator.GetFloat(AnimatorParameters.InputHorizontal)
-                , value, _smoothness * Time.deltaTime));
+                , value, _smoothness * Time.fixedDeltaTime));
+            _animator.SetFloat(AnimatorParameters.InputHorizontal, _inputHorizontal.Target);
 
             _inputMagnitude = new RemoteFloat(bodyArchitector.InputMagnitude.Value, _animationOffset)
             {
@@ -131,7 +105,8 @@ namespace Assets.Scripts.Network
             _inputMagnitude.SetValue += (value) => _animator.SetFloat(AnimatorParameters.InputMagnitude, value);
             _inputMagnitude.UpdateValue += (value) => _animator.SetFloat(AnimatorParameters.InputMagnitude
                 , Mathf.Lerp(_animator.GetFloat(AnimatorParameters.InputMagnitude)
-                , value, _smoothness * Time.deltaTime));
+                , value, _smoothness * Time.fixedDeltaTime));
+            _animator.SetFloat(AnimatorParameters.InputMagnitude, _inputHorizontal.Target);
 
             _inputVertical = new RemoteFloat(bodyArchitector.InputVertical.Value, _animationOffset)
             {
@@ -141,31 +116,36 @@ namespace Assets.Scripts.Network
             _inputVertical.SetValue += (value) => _animator.SetFloat(AnimatorParameters.InputVertical, value);
             _inputVertical.UpdateValue += (value) => _animator.SetFloat(AnimatorParameters.InputVertical
                 , Mathf.Lerp(_animator.GetFloat(AnimatorParameters.InputVertical)
-                , value, _smoothness * Time.deltaTime));
+                , value, _smoothness * Time.fixedDeltaTime));
+            _animator.SetFloat(AnimatorParameters.InputVertical, _inputVertical.Target);
 
             _isCrouching = new RemoteBool(bodyArchitector.IsCrouching.Value)
             {
                 IsEquals = (target) => target == _animator.GetBool(AnimatorParameters.IsCrouching)
             };
             _isCrouching.SetValue += (value) => _animator.SetBool(AnimatorParameters.IsCrouching, value);
+            _animator.SetBool(AnimatorParameters.IsCrouching, _isCrouching.Target);
 
             _isGrounded = new RemoteBool(bodyArchitector.IsGrounded.Value)
             {
                 IsEquals = (target) => target == _animator.GetBool(AnimatorParameters.IsGrounded)
             };
             _isGrounded.SetValue += (value) => _animator.SetBool(AnimatorParameters.IsGrounded, value);
+            _animator.SetBool(AnimatorParameters.IsGrounded, _isGrounded.Target);
 
             _isSprinting = new RemoteBool(bodyArchitector.IsSprinting.Value)
             {
                 IsEquals = (target) => target == _animator.GetBool(AnimatorParameters.IsSprinting)
             };
             _isSprinting.SetValue += (value) => _animator.SetBool(AnimatorParameters.IsSprinting, value);
+            _animator.SetBool(AnimatorParameters.IsSprinting, _isSprinting.Target);
 
             _isStrafing = new RemoteBool(bodyArchitector.IsStrafing.Value)
             {
                 IsEquals = (target) => target == _animator.GetBool(AnimatorParameters.IsStrafing)
             };
             _isStrafing.SetValue += (value) => _animator.SetBool(AnimatorParameters.IsStrafing, value);
+            _animator.SetBool(AnimatorParameters.IsStrafing, _isStrafing.Target);
 
             #endregion Initialize Variables - Animator
 
@@ -176,6 +156,7 @@ namespace Assets.Scripts.Network
                 IsEquals = (target) => target == _handMotion.IsHandVisible
             };
             _isHandVisible.SetValue += (value) => _handMotion.IsHandVisible = value;
+            _handMotion.IsHandVisible = _isHandVisible.Target;
 
             #endregion Initialize Variables - Hand
 
@@ -188,150 +169,51 @@ namespace Assets.Scripts.Network
             };
             _skinIndex.SetValue += (value) => _skinner.SkinIndex = value;
             _skinIndex.UpdateValue += (value) => _skinner.SkinIndex = value;
+            _skinner.SkinIndex = _skinIndex.Target;
 
             #endregion Initialize Variables - Skin
         }
 
-        protected override void InitializeArchitectorActions()
+        protected override void InitializeArchitector()
         {
-            #region Initialize Actions - Transform
-
-            _positionChanged = (oldValue, newValue) => _position.Target = newValue;
-            _rotationChanged = (oldValue, newValue) => _rotation.Target = newValue;
-
-            #endregion Initialize Actions - Transform
-
-            #region Initialize Actions - Animator
-
-            _groundDistanceChanged = (oldValue, newValue) => _groundDistance.Target = newValue;
-            _inputHorizontalChanged = (oldValue, newValue) => _inputHorizontal.Target = newValue;
-            _inputMagnitudeChanged = (oldValue, newValue) => _inputMagnitude.Target = newValue;
-            _inputVerticalChanged = (oldValue, newValue) => _inputVertical.Target = newValue;
-
-            _isCrouchingChanged = (oldValue, newValue) => _isCrouching.Target = newValue;
-            _isGroundedChanged = (oldValue, newValue) => _isGrounded.Target = newValue;
-            _isSprintingChanged = (oldValue, newValue) => _isSprinting.Target = newValue;
-            _isStrafingChanged = (oldValue, newValue) => _isStrafing.Target = newValue;
-
-            #endregion Initialize Actions - Animator
-
-            #region Initialize Actions - Hand
-
-            _isHandVisibleChanged = (oldValue, newValue) => _handMotion.IsHandVisible = newValue;
-
-            #endregion Initialize Actions - Hand
-
-            #region Initialize Actions - Skin
-
-            _skinIndexChanged = (oldValue, newValue) => _skinner.SkinIndex = newValue;
-
-            #endregion Initialize Actions - Skin
-        }
-
-        protected override void Subscribe()
-        {
-            BodyArchitector bodyArchitector = Architector as BodyArchitector;
-
-            #region Subscribe - Transform
-
-            bodyArchitector.Position.OnValueChanged += _positionChanged;
-            bodyArchitector.Rotation.OnValueChanged += _rotationChanged;
-
-            #endregion Subscribe - Transform
-
-            #region Subscribe - Animator
-
-            bodyArchitector.GroundDistance.OnValueChanged += _groundDistanceChanged;
-            bodyArchitector.InputHorizontal.OnValueChanged += _inputHorizontalChanged;
-            bodyArchitector.InputMagnitude.OnValueChanged += _inputMagnitudeChanged;
-            bodyArchitector.InputVertical.OnValueChanged += _inputVerticalChanged;
-
-            bodyArchitector.IsCrouching.OnValueChanged += _isCrouchingChanged;
-            bodyArchitector.IsGrounded.OnValueChanged += _isGroundedChanged;
-            bodyArchitector.IsSprinting.OnValueChanged += _isSprintingChanged;
-            bodyArchitector.IsStrafing.OnValueChanged += _isStrafingChanged;
-
-            #endregion Subscribe - Animator
-
-            #region Subscribe - Hand
-
-            bodyArchitector.IsHandVisible.OnValueChanged += _isHandVisibleChanged;
-
-            #endregion Subscribe - Hand
-
-            #region Subscribe - Skin
-
-            bodyArchitector.SkinIndex.OnValueChanged += _skinIndexChanged;
-
-            #endregion Subscribe - Skin
-        }
-
-        protected override void Unsubscribe()
-        {
-            BodyArchitector bodyArchitector = Architector as BodyArchitector;
-
-            #region Unsubscribe - Transform
-
-            bodyArchitector.Position.OnValueChanged -= _positionChanged;
-            bodyArchitector.Rotation.OnValueChanged -= _rotationChanged;
-
-            #endregion Unsubscribe - Transform
-
-            #region Unsubscribe - Animator
-
-            bodyArchitector.GroundDistance.OnValueChanged -= _groundDistanceChanged;
-            bodyArchitector.InputHorizontal.OnValueChanged -= _inputHorizontalChanged;
-            bodyArchitector.InputMagnitude.OnValueChanged -= _inputMagnitudeChanged;
-            bodyArchitector.InputVertical.OnValueChanged -= _inputVerticalChanged;
-
-            bodyArchitector.IsCrouching.OnValueChanged -= _isCrouchingChanged;
-            bodyArchitector.IsGrounded.OnValueChanged -= _isGroundedChanged;
-            bodyArchitector.IsSprinting.OnValueChanged -= _isSprintingChanged;
-            bodyArchitector.IsStrafing.OnValueChanged -= _isStrafingChanged;
-
-            #endregion Unsubscribe - Animator
-
-            #region Subscribe - Hand
-
-            bodyArchitector.IsHandVisible.OnValueChanged -= _isHandVisibleChanged;
-
-            #endregion Subscribe - Hand
-
-            #region Subscribe - Skin
-
-            bodyArchitector.SkinIndex.OnValueChanged -= _skinIndexChanged;
-
-            #endregion Subscribe - Skin
+            if (Architector == null) bodyArchitector = null;
+            else bodyArchitector = Architector as BodyArchitector;
         }
 
         protected override void UpdateVariables()
         {
             #region Update Variables - Transform
 
-            _position.Update();
-            _rotation.Update();
+            _position.Target = bodyArchitector.Position.Value;
+            _rotation.Target = bodyArchitector.Rotation.Value;
 
             #endregion Update Variables - Transform
 
             #region Update Variables - Animator
 
-            _groundDistance.Update();
-            _inputHorizontal.Update();
-            _inputMagnitude.Update();
-            _inputVertical.Update();
+            _groundDistance.Target = bodyArchitector.GroundDistance.Value;
+            _inputHorizontal.Target = bodyArchitector.InputHorizontal.Value;
+            _inputMagnitude.Target = bodyArchitector.InputMagnitude.Value;
+            _inputVertical.Target = bodyArchitector.InputVertical.Value;
 
-            _isCrouching.Update();
-            _isGrounded.Update();
-            _isSprinting.Update();
-            _isStrafing.Update();
+            _isCrouching.Target = bodyArchitector.IsCrouching.Value;
+            _isGrounded.Target = bodyArchitector.IsGrounded.Value;
+            _isSprinting.Target = bodyArchitector.IsSprinting.Value;
+            _isStrafing.Target = bodyArchitector.IsStrafing.Value;
 
             #endregion Update Variables - Animator
 
             #region Update Variables - Hand
 
-            _isHandVisible.Update();
+            _isHandVisible.Target = bodyArchitector.IsHandVisible.Value;
 
             #endregion Update Variables - Hand
+
+            #region Update Variables - Skin
+
+            _skinIndex.Target = bodyArchitector.SkinIndex.Value;
+
+            #endregion Update Variables - Skin
         }
     }
 }

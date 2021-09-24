@@ -42,7 +42,6 @@ namespace Assets.Scripts.Network
                     OnIsLocalCardSpawnedChanged(_cardArchitector.IsLocalSpawned.Value, _cardArchitector.IsLocalSpawned.Value);
                 }
             }
-
         }
 
         private void OnDestroy()

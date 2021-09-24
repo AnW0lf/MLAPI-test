@@ -704,7 +704,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278224896
   m_fontColor: {r: 0, g: 0.53333336, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -993,6 +993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43086525aef8a4042bdd64f2b5112653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _style: 0
   _nickname: {fileID: 8055641143927951086}
   _icon: {fileID: 8055641145451575274}
   _ownerReadyFlag: {fileID: 6030566776457480179}
@@ -1011,8 +1012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1992440115df14c864e8edd823e7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isOnUndate: 0
-  _updateRate: 1
+  _updateRate: 10
   _card: {fileID: 3377147246814680230}
 --- !u!1 &8055641145451575270
 GameObject:

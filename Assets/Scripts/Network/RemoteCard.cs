@@ -8,6 +8,8 @@ namespace Assets.Scripts.Network
     {
         [SerializeField] private PlayerCard _card = null;
 
+        CardArchitector cardArchitector = null;
+
         #region Remote Variables
 
         private RemoteString _nickname = null;
@@ -16,25 +18,14 @@ namespace Assets.Scripts.Network
 
         #endregion Remote Variables
 
-        #region Remote Actions
-
-        private NetworkVariableString.OnValueChangedDelegate _nicknameChanged;
-        private NetworkVariableInt.OnValueChangedDelegate _iconIndexChanged;
-        private NetworkVariableBool.OnValueChangedDelegate _isReadyChanged;
-
-        #endregion Remote Actions
-
         protected override void InitializeVariables()
         {
-            CardArchitector cardArchitector = Architector as CardArchitector;
-
-            _card.Style = PlayerCardStyle.NOTOWNER;
-
             _nickname = new RemoteString(cardArchitector.Nickname.Value)
             {
                 IsEquals = (target) => target == _card.Nickname
             };
             _nickname.SetValue += (value) => _card.Nickname = value;
+            _card.Nickname = _nickname.Target;
 
             _iconIndex = new RemoteInt(cardArchitector.IconIndex.Value, 0)
             {
@@ -43,37 +34,27 @@ namespace Assets.Scripts.Network
             };
             _iconIndex.SetValue += (value) => _card.IconIndex = value;
             _iconIndex.UpdateValue += (value) => _card.IconIndex = value;
+            _card.IconIndex = _iconIndex.Target;
 
             _isReady = new RemoteBool(cardArchitector.IsReady.Value)
             {
                 IsEquals = (target) => target == _card.IsReady
             };
             _isReady.SetValue += (value) => _card.IsReady = value;
+            _card.IsReady = _isReady.Target;
         }
 
-        protected override void InitializeArchitectorActions()
+        protected override void InitializeArchitector()
         {
-            _nicknameChanged = (oldValue, newValue) => _nickname.Target = newValue;
-            _iconIndexChanged = (oldValue, newValue) => _iconIndex.Target = newValue;
-            _isReadyChanged = (oldValue, newValue) => _isReady.Target = newValue;
+            if (Architector == null) cardArchitector = null;
+            else cardArchitector = Architector as CardArchitector;
         }
 
-        protected override void Subscribe()
+        protected override void UpdateVariables()
         {
-            CardArchitector cardArchitector = Architector as CardArchitector;
-
-            cardArchitector.Nickname.OnValueChanged += _nicknameChanged;
-            cardArchitector.IconIndex.OnValueChanged += _iconIndexChanged;
-            cardArchitector.IsReady.OnValueChanged += _isReadyChanged;
-        }
-
-        protected override void Unsubscribe()
-        {
-            CardArchitector cardArchitector = Architector as CardArchitector;
-
-            cardArchitector.Nickname.OnValueChanged -= _nicknameChanged;
-            cardArchitector.IconIndex.OnValueChanged -= _iconIndexChanged;
-            cardArchitector.IsReady.OnValueChanged -= _isReadyChanged;
+            _nickname.Target = cardArchitector.Nickname.Value;
+            _iconIndex.Target = cardArchitector.IconIndex.Value;
+            _isReady.Target = cardArchitector.IsReady.Value;
         }
     }
 }

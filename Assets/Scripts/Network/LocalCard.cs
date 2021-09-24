@@ -19,8 +19,6 @@ namespace Assets.Scripts.Network
 
         protected override void InitializeVariables()
         {
-            _card.Style = PlayerCardStyle.OWNER;
-
             Nickname = new LocalString(_card.Nickname);
             IconIndex = new LocalInt(_card.IconIndex, 0);
             IsReady = new LocalBool(_card.IsReady);

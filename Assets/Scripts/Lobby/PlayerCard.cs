@@ -2,13 +2,13 @@ using Assets.Scripts.Player;
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.Lobby
 {
     public class PlayerCard : MonoBehaviour
     {
+        [SerializeField] private PlayerCardStyle _style = PlayerCardStyle.NOTOWNER;
         [SerializeField] private TextMeshProUGUI _nickname = null;
         [SerializeField] private Image _icon = null;
         [SerializeField] private GameObject _ownerReadyFlag = null;
@@ -79,10 +79,10 @@ namespace Assets.Scripts.Lobby
 
         public bool IsReady
         {
-            get => _ownerReadyFlag.activeSelf;
+            get => _ownerReadyFlag.activeSelf || _notOwnerReadyFlag.activeSelf;
             set
             {
-                switch (Style)
+                switch (_style)
                 {
                     case PlayerCardStyle.OWNER:
                         {
@@ -125,19 +125,6 @@ namespace Assets.Scripts.Lobby
             }
         }
         public event Action<bool> IsReadyChanged = null;
-
-        private PlayerCardStyle _style = PlayerCardStyle.NOTOWNER;
-        public PlayerCardStyle Style
-        {
-            get => _style;
-            set
-            {
-                _style = value;
-                IsReady = IsReady;
-                OnStyleChanged?.Invoke(_style);
-            }
-        }
-        public event UnityAction<PlayerCardStyle> OnStyleChanged = null;
     }
 
     public enum PlayerCardStyle { OWNER, NOTOWNER }

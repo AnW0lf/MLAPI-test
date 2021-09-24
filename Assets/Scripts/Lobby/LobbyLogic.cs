@@ -50,12 +50,17 @@ namespace Assets.Scripts.Lobby
             }
         }
 
+        private void FixedUpdate()
+        {
+            UpdateLobbyButtonsState();
+        }
+
         public void CreateRoom()
         {
             SubscribeToServer();
 
             RoomName = $"{Random.Range(1000, 10000)}";
-            LobbyNetwork.Singleton.StartHost(RoomName);
+            LobbyNetwork.Singleton?.StartHost(RoomName);
 
             UpdateLobbyButtonsState();
         }
@@ -65,7 +70,7 @@ namespace Assets.Scripts.Lobby
             SubscribeToServer();
 
             RoomName = if_roomName.text;
-            LobbyNetwork.Singleton.StartClient(RoomName);
+            LobbyNetwork.Singleton?.StartClient(RoomName);
 
             UpdateLobbyButtonsState();
         }
@@ -73,7 +78,7 @@ namespace Assets.Scripts.Lobby
         public void Leave()
         {
             RoomName = string.Empty;
-            LobbyNetwork.Singleton.Leave();
+            LobbyNetwork.Singleton?.Leave();
 
             Card = null;
             UnsubscribeFromServer();
@@ -84,7 +89,7 @@ namespace Assets.Scripts.Lobby
         {
             if (Card == null) { return; }
             Card.IsReady = !Card.IsReady;
-            LobbyNetwork.Singleton.CheckAllReadyServerRpc();
+            LobbyNetwork.Singleton?.CheckAllReadyServerRpc();
             UpdateLobbyButtonsState();
         }
 
@@ -92,7 +97,7 @@ namespace Assets.Scripts.Lobby
         {
             if (LobbyNetwork.Singleton == null) { return; }
 
-            LobbyNetwork.Singleton.StartGame();
+            LobbyNetwork.Singleton?.StartGame();
         }
 
         private void UpdateLobbyButtonsState()
@@ -117,6 +122,7 @@ namespace Assets.Scripts.Lobby
                     if (NetworkManager.Singleton.IsHost)
                     {
                         btn_Start.gameObject.SetActive(true);
+                        LobbyNetwork.Singleton?.CheckAllReadyServerRpc();
                         btn_Start.interactable = LobbyNetwork.Singleton.IsAllReady.Value;
                     }
                     else

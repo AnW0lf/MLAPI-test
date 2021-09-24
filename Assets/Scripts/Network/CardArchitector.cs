@@ -39,7 +39,7 @@ namespace Assets.Scripts.Network
         {
             _nicknameChanged = (value) => Nickname.Value = value;
             _iconIndexChanged = (value) => IconIndex.Value = value;
-            _isReadyChanged = (value) => { IsReady.Value = value; };
+            _isReadyChanged = (value) => IsReady.Value = value;
         }
 
         protected override void Synchronize()

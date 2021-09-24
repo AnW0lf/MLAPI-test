@@ -14,7 +14,7 @@ namespace Assets.Scripts.Player
             get => _skinIndex;
             set
             {
-                if (value < 0) { return; }
+                if (value < 0 || value >= _skins.Length) { return; }
                 _skinIndex = Mathf.Clamp(value, 0, _skins.Length - 1);
                 SkinIndexChanged?.Invoke(_skinIndex);
             }

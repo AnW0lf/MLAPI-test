@@ -36,6 +36,7 @@ namespace Assets.Scripts.Network
 
             Local = Instantiate(_localPrefab, parent);
             Local.Architector = this;
+            Local.Initialize();
             SubscribeToLocal();
             SynchronizeWithLocal();
 
@@ -113,6 +114,7 @@ namespace Assets.Scripts.Network
 
             Remote = Instantiate(_remotePrefab, container);
             Remote.Architector = this;
+            Remote.Initialize();
         }
 
         public void DeleteRemote()

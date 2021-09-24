@@ -7,6 +7,7 @@ namespace Assets.Scripts.Network
     {
         private bool _subscribedToArchitector = false;
         private Architector _architector = null;
+        private bool _initialized = false;
 
         /// <summary>
         /// Свойство определяющее логику работы с сылкой на Network объект
@@ -17,27 +18,19 @@ namespace Assets.Scripts.Network
             get => _architector;
             set
             {
-                if (_architector != null)
-                {
-                    UnsubscribeFromArchitector();
-                }
-
                 _architector = value;
-
-                if (_architector != null)
-                {
-                    SubscribeToArchitector();
-                }
+                InitializeArchitector();
             }
         }
 
         /// <summary>
         /// Инициализирует необходимые компоненты объекта
         /// </summary>
-        protected void Initialize()
+        public void Initialize()
         {
+            if (_initialized) { return; }
             InitializeVariables();
-            InitializeArchitectorActions();
+            _initialized = true;
         }
 
         /// <summary>
@@ -47,54 +40,10 @@ namespace Assets.Scripts.Network
         protected virtual void InitializeVariables() { }
 
         /// <summary>
-        /// Инициализирует Actions для соответствующих событий NetworkParent
+        /// Инициализирует Architector конкретного типа
         /// Необходимо переопределить
         /// </summary>
-        protected virtual void InitializeArchitectorActions() { }
-
-        /// <summary>
-        /// Подписывает объект на события NetworkParent
-        /// Содержит проверки корректности операции
-        /// Сами подписки необходимо реализовать переопределением метода Subscribe
-        /// </summary>
-        protected void SubscribeToArchitector()
-        {
-            if (_architector == null) { return; }
-            if (_subscribedToArchitector) { return; }
-
-            Subscribe();
-
-            _subscribedToArchitector = true;
-        }
-
-        /// <summary>
-        /// Отписывает объект от событий NetworkParent
-        /// Содержит проверки корректности операции
-        /// Сами отписки необходимо реализовать переопределением метода Unsubscribe
-        /// </summary>
-        protected void UnsubscribeFromArchitector()
-        {
-            if (_architector == null) { return; }
-            if (_subscribedToArchitector == false) { return; }
-
-            Unsubscribe();
-
-            _subscribedToArchitector = false;
-        }
-
-        /// <summary>
-        /// Осуществляет подписку объекта на события NetworkParent
-        /// Необходимо переопределить в соответствии с требуемыми событиями
-        /// Не требует проверок на корректность операций при работе с NetworkParent
-        /// </summary>
-        protected virtual void Subscribe() { }
-
-        /// <summary>
-        /// Осуществляет отписку объекта от событий NetworkParent
-        /// Необходимо переопределить в соответствии с требуемыми событиями
-        /// Не требует проверок на корректность операций при работе с NetworkParent
-        /// </summary>
-        protected virtual void Unsubscribe() { }
+        protected virtual void InitializeArchitector() { }
 
         /// <summary>
         /// Вызывает метод Update в Remote переменных объекта
@@ -102,12 +51,7 @@ namespace Assets.Scripts.Network
         /// </summary>
         protected virtual void UpdateVariables() { }
 
-        private void Start()
-        {
-            Initialize();
-        }
-
-        private void Update()
+        private void FixedUpdate()
         {
             UpdateVariables();
         }
