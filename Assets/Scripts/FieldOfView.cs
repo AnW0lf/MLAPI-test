@@ -224,9 +224,8 @@ public class FieldOfView : MonoBehaviour
         Vector3 dirToTarget = (target.position - transform.TransformPoint(0, yOffset, 0.5f)).normalized;
         //Debug.Log(Vector3.Angle(transform.forward, dirToTarget));
         if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
-        {        
+        {          
             RaycastHit hit;
-            // if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + yOffset, transform.position.z), dirToTarget, out hit, withDistance == true ? viewRadius : 1000) == true)
             if (Physics.Raycast(transform.TransformPoint(0, yOffset, 0.5f), dirToTarget, out hit, withDistance == true ? viewRadius : 1000) == true)
             {
                 Debug.Log(hit.collider.transform.name);
@@ -235,7 +234,7 @@ public class FieldOfView : MonoBehaviour
                 {
                     return true;
                 }
-            }       
+            }
         }
 
         return false;

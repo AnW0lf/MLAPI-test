@@ -2142,7 +2142,7 @@ MonoBehaviour:
   _fieldOfViewMesh: {fileID: 3491830815060266174}
   _targetLine: {fileID: 3491830815809119063}
   _currentTarget: {fileID: 0}
-  _suspiciousDelay: 3
+  _suspiciousDelay: 1.5
   _searchDelay: 6
   _searchLooksCount: 3
   _searchLookDelay: 1

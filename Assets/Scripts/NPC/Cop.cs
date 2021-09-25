@@ -32,6 +32,7 @@ public class Cop : MonoBehaviour
     [SerializeField] private Transform _currentTarget;
     public Transform CurrentTarget { get { return _currentTarget; } set { _currentTarget = value; } }
     private AI _currentTargetAI;
+    private Transform _currentVisibleMark;
     private Transform _currentChaseTarget;
     private Vector3 _lastTargetPosition;
     private Vector3 _lastTargetLookAtPosition;
@@ -120,11 +121,12 @@ public class Cop : MonoBehaviour
 
             case CopState.Suspicious:
 
-                if (_fieldOfView.CheckTargetVisibility(_currentChaseTarget, 1.5f, false) == false)
+                if (_fieldOfView.CheckTargetVisibility(_currentVisibleMark, 1.5f, false) == false)
                 {
                     _targetLostTimer -= Time.deltaTime;
                     if (_targetLostTimer <= 0)
                     {
+                        _currentVisibleMark = null;
                         _currentChaseTarget = null;
                         SwitchToCalm();
                         return;
@@ -136,8 +138,8 @@ public class Cop : MonoBehaviour
                 }
 
                 transform.LookAt(_currentChaseTarget);
-                _targetLine.SetPosition(0, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z));
-                _targetLine.SetPosition(1, new Vector3(_currentChaseTarget.position.x, _currentChaseTarget.position.y + 1, _currentChaseTarget.position.z));
+                _targetLine.SetPosition(0, new Vector3(transform.position.x, transform.position.y + 1.8f, transform.position.z));
+                _targetLine.SetPosition(1, new Vector3(_currentVisibleMark.position.x, _currentVisibleMark.position.y, _currentVisibleMark.position.z));
 
                 if (_suspiciousTimer >= 0)
                 {
@@ -159,7 +161,7 @@ public class Cop : MonoBehaviour
                 }*/
 
                 _agent.SetDestination(_currentChaseTarget.position);
-                _targetLine.SetPosition(0, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z));
+                _targetLine.SetPosition(0, new Vector3(transform.position.x, transform.position.y + 1.8f, transform.position.z));
                 _targetLine.SetPosition(1, new Vector3(_currentChaseTarget.position.x, _currentChaseTarget.position.y + 1, _currentChaseTarget.position.z));
 
                 if (_fieldOfView.CheckTargetVisibility(_currentChaseTarget, 1.5f, false) == false)
@@ -276,7 +278,7 @@ public class Cop : MonoBehaviour
         _fieldOfViewMesh.SetActive(true);
         _suspiciousTimer = 0;
         
-        _agent.speed = _walkSpeed;
+      //  _agent.speed = _walkSpeed;
         _stateText.text = "...";
 
         _targetLine.SetPosition(0, transform.position);
@@ -393,6 +395,7 @@ public class Cop : MonoBehaviour
                     {                                       
                         Debug.Log("AI");
                         CurrentTarget = tempAI.transform;
+                        _currentVisibleMark = tempCollider.transform;
                         _currentChaseTarget = _currentTarget;
                         _currentTargetAI = tempAI;
                         SwitchToSuspicious();
