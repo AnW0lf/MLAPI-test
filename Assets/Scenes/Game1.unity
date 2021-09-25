@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.2561943, g: 0.35229516, b: 0.44899663, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6550,8 +6550,10 @@ MonoBehaviour:
   _placer: {fileID: 25215706}
   _questNetwork: {fileID: 0}
   _networkNpcSet:
-  - _count: 2
+  - _count: 35
     _npcPrefab: {fileID: 856769483722413915, guid: ac829f6f85b52d54fa0046a539c42ebe, type: 3}
+  - _count: 15
+    _npcPrefab: {fileID: 856769483722413915, guid: adc0fab77df25ec4d85bd1eb39e5bfd6, type: 3}
 --- !u!4 &2010362248
 Transform:
   m_ObjectHideFlags: 0
